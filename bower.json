@@ -1,0 +1,29 @@
+{
+  "name": "tms-web",
+  "description": "tms-web",
+  "main": "main.js",
+  "authors": [
+    "xuezhiyu <xuezhiyu@med-log.cn>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "tms-web"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "temp-build",
+    "bower",
+    "dist",
+    "src",
+    "test"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "jquery.easyui": "*",
+    "jquery-cookie": "~1.4.1",
+    "sockjs-client": "^1.1.1"
+  }
+}

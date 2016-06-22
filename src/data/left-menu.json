@@ -1,0 +1,96 @@
+[
+    {
+        "group": "TMS",
+        "icon":"icon-ok",
+        "data": [
+            {
+                "title": "列表",
+                "icon": "images/left-menu/music_48.png",
+                "url": "views/orderList/list.html",
+                "type":1,
+                "jsPathList":[
+                    "views/orderList/orderList.js"
+                ]
+            },
+            {
+                "title": "编辑",
+                "icon": "images/left-menu/edit_48.png",
+                "url": "views/orderEdit/index.html",
+                "type":1
+            },
+            {
+                "title": "打印测试",
+                "icon": "images/left-menu/edit_48.png",
+                "url": "views/print/index.html",
+                "type":1,
+                "jsPathList":[
+                    "vendor/Lodop6.204_CLodop/LodopFuncs.js",
+                    "views/print/myPrint.js"
+                ]
+            }
+        ]
+    },
+    {
+        "group": "分类1",
+        "icon":"icon-sum",
+        "data": [
+            {
+                "title": "message 示例",
+                "icon": "images/left-menu/edit_48.png",
+                "url": "views/message/index.html",
+                "type":1
+            },
+            {
+                "title": "desktop 桌面图标",
+                "icon": "images/left-menu/edit_48.png",
+                "url": "views/desktop/index.html",
+                "type":1
+            },
+            {
+                "title": "iframe 示例",
+                "icon": "images/left-menu/edit_48.png",
+                "url": "http://www.med-log.cn",
+                "type":0
+            }
+            ,
+            {
+                "title": "progress 示例",
+                "icon": "images/left-menu/edit_48.png",
+                "url": "views/progress/index.html",
+                "type":1
+            }
+            ,
+            {
+                "title": "datagrid 示例",
+                "icon": "images/left-menu/edit_48.png",
+                "url": "views/datagrid/index.html",
+                "type":1
+            }
+            ,
+            {
+                "title": "datebox 示例",
+                "icon": "images/left-menu/edit_48.png",
+                "url": "views/datebox/index.html",
+                "type":1
+            }
+        ]
+    },
+    {
+        "group": "分类2",
+        "icon":"icon-print",
+        "data": [
+            {
+                "title": "帮助",
+                "icon": "images/left-menu/remove_48.png",
+                "url": "views/help/index.html",
+                "type":1
+            },
+            {
+                "title": "视频播放器",
+                "icon": "images/left-menu/remove_48.png",
+                "url": "views/video/index.html",
+                "type":1
+            }
+        ]
+    }
+]
