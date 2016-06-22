@@ -4,10 +4,20 @@ var src = path.resolve(__dirname, './../src');
 var root = path.resolve(__dirname, './..');
 var build = path.resolve(__dirname, './../build');
 var tempBuild = path.resolve(__dirname, './../temp-build');
+var revisionHistory = path.normalize('/opt/revision_history');//192.168.1.84服务器,版本备份目录
+
+var programName = "tms-web"
 
 module.exports = {
+	programName: programName,
 	deploy:{
-		dist: dist
+		dist: dist,
+		tempBuild: tempBuild
+	},
+	revisionHistory:{
+		dev: revisionHistory + "/dev/" + programName,
+		test: revisionHistory + "/test/" + programName,
+		production: revisionHistory + "/production/" + programName
 	},
 	config:{
 		dev: build + "/dev",

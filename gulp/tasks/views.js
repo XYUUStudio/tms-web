@@ -3,7 +3,7 @@ var replace = require('gulp-replace');
 var views = require('../config').views;
 var others = require('../config').others;
 
-gulp.task('views', function(){
+gulp.task('Views', function(){
 	gulp.src(views.src).pipe(gulp.dest(views.dist));
 
 	gulp.src(others.src + "/data/**/*").pipe(gulp.dest(others.dist + "/data"));

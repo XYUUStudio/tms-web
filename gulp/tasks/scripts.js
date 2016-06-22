@@ -1,15 +1,15 @@
 var gulp = require('gulp');
+var path = require('path');
+var fs = require('fs');
 var scripts = require('../config').scripts;
 var config = require('../config').config;
 var replace = require('gulp-replace');
-var dateFormat = require('dateformat');
 var concat = require('gulp-concat');//合并js文件
 var uglify = require('gulp-uglify');//压缩js代码
+var myVersion = require('../util/myVersion');
 
-var now = new Date();
-
-gulp.task('scripts-dev', function(){
-	var verison = "TMSWEBDEV" + dateFormat(now, "yyyymmddHHMMss");
+gulp.task('Scripts-dev', function(){
+	var version = "TMSWEBDEV" + myVersion();
 	gulp.src(scripts.src + "/scripts/login.js")
 		.pipe(concat('login.min.js'))
 		.pipe(uglify())
@@ -28,14 +28,15 @@ gulp.task('scripts-dev', function(){
 			scripts.src + "/scripts/msg.js",
 			scripts.src + "/scripts/myWebSocket.js"
 		])
-		.pipe(replace('version: "dev"', 'version: "'+ verison + '"'))
+		.pipe(replace('version: "dev"', 'version: "'+ version + '"'))
 		.pipe(concat('main.min.js'))
 		.pipe(uglify())
 		.pipe(gulp.dest(scripts.dist));
+
 });
 
-gulp.task('scripts-test', function(){
-	var verison = "TMSWEBTST" + dateFormat(now, "yyyymmddHHMMss");
+gulp.task('Scripts-test', function(){
+	var version = "TMSWEBTST" + myVersion();
 	gulp.src(scripts.src + "/scripts/login.js")
 		.pipe(concat('login.min.js'))
 		.pipe(uglify())
@@ -54,14 +55,14 @@ gulp.task('scripts-test', function(){
 		scripts.src + "/scripts/msg.js",
 		scripts.src + "/scripts/myWebSocket.js"
 	])
-		.pipe(replace('version: "test"', 'version: "'+ verison + '"'))
+		.pipe(replace('version: "test"', 'version: "'+ version + '"'))
 		.pipe(concat('main.min.js'))
 		.pipe(uglify())
 		.pipe(gulp.dest(scripts.dist));
 });
 
-gulp.task('scripts-production', function(){
-	var verison = "TMSWEBPRO" + dateFormat(now, "yyyymmddHHMMss");;
+gulp.task('Scripts-production', function(){
+	var version = "TMSWEBPRO" + myVersion();
 	gulp.src(scripts.src + "/scripts/login.js")
 		.pipe(concat('login.min.js'))
 		.pipe(uglify())
@@ -80,7 +81,7 @@ gulp.task('scripts-production', function(){
 		scripts.src + "/scripts/msg.js",
 		scripts.src + "/scripts/myWebSocket.js"
 	])
-		.pipe(replace('version: "production"', 'version: "'+ verison + '"'))
+		.pipe(replace('version: "production"', 'version: "'+ version + '"'))
 		.pipe(concat('main.min.js'))
 		.pipe(uglify())
 		.pipe(gulp.dest(scripts.dist));
