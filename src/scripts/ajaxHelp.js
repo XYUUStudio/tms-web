@@ -5,7 +5,7 @@
 var AjaxException = function(){
     AjaxException.prototype.TokenException = function(){
         $.messager.alert('提示', "登陆失效，请重新登陆", "error");
-        window.location.href = "/";
+        window.location.href = "index.html";
     }
 
     AjaxException.prototype.ResponseException = function(data, callback) {
@@ -101,12 +101,12 @@ var AjaxHelp = function(){
     AjaxHelp.prototype.AjaxPost = function(url, data, success, error) {
         /// <summary>POST的形式请求接口</summary>
         var exception = new AjaxException();
-        // var token = $.cookie("token");
-        // if(token == undefined || token == null || token == ""){
-        //     exception.TokenException();
-        // }else{
-        //     url = url + "?token=" + token;
-        // }
+        var token = $.cookie("token");
+        if(token == undefined || token == null || token == ""){
+            exception.TokenException();
+        }else{
+            url = url + "?token=" + token;
+        }
 
         var param = JSON.stringify(data);
         $.ajax({

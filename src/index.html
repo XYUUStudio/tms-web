@@ -7,38 +7,41 @@
     <link rel="stylesheet" type="text/css" href="../bower/jquery.easyui/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="../bower/jquery.easyui/themes/icon.css">
     <link rel="stylesheet" href="styles/main.css">
-
+    <link rel="stylesheet" href="styles/login.css">
     <script src="../bower/jquery/dist/jquery.min.js"></script>
     <script src="../bower/jquery.easyui/jquery.easyui.min.js"></script>
     <script src="../bower/jquery.easyui/locale/easyui-lang-zh_CN.js"></script>
     <script src="../bower/jquery-cookie/jquery.cookie.js"></script>
-
+    <script src="config/AppConfig.js"></script>
+    <script src="scripts/ajaxHelp.js"></script>
+    <script src="scripts/apiPath.js"></script>
     <script src="scripts/login.js"></script>
-
     <title>Login</title>
 </head>
 <body>
-<div id="loginDialog">
-    <form id="loginForm" method="POST">
-        <table>
-            <tr>
-                <th>
-                    用户名
-                </th>
-                <td>
-                    <input name="username" type="text"/>
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    密码
-                </th>
-                <td>
-                    <input name="password" type="password"/>
-                </td>
-            </tr>
-        </table>
-    </form>
+<div class="top_div"></div>
+<div  class="top_div1">
+    <div  class="top_div2">
+        <div class="tou"></div>
+        <div class="initial_left_hand" id="left_hand">
+        </div>
+        <div class="initial_right_hand" id="right_hand">
+        </div>
+    </div>
+    <P class="top_div3">
+        <span class="u_logo"></span>
+        <input class="ipt" id="username" type="text" placeholder="请输入账号" onkeyup="keyLogin(event);"  value="">
+    </P>
+    <P style="position: relative;">
+        <span class="p_logo"></span>
+        <input class="ipt" id="password" type="password" placeholder="请输入密码" onkeyup="keyLogin(event)" value="">
+    </P>
+    <div class="denglu">
+        <a class="login_btn" href="#" onclick="Login()" >登录</a>
+        </span>
+    </div>
+</div>
+<div style="text-align:center;">
 </div>
 </body>
 </html>

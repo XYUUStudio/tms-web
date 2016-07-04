@@ -1,0 +1,56 @@
+
+<div>
+    <div id="searchbar" style="padding:3px;" >
+        <ul class="sear" style=" overflow:hidden;">
+            <li>
+                <input id="searchValueEnterprises" class="easyui-textbox" data-options="prompt:'请输入企业编号/名称/法人名称'" >
+                <div class="button"  style="margin-top: -1px;">
+                        <a href="#"onclick="SearchEnterprises()" style="width: 35px;height: 24px;line-height: 24px">
+                        <span>查询</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div style="float: left;">
+                    <span>状态</span>
+                    <select class="easyui-combobox"  id="validStatusEnterprises" >
+                        <option value="",select="true" >全部</option>
+                        <option value="Y" >有效</option>
+                        <option value="N" >无效</option>
+                    </select>
+                </div>
+            </li>
+                <div class="button ">
+                    <a  class="group" href="#"   onclick="javascript:editEnterprises()">
+                        <span>编辑</span>
+                    </a>
+                    <a href="#"   onclick="javascript:AddEnterprises()">
+                        <span>新增</span>
+                    </a>
+                </div>
+        </ul>
+    </div>
+    <table id="enterprisesList"    toolbar="#toolbar" width="98%"  style="color: #fff;" >
+        <!--<thead frozen="true" data-options="frozen:true">-->
+        <thead frozen="true">
+        </thead>
+        <thead>
+        <tr>
+            <th field="ck" checkbox="true" align="center" width="40">序号</th>
+            <th field="cECode" title="operationDate" align="center" width="60">企业编号</th>
+            <th field="cEName" title="hPName" align="center" width="150">企业名称</th>
+            <th field="corpRegLegalRep" title="dTName" align="center" width="120">企业法人</th>
+            <th field="corpRegAddress" title="patientName" align="center"  width="200" editor="true">企业地址</th>
+            <th field="validStatus" title="patientHPNo" align="center" width="60">状态</th>
+            <th field="userCount" title="patientBedNo" align="center" width="60">用户数</th>
+        </tr>
+        </thead>
+        <!--弹窗开始-->
+        <!--弹窗结束-->
+    </table>
+</div>
+<div class="easyui-panel" style="width: 100%;">
+    <div id="enterprisesPagination" class="easyui-pagination"  ></div>
+</div>
+</div>
+

@@ -1,37 +1,79 @@
 /**
  * Created by xuezhiyu on 2016/05/11.
  */
-
-$(function () {
-    initTable();
-});
-
-function initTable() {
-    $("#loginDialog").dialog({
-        closable: false,
-        title: "登陆界面",
-        modal: true,
-        width: 300,
-        height: 200,
-        buttons: [
-            {
-                text: "登录", //按钮名称
-                iconCls: "icon-man", //按钮左侧显示的图片
-                handler: function () {//按钮点击之后出发的方法
-                    //JQuery的ajax异步后台提交
-                    loginFunc();
-                }
-            }, {
-                text: "注册",
-                handler: function () {
-                    //注册明天再写，将用easyui自带的form提交方式，以及自带的ValidateBox验证方式
-                }
-            }]
+$(function(){
+    //得到焦点
+    $("#password").focus(function(){
+        $("#left_hand").animate({
+            left: "150",
+            top: " -38"
+        },{step: function(){
+            if(parseInt($("#left_hand").css("left"))>140){
+                $("#left_hand").attr("class","left_hand");
+            }
+        }}, 2000);
+        $("#right_hand").animate({
+            right: "-64",
+            top: "-38px"
+        },{step: function(){
+            if(parseInt($("#right_hand").css("right"))> -70){
+                $("#right_hand").attr("class","right_hand");
+            }
+        }}, 2000);
     });
-}
+    //失去焦点
+    $("#password").blur(function(){
+        $("#left_hand").attr("class","initial_left_hand");
+        $("#left_hand").attr("style","left:100px;top:-12px;");
+        $("#right_hand").attr("class","initial_right_hand");
+        $("#right_hand").attr("style","right:-112px;top:-12px");
+    });
 
-function loginFunc() {
-    // var res = $("#loginForm").serialize(); //将form表单的内容序列化,这里也可以使用原始的取值方法
-    window.location.href = "main.html";
-    // $.messager.alert('提示', "登陆失败", "error"); //这里使用easyui的message框架，弹出提示信息
-}
+    // 登录验证
+    var verification=function () {
+        var getLoginInfomation={
+            loginName:new Object(),
+            password:new Object(),
+        }
+        getLoginInfomation.loginName=$("#username").val();
+        getLoginInfomation.password=$("#password").val();
+        var result=true;
+        if(getLoginInfomation.loginName==""|| getLoginInfomation.password==null||getLoginInfomation.password==""|| getLoginInfomation.password==null){
+            $.messager.alert('提示', "请输入账号密码！", "error");
+            result =false;
+        }
+        return  result;
+    }
+    var ajaxHelp = new AjaxHelp();
+    Login=function () {
+        //登录页绑定事件
+        //ajax 请求   调用登录接口
+        if(verification()){
+            var getLoginInfomation={
+                loginName:new Object(),
+                loginPassword:new Object(),
+            }
+            getLoginInfomation.loginName=$("#username").val();
+            getLoginInfomation.loginPassword=$("#password").val();
+            var URL = ApiPath.TMSApi.UP.pcLogin;
+            var requestData = getLoginInfomation;
+            ajaxHelp.AjaxPost(URL,requestData,success,null);
+        }
+
+        // window.location.href = "main.html";
+    }
+    var success = function (data) {
+        //请求成功跳转登录页面
+        window.location.href = "main.html";
+        $.cookie('token',data.token)
+    }
+
+
+    keyLogin=function (e){
+        var keycode = window.event ? e.keyCode : e.which;
+        if (keycode == 13) {
+            Login();
+        }
+    }
+
+});

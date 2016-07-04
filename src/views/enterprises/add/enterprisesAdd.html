@@ -1,0 +1,79 @@
+<div class="content_id">
+    <div class="content_left">
+        <div class="control-group ">
+            <label>
+          企业客户编号： <input class="easyui-textbox"  id="cECodeEnterprisesAdd" data-options="prompt:'请输入企业客户编号'"/>
+            </label>
+        </div>
+        <div class="control-group ">
+            <label>
+                <span class="required">*</span>
+                营业执照证号： <input class="easyui-textbox"  id="corpRegNoEnterprisesAdd" data-options="prompt:'请输入营业执照证号'"/>
+            </label>
+        </div>
+        <div class="control-group ">
+            <label>
+                <span class="required">*</span>
+                企业名称： <input class="easyui-textbox"  id="cENameEnterprisesAdd" data-options="prompt:'请输入企业名称'"/>
+            </label>
+        </div>
+        <div class="control-group ">
+            <label>
+                <span class="required">*</span>
+                注册地址：<select class="easyui-combobox"  id="corpRegProvinceCodeEnterprisesAdd" style="width: 70px ;color:#999">
+                 <option value="">请选择省</option>
+            </select>
+                <select class="easyui-combobox"  id="corpRegCityCodeEnterprisesAdd" style="width: 70px;color:#999">
+                    <option value="">请选择市</option>
+                </select>
+                <select class="easyui-combobox"  id="corpRegDistrictCodeEnterprisesAdd" style="width: 70px;color:#999">
+                    <option value="">请选择区</option>
+                </select>
+            </label>
+        </div>
+        <div class="control-group ">
+            <label>
+                <input class="easyui-textbox"  id="corpRegAddressEnterprisesAdd" data-options="prompt:'请输入详细地址'"/>
+            </label>
+        </div>
+        <div class="control-group ">
+            <label>
+                <span class="required">*</span>
+              企业法人  <input class="easyui-textbox"  id="corpRegLegalRepEnterprisesAdd" data-options="prompt:'请输入企业法人'"/>
+            </label>
+        </div>
+        <div class="control-group ">
+            <label>
+                <span class="required">*</span>
+                营业期限从:  <input class="easyui-textbox"  id="corpRegBizStartDateEnterprisesAdd" data-options="prompt:'例如:2016-10-4 16:00 00'"/>
+            </label>
+        </div>
+        <div class="control-group ">
+            <label>
+                <span class="required">*</span>
+                至:  <input class="easyui-textbox"  id="corpRegBizEndDateEnterprisesAdd" data-options="prompt:'例如:2016-10-4 16:00 00'"/>
+            </label>
+        </div>
+        <div class="control-group ">
+            <label>
+                营业执照上传:<div class="easyui-linkbutton"  id="attachmentCOEndDateEnterprisesAdd"  style="width:105px;height: 80px;border:1px solid  #000 ">
+                <span style="color: #999">正本</span>
+            </div>
+                <div class="easyui-linkbutton"  id="attachmentCCEndDateEnterprisesAdd"  style="width:105px;height: 80px;border:1px solid  #000 ">
+                    <span style="color: #999">副本</span>
+                </div>
+            </label>
+        </div>
+        <div class="control-group ">
+            <div class="button"  style="margin-top: -1px; margin-right: -2px">
+                <a href="#"onclick="EnterprisesSubmitAdd()" style="width: 133px;height: 30px;line-height: 30px">
+                    <span>提交</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content_right" >
+    </div>
+</div>
+<script src="views/enterprises/add/enterprisesAdd.js"></script>

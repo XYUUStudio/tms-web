@@ -9,6 +9,7 @@ var initLeftMenu = function(){
         url:"data/left-menu.json",
         dataType: "json",
         success: function( result ) {
+            console.log(result)
             if( result ){
                 var data = result;
                 var accd ='';
@@ -30,11 +31,11 @@ var initLeftMenu = function(){
 
                         accd += '<li><div ><a href="javascript:void(0);" class="easyui-linkbutton" plain="true" ';
                         accd += 'onclick="javascript:addTab('+type+',\''+title+'\',\''+url+'\','+closableValue+',\''+jsPathList+'\');return false;">';
-                        accd += '<img src="' + icon + '" />'+ title+' </a></div></li>';
+                        accd += ''+ title+' </a></div></li>'
 
                     });
 
-                   accd += '</ul>';
+                    accd += '</ul>';
 
                     $("#left_menu_content_id").accordion('add', {
                         title: group,
@@ -93,8 +94,7 @@ var addTabContent = function (title, url, closableValue) {
         if ("undefined" === typeof arguments[2]) {
             closableValue = true;
         }
-
-       // ajaxLoading('数据加载中...');
+        // ajaxLoading('数据加载中...');
         var iframe = document.createElement("iframe");
         iframe.src = url;
         iframe.scrolling = 'auto';
@@ -128,8 +128,10 @@ var addTabContent = function (title, url, closableValue) {
  * Tabs  以  Url 形式加载
  * @param closableValue 是指是否关闭窗口
  */
-var addTabHref = function (title, url, closableValue) {
+var addTabHref = function (title, url,closableValue) {
+    //  加载新的tabs 页面
     if ($('#tabs').tabs('exists', title)) {
+        // alert("已有相同页面打开！")
         $('#tabs').tabs('select', title);
     } else {
         if ("undefined" === typeof arguments[2]) {
@@ -138,13 +140,15 @@ var addTabHref = function (title, url, closableValue) {
         $('#tabs').tabs('add', {
             title: title,
             href: url,
-            closable: closableValue
+            closable: closableValue,
         });
     }
 
-   tabClose();
+    tabClose();
 };
-
+var aaa=function () {
+    addTabHref('个人设置','views/personal/index.html','views/personal/index.js')
+}
 /**
  * Tabs 监听添加 tab事件
  */
@@ -190,9 +194,7 @@ function tabClose()
             left: e.pageX,
             top: e.pageY
         });
-
         var subtitle =$(this).children(".tabs-closable").text();
-
         $('#tab-memu-id').data("currtab",subtitle);
         $('#tabs').tabs('select',subtitle);
         return false;
@@ -264,16 +266,12 @@ function tabCloseEven()
     });
 }
 
-
 $(document).ready(function () {
-
     //定时更新时间
     $(function () {
         setInterval('getDateTime()', 1000);
     });
-
     initLeftMenu();
-
     //换肤
     $(function(){
         $('#theme_id').tooltip({
@@ -284,7 +282,7 @@ $(document).ready(function () {
                     width: 200,
                     border: false,
                     title: '更换皮肤',
-                    href: 'views/theme/index.html'
+                    href: 'views/theme/feedbacklist.html'
                 });
             },
             onShow: function(){
@@ -308,4 +306,52 @@ $(document).ready(function () {
         onUpdateTab();
     })
 
+});
+
+/**************************************************************
+ * 新增代碼
+ */
+//退出事件
+var  Loginout=function () {
+    window.location.href = "index.html";
+}
+var changePswd= {
+    show:function () {
+        $('#changePassWord').dialog('open');
+        //使Dialog居中显
+        $('#changePassWord').window('center');
+    },
+    verification:function () {
+
+    },
+    Save:function () {
+        //请求修改
+        $('#changePassWord').dialog('close')
+    },
+    SaveSuccess:function () {
+        // 回调成功
+        $('#changePassWord').dialog('close')
+    }
+
+}
+$('#changePassWord').dialog({
+    title:'修改密码',
+    // collapsible: true,
+    // minimizable: true,
+    // maximizable: true,
+    closable: false,
+    width:480,
+    height:270,
+    closed: true,
+    cache: false,
+    // href: 'get_content.php',
+    modal: true,
+    resizable:true,
+    loadingMessage: '正在加载...',
+    buttons:[{
+        text:'保存',
+        handler:function(){
+            changePswd.Save()
+        }
+    }],
 });
