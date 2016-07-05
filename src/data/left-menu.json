@@ -21,8 +21,11 @@
             },
             {
                 "title": "用户注册管理",
-                "url": "views/orderEdit/index.html",
-                "type":1
+                "url": "views/user/list/userList.html",
+                "type": 1,
+                "jsPathList": [
+                    "views/user/list/userList.js"
+                ]
             }
         ]
     },
