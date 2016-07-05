@@ -101,11 +101,13 @@ var AjaxHelp = function(){
     AjaxHelp.prototype.AjaxPost = function(url, data, success, error) {
         /// <summary>POST的形式请求接口</summary>
         var exception = new AjaxException();
-        var token = $.cookie("token");
-        if(token == undefined || token == null || token == ""){
-            exception.TokenException();
-        }else{
-            url = url + "?token=" + token;
+        if(url!="http://192.168.1.84:8081/tms-api/account/pcLogin"){
+            var token = $.cookie("token");
+            if(token == undefined || token == null || token == ""){
+                exception.TokenException();
+            }else{
+                url = url + "?token=" + token;
+            }
         }
 
         var param = JSON.stringify(data);
@@ -166,7 +168,6 @@ var AjaxHelp = function(){
         }else{
             url = url + "?token=" + token;
         }
-
         $.ajax({
             type: "POST",
             url: url,

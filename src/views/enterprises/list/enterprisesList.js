@@ -23,7 +23,7 @@ var loadEnterprisesList = function(pageNumber, pageSize){
 }
 //排序回调函数
 var doSort = function(sort, order){
-    var URL = ApiPath.OMSApi.searchQMSMasterList;
+    var URL = ApiPath.TMSApi.businessData.enterprisesList;
     var options = $("#enterprisesList").datagrid('getPager').data("pagination").options;
     var currPage = options.pageNumber;
     var pageSize = options.pageSize;
@@ -86,14 +86,13 @@ var getEnterprisesDate=function () {
     var row = $("#enterprisesList").datagrid('getSelections');
     return (row)
 }
-var editenterprises=function () {
+var Editenterprises=function () {
     //编辑数据
     var row = $("#enterprisesList").datagrid('getSelections');
     if(!row||row==""){
         $.messager.alert('提示', "请选择需要编辑的报台！", "error");
     }else {
-        addTabHref('企业编辑','views/enterprises/edit/enterprisesEdit.html')
-
+        addTabHref('企业编辑','views/enterprises/edit/enterprisesEdit.html');
     }
 }
 $("#enterprisesList").datagrid({
