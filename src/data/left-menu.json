@@ -1,7 +1,37 @@
 [
+
+    {
+        "group": "调度管理",
+        "data": [
+            {
+                "title": "调度列表",
+                "url": "views/dispatchingManagement/dispatch/list/dispatchList.html",
+                "type":1,
+                "jsPathList":[
+                    "views/dispatchingManagement/dispatch/list/dispatchList.js"
+                ]
+            },
+            {
+                "title": "待接单列表",
+                "url": "views/dispatchingManagement/pendingorders/list/pendingordersList.html",
+                "type":1,
+                "jsPathList":[
+                    "views/dispatchingManagement/pendingorders/list/pendingordersList.js"
+                ]
+            },
+            {
+                "title": "代取件列表",
+                "url": "views/dispatchingManagement/topickup/list/topickupList.html",
+                "type":1,
+                "jsPathList":[
+                    "views/dispatchingManagement/topickup/list/topickupList.js"
+                ]
+            }
+        ]
+    },
+
     {
         "group": "客户管理",
-        "icon":"icon-ok",
         "data": [
             {
                 "title": "企业注册管理",
@@ -9,14 +39,6 @@
                 "type":1,
                 "jsPathList":[
                     "views/enterprises/list/enterprisesList.js"
-                ]
-            },
-            {
-                "title": "新增",
-                "url": "views/enterprises/add/enterprisesAdd.html",
-                "type":1,
-                "jsPathList":[
-                    "views/enterprises/add/enterprisesAdd.js"
                 ]
             },
             {
@@ -30,32 +52,7 @@
         ]
     },
     {
-        "group": "司机管理",
-        "icon":"icon-sum",
-        "data": [
-            {
-                "title": "message 示例",
-                "icon": "images/left-menu/edit_48.png",
-                "url": "views/message/index.html",
-                "type":1
-            }
-        ]
-    },
-    {
-        "group": "调度管理",
-        "icon":"icon-print",
-        "data": [
-        ]
-    },
-    {
-        "group": "运单管理",
-        "icon":"icon-print",
-        "data": [
-        ]
-    },
-    {
         "group": "监控管理",
-        "icon":"icon-print",
         "data": [
         ]
     }

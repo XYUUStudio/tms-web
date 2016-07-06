@@ -3,19 +3,19 @@
         <div class="control-group ">
             <label>
                 <span class="required">*</span>
-                企业客户编号： <input class="easyui-textbox"  id="cECodeEnterprisesAdd" data-options="prompt:'请输入企业客户编号'" maxlength="3"/>
+                企业客户编号： <input  id="cECodeEnterprisesAdd"  placeholder="三位数字或大写字母" keyup="value=value.replace(/[^\w\.\/]/ig,'')" maxlength="3" />
             </label>
         </div>
         <div class="control-group ">
             <label>
                 <span class="required">*</span>
-                营业执照证号： <input class="easyui-textbox"  id="corpRegNoEnterprisesAdd" data-options="prompt:'请输入营业执照证号'"/>
+                营业执照证号： <input id="corpRegNoEnterprisesAdd" />
             </label>
         </div>
         <div class="control-group ">
             <label>
                 <span class="required">*</span>
-                企业名称： <input class="easyui-textbox"  id="cENameEnterprisesAdd" data-options="prompt:'请输入企业名称'"/>
+                企业名称： <input   id="cENameEnterprisesAdd" />
             </label>
         </div>
         <div class="control-group">
@@ -24,7 +24,7 @@
                 注册地址：<select   onchange="changeProvince(this.value)"  id="corpRegProvinceCodeEnterprisesAdd" style="width: 70px ;color:#999">
                 <option value="">请选择省</option>
             </select>
-                <select    id="corpRegCityCodeEnterprisesAdd" style="width: 70px;color:#999" onchange="changeCity(this.value)">
+                <select   id="corpRegCityCodeEnterprisesAdd" style="width: 70px;color:#999" onchange="changeCity(this.value)">
                     <option value="">请选择市</option>
                 </select>
                 <select  id="corpRegDistrictCodeEnterprisesAdd" style="width: 70px;color:#999">
@@ -34,25 +34,25 @@
         </div>
         <div class="control-group ">
             <label>
-                <input class="easyui-textbox"  id="corpRegAddressEnterprisesAdd" data-options="prompt:'请输入详细地址'"/>
+                <input  id="corpRegAddressEnterprisesAdd"  placeholder="请输入详细地址"/>
             </label>
         </div>
         <div class="control-group ">
             <label>
                 <span class="required">*</span>
-                企业法人  <input class="easyui-textbox"  id="corpRegLegalRepEnterprisesAdd" data-options="prompt:'请输入企业法人'"/>
+                企业法人  <input  id="corpRegLegalRepEnterprisesAdd" />
             </label>
         </div>
         <div class="control-group ">
             <label>
                 <span class="required">*</span>
-                营业期限从:  <input class="easyui-textbox"  id="corpRegBizStartDateEnterprisesAdd" data-options="prompt:'例如:2016-10-4 16:00:00'"/>
+                营业期限从:  <input  class="easyui-datebox" id="corpRegBizStartDateEnterprisesAdd"   />
             </label>
         </div>
         <div class="control-group ">
             <label>
                 <span class="required">*</span>
-                至:  <input class="easyui-textbox"  id="corpRegBizEndDateEnterprisesAdd" data-options="prompt:'例如:2016-10-4 16:00:00'"/>
+                至:  <input  class="easyui-datebox" id="corpRegBizEndDateEnterprisesAdd" />
             </label>
         </div>
         <div class="control-group ">

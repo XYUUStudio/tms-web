@@ -1,0 +1,101 @@
+<div class="content_id">
+    <div id="searchbar" style="padding-left:60px;" >
+        <ul class="sear" style=" overflow:hidden;">
+            <li>
+              <span style="font-size: 26px" id="senderCompanyDispatch"></span>
+            </li>
+            <li >
+              <div style="width: 150px;height: 26px;background:#f79449;margin-top: 8px;border: 1px solid #999  ;-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px; ">
+              </div>
+            </li>
+            <li>
+                <div style="width: 150px;height: 26px;background: #fff;margin-left:-30px;margin-top: 8px;border: 1px solid #999;-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px">
+                </div>
+            </li>
+            <li>
+                <span style="font-size: 26px" id="receiverCompanyDispatch"></span>
+            </li>
+
+        </ul>
+  <div style=" margin-bottom: 30px;margin-left: 120px;">
+    <span  id="reqDeliveryDateDispatch"> </span>
+  </div>
+    </div>
+    <div class="control-group "style="text-align: left;margin-top: 30px">
+        <label>
+            <span style="color:#f79449 ;">寄件人信息</span>
+        </label>
+    </div>
+    <div class="cut-off-rule " >
+    </div>
+    <div class="control-view ">
+        <label>
+            寄件人：<span id="senderContactNameDispatch"></span>
+        </label>
+        <label>
+            手机：<span id="senderMobileDispatch"></span>
+        </label>
+        <label>
+            单位：<span id="senderCompanyDispatchView"></span>
+        </label>
+    </div>
+    <div class="control-view ">
+        <label style="width:67%">
+            寄件地址：<span id="senderAddressDispatch"></span>
+        </label>
+    </div>
+    <div class="control-group "style="text-align: left;margin-top: 30px">
+        <label>
+            <span style="color:#f79449 ;">收件人信息</span>
+        </label>
+    </div>
+    <div class="cut-off-rule " >
+    </div>
+    <div class="control-view ">
+        <label>
+            收件人：<span id="receiverContactNameDispatch"></span>
+        </label>
+        <label>
+            手机：<span id="receiverMobileDispatch"></span>
+        </label>
+        <label>
+            单位：<span id="receiverCompanyDispatchView"></span>
+        </label>
+    </div>
+    <div class="control-view ">
+        <label>
+           收件地址： <span id="receiverAddressDispatch">aa</span>
+        </label>
+        <label>
+            最晚送达时间：<span id="reqDeliveryDateDispatchView"></span>
+        </label>
+    </div>
+    <div class="control-group "style="text-align: left;margin-top: 30px">
+        <label>
+            <span style="color:#f79449 ;">运单分派</span>
+        </label>
+    </div>
+    <div class="cut-off-rule " >
+    </div>
+    <div class="control-view ">
+        <label style="width: 100%">
+            取件司机：<select  id="pickupDriverIdDispatch" style="width: 200px" >
+            <option value="">请选择司机</option>
+        </select>
+        </label>
+
+    </div>
+    <div class="control-view ">
+        <label style="width: 100%">
+            备注： <input  id="remarkDispatch" style="width: 28%"/>
+        </label>
+    </div>
+    <div class="control-view ">
+        <div class="button"  style="margin-top: -1px; margin-right: -2px">
+            <a href="#"onclick="DispatchSubmitAdd()" style="width: 133px;height: 30px;line-height: 30px">
+                <span>提交</span>
+            </a>
+        </div>
+    </div>
+ </div>
+<script src="views/dispatchingManagement/pendingorders/order/receiving.js"></script>

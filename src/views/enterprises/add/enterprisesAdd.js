@@ -86,7 +86,7 @@ function  bbb(imgData) {
     attachmentCOURL=""
 }
 var deleteattachmentCC=function () {
-    $('.imgListCO').html('<img src="" alt="" width="150" height="150"  border="0px" />');
+    $('.imgListCC').html('<img src="" alt="" width="150" height="150"  border="0px" />');
     attachmentCCURL=""
 }
 var attachmentCCURL="";
@@ -102,6 +102,10 @@ var successImgListCC=function (data) {
 
 var EnterprisesSubmitAdd=function () {
     //赋值
+    var corpRegBizStartDate=$("#corpRegBizStartDateEnterprisesAdd").val()
+    corpRegBizStartDate=new Date().format('yyyy-MM-dd hh:ss')
+    var  corpRegBizEndDate=$("#corpRegBizEndDateEnterprisesAdd").val()
+    corpRegBizEndDate=new Date().format('yyyy-MM-dd hh:ss')
     var URL = ApiPath.TMSApi.businessData.enterprisesRegister;
     var requestData = {
         cECode:$("#cECodeEnterprisesAdd").val(),
@@ -112,12 +116,14 @@ var EnterprisesSubmitAdd=function () {
         corpRegDistrictCode:$("#corpRegDistrictCodeEnterprisesAdd").val(),
         corpRegAddress:$("#corpRegAddressEnterprisesAdd").val(),
         corpRegLegalRep:$("#corpRegLegalRepEnterprisesAdd").val(),
-        corpRegBizStartDate:$("#corpRegBizStartDateEnterprisesAdd").val(),
-        corpRegBizEndDate :$("#corpRegBizEndDateEnterprisesAdd").val(),
+        corpRegBizStartDate:corpRegBizStartDate,
+        corpRegBizEndDate :corpRegBizEndDate,
         //图片附件上传
         attachmentCC:[{url:attachmentCCURL}],
         attachmentCO:[{url:attachmentCOURL}]
     };
+
+
     ajaxHelp.AjaxPost(URL,requestData,successEnterprisesSubmitAdd,null);
 }
 var successEnterprisesSubmitAdd=function () {

@@ -2,19 +2,19 @@
     <div class="content_left">
         <div class="control-group ">
             <label>
-                企业客户编号： <input class="easyui-textbox"  id="cECodeEnterprisesEdit" data-options="prompt:'请输入企业客户编号'" maxlength="3"/>
+                企业客户编号： <input id="cECodeEnterprisesEdit"  placeholder="三位数字或大写字母"  keyup="value=value.replace(/[^\w\.\/]/ig,'')"  maxlength="3"/>
             </label>
         </div>
         <div class="control-group ">
             <label>
                 <span class="required">*</span>
-                营业执照证号： <input class="easyui-textbox"  id="corpRegNoEnterprisesEdit" data-options="prompt:'请输入营业执照证号'"/>
+                营业执照证号： <input   id="corpRegNoEnterprisesEdit"  />
             </label>
         </div>
         <div class="control-group ">
             <label>
                 <span class="required">*</span>
-                企业名称： <input class="easyui-textbox"  id="cENameEnterprisesEdit" data-options="prompt:'请输入企业名称'"/>
+                企业名称： <input  id="cENameEnterprisesEdit" />
             </label>
         </div>
         <div class="control-group ">
@@ -33,25 +33,25 @@
         </div>
         <div class="control-group ">
             <label>
-                <input class="easyui-textbox"  id="corpRegAddressEnterprisesEdit" data-options="prompt:'请输入详细地址'"/>
+                <input   id="corpRegAddressEnterprisesEdit"  placeholder="请输入详细地址"/>
             </label>
         </div>
         <div class="control-group ">
             <label>
                 <span class="required">*</span>
-                企业法人  <input class="easyui-textbox"  id="corpRegLegalRepEnterprisesEdit" data-options="prompt:'请输入企业法人'"/>
+                企业法人  <input  id="corpRegLegalRepEnterprisesEdit"  />
             </label>
         </div>
         <div class="control-group ">
             <label>
                 <span class="required">*</span>
-                营业期限从:  <input class="easyui-textbox"  id="corpRegBizStartDateEnterprisesEdit" data-options="prompt:'例如:2016-10-4 16:00 00'"/>
+                营业期限从:  <input  class="easyui-datebox"     id="corpRegBizStartDateEnterprisesEdit" />
             </label>
         </div>
         <div class="control-group ">
             <label>
                 <span class="required">*</span>
-                至:  <input class="easyui-textbox"  id="corpRegBizEndDateEnterprisesEdit" data-options="prompt:'例如:2016-10-4 16:00 00'"/>
+                至:  <input  class="easyui-datebox"    id="corpRegBizEndDateEnterprisesEdit"  />
             </label>
         </div>
         <div class="control-group ">
@@ -68,7 +68,7 @@
         <div class="control-group ">
             <form>
                 营业执照副本:
-                <input type="file"id="attachmentCCEndDateEnterprisesAdd" onchange="javascript:EnterprisesEditCOImg(this);" style="width: 200px;border: #fff" multiple="multiple"/>
+                <input type="file"id="attachmentCCEndDateEnterprisesAdd" onchange="javascript:EnterprisesEditCCImg(this);" style="width: 200px;border: #fff" multiple="multiple"/>
                 <button onclick="delattachmentCC()">删除</button>
             </form>
             <div  class="imgList"  >

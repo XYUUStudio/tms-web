@@ -65,10 +65,9 @@ $(function(){
     var success = function (data) {
         //请求成功跳转登录页面
         window.location.href = "main.html";
-        $.cookie('token',data.token)
+        $.cookie('token',data.token);
+        $.cookie('userOrgcode',data.loginUserInfo.orgCode)
     }
-
-
     keyLogin=function (e){
         var keycode = window.event ? e.keyCode : e.which;
         if (keycode == 13) {

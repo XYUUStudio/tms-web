@@ -608,12 +608,33 @@ input[type='number'] {
 .my_Operat a:hover {
     background: #121418;
 }
-
+textarea {
+    border: solid 1px #ccc;
+    /*border: 0px;
+    border-bottom: 1px solid #ccc;*/
+    padding: 5px;
+    border-radius: 4px;
+}
 .control-group {
     padding: 8px;text-align: right;width: 350px;
 }
+.cut-off-rule{
+    padding: 8px;text-align: right;
+    width: 98%;margin: auto;border-bottom:2px solid #999;margin-top: -15px
+}
+.control-view {
+    padding: 8px;text-align: left;width: 90%;
+}
+.control-view>label {
+    padding-left: 3%;
+    width: 30%;
+    padding-top: 8px;
+    float: left;
+    font-size:12px;
+}
 .control-group  >label>input{
     width:200px;
+    height: 12px;
 }
 /*固定宽度的表格*/
 .control-group .table.fixed {
@@ -978,10 +999,10 @@ input[type='number'] {
 .content_id{margin:20px 20px 0 20px;}
 .content_left{width: 460px;margin-left: 30px;float: left}
 .content_right{width: 560px;height: 380px ;float: left;display: inline ;background-image: url("../images/yangben.png"); background-repeat: no-repeat;}
-.imgListCO{width: 150px;height: 150px;margin-left: 160px;border: 1px;box-shadow: #999;background: #fff  }
-.imgListCC{width: 150px;height: 150px;margin-left: 160px;border: 1px;box-shadow: #999;;background: #fff }
-.imgEditCO{width: 150px;height: 150px;margin-left: 160px;border: 1px;box-shadow: #999;background: #fff  }
-.imgEditCC{width: 150px;height: 150px;margin-left: 160px;border: 1px;box-shadow: #999;;background: #fff }
+.imgListCO{margin-left: 160px;border: 1px;box-shadow: #999;background: #fff  }
+.imgListCC{margin-left: 160px;border: 1px;box-shadow: #999;;background: #fff }
+.imgEditCO{margin-left: 160px;border: 1px;box-shadow: #999;background: #fff  }
+.imgEditCC{margin-left: 160px;border: 1px;box-shadow: #999;;background: #fff }
 .imgViewCO{width: 150px;height: 150px;margin-left: 160px;border: 1px;box-shadow: #999;background: #fff  }
 .imgViewCC{width: 150px;height: 150px;margin-left: 160px;border: 1px;box-shadow: #999;background: #fff }
 .imgCLose{width:10px;height: 10px;background-image: url("../images/yangben.png"); background-repeat: no-repeat;}
