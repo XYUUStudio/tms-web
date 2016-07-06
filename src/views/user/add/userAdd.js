@@ -3,22 +3,46 @@
  */
 var ajaxHelp = new AjaxHelp();
 
-//用户新增
-var userAddSubmit = function () {
-    //addTabHref("用户注册成功提示", "views/user/prompt/userPrompt");
-    alert("提交成功");
-    //var URL = ApiPath.TMSApi.businessData.enterprisesRegister;
-    //var requestData = {
-    //    cECode: $("#accountNameUserAdd").val(),
-    //    cEName: $("#initialPwdUserAdd").val(),
-    //    corpRegProvinceCode: $("#confirmPwdUserAdd").val(),
-    //    corpRegCityCode: $("#userRoleUserAdd").val(),
-    //    corpRegDistrictCode: $("#nameUserAdd").val(),
-    //    corpRegAddress: $("#companyUserAdd").val()
-    //};
-    //ajaxHelp.AjaxPost(URL, requestData, successSubmit, null);
+//获取用户角色
+var getUserRole = function () {
+
 };
 
-//var successSubmit = function () {
-//    addTabHref("用户注册成功提示", "views/user/prompt/userPrompt");
-//};
+
+//获取所属公司
+var getCompany = function () {
+
+};
+
+//修改用户角色
+var changeUserRole = function () {
+
+};
+
+//修改所属公司
+var changeCompany = function () {
+
+}
+
+//用户新增
+var submitUserAdd = function () {
+    var URL = ApiPath.TMSApi.user.userAdd;
+    var requestData = {
+        312: $("#accountNameUserAdd").val(),
+        132: $("#initialPwdUserAdd").val(),
+        13213: $("#confirmPwdUserAdd").val(),
+        42: $("#userRoleUserAdd").val(),
+        434: $("#nameUserAdd").val(),
+        53453: $("#companyUserAdd").val()
+    };
+    ajaxHelp.AjaxPost(URL, requestData, successSubmitUserAdd, null);
+};
+
+//用户新增成功回调函数
+var successSubmitUserAdd = function () {
+
+};
+
+getUserRole();
+
+getCompany();

@@ -3,13 +3,13 @@
  */
 var ajaxHelp = new AjaxHelp();
 
-var parameter = getUserEditData();
+var parameter = getUserData();
 var getUserEditInfo = function(){
 
 };
 
-var userEditSubmit = function(){
-
+var submitUserEdit = function(){
+    alert("111");
 };
 
 getUserEditInfo();

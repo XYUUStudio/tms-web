@@ -17,9 +17,9 @@
             </label>
         </div>
         <div class="control-group">
-            <label>
+            <label style="margin-right: 61px">
                 用户角色：
-                <select class="easyui-combobox" id="userRoleUserAdd" style="width: 212px;color:#999">
+                <select id="userRoleUserAdd" onchange="changeUserRole(this.value)" style="width: 212px;color:#999">
                     <option value="">普通用户</option>
                 </select>
             </label>
@@ -32,22 +32,21 @@
         <div class="control-group">
             <label>
                 所属公司：
-                <select class="easyui-combobox" id="companyUserAdd" style="width: 212px;color:#999">
+                <select id="companyUserAdd" onchange="changeCompany(this.value)" style="width: 212px;color:#999">
                     <option value="">上海三友医疗器械有限公司</option>
                 </select>
             </label>
         </div>
         <div class="control-group">
             <div class="button" style="margin-top: -1px; margin-right: -2px">
-                <a class="group" href="#" onclick="" style="width: 95px;height: 30px;line-height: 30px">
+                <a class="group" href="#" onclick="alert('123')" style="width: 100px;height: 30px;line-height: 30px;margin-left: 15px">
                     <span>返回</span>
                 </a>
-                <a href="#" onclick="javascript:userAddSubmit()" style="width: 95px;height: 30px;line-height: 30px">
+                <a href="#" onclick="submitUserAdd()" style="width: 100px;height: 30px;line-height: 30px">
                     <span>提交</span>
                 </a>
             </div>
         </div>
     </div>
 </div>
-</div>
-<script></script>
+<script src="userAdd.js"></script>

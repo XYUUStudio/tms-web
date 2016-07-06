@@ -5,7 +5,7 @@ var ajaxHelp = new AjaxHelp();
 
 //首次列表加载、翻页、更改页面大小都会触发
 var loadUserList = function (pageNumber, pageSize) {
-    var URL = ApiPath.TMSApi.account.userList;
+    var URL = ApiPath.TMSApi.user.userList;
     if (pageNumber == undefined || pageNumber == 0) {
         pageNumber = 1;
     }
@@ -17,7 +17,7 @@ var loadUserList = function (pageNumber, pageSize) {
         rows: pageSize,
     };
     ajaxHelp.AjaxPost(URL, requestData, successLoadUserList, null);
-}
+};
 
 //成功回调函数
 var successLoadUserList = function (resultInfo) {
@@ -36,24 +36,24 @@ var successLoadUserList = function (resultInfo) {
             pageNumber = resultInfo.pageNumber;
             pageSize = resultInfo.pageSize;
             loadData(pageNumber, pageSize);
-        },
+        }
     });
-}
+};
 
 //查询
-var searchUser = function () {
-    var URL = ApiPath.TMSApi.account.userList;
+var searchUserList = function () {
+    var URL = ApiPath.TMSApi.user.userList;
     var requestData = {
         searchValue: $("#searchValueUser").val(),
-        validStatusUser: $("#validStatusUser").val()
+        validStatus: $("#validStatusUser").val()
     };
-    ajaxHelp.AjaxPost(URL, requestData, successDoSearch, null);
-}
+    ajaxHelp.AjaxPost(URL, requestData, successLoadUserList, null);
+};
 
 //用户新增
 var addUser = function () {
     addTabHref("用户新增", "views/user/add/userAdd.html");
-}
+};
 
 //用户编辑
 var editUser = function () {
@@ -63,12 +63,77 @@ var editUser = function () {
     } else {
         addTabHref("用户编辑", "views/user/edit/userEdit.html");
     }
-}
+};
+
+//重置密码-弹窗
+var resetUserList = {
+    show: function () {
+        $("#dialog_reset").dialog("open");
+        $("#dialog_reset").window("center");
+    }
+};
+
+//初始化Dialog
+$("#dialog_reset").dialog({
+    title: "",
+    closable: true,
+    width: 350,
+    height: 230,
+    closed: true,
+    cache: false,
+    modal: true,
+    resizable: true,
+    loadingMessage: '正在加载...',
+});
+
+//重置密码-提交
+var submitReset = function () {
+    if (verify()) {
+        var verifyInfo = {
+            resetPwd: new Object(),
+            confirmPwd: new Object()
+        };
+        verifyInfo.resetPwd = $("#resetPwdUserList").val;
+        verifyInfo.confirmPwd = $("#confirmPwdUserList").val;
+        var requestData = verifyInfo;
+        var URL = ApiPath.TMSApi.user.userReset;
+        ajaxHelp.AjaxPost(URL, requestData, successSubmitReset, null);
+    }
+};
+
+//重置密码-验证
+var verify = function () {
+    var verifyInfo = {
+        resetPwd: new Object(),
+        confirmPwd: new Object()
+    };
+    verifyInfo.resetPwd = $("#resetPwdUserList").val;
+    verifyInfo.confirmPwd = $("#confirmPwdUserList").val;
+    var result = true;
+    if (verifyInfo.resetPwd == null || verifyInfo.resetPwd == "") {
+        $.messager.alert("提示", "请输入重置密码!", "error");
+        return;
+    }
+    if (verifyInfo.confirmPwd == null || verifyInfo.confirmPwd == "") {
+        $.messager.alert("提示", "请输入确认密码!", "error");
+        return;
+    }
+    if (verifyInfo.resetPwd != verifyInfo.confirmPwd) {
+        $.messager.alert("提示", "重置密码和确认密码必须一致!", "error");
+        return;
+    }
+    return result;
+};
+
+//重置密码成功提交回调函数
+var successSubmitReset = function () {
+    $("#dialog_reset").dialog("close");
+};
 
 //用户详情
 var detailUser = function () {
     addTabHref("用户详情", "views/user/detail/userDetail.html")
-}
+};
 
 //排序
 var sortByColumn = function (sort, order) {
@@ -83,12 +148,12 @@ var sortByColumn = function (sort, order) {
         order: order
     };
     ajaxHelp.AjaxPost(URL, requestData, successDoSearch, null);
-}
+};
 
-var getUserEditData = function () {
+var getUserData = function () {
     var row = $("#userList").datagrid('getSelections');
     return row;
-}
+};
 
 //初始化用户注册管理列表
 $("#userList").datagrid({

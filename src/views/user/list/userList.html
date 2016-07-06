@@ -4,7 +4,7 @@
             <li>
                 <input id="searchValueUser" class="easyui-textbox" data-options="prompt: '请输入用户账号/姓名/手机号'">
                 <div class="button" style="margin-top: -1px">
-                    <a href="#" onclick="searchUser()" style="width: 35px;height: 24px;line-height: 24px">
+                    <a href="#" onclick="searchUserList()" style="width: 35px;height: 24px;line-height: 24px">
                         <span>查询</span>
                     </a>
                 </div>
@@ -20,11 +20,14 @@
                 </div>
             </li>
             <div class="button">
-                <a class="group" href="#" onclick="javascript:editUser()">
+                <a class="group" href="#" onclick="editUser()">
                     <span>编辑</span>
                 </a>
-                <a href="#" onclick="javascript:addUser()">
+                <a class="group" href="#" onclick="addUser()">
                     <span>新增</span>
+                </a>
+                <a href="#" onclick="resetUserList.show()">
+                    <span>重置密码</span>
                 </a>
             </div>
         </ul>
@@ -35,17 +38,44 @@
         <thead>
         <tr>
             <th field="ck" checkbox="true" align="center" width="40">序号</th>
-            <th field="cECode" title="operationDate" align="center" width="60">用户账户</th>
-            <th field="cEName" title="hPName" align="center" width="150">姓名</th>
-            <th field="corpRegLegalRep" title="dTName" align="center" width="120">手机号</th>
-            <th field="corpRegAddress" title="patientName" align="center" width="200" editor="true">用户角色</th>
-            <th field="validStatus" title="patientHPNo" align="center" width="60">状态</th>
-            <th field="userCount" title="patientBedNo" align="center" width="60">最后一次登录时间</th>
-            <th field="userCount" title="patientBedNo" align="center" width="60">操作</th>
+            <th field="loginName" title="loginName" align="center" width="60">用户账户</th>
+            <th field="userName" title="userName" align="center" width="60">姓名</th>
+            <th field="userMobile" title="userMobile" align="center" width="60">手机号</th>
+            <th field="roleName" title="roleName" align="center" width="100" editor="true">用户角色</th>
+            <th field="validStatus" title="validStatus" align="center" width="60">状态</th>
+            <th field="lastLoginTime" title="lastLoginTime" align="center" width="100">最后一次登录时间</th>
         </tr>
         </thead>
     </table>
 </div>
 <div class="easyui-panel" style="width: 100%">
     <div id="userPagination" class="easyui-pagination"></div>
+</div>
+
+<!--用户注册管理-重置密码Dialog-->
+<div id="dialog_reset">
+    <div>
+        <h2 style="margin-left: 20px;color: black">重置密码</h2>
+    </div>
+    <div style="margin-top: 30px">
+        <label style="margin-left: 40px">
+            重置密码： <input id="resetPwdUserList" class="easyui-textbox" data-options="prompt:'请输入新密码'"/>
+        </label>
+    </div>
+    <div style="margin-top: 20px">
+        <label style="margin-left: 40px">
+            确认密码： <input id="confirmPwdUserList" class="easyui-textbox" data-options="prompt:'请再次输入密码'"/>
+        </label>
+    </div>
+    <div>
+        <div class="button" style="margin-top: 35px; margin-right: 20px">
+            <a href="#" onclick="submitReset()" style="width: 80px;height: 30px;line-height: 30px">
+                <span>重置</span>
+            </a>
+            <a href="#" onclick="javascript:$('#dialog_reset').dialog('close')"
+               style="width: 80px;height: 30px;line-height: 30px;margin-right: 20px;background: white;border: 1px solid #999">
+                <span style="color: #000">取消</span>
+            </a>
+        </div>
+    </div>
 </div>
