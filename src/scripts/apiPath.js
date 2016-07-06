@@ -16,6 +16,9 @@ var ApiPath = {
                 //启用/禁用
                 enterprisesEnableDisable:AppConfig.TMSBasePath+"/businessData/enterprises/enableDisable",
             },
-			orderSearch: AppConfig.TMSBasePath + "/order/search",
+			account:{
+                //用户列表
+                userList:AppConfig.TMSBasePath+"/account/search",
+            },
 		},
 }

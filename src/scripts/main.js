@@ -3,35 +3,35 @@
 /**
  * 初始化导航菜单
  */
-var initLeftMenu = function(){
+var initLeftMenu = function () {
     $.ajax({
-        type:"GET",
-        url:"data/left-menu.json",
+        type: "GET",
+        url: "data/left-menu.json",
         dataType: "json",
-        success: function( result ) {
+        success: function (result) {
             console.log(result)
-            if( result ){
+            if (result) {
                 var data = result;
-                var accd ='';
-                $.each( data,function( i, item ){
-                    var group = item.group ;
-                    var gorupData = item.data;
+                var accd = '';
+                $.each(data, function (i, item) {
+                    var group = item.group;
+                    var groupData = item.data;
                     var iconCls = item.icon;
                     accd = '<ul>';
 
-                    $.each( gorupData,function( i, item ){
+                    $.each(groupData, function (i, item) {
                         var title = item.title;
                         var icon = item.icon;
                         var url = item.url;
                         var type = item.type;
                         var closableValue = true;
-                        if(item.jsPathList != undefined && item.jsPathList.length != 0){
+                        if (item.jsPathList != undefined && item.jsPathList.length != 0) {
                             var jsPathList = item.jsPathList;
                         }
 
                         accd += '<li><div ><a href="javascript:void(0);" class="easyui-linkbutton" plain="true" ';
-                        accd += 'onclick="javascript:addTab('+type+',\''+title+'\',\''+url+'\','+closableValue+',\''+jsPathList+'\');return false;">';
-                        accd += ''+ title+' </a></div></li>'
+                        accd += 'onclick="javascript:addTab(' + type + ',\'' + title + '\',\'' + url + '\',' + closableValue + ',\'' + jsPathList + '\');return false;">';
+                        accd += '' + title + ' </a></div></li>'
 
                     });
 
@@ -40,7 +40,7 @@ var initLeftMenu = function(){
                     $("#left_menu_content_id").accordion('add', {
                         title: group,
                         content: accd,
-                        iconCls:iconCls
+                        iconCls: iconCls
                     });
 
                 });
@@ -49,7 +49,7 @@ var initLeftMenu = function(){
             }
 
         },
-        error: function() {
+        error: function () {
             alert.show('失败');
         }
     });
@@ -69,15 +69,15 @@ var getDateTime = function () {
  * 加载Tabs
  * type:0以 Content形式加载,1以Url 形式加载
  */
-var addTab = function (type,title, url, closableValue,jsPathList) {
+var addTab = function (type, title, url, closableValue, jsPathList) {
     if (type === 0) {
         addTabContent(title, url, closableValue);
     } else if (type === 1) {
         addTabHref(title, url, closableValue);
         //动态加载js
-        if(jsPathList != "undefined" && jsPathList != ""){
+        if (jsPathList != "undefined" && jsPathList != "") {
             var addJsPathlist = jsPathList.split(",");
-            $.each(addJsPathlist,function(i,item){
+            $.each(addJsPathlist, function (i, item) {
                 $.getScript(item);
             });
         }
@@ -102,20 +102,20 @@ var addTabContent = function (title, url, closableValue) {
         iframe.height = '100%';
         iframe.width = '100%';
 
-        if (iframe.attachEvent){
-            iframe.attachEvent("onload", function(){
+        if (iframe.attachEvent) {
+            iframe.attachEvent("onload", function () {
                 ajaxLoadEnd();
             });
         } else {
-            iframe.onload = function(){
+            iframe.onload = function () {
                 ajaxLoadEnd();
             };
         }
 
-        $('#tabs').tabs('add',{
-            title:title,
-            content:iframe,
-            closable:closableValue
+        $('#tabs').tabs('add', {
+            title: title,
+            content: iframe,
+            closable: closableValue
         });
 
     }
@@ -128,7 +128,7 @@ var addTabContent = function (title, url, closableValue) {
  * Tabs  以  Url 形式加载
  * @param closableValue 是指是否关闭窗口
  */
-var addTabHref = function (title, url,closableValue) {
+var addTabHref = function (title, url, closableValue) {
     //  加载新的tabs 页面
     if ($('#tabs').tabs('exists', title)) {
         // alert("已有相同页面打开！")
@@ -146,15 +146,18 @@ var addTabHref = function (title, url,closableValue) {
 
     tabClose();
 };
-var aaa=function () {
-    addTabHref('个人设置','views/personal/index.html','views/personal/index.js')
+
+//个人信息
+var personal = function () {
+    addTabHref('个人设置', 'views/personal/index.html', 'views/personal/index.js')
 }
+
 /**
  * Tabs 监听添加 tab事件
  */
-var onAddTab = function() {
+var onAddTab = function () {
     $('#tabs').tabs({
-        onAdd: function(title,index){
+        onAdd: function (title, index) {
             ajaxLoading('数据加载中...');
         }
     });
@@ -163,9 +166,9 @@ var onAddTab = function() {
 /**
  * Tabs 监听更新 tab事件
  */
-var onUpdateTab = function() {
+var onUpdateTab = function () {
     $('#tabs').tabs({
-        onUpdate: function(panel){
+        onUpdate: function (panel) {
             ajaxLoading('数据加载中...');
         }
     });
@@ -174,94 +177,93 @@ var onUpdateTab = function() {
 /**
  * Tabs 监听加载 tab完成事件
  */
-var onLoadTab = function() {
+var onLoadTab = function () {
     $('#tabs').tabs({
-        onLoad: function(panel){
+        onLoad: function (panel) {
             ajaxLoadEnd();
         }
     });
 };
-function tabClose()
-{
+
+function tabClose() {
     /*双击关闭TAB选项卡*/
-    $(".tabs-inner").dblclick(function(){
+    $(".tabs-inner").dblclick(function () {
         var subtitle = $(this).children(".tabs-closable").text();
-        $('#tabs').tabs('close',subtitle);
+        $('#tabs').tabs('close', subtitle);
     });
     /*为选项卡绑定右键*/
-    $(".tabs-inner").bind('contextmenu',function(e){
+    $(".tabs-inner").bind('contextmenu', function (e) {
         $('#tab-memu-id').menu('show', {
             left: e.pageX,
             top: e.pageY
         });
-        var subtitle =$(this).children(".tabs-closable").text();
-        $('#tab-memu-id').data("currtab",subtitle);
-        $('#tabs').tabs('select',subtitle);
+        var subtitle = $(this).children(".tabs-closable").text();
+        $('#tab-memu-id').data("currtab", subtitle);
+        $('#tabs').tabs('select', subtitle);
         return false;
     });
 }
 //绑定右键菜单事件
-function tabCloseEven()
-{
+function tabCloseEven() {
     //刷新
-    $('#tab-menu-update').click(function(){
+    $('#tab-menu-update').click(function () {
         var currTab = $('#tabs').tabs('getSelected');
-        var tab = currTab.panel('options').tab;
+        var tab = currTab.panel('options').tab;
         var url = $(currTab.panel('options').content).attr('src');
-        $('#tabs').tabs('update',{
-            tab:currTab,
-            options:{
-                url:url
+        $('#tabs').tabs('update', {
+            tab: currTab,
+            options: {
+                url: url
             }
         });
-        currTab.panel('refresh',url);
+        currTab.panel('refresh', url);
     });
     //关闭当前
-    $('#tab-menu-close').click(function(){
+    $('#tab-menu-close').click(function () {
         var currtabTitle = $('#tab-memu-id').data("currtab");
-        $('#tabs').tabs('close',currtabTitle);
+        $('#tabs').tabs('close', currtabTitle);
     });
     //全部关闭
-    $('#tab-menu-closeall').click(function(){
-        $('.tabs-inner span').each(function(i,n){
+    $('#tab-menu-closeall').click(function () {
+        $('.tabs-inner span').each(function (i, n) {
             var t = $(n).text();
-            $('#tabs').tabs('close',t);
+            $('#tabs').tabs('close', t);
         });
     });
     //关闭除当前之外的TAB
-    $('#tab-menu-closeother').click(function(){
+    $('#tab-menu-closeother').click(function () {
         $('#mm-tabcloseright').click();
         $('#mm-tabcloseleft').click();
     });
     //关闭当前右侧的TAB
-    $('#tab-menu-closeright').click(function(){
+    $('#tab-menu-closeright').click(function () {
         var nextall = $('.tabs-selected').nextAll();
-        if(nextall.length===0){
+        if (nextall.length === 0) {
             //msgShow('提示','后边没有啦~~');
             return false;
         }
-        nextall.each(function(i,n){
-            var t=$('a:eq(0) span',$(n)).text();
-            $('#tabs').tabs('close',t);
+        nextall.each(function (i, n) {
+            var t = $('a:eq(0) span', $(n)).text();
+            $('#tabs').tabs('close', t);
         });
         return false;
     });
     //关闭当前左侧的TAB
-    $('#tab-menu-closeleft').click(function(){
+    $('#tab-menu-closeleft').click(function () {
         var prevall = $('.tabs-selected').prevAll();
-        if(prevall.length===0){
+        if (prevall.length === 0) {
             //msgShow('提示','到头了，前边没有啦~~');
             return false;
         }
-        prevall.each(function(i,n){
-            var t=$('a:eq(0) span',$(n)).text();
-            $('#tabs').tabs('close',t);
+        prevall.each(function (i, n) {
+            var t = $('a:eq(0) span', $(n)).text();
+            $('#tabs').tabs('close', t);
         });
         return false;
     });
 
     //退出
-    $("#tab-menu-exit").click(function(){
+    $("#tab-menu-exit").click(function () {
         $('#tab-memu-id').menu('hide');
     });
 }
@@ -273,11 +275,11 @@ $(document).ready(function () {
     });
     initLeftMenu();
     //换肤
-    $(function(){
+    $(function () {
         $('#theme_id').tooltip({
             content: $('<div></div>'),
             showEvent: 'click',
-            onUpdate: function(content){
+            onUpdate: function (content) {
                 content.panel({
                     width: 200,
                     border: false,
@@ -285,11 +287,11 @@ $(document).ready(function () {
                     href: 'views/theme/feedbacklist.html'
                 });
             },
-            onShow: function(){
+            onShow: function () {
                 var t = $(this);
-                t.tooltip('tip').unbind().bind('mouseenter', function(){
+                t.tooltip('tip').unbind().bind('mouseenter', function () {
                     t.tooltip('show');
-                }).bind('mouseleave', function(){
+                }).bind('mouseleave', function () {
                     t.tooltip('hide');
                 });
             }
@@ -298,7 +300,7 @@ $(document).ready(function () {
     /**
      * 监听tab 事件
      */
-    $(function(){
+    $(function () {
         tabClose();
         tabCloseEven();
         onAddTab();
@@ -312,45 +314,47 @@ $(document).ready(function () {
  * 新增代碼
  */
 //退出事件
-var  Loginout=function () {
+var Loginout = function () {
     window.location.href = "index.html";
 }
-var changePswd= {
-    show:function () {
+
+var changePswd = {
+    show: function () {
         $('#changePassWord').dialog('open');
         //使Dialog居中显
         $('#changePassWord').window('center');
     },
-    verification:function () {
+    verification: function () {
 
     },
-    Save:function () {
+    Save: function () {
         //请求修改
         $('#changePassWord').dialog('close')
     },
-    SaveSuccess:function () {
+    SaveSuccess: function () {
         // 回调成功
         $('#changePassWord').dialog('close')
     }
 
 }
+
 $('#changePassWord').dialog({
-    title:'修改密码',
+    title: '修改密码',
     // collapsible: true,
     // minimizable: true,
     // maximizable: true,
     closable: false,
-    width:480,
-    height:270,
+    width: 480,
+    height: 270,
     closed: true,
     cache: false,
     // href: 'get_content.php',
     modal: true,
-    resizable:true,
+    resizable: true,
     loadingMessage: '正在加载...',
-    buttons:[{
-        text:'保存',
-        handler:function(){
+    buttons: [{
+        text: '保存',
+        handler: function () {
             changePswd.Save()
         }
     }],
