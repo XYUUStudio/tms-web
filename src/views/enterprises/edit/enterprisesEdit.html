@@ -2,7 +2,7 @@
     <div class="content_left">
         <div class="control-group ">
             <label>
-                企业客户编号： <input class="easyui-textbox"  id="cECodeEnterprisesEdit" data-options="prompt:'请输入企业客户编号'"/>
+                企业客户编号： <input class="easyui-textbox"  id="cECodeEnterprisesEdit" data-options="prompt:'请输入企业客户编号'" maxlength="3"/>
             </label>
         </div>
         <div class="control-group ">
@@ -56,12 +56,22 @@
         </div>
         <div class="control-group ">
             <form>
-                营业执照上传:
-                <input type="file" onchange="javascript:EnterprisesEditImg(this);" style="width: 200px;border: #fff" />
+                营业执照正本:
+                <input type="file"id="attachmentCOEndDateEnterprisesAdd" onchange="javascript:EnterprisesEditImg(this);" style="width: 200px;border: #fff" multiple="multiple"/>
+                <button onclick="delattachmentCO()">删除</button>
             </form>
-            <div id="imgList">
+            <div  class="imgList"  >
                 <div class="imgEditCO">
                 </div>
+            </div>
+        </div>
+        <div class="control-group ">
+            <form>
+                营业执照副本:
+                <input type="file"id="attachmentCCEndDateEnterprisesAdd" onchange="javascript:EnterprisesEditCOImg(this);" style="width: 200px;border: #fff" multiple="multiple"/>
+                <button onclick="delattachmentCC()">删除</button>
+            </form>
+            <div  class="imgList"  >
                 <div class="imgEditCC">
                 </div>
             </div>

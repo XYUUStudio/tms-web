@@ -128,29 +128,37 @@ function  EnterprisesEditImg(imgData) {
     var file = imgData.files[0]; //选择上传的文件
     var r = new FileReader();
     r.readAsDataURL(file); //Base64
-    if (imgQuantity>=2){
-        alert("最多允许添加两张图片")
-    }if(imgQuantity==0){
-        $(r).load(function () {
-            imgQuantity++;
-            $('.imgEditCO').html('<img src="' + r.result + '" alt="" width="150" height="150"/>'+'<span class="imgCLose"></span>')
-             $("#aaa").html('')
-            var URL= ApiPath.TMSApi.dictionary.upload;
-            var requestData={file:r.result}
-            ajaxHelp.AjaxForm(URL,requestData,successImgListCO,null);
-        });
-    }if(imgQuantity==1){
-        $(r).load(function () {
-            imgQuantity++
-            $('.imgEditCC').html('<img src="' + r.result + '" alt="" width="150" height="150"  />');
-            var URL= ApiPath.TMSApi.dictionary.upload;
-            var requestData={
-                file:r.result
-            }
-            ajaxHelp.AjaxForm(URL,requestData,successImgListCC,null);
-        });
-    }
+    $(r).load(function () {
+        $('.imgEditCC').html('<img src="' + r.result + '" alt="" width="150" height="150" />')
+        var URL= ApiPath.TMSApi.dictionary.upload;
+        var requestData={
+            file:r.result
+        }
+        ajaxHelp.AjaxForm(URL,requestData,successImgListCO,null);
+    });
     return true;
+}
+function  EnterprisesEditCOImg(imgData) {
+    var file = imgData.files[0]; //选择上传的文件
+    var r = new FileReader();
+    r.readAsDataURL(file); //Base64
+    $(r).load(function () {
+        $('.imgEditCO').html('<img src="' + r.result + '" alt="" width="150" height="150" />')
+        var URL= ApiPath.TMSApi.dictionary.upload;
+        var requestData={
+            file:r.result
+        }
+        ajaxHelp.AjaxForm(URL,requestData,successImgListCO,null);
+    });
+    return true;
+}
+var delattachmentCO=function () {
+    $('.imgEditCO').html('<img src="" alt="" width="150" height="150"  border="0px" />');
+    attachmentCOURL=""
+}
+var delattachmentCC=function () {
+    $('.imgEditCC').html('<img src="" alt="" width="150" height="150"  border="0px" />');
+    attachmentCCURL=""
 }
 var attachmentCCURL="";
 var attachmentCOURL="";

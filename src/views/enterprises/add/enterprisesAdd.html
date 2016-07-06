@@ -3,7 +3,7 @@
         <div class="control-group ">
             <label>
                 <span class="required">*</span>
-                企业客户编号： <input class="easyui-textbox"  id="cECodeEnterprisesAdd" data-options="prompt:'请输入企业客户编号'"/>
+                企业客户编号： <input class="easyui-textbox"  id="cECodeEnterprisesAdd" data-options="prompt:'请输入企业客户编号'" maxlength="3"/>
             </label>
         </div>
         <div class="control-group ">
@@ -46,27 +46,39 @@
         <div class="control-group ">
             <label>
                 <span class="required">*</span>
-                营业期限从:  <input class="easyui-textbox"  id="corpRegBizStartDateEnterprisesAdd" data-options="prompt:'例如:2016-10-4 16:00 00'"/>
+                营业期限从:  <input class="easyui-textbox"  id="corpRegBizStartDateEnterprisesAdd" data-options="prompt:'例如:2016-10-4 16:00:00'"/>
             </label>
         </div>
         <div class="control-group ">
             <label>
                 <span class="required">*</span>
-                至:  <input class="easyui-textbox"  id="corpRegBizEndDateEnterprisesAdd" data-options="prompt:'例如:2016-10-4 16:00 00'"/>
+                至:  <input class="easyui-textbox"  id="corpRegBizEndDateEnterprisesAdd" data-options="prompt:'例如:2016-10-4 16:00:00'"/>
             </label>
         </div>
         <div class="control-group ">
             <form>
-                营业执照上传:
+                营业执照正本:
                 <input type="file"id="attachmentCOEndDateEnterprisesAdd" onchange="javascript:aaa(this);" style="width: 200px;border: #fff" multiple="multiple"/>
+                <button onclick="deleteattachmentCO()">删除</button>
             </form>
-            <div  id="imgList"  >
+            <div  class="imgList"  >
                 <div class="imgListCO">
                 </div>
+            </div>
+        </div>
+
+        <div class="control-group ">
+            <form>
+                营业执照副本:
+                <input type="file"id="attachmentCCEndDateEnterprisesAdd" onchange="javascript:bbb(this);" style="width: 200px;border: #fff" multiple="multiple"/>
+                <button onclick="deleteattachmentCC">删除</button>
+            </form>
+            <div  id="imgList"  >
                 <div class="imgListCC">
                 </div>
             </div>
         </div>
+
         <div class="control-group ">
             <div class="button"  style="margin-top: -1px; margin-right: -2px">
                 <a href="#"onclick="EnterprisesSubmitAdd()" style="width: 133px;height: 30px;line-height: 30px">

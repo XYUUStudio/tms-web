@@ -53,16 +53,11 @@ var successChangeCity=function (data) {
         $("#corpRegDistrictCodeEnterprisesAdd").append(" <option value='"+item.id+"' >"+item.name+"</option>")
     })
 }
-var imgQuantity=0;
   function  aaa(imgData) {
       var file = imgData.files[0]; //选择上传的文件
       var r = new FileReader();
       r.readAsDataURL(file); //Base64
-      if (imgQuantity>=2){
-          alert("最多允许添加两张图片")
-      }if(imgQuantity==0){
           $(r).load(function () {
-              imgQuantity++;
               $('.imgListCO').html('<img src="' + r.result + '" alt="" width="150" height="150" />')
               var URL= ApiPath.TMSApi.dictionary.upload;
               var requestData={
@@ -70,19 +65,30 @@ var imgQuantity=0;
               }
               ajaxHelp.AjaxForm(URL,requestData,successImgListCO,null);
           });
-      }if(imgQuantity==1){
-          $(r).load(function () {
-              imgQuantity++
-              $('.imgListCC').html('<img src="' + r.result + '" alt="" width="150" height="150"  />');
-              var URL= ApiPath.TMSApi.dictionary.upload;
-              var requestData={
-                  file:r.result
-              }
-              ajaxHelp.AjaxForm(URL,requestData,successImgListCC,null);
-          });
-      }
       return true;
   }
+function  bbb(imgData) {
+    var file = imgData.files[0]; //选择上传的文件
+    var r = new FileReader();
+    r.readAsDataURL(file); //Base64
+    $(r).load(function () {
+
+        $('.imgListCC').html('<img src="' + r.result + '" alt="" width="150" height="150"  />');
+        var URL= ApiPath.TMSApi.dictionary.upload;
+        var requestData={
+            file:r.result
+        }
+        ajaxHelp.AjaxForm(URL,requestData,successImgListCC,null);
+    });
+}
+ var deleteattachmentCO=function () {
+    $('.imgListCO').html('<img src="" alt="" width="150" height="150"  border="0px" />');
+    attachmentCOURL=""
+}
+var deleteattachmentCC=function () {
+    $('.imgListCO').html('<img src="" alt="" width="150" height="150"  border="0px" />');
+    attachmentCCURL=""
+}
 var attachmentCCURL="";
 var attachmentCOURL="";
 var successImgListCO=function (data) {
