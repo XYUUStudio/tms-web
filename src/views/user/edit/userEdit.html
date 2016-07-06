@@ -3,38 +3,38 @@
     <div class="content_left">
         <div class="control-group">
             <label>
-                账户名： <input class="easyui-textbox" readonly/>
+                账户名： <input class="easyui-textbox" id="accountNameUserEdit" readonly/>
             </label>
         </div>
         <div class="control-group">
             <label>
-                所属公司： <input class="easyui-textbox" readonly/>
+                所属公司： <input class="easyui-textbox" id="companyUserEdit" readonly/>
             </label>
         </div>
         <div class="control-group">
             <label>
-                姓名： <input class="easyui-textbox" readonly/>
+                姓名： <input class="easyui-textbox" id="nameUserEdit"/>
             </label>
         </div>
         <div class="control-group">
             <label>
-                身份证号： <input class="easyui-textbox" readonly/>
+                身份证号： <input class="easyui-textbox" id="identifyNumberUserEdit"/>
             </label>
         </div>
         <div class="control-group">
             <label>
-                手机： <input class="easyui-textbox" readonly/>
+                手机： <input class="easyui-textbox" id="phoneNumberUserEdit"/>
             </label>
         </div>
         <div class="control-group">
             <label>
-                邮箱： <input class="easyui-textbox" readonly/>
+                邮箱： <input class="easyui-textbox" id="emailUserEdit"/>
             </label>
         </div>
         <div class="control-group">
             <label>
                 学历：
-                <select class="easyui-combobox" style="width: 70px;color:#999">
+                <select class="easyui-combobox" id="educationUserEdit" style="width: 212px;color:#999">
                     <option value="">本科</option>
                 </select>
             </label>
@@ -42,18 +42,18 @@
         <div class="control-group">
             <label>
                 岗位：
-                <select class="easyui-combobox" style="width: 70px;color:#999">
-                    <option value="">岗位</option>
+                <select class="easyui-combobox" id="postUserEdit" style="width: 212px;color:#999">
+                    <option value="">职员</option>
                 </select>
             </label>
         </div>
         <div class="control-group ">
             <div class="button" style="margin-top: -1px; margin-right: -2px">
-                <a href="#" onclick="EnterprisesSubmitAdd()" style="width: 133px;height: 30px;line-height: 30px">
-                    <span>提交</span>
-                </a>
-                <a href="#" onclick="EnterprisesSubmitAdd()" style="width: 133px;height: 30px;line-height: 30px">
+                <a href="#" onclick="" style="width: 100px;height: 30px;line-height: 30px;margin-left: 15px">
                     <span>返回</span>
+                </a>
+                <a href="#" onclick="userEditSubmit()" style="width: 100px;height: 30px;line-height: 30px">
+                    <span>提交</span>
                 </a>
             </div>
         </div>

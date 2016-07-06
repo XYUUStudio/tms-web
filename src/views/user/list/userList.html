@@ -1,25 +1,25 @@
 <div>
-    <div style="padding:3px">
-        <ul class="sear" style="overflow:hidden">
+    <div style="padding: 3px">
+        <ul class="sear" style="overflow: hidden">
             <li>
-                <input class="easyui-textbox" data-options="prompt:'请输入用户账号/姓名/手机号'">
-                <div class="button" style="margin-top: -1px;">
-                    <a href="#" onclick="SearchEnterprises()" style="width: 35px;height: 24px;line-height: 24px">
+                <input id="searchValueUser" class="easyui-textbox" data-options="prompt: '请输入用户账号/姓名/手机号'">
+                <div class="button" style="margin-top: -1px">
+                    <a href="#" onclick="searchUser()" style="width: 35px;height: 24px;line-height: 24px">
                         <span>查询</span>
                     </a>
                 </div>
             </li>
             <li>
-                <div style="float: left;">
+                <div style="float: left">
                     <span>状态</span>
-                    <select class="easyui-combobox" id="validStatusEnterprises">
+                    <select class="easyui-combobox" id="validStatusUser">
                         <option value="" ,select="true">全部</option>
                         <option value="Y">有效</option>
                         <option value="N">无效</option>
                     </select>
                 </div>
             </li>
-            <div class="button ">
+            <div class="button">
                 <a class="group" href="#" onclick="javascript:editUser()">
                     <span>编辑</span>
                 </a>
@@ -29,7 +29,7 @@
             </div>
         </ul>
     </div>
-    <table id="userList" toolbar="#toolbar" width="98%" style="color: #fff;">
+    <table id="userList" toolbar="#toolbar" width="98%" style="color: #fff">
         <thead frozen="true">
         </thead>
         <thead>
@@ -40,14 +40,12 @@
             <th field="corpRegLegalRep" title="dTName" align="center" width="120">手机号</th>
             <th field="corpRegAddress" title="patientName" align="center" width="200" editor="true">用户角色</th>
             <th field="validStatus" title="patientHPNo" align="center" width="60">状态</th>
-            <th field="userCount" title="patientBedNo" align="center" width="60"></th>
-            <th field="userCount" title="patientBedNo" align="center" width="60">用户数</th>
+            <th field="userCount" title="patientBedNo" align="center" width="60">最后一次登录时间</th>
+            <th field="userCount" title="patientBedNo" align="center" width="60">操作</th>
         </tr>
         </thead>
-        <!--弹窗开始-->
-        <!--弹窗结束-->
     </table>
 </div>
-<div class="easyui-panel" style="width: 100%;">
-    <div id="enterprisesPagination" class="easyui-pagination"></div>
+<div class="easyui-panel" style="width: 100%">
+    <div id="userPagination" class="easyui-pagination"></div>
 </div>

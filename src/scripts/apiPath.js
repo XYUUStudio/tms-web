@@ -10,19 +10,15 @@ var ApiPath = {
                 //企业详情
                 enterprisesDetail:AppConfig.TMSBasePath+"/businessData/enterprises/detail",
                 //新增
-                enterprisesRegister:AppConfig.TMSBasePath+"/businessData/enterprises/add",
+                enterprisesRegister:AppConfig.TMSBasePath+"/businessData/enterprises/register",
                 //编辑
                 enterprisesModify:AppConfig.TMSBasePath+"/businessData/enterprises/modify",
                 //启用/禁用
-                enterprisesEnableDisable:AppConfig.TMSBasePath+"/businessData/enterprises/enableDisable"
+                enterprisesEnableDisable:AppConfig.TMSBasePath+"/businessData/enterprises/enableDisable",
             },
-            dictionary:{
-               //公共字典
-                //省市区
-                admDivisionInfoSearch:AppConfig.TMSBasePath+"/systemData/dictionary/admDivisionInfoSearch",
-                //图片上传
-                upload:AppConfig.TMSBasePath+"/upload/basedata",
+			account:{
+                //用户列表
+                userList:AppConfig.TMSBasePath+"/account/search",
             },
-            orderSearch: AppConfig.TMSBasePath + "/order/search",
-		}
+		},
 }
