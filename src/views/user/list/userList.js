@@ -5,7 +5,7 @@ var ajaxHelp = new AjaxHelp();
 
 //首次列表加载、翻页、更改页面大小都会触发
 var loadUserList = function (pageNumber, pageSize) {
-    var URL = ApiPath.TMSApi.user.userList;
+    var URL = ApiPath.TMSApi.businessData.userList;
     if (pageNumber == undefined || pageNumber == 0) {
         pageNumber = 1;
     }
@@ -14,14 +14,13 @@ var loadUserList = function (pageNumber, pageSize) {
     }
     var requestData = {
         page: pageNumber,
-        rows: pageSize,
+        rows: pageSize
     };
     ajaxHelp.AjaxPost(URL, requestData, successLoadUserList, null);
 };
 
 //成功回调函数
 var successLoadUserList = function (resultInfo) {
-    console.log(resultInfo);
     $("#userList").datagrid("loadData", resultInfo);
     $("#pp").pagination({
         pageList: [10, 20, 30],
@@ -42,7 +41,7 @@ var successLoadUserList = function (resultInfo) {
 
 //查询
 var searchUserList = function () {
-    var URL = ApiPath.TMSApi.user.userList;
+    var URL = ApiPath.TMSApi.businessData.userList;
     var requestData = {
         searchValue: $("#searchValueUser").val(),
         validStatus: $("#validStatusUser").val()
@@ -88,45 +87,31 @@ $("#dialog_reset").dialog({
 
 //重置密码-提交
 var submitReset = function () {
-    if (verify()) {
-        var verifyInfo = {
-            resetPwd: new Object(),
-            confirmPwd: new Object()
-        };
-        verifyInfo.resetPwd = $("#resetPwdUserList").val;
-        verifyInfo.confirmPwd = $("#confirmPwdUserList").val;
-        var requestData = verifyInfo;
-        var URL = ApiPath.TMSApi.user.userReset;
-        ajaxHelp.AjaxPost(URL, requestData, successSubmitReset, null);
-    }
-};
-
-//重置密码-验证
-var verify = function () {
-    var verifyInfo = {
-        resetPwd: new Object(),
-        confirmPwd: new Object()
+    var URL = ApiPath.TMSApi.businessData.userReset;
+    var requestData = {
+        loginPassword: $("#resetPwdUserList").val(),
+        userId: $.cookie("userId")
     };
-    verifyInfo.resetPwd = $("#resetPwdUserList").val;
-    verifyInfo.confirmPwd = $("#confirmPwdUserList").val;
-    var result = true;
-    if (verifyInfo.resetPwd == null || verifyInfo.resetPwd == "") {
+    var confirmPwd = $("#confirmPwdUserList").val();
+    console.log(requestData.loginPassword);
+    if (requestData.loginPassword == null || requestData.loginPassword == "") {
         $.messager.alert("提示", "请输入重置密码!", "error");
         return;
     }
-    if (verifyInfo.confirmPwd == null || verifyInfo.confirmPwd == "") {
+    if (confirmPwd == null || confirmPwd == "") {
         $.messager.alert("提示", "请输入确认密码!", "error");
         return;
     }
-    if (verifyInfo.resetPwd != verifyInfo.confirmPwd) {
+    if (requestData.loginPassword != confirmPwd) {
         $.messager.alert("提示", "重置密码和确认密码必须一致!", "error");
         return;
     }
-    return result;
+    ajaxHelp.AjaxPost(URL, requestData, successSubmitReset, null);
 };
 
 //重置密码成功提交回调函数
 var successSubmitReset = function () {
+    alert("重置密码成功!");
     $("#dialog_reset").dialog("close");
 };
 
@@ -150,6 +135,7 @@ var sortByColumn = function (sort, order) {
     ajaxHelp.AjaxPost(URL, requestData, successDoSearch, null);
 };
 
+//双击列表项获取数据集
 var getUserData = function () {
     var row = $("#userList").datagrid('getSelections');
     return row;
