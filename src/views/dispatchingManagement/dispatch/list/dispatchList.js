@@ -1,15 +1,6 @@
 /**
  * Created by medlog-dev-2 on 2016/7/6.
  */
-/**
- * Created by medlog-dev-2 on 2016/7/6.
- */
-/**
- * Created by medlog-dev-2 on 2016/7/6.
- */
-/**
- * Created by medlog-dev-2 on 2016/7/4.
- */
 var ajaxHelp = new AjaxHelp();
 //获取分页信息值
 //首次列表加载、翻页、更改页面大小都会触发
@@ -104,7 +95,6 @@ $("#dispatchList").datagrid({
     fitColumns:true,
     iconCls:"icon-save",
     loadMsg:"正在加载，请稍等。。。。。。",
-    onSortColumn:doSort,
     view: detailview,
     onDblClickCell:dispatchView,
     detailFormatter: function(rowIndex, rowData){//可以和onExpandRow合用

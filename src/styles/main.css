@@ -1021,3 +1021,8 @@ textarea {
 .navigation-cut{
     float: left;width: 100px;height:32px;line-height: 32px;text-align: center;
 }
+.order_detai_bode{
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.order_detai_bode >span{float: left}
