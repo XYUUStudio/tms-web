@@ -2,6 +2,18 @@
  * Created by medlog-dev-2 on 2016/7/7.
  */
 var ajaxHelp = new AjaxHelp();
+var ceOrgCodeSingerSelect=function () {
+    //客户公司下拉框
+    var URL = ApiPath.TMSApi.businessData.enterprisesList;
+    var requestData = {
+    };
+    ajaxHelp.AjaxPost(URL,requestData,successCeOrgCodeSingerSelect,null);
+}
+var successCeOrgCodeSingerSelect=function (data) {
+    $.each(data.rows, function (index,item ) {
+        $("#ceOrgCodeSinger").append(" <option value='"+item.cECode+"' >"+item.cEName+"</option>")
+    })
+}
 var getAppendTimeSingerSelect=function () {
     //获取追加时间段
     var URL = ApiPath.TMSApi.dictionary.GetDictionary;
@@ -15,18 +27,6 @@ var successAppendTimeSingerSelec=function (data) {
         $("#appendTimeSinger").append(" <option value='"+item.dictValueCode+"' >"+item.dictValueName+"</option>")
     })
 }
-var ceOrgCodeSingerSelect=function () {
-    //客户公司下拉框
-    var URL = ApiPath.TMSApi.businessData.enterprisesList;
-    var requestData = {
-    };
-    ajaxHelp.AjaxPost(URL,requestData,successCeOrgCodeSingerSelect,null);
-}
-var successCeOrgCodeSingerSelect=function (data) {
-    $.each(data.rows, function (index,item ) {
-        $("#ceOrgCodeSinger").append(" <option value='"+item.cECode+"' >"+item.cEName+"</option>")
-    })
-}
 var senderProvinceCodeSingerSelect=function () {
     //寄件省份下拉框
     var URL = ApiPath.TMSApi.dictionary.admDivisionInfoSearch;
@@ -37,8 +37,9 @@ var senderProvinceCodeSingerSelect=function () {
     ajaxHelp.AjaxPost(URL,requestData,successSenderCityCodeSinger,null);
 }
 var successSenderCityCodeSinger=function (data) {
+    console.log(data)
     $.each(data, function (index,item ) {
-        $("#senderProvinceCodeSinger").append(" <option value='"+item.id+"' >"+item.name+"</option>")
+        $("#senderProvinceCodeSinger").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
     })
 }
 var receiverProvinceCodeSingerSelect=function () {
@@ -52,7 +53,7 @@ var receiverProvinceCodeSingerSelect=function () {
 }
 var successReceiverProvinceCodeSinger=function (data) {
     $.each(data, function (index,item ) {
-        $("#receiverProvinceCodeSinger").append(" <option value='"+item.id+"' >"+item.name+"</option>")
+        $("#receiverProvinceCodeSinger").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
     })
 }
 //修改收件省份
@@ -64,14 +65,13 @@ changeReceiveProvince=function (data) {
     };
     ajaxHelp.AjaxPost(URL,requestData,successReceiveProvince,null);
 }
-
 var successReceiveProvince=function (data) {
     $("#receiverCityCodeSinger").empty();
     $("#receiverCityCodeSinger").prepend("<option value=''>请选择</option>"); //为Select插入一个Option(第一个位置)
     $("#receiverDistrictCodeSinger").empty();
     $("#receiverDistrictCodeSinger").prepend("<option value=''>请选择</option>"); //为Select插入一个Option(第一个位置)
     $.each(data, function (index,item ) {
-        $("#receiverCityCodeSinger").append(" <option value='"+item.id+"' >"+item.name+"</option>")
+        $("#receiverCityCodeSinger").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
     })
 }
 //修改市区
@@ -87,7 +87,7 @@ var successChangeReceiveCity=function (data) {
     $("#receiverDistrictCodeSinger").empty();
     $("#receiverDistrictCodeSinger").prepend("<option value=''>请选择</option>"); //为Select插入一个Option(第一个位置)
     $.each(data, function (index,item ) {
-        $("#receiverDistrictCodeSinger").append(" <option value='"+item.id+"' >"+item.name+"</option>")
+        $("#receiverDistrictCodeSinger").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
     })
 }
 //发件省份修改
@@ -105,7 +105,7 @@ var successChangeSenderProvince=function (data) {
     $("#senderDistrictCodeSinger").empty();
     $("#senderDistrictCodeSinger").prepend("<option value=''>请选择</option>"); //为Select插入一个Option(第一个位置)
     $.each(data, function (index,item ) {
-        $("#senderCityCodeSinger").append(" <option value='"+item.id+"' >"+item.name+"</option>")
+        $("#senderCityCodeSinger").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
     })
 }
 //发件市区修改
@@ -121,10 +121,9 @@ var successChangeSenderCity=function (data) {
     $("#senderDistrictCodeSinger").empty();
     $("#senderDistrictCodeSinger").prepend("<option value=''>请选择</option>"); //为Select插入一个Option(第一个位置)
     $.each(data, function (index,item ) {
-        $("#senderDistrictCodeSinger").append(" <option value='"+item.id+"' >"+item.name+"</option>")
+        $("#senderDistrictCodeSinger").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
     })
 }
-
 
 
 var loadSing=function () {

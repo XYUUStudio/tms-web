@@ -73,13 +73,26 @@ var dispatchList=function () {
     return (row)
 }
 var dispatchCancel=function () {
-    //编辑数据
+    //取消订单
     var row = $("#dispatchList").datagrid('getSelections');
     if(!row||row==""){
         $.messager.alert('提示', "请选择需要取消的订单！", "error");
     }else {
         addTabHref('取消','views/dispatchingManagement/dispatch/cancel/dispatchcancel.html');
     }
+}
+var dispatchReassign=function () {
+    //改派订单
+    var row = $("#dispatchList").datagrid('getSelections');
+    if(!row||row==""){
+        $.messager.alert('提示', "请选择需要修改的订单！", "error");
+    }else {
+        addTabHref('改单','views/dispatchingManagement/dispatch/reassign/dispatchreassign.html');
+    }
+}
+var dispatchView=function () {
+    //运单详情
+    addTabHref('运单详情','views/dispatchingManagement/dispatch/view/dispatchview.html');
 }
 $("#dispatchList").datagrid({
     striped: true,
@@ -93,7 +106,7 @@ $("#dispatchList").datagrid({
     loadMsg:"正在加载，请稍等。。。。。。",
     onSortColumn:doSort,
     view: detailview,
-    onDblClickCell:dispatchCancel,
+    onDblClickCell:dispatchView,
     detailFormatter: function(rowIndex, rowData){//可以和onExpandRow合用
         return '<table><tr>' +
             '<td rowspan=2 style="border:0"></td>' +
@@ -191,6 +204,7 @@ var searchDispatchList=function () {
         createDateEnd:createDateEnd,
         reqDeliveryDateFrom:reqDeliveryDateFrom,
         consignmentSource:$("#consignmentSourceDispatchList").val(),
+        lcOrgCode:userOrgcode
     };
     ajaxHelp.AjaxPost(URL,requestData,successToPickupList,null);
 }

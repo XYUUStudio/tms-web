@@ -46,10 +46,11 @@ var getAdmDivision=function () {
     ajaxHelp.AjaxPost(URL,requestData,successAdmDivision,null);
 }
 var successAdmDivision=function (data) {
+    console.log(data)
     $.each(data, function (index,item ) {
-        $("#corpRegProvinceCodeEnterprisesEdit").append(" <option value='"+item.id+"' >"+item.name+"</option>")
-        if(EnterprisesInfo.corpRegProvinceCode==item.id){
-            $("#corpRegProvinceCodeEnterprisesEdit").find("option[value='"+item.id+"']").attr("selected",true)
+        $("#corpRegProvinceCodeEnterprisesEdit").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
+        if(EnterprisesInfo.corpRegProvinceCode==item.divCode){
+            $("#corpRegProvinceCodeEnterprisesEdit").find("option[value='"+item.divCode+"']").attr("selected",true)
         }
     })
     getCity()
@@ -65,9 +66,9 @@ var getCity =function () {
 }
 var successgetCity=function (data) {
     $.each(data, function (index,item ) {
-        $("#corpRegCityCodeEnterprisesEdit").append(" <option value='"+item.id+"' >"+item.name+"</option>")
-        if(EnterprisesInfo.corpRegCityCode==item.id){
-            $("#corpRegCityCodeEnterprisesEdit").find("option[value='"+item.id+"']").attr("selected",true)
+        $("#corpRegCityCodeEnterprisesEdit").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
+        if(EnterprisesInfo.corpRegCityCode==item.divCode){
+            $("#corpRegCityCodeEnterprisesEdit").find("option[value='"+item.divCode+"']").attr("selected",true)
         }
     })
     District();
@@ -83,9 +84,9 @@ var District =function () {
 }
 var successDistrict=function (data) {
     $.each(data, function (index,item ) {
-        $("#corpRegDistrictCodeEnterprisesEdit").append(" <option value='"+item.id+"' >"+item.name+"</option>")
-        if(EnterprisesInfo.corpRegDistrictCode==item.id){
-            $("#corpRegDistrictCodeEnterprisesEdit").find("option[value='"+item.id+"']").attr("selected",true)
+        $("#corpRegDistrictCodeEnterprisesEdit").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
+        if(EnterprisesInfo.corpRegDistrictCode==item.divCode){
+            $("#corpRegDistrictCodeEnterprisesEdit").find("option[value='"+item.divCode+"']").attr("selected",true)
         }
     })
 }
@@ -104,7 +105,7 @@ var successProvince=function (data) {
     $("#corpRegDistrictCodeEnterprisesAdd").empty();
     $("#corpRegDistrictCodeEnterprisesAdd").prepend("<option value=''>请选择</option>"); //为Select插入一个Option(第一个位置)
     $.each(data, function (index,item ) {
-        $("#corpRegCityCodeEnterprisesAdd").append(" <option value='"+item.id+"' >"+item.name+"</option>")
+        $("#corpRegCityCodeEnterprisesAdd").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
     })
 }
 //修改市区
@@ -120,7 +121,7 @@ var successChangeCity=function (data) {
     $("#corpRegDistrictCodeEnterprisesAdd").empty();
     $("#corpRegDistrictCodeEnterprisesAdd").prepend("<option value=''>请选择</option>"); //为Select插入一个Option(第一个位置)
     $.each(data, function (index,item ) {
-        $("#corpRegDistrictCodeEnterprisesAdd").append(" <option value='"+item.id+"' >"+item.name+"</option>")
+        $("#corpRegDistrictCodeEnterprisesAdd").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
     })
 }
 var imgQuantity=0;

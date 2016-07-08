@@ -2,7 +2,7 @@
     <div id="searchbar" style="padding-left:60px;" >
         <ul class="sear" style=" overflow:hidden;">
             <li>
-                <span style="font-size: 26px" id="senderCompanyReDispatch"></span>
+                <span style="font-size: 26px" id="senderCompanyDispatchRe"></span>
             </li>
             <li >
                 <div style="width: 150px;height: 26px;background:#f79449;margin-top: 8px;border: 1px solid #999  ;-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px; ">
@@ -13,12 +13,11 @@
                 </div>
             </li>
             <li>
-                <span style="font-size: 26px" id="receiverCompanyReDispatch"></span>
+                <span style="font-size: 26px" id="receiverCompanyDispatchRe"></span>
             </li>
-
         </ul>
         <div style=" margin-bottom: 30px;margin-left: 220px;">
-            <span  id="reqDeliveryDateReDispatch"> </span>
+            <span  id="reqDeliveryDateDispatchReView"> </span>
         </div>
     </div>
     <div class="control-group "style="text-align: left;margin-top: 60px">
@@ -31,21 +30,24 @@
     <div class="control-view ">
         <label>
             <span>寄件人：</span>
-            <a id="senderContactNameReDispatch"></a>
+            <input type="text" id="senderContactNameDispatchRe"/>
         </label>
         <label>
             <span>手机：</span>
-            <a id="senderMobileReDispatch"></a>
+            <input type="text" id="senderMobileDispatchRe"/>
         </label>
         <label>
             <span>单位：</span>
-           <a id="senderCompanyReDispatchView"></a>
+           <input type="text" id="senderCompanyDispatchReView"/>
         </label>
     </div>
     <div class="control-view ">
         <label style="width:67%">
             <span>寄件地址：</span>
-            <a id="senderAddressReDispatch"></a>
+            <select style="width: 70px" id="senderProvinceCodeDispatchRe" onchange="changeSenderProvinceRe(this.value)"> </select>
+            <select  style="width: 70px" id="senderCityCodeDispatchRe" onchange="changeSenderCityRe(this.value)"></select>
+            <select  style="width: 70px" id="senderDistrictCodeDispatchRe"></select>
+            <input  type="text" id="senderAddressDispatchRe"/>
         </label>
     </div>
     <div class="control-group "style="text-align: left;margin-top: 60px">
@@ -58,60 +60,45 @@
     <div class="control-view ">
         <label>
             <span>收件人：</span>
-            <a id="receiverContactNameReDispatch"></a>
+            <input type="text" id="receiverContactNameDispatchRe"/>
         </label>
         <label>
             <span>手机：</span>
-            <a id="receiverMobileReDispatch"></a>
+           <input type="text" id="receiverMobileDispatchRe"/>
         </label>
         <label>
             <span>单位：</span>
-            <a id="receiverCompanyReDispatchView"></a>
+            <input type="text" id="receiverCompanyDispatchReView"/>
         </label>
     </div>
     <div class="control-view ">
-        <label>
+        <label style="width: 60%">
             <span>收件地址：</span>
-             <a id="receiverAddressReDispatch">aa</a>
+            <select style="width: 70px"  id="receiverProvinceCodeDispatchRe" onchange="changeReceiveProvinceRe(this.value)" > </select>
+            <select  style="width: 70px" id="receiverCityCodeDispatchRe" onchange="changeReceiveCityRe(this.value)" ></select>
+            <select  style="width: 70px" id="receiverDistrictCodeDispatchRe"></select>
+             <input type="text"  id="receiverAddressDispatchRe"/>
         </label>
+    </div>
+    <div class="control-view ">
         <label>
-            <span>最晚送达时间：</span>
-            <a id="reqDeliveryDateReDispatchView"></a>
-        </label>
-    </div>
-    <div class="control-group "style="text-align: left;margin-top: 60px">
-        <label>
-            <span style="color:#f79449 ;">运单分派</span>
-        </label>
-    </div>
-    <div class="cut-off-rule " >
-    </div>
-    <div class="control-view ">
-        <label style="width: 100%">
-            <span>原司机：</span>
-            <a id="pickupdriverbynameReDispatchOrigin"></a>
+        <span> 最晚送达时间：</span>
+        <input class="easyui-datebox"  id="reqDeliveryDateDispatchRe" style="width: 100px"/>
+        <select style="width: 60px" id="appendTimeDispatchRe"></select>
         </label>
     </div>
     <div class="control-view ">
-        <label style="width: 100%">
-            <span>取件司机：</span>
-            <select  id="pickupDriverIdReDispatch" style="width: 200px" >
-            <option value="">请选择司机</option>
-        </select>
+        <label style="width: 60%">
+            <span>特殊要求：</span>
+            <textarea style="width: 350px" id="remarkDispatchRe"></textarea>
         </label>
     </div>
     <div class="control-view ">
-        <label style="width: 100%">
-            <span>备注：</span>
-             <input  id="remarkReDispatch" style="width: 28%"/>
-        </label>
-    </div>
-    <div class="control-view ">
-        <div class="button"  style="margin-top: -1px; margin-right: -2px">
-            <a href="#"onclick="ReDispatchSubmitAdd()" style="width: 133px;height: 30px;line-height: 30px">
+        <div class="button"  style="margin-top: 100px; margin-right: -2px">
+            <a href="#"onclick="DispatchReSubmitAdd()" style="width: 133px;height: 30px;line-height: 30px">
                 <span>提交</span>
             </a>
         </div>
     </div>
 </div>
-<script src="views/dispatchingManagement/topickup/topickupmanage/topickupView.js"></script>
+<script src="views/dispatchingManagement/dispatch/reassign/dispatchreassign.js"></script>

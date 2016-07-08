@@ -1,18 +1,5 @@
 [
     {
-        "group": "运单管理",
-        "data": [
-            {
-                "title": "400运单录入",
-                "url": "views/400orders/recordedSingle/singer.html",
-                "type":1,
-                "jsPathList":[
-                    "views/400orders/recordedSingle/singer.js"
-                ]
-            }
-        ]
-    },
-    {
         "group": "调度管理",
         "data": [
             {
@@ -41,7 +28,19 @@
             }
         ]
     },
-
+    {
+        "group": "运单管理",
+        "data": [
+            {
+                "title": "400运单录入",
+                "url": "views/400orders/recordedSingle/singer.html",
+                "type":1,
+                "jsPathList":[
+                    "views/400orders/recordedSingle/singer.js"
+                ]
+            }
+        ]
+    },
     {
         "group": "客户管理",
         "data": [

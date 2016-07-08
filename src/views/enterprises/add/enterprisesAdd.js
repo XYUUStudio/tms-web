@@ -7,15 +7,13 @@ var ajaxHelp = new AjaxHelp();
 var getAdmDivision=function () {
     var URL = ApiPath.TMSApi.dictionary.admDivisionInfoSearch;
     var requestData = {
-        level:1,
-        parentDivCode:""
     };
     ajaxHelp.AjaxPost(URL,requestData,successAdmDivision,null);
 }
 var successAdmDivision=function (data) {
+    console.log(data)
     $.each(data, function (index,item ) {
-
-        $("#corpRegProvinceCodeEnterprisesAdd").append(" <option value='"+item.id+"' >"+item.name+"</option>")
+        $("#corpRegProvinceCodeEnterprisesAdd").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
     })
 }
 //修改省份
@@ -34,7 +32,7 @@ var successProvince=function (data) {
     $("#corpRegDistrictCodeEnterprisesAdd").empty();
     $("#corpRegDistrictCodeEnterprisesAdd").prepend("<option value=''>请选择</option>"); //为Select插入一个Option(第一个位置)
     $.each(data, function (index,item ) {
-        $("#corpRegCityCodeEnterprisesAdd").append(" <option value='"+item.id+"' >"+item.name+"</option>")
+        $("#corpRegCityCodeEnterprisesAdd").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
     })
 }
 //修改市区
@@ -50,7 +48,7 @@ var successChangeCity=function (data) {
     $("#corpRegDistrictCodeEnterprisesAdd").empty();
     $("#corpRegDistrictCodeEnterprisesAdd").prepend("<option value=''>请选择</option>"); //为Select插入一个Option(第一个位置)
     $.each(data, function (index,item ) {
-        $("#corpRegDistrictCodeEnterprisesAdd").append(" <option value='"+item.id+"' >"+item.name+"</option>")
+        $("#corpRegDistrictCodeEnterprisesAdd").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
     })
 }
   function  aaa(imgData) {

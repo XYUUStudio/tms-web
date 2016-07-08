@@ -39,12 +39,14 @@ var ApiPath = {
             consignmentCommit:AppConfig.TMSBasePath+"/consignment/commit",
             //运单取消
             consignmentCancel:AppConfig.TMSBasePath+"/consignment/cancel",
+            //运单修改
+            consignmentModify:AppConfig.TMSBasePath+"/consignment/modify",
         },
         dictionary: {
             //公共字典
             GetDictionary:AppConfig.TMSBasePath+"/systemData/dictionary/queryType",
             //省市区
-            admDivisionInfoSearch: AppConfig.TMSBasePath + "/systemData/dictionary/admDivisionInfoSearch",
+            admDivisionInfoSearch: AppConfig.TMSBasePath + "/systemData/admdivision/search",
             //图片上传
             upload: AppConfig.TMSBasePath + "/upload/basedata",
             //司机

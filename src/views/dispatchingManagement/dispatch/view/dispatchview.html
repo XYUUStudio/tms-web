@@ -1,5 +1,159 @@
 
-<div id="content_id">
-    <div></div>
+<div class="content_id">
+    <div class="navigation-body">
+       <div class="navigation-cut" style="margin-left: 30px" id="orderDetail" onclick="orderDetailShow()">
+            <span id="orderDetail_Span">运单详情</span>
+       </div>
+        <div class="navigation-cut" id="trackRecord" onclick="trackRecordShow()">
+           <span id="trackRecord_Span">>跟踪记录</span>
+        </div>
+        <div class="navigation-cut" id="assessmentDetails" onclick="assessmentDetailsShow()">
+            <span id="assessmentDetails_Span">评价详情</span>
+        </div>
+        <div class="navigation-cut" id="orderPassBox" onclick="orderPassBox()">
+            <span id="orderPassBox_Span">运单周转箱</span>
+        </div>
+    </div>
+    <div  id="orderDetailShow" >
+        <div class="control-group "style="text-align: left;margin-top: 10px">
+            <label>
+                <span style="color:#f79449 ;margin-left:20px">基本信息</span>
+            </label>
+        </div>
+        <div class="cut-off-rule " >
+        </div>
+        <div class="control-view ">
+            <label>
+                <span>寄件公司：</span>
+                <a id="senderContactNameReDispatch"></a>
+            </label>
+            <label>
+                <span>物流中心：</span>
+                <a id="senderMobileReDispatch"></a>
+            </label>
+            <label>
+                <span>下单人：</span>
+                <a id="senderCompanyReDispatchView"></a>
+            </label>
+        </div>
+        <div class="control-view ">
+            <label>
+                <span>司机：</span>
+                <a></a>
+            </label>
+            <label>
+                <span>接单人：</span>
+                <a ></a>
+            </label>
+            <label>
+                <span>更新人：</span>
+                <a></a>
+            </label>
+        </div>
+        <div class="control-view ">
+            <label>
+                <span>提货密码：</span>
+                <a ></a>
+            </label>
+            <label>
+                <span>下单时间：</span>
+                <a ></a>
+            </label>
+            <label>
+                <span>更新时间：</span>
+                <a ></a>
+            </label>
+        </div>
+        <div class="control-group "style="text-align: left;margin-top: 60px">
+            <label>
+                <span style="color:#f79449 ;margin-left:20px">寄件信息</span>
+            </label>
+        </div>
+        <div class="cut-off-rule " >
+        </div>
+        <div class="control-view ">
+            <label>
+                <span>寄件人：</span>
+                <a id="receiverContactNameReDispatch"></a>
+            </label>
+            <label>
+                <span>手机：</span>
+                <a id="receiverMobileReDispatch"></a>
+            </label>
+            <label>
+                <span>单位：</span>
+                <a id="receiverCompanyReDispatchView"></a>
+            </label>
+        </div>
+        <div class="control-view ">
+            <label style="width:100%">
+                <span>寄件地址：</span>
+                <a id="receiverAddressReDispatch">aa</a>
+            </label>
+        </div>
+        <div class="control-group "style="text-align: left;margin-top: 40px">
+            <label>
+                <span style="color:#f79449 ;margin-left:20px">收件信息</span>
+            </label>
+        </div>
+        <div class="cut-off-rule " >
+        </div>
+        <div class="control-view ">
+            <label>
+                <span>收件人：</span>
+                <a id="pickupdriverbynameReDispatchOrigin"></a>
+            </label>
+            <label>
+                <span>手机：</span>
+                <a id="pickupdriverbynameReDispatchOrigin"></a>
+            </label>
+            <label>
+                <span>单位：</span>
+                <a id="pickupdriverbynameReDispatchOrigin"></a>
+            </label>
+        </div>
+        <div class="control-view ">
+            <label style="width: 100%">
+                <span>收件地址：</span>
+                <span></span>
+            </label>
+        </div>
+        <div class="control-group "style="text-align: left;margin-top: 40px">
+            <label>
+                <span style="color:#f79449;margin-left:20px">手术信息</span>
+            </label>
+        </div>
+        <div class="cut-off-rule " >
+        </div>
+        <div class="control-view ">
+            <label>
+                <span>患者：</span>
+                <a id="pickupdriverbynameReDispatchOrigin"></a>
+            </label>
+            <label>
+                <span>床号：</span>
+                <a id="pickupdriverbynameReDispatchOrigin"></a>
+            </label>
+            <label>
+                <span>住院号：</span>
+                <a id="pickupdriverbynameReDispatchOrigin"></a>
+            </label>
+        </div>
+        <div class="control-view ">
+            <label>
+                <span>特殊要求：</span>
+                <a id="pickupdriverbynameReDispatchOrigin"></a>
+            </label>
+        </div>
+    </div>
+    <div id="trackRecordShow">
+        <span>aaa</span>
+    </div>
+     <div id="assessmentDetailsShow">
+         <span>bbb</span>
+     </div>
+    <div id="orderPassBoxShow">
+      <span>ccc</span>
+    </div>
 </div>
-<script src="views/dispatchingManagement/dispatch/view/dispatchview.html"></script>
+<script src="views/dispatchingManagement/dispatch/view/dispatchview.js"></script>

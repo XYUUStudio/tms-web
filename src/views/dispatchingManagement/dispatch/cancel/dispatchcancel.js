@@ -24,13 +24,14 @@ var userOrgcode = $.cookie("userOrgcode");
 var getDispatchCancel=function () {
     var URL = ApiPath.TMSApi.dictionary.GetDictionary;
     var requestData = {
-        dictTypeCode:CGCLRS
+        dictTypeCode:"CGCLRS"
     };
     ajaxHelp.AjaxPost(URL,requestData,successGetPickupDriverId,null);
 }
 var successGetPickupDriverId=function (data) {
-    $.each(data.rows,function (index,item) {
-        $("#cancelReasonDispatchCancel").append(" <option value='"+item.userId+"' >"+item.userName+"</option>")
+    console.log(data)
+    $.each(data.dictValueList,function (index,item) {
+        $("#cancelReasonDispatchCancel").append(" <option value='"+item.dictTypeCode+"' >"+item.dictValueName+"</option>")
     })
     getVuleDispatchCancel();
 }
@@ -53,6 +54,5 @@ var DispatchCancelSubmitAdd=function () {
 }
 var successDispatchCancelSubmitAdd=function (data) {
     alert("提交成功！")
-    loadtoPickupList();
 }
 getDispatchCancel();

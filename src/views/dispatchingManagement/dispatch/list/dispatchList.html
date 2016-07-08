@@ -9,6 +9,9 @@
                 <a href="#" onclick="javascript:dispatchCancel()">
                     <span>取消</span>
                 </a>
+                <a href="#" onclick="javascript:dispatchReassign()">
+                    <span>改单</span>
+                </a>
                 <a class="group"  onclick="javascript:searchDispatchList()">
                     <span>查询</span>
                 </a>
@@ -17,36 +20,50 @@
     </div>
     <div class="control-view ">
         <label >
-            运单号： <input  id="consignmentNoDispatchList" />
+            <span  style="width:110px;text-align: right;float: left">运单号：</span>
+              <input  id="consignmentNoDispatchList" />
         </label>
         <label >
-            寄件单位： <input  id="senderCompanyDispatchList" />
+            <span>寄件单位：</span>
+           <input  id="senderCompanyDispatchList" />
         </label>
         <label >
-            收件单位： <input  id="receiverCompanyDispatchList" />
+            <span>收件单位：</span>
+           <input  id="receiverCompanyDispatchList" />
         </label>
     </div>
     <div class="control-view ">
         <label>
-            寄件企业： <select id="ceOrgNameDispatchList"></select>
+            <span>寄件企业：</span>
+            <select id="ceOrgNameDispatchList">
+            <option value="">请选择</option>
+        </select>
+
         </label>
         <label>
-            寄件人： <input  id="senderContactNameDispatchList" />
+            <span>寄件人：</span>
+            <input  id="senderContactNameDispatchList" />
         </label>
         <label>
-            状态： <select id="statusDispatchList"></select>
+            <span>状态：</span>
+             <select id="statusDispatchList">
+            <option value="">请选择</option>
+        </select>
         </label>
     </div>
     <div class="control-view">
         <label>
-            下单日期：  <input  class="easyui-datebox" id="createDateFromDispatchList" />
+            <span>下单日期：</span>
+             <input  class="easyui-datebox" id="createDateFromDispatchList" />
         </label>
         <label>
-            最晚送达时间： <input class="easyui-datebox"  id="reqDeliveryDateFromDispatchList" style="width: 100px"/>
+            <span>最晚送达时间：</span>
+          <input class="easyui-datebox"  id="reqDeliveryDateFromDispatchList" style="width: 100px"/>
             <select style="width: 60px" id="appendTimeDispatchList"></select>
         </label>
         <label>
-            订单来源：  <select id="consignmentSourceDispatchList"></select>
+            <span>订单来源：</span>
+              <select id="consignmentSourceDispatchList"></select>
         </label>
     </div>
     <table id="dispatchList"    toolbar="#toolbar" width="98%"  style="color: #fff;" >
