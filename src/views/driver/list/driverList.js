@@ -120,6 +120,12 @@ var editDriverList = function () {
     addTabHref("司机编辑", "views/driver/edit/driverEdit")
 };
 
+//司机管理-双击司机列表获取数据集
+var getdetailDriverList = function () {
+    var rowData = $("#driverList").datagrid("getSelections");
+    return rowData;
+};
+
 //司机管理-详情
 var detailDriverList = function () {
     addTabHref("司机详情", "views/driver/detail/driverDetail.html")

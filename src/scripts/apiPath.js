@@ -31,23 +31,25 @@ var ApiPath = {
             driverList: AppConfig.TMSBasePath + "/driver/search",
             //司机列表-获取物流中心
             logisticsCenter: AppConfig.TMSBasePath + "/common/searchLogisticsCenter",
+            //司机列表-详情
+            driverDetail: AppConfig.TMSBasePath + "/driver/detail"
 
         },
         dispatchingManagement: {
             //调度管理接口
-            searchDispatchingList:AppConfig.TMSBasePath+"/consignment/search",
+            searchDispatchingList: AppConfig.TMSBasePath + "/consignment/search",
             //派单
-            dispatch:AppConfig.TMSBasePath+"/consignment/dispatch",
+            dispatch: AppConfig.TMSBasePath + "/consignment/dispatch",
             //改派
-            modifyDispatch:AppConfig.TMSBasePath+"/consignment/modifyDispatch",
+            modifyDispatch: AppConfig.TMSBasePath + "/consignment/modifyDispatch",
             //运单提交
-            consignmentCommit:AppConfig.TMSBasePath+"/consignment/commit",
+            consignmentCommit: AppConfig.TMSBasePath + "/consignment/commit",
             //运单取消
-            consignmentCancel:AppConfig.TMSBasePath+"/consignment/cancel",
+            consignmentCancel: AppConfig.TMSBasePath + "/consignment/cancel",
         },
         dictionary: {
             //公共字典
-            GetDictionary:AppConfig.TMSBasePath+"/systemData/dictionary/queryType",
+            GetDictionary: AppConfig.TMSBasePath + "/systemData/dictionary/queryType",
             //省市区
             admDivisionInfoSearch: AppConfig.TMSBasePath + "/systemData/dictionary/admDivisionInfoSearch",
             //图片上传
@@ -55,9 +57,9 @@ var ApiPath = {
             //司机
             getPickupDriverList: AppConfig.TMSBasePath + "/user/search",
         },
-        systemData:{
+        systemData: {
             //运单状态
-            queryType:AppConfig.TMSBasePath+"/systemData/status/cgStatusTypeList",
+            queryType: AppConfig.TMSBasePath + "/systemData/status/cgStatusTypeList",
         },
         orderSearch: AppConfig.TMSBasePath + "/dispatchingManagement/search",
     }

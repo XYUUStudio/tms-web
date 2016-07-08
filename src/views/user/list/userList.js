@@ -131,8 +131,8 @@ var sortByColumn = function (sort, order) {
 
 //双击列表项获取数据集
 var getUserData = function () {
-    var row = $("#userList").datagrid("getSelections");
-    return row;
+    var rowData = $("#userList").datagrid("getSelections");
+    return rowData;
 };
 
 //用户管理-初始化列表

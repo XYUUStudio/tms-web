@@ -4,7 +4,6 @@
 var ajaxHelp = new AjaxHelp();
 
 var param = getUserData();
-console.log(param[0]);
 
 //用户详情
 var getUserDetail = function () {
