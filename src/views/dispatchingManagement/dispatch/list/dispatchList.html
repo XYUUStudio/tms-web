@@ -1,25 +1,53 @@
 
-<div>
+<div id="content_id">
     <div id="searchbar" style="padding:3px;" >
         <ul class="sear" style=" overflow:hidden;">
-            <li>
-                <input id="consignmentNoToPicku" class="easyui-textbox" data-options="prompt:'请输入运单号'" >
-            </li>
-            <li>
-                <input id="consignmentNoToPicku" class="easyui-textbox" data-options="prompt:'请输入运单号'" >
-            </li>
-            <li>
-                <input id="consignmentNoToPicku" class="easyui-textbox" data-options="prompt:'请输入运单号'" >
-            </li>
             <div class="button ">
                 <a href="#"   onclick="javascript:void(0)">
                     <span>关闭</span>
                 </a>
-                <a  class="group" href="#" onclick="javascript:ToPickupView()">
-                    <span>改派</span>
+                <a href="#" onclick="javascript:dispatchCancel()">
+                    <span>取消</span>
+                </a>
+                <a class="group"  onclick="javascript:searchDispatchList()">
+                    <span>查询</span>
                 </a>
             </div>
         </ul>
+    </div>
+    <div class="control-view ">
+        <label >
+            运单号： <input  id="consignmentNoDispatchList" />
+        </label>
+        <label >
+            寄件单位： <input  id="senderCompanyDispatchList" />
+        </label>
+        <label >
+            收件单位： <input  id="receiverCompanyDispatchList" />
+        </label>
+    </div>
+    <div class="control-view ">
+        <label>
+            寄件企业： <select id="ceOrgNameDispatchList"></select>
+        </label>
+        <label>
+            寄件人： <input  id="senderContactNameDispatchList" />
+        </label>
+        <label>
+            状态： <select id="statusDispatchList"></select>
+        </label>
+    </div>
+    <div class="control-view">
+        <label>
+            下单日期：  <input  class="easyui-datebox" id="createDateFromDispatchList" />
+        </label>
+        <label>
+            最晚送达时间： <input class="easyui-datebox"  id="reqDeliveryDateFromDispatchList" style="width: 100px"/>
+            <select style="width: 60px" id="appendTimeDispatchList"></select>
+        </label>
+        <label>
+            订单来源：  <select id="consignmentSourceDispatchList"></select>
+        </label>
     </div>
     <table id="dispatchList"    toolbar="#toolbar" width="98%"  style="color: #fff;" >
         <!--<thead frozen="true" data-options="frozen:true">-->

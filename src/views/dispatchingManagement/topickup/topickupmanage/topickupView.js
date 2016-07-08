@@ -48,7 +48,7 @@ var verification=function () {
 }
 var ReDispatchSubmitAdd=function () {
     if(verification()){
-        var URL = ApiPath.TMSApi.dispatchingManagement.dispatch;
+        var URL = ApiPath.TMSApi.dispatchingManagement.modifyDispatch;
         var requestData={
             consignmentNo:pram[0].consignmentNo,
             pickupDriverId:$("#pickupDriverIdReDispatch").val()

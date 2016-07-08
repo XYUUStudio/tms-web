@@ -13,7 +13,7 @@ var AjaxException = function(){
         switch (data.code) {
             case 1001:
             case "1001":
-                $.messager.alert('提示', "服务异常,错误编码：" + data.code + "！", "error");
+                $.messager.alert('提示', "服务异常,错误编码：" + data.msg + "！", "error");
                 break;
             case 2001:
             case "2001":
@@ -36,7 +36,7 @@ var AjaxException = function(){
                 callback(data.info);
                 break;
             default:
-                $.messager.alert('提示', "未知异常：" + data.code + "|" + data.info + "！", "error");
+                $.messager.alert('提示', "未知异常：" + data.msg + "|" + data.msg + "！", "error");
         }
     }
 

@@ -1,0 +1,115 @@
+<div class="content_id">
+    <div class="control-view ">
+        <label style="padding-left: 0%;">
+            <span class="required">*</span>
+            客户公司：<select id="ceOrgCodeSinger">
+            <option>请选择客户公司</option>
+        </select>
+        </label>
+    </div>
+    <div class="control-group "style="text-align: left;margin-top: 30px">
+        <label >
+            <span style="color:#f79449 ;">寄件人信息</span>
+        </label>
+    </div>
+    <div class="cut-off-rule " >
+    </div>
+    <div class="control-view ">
+        <label style="padding-left: 0%;">
+            <span class="required">*</span>
+            寄件人：<input id="senderContactNameSinger"/>
+        </label>
+        <label style="padding-left: 0%;">
+            <span class="required">*</span>
+            手机：<input id="senderMobileSinger"/>
+        </label>
+        <label style="padding-left: 0%;">
+            <span class="required">*</span>
+            单位：<input id="senderCompanySinger"/>
+        </label>
+    </div>
+    <div class="control-view ">
+        <label style="padding-left: 0%;width: 46%">
+            <span class="required">*</span>
+            寄件地址：<select  id="senderProvinceCodeSinger"onchange="changeSenderProvince(this.value)"  style="width: 70px ;color:#999">
+            <option value="">请选择省</option>
+        </select>
+            <select   id="senderCityCodeSinger" style="width: 70px;color:#999" onchange="changeSenderCity(this.value)">
+                <option value="">请选择市</option>
+            </select>
+            <select  id="senderDistrictCodeSinger" style="width: 70px;color:#999">
+                <option value="">请选择区</option>
+            </select>
+            <input style="width: 100px" id="senderAddressSinger"/>
+        </label>
+    </div>
+    <div class="control-group "style="text-align: left;margin-top: 60px">
+        <label >
+            <span style="color:#f79449 ;">收件人信息</span>
+        </label>
+    </div>
+    <div class="cut-off-rule " >
+    </div>
+    <div class="control-view ">
+        <label style="padding-left: 0%;">
+            <span class="required">*</span>
+            收件人：<input id="receiverContactNameSinger"/>
+        </label>
+        <label style="padding-left: 0%;">
+            <span class="required">*</span>
+            手机：<input id="receiverMobileSinger"/>
+        </label>
+        <label style="padding-left: 0%;">
+            <span class="required">*</span>
+            单位：<input id="receiverCompanySinger"/>
+        </label>
+    </div>
+    <div class="control-view ">
+        <label style="padding-left: 0%;width: 46%">
+            <span class="required">*</span>
+            收件地址：<select id="receiverProvinceCodeSinger" onchange="changeReceiveProvince(this.value)" style="width: 70px ;color:#999">
+            <option value="">请选择省</option>
+        </select>
+            <select   id="receiverCityCodeSinger" style="width: 70px;color:#999" onchange="changeReceiveCity(this.value)">
+                <option value="">请选择市</option>
+            </select>
+            <select  id="receiverDistrictCodeSinger" style="width: 70px;color:#999">
+                <option value="">请选择区</option>
+            </select>
+            <input style="width: 100px" id="receiverAddressSinger"/>
+        </label>
+    </div>
+    <div class="cut-off-rule " style="margin-top: 60px" >
+    </div>
+    <div class="control-view ">
+        <label style="padding-left: 0%;">
+            <span class="required">*</span>
+            最晚送达时间： <input class="easyui-datebox"  id="reqDeliveryDateSinger" style="width: 100px"/>
+            <select style="width: 60px" id="appendTimeSinger"></select>
+        </label>
+        <label style="padding-left: 0%;">
+             患者：<input id="patientNameSinger"/>
+        </label>
+        <label style="padding-left: 0%;">
+            床号：<input id="patientHPBedNoSinger"/>
+        </label>
+    </div>
+    <div class="control-view ">
+        <label style="padding-left: 0%;clear:left;width: 60%">
+           <span  style="float: left">特殊要求: </span>
+            <textarea style="margin-left:10px;width: 300px"  id="customerSpecialNoteSinger"></textarea>
+        </label>
+    </div>
+    <div class="control-view ">
+        <label  style="padding-left: 0%;">
+            住院号：<input  id="patientHPNoSinger"/>
+        </label>
+    </div>
+    <div class="control-view ">
+        <div class="button"  style="margin-top: -1px; margin-right: -2px">
+            <a href="#"onclick="SingerSubmitAdd()" style="width: 133px;height: 30px;line-height: 30px">
+                <span>提交</span>
+            </a>
+        </div>
+    </div>
+</div>

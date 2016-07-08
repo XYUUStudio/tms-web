@@ -27,10 +27,9 @@ var loadDispatchList = function(pageNumber, pageSize){
     ajaxHelp.AjaxPost(URL,requestData,successToPickupList,null);
 }
 var successToPickupList = function (resultInfo) {
-    console.log(resultInfo)
     $("#dispatchList").datagrid('loadData', resultInfo);
     // var pager = $("#enterprisesList").datagrid('getPager');
-    $("#dispatchPagination").pagination({
+    $("#dispatchListPagination").pagination({
         pageList:[10,20,30],
         pageSize:resultInfo.pageSize,
         total:resultInfo.total,
@@ -39,7 +38,7 @@ var successToPickupList = function (resultInfo) {
             loadData(pageNumber, pageSize);
         },
         onChangePageSize:function(pageNumber, pageSize){
-            var pageSize= $("#pendingOrdersPagination").combobox('getValues')
+            var pageSize= $("#dispatchListPagination").combobox('getValues')
             pageNumber=resultInfo.pageNumber;
             pageSize=resultInfo.pageSize;
             loadData(pageNumber, pageSize);
@@ -49,7 +48,7 @@ var successToPickupList = function (resultInfo) {
 //排序回调函数
 var doSort = function(sort, order){
     var URL = ApiPath.TMSApi.dispatchingManagement.searchDispatchingList;
-    var options = $("#pendingOrdersList").datagrid('getPager').data("pagination").options;
+    var options = $("#dispatchList").datagrid('getPager').data("pagination").options;
     var currPage = options.pageNumber;
     var pageSize = options.pageSize;
     var requestData = {page:currPage, rows:pageSize,sort:sort,order:order};
@@ -69,17 +68,17 @@ var searchToPickup = function(){
 
 // 按钮页面跳转
 
-var getToPickup=function () {
+var dispatchList=function () {
     var row = $("#dispatchList").datagrid('getSelections');
     return (row)
 }
-var ToPickupView=function () {
+var dispatchCancel=function () {
     //编辑数据
     var row = $("#dispatchList").datagrid('getSelections');
     if(!row||row==""){
-        $.messager.alert('提示', "请选择需要派单的订单！", "error");
+        $.messager.alert('提示', "请选择需要取消的订单！", "error");
     }else {
-        addTabHref('改派','views/dispatchingManagement/topickup/topickupmanage/topickupView.html');
+        addTabHref('取消','views/dispatchingManagement/dispatch/cancel/dispatchcancel.html');
     }
 }
 $("#dispatchList").datagrid({
@@ -94,7 +93,7 @@ $("#dispatchList").datagrid({
     loadMsg:"正在加载，请稍等。。。。。。",
     onSortColumn:doSort,
     view: detailview,
-    onDblClickCell:ToPickupView,
+    onDblClickCell:dispatchCancel,
     detailFormatter: function(rowIndex, rowData){//可以和onExpandRow合用
         return '<table><tr>' +
             '<td rowspan=2 style="border:0"></td>' +
@@ -107,5 +106,94 @@ $("#dispatchList").datagrid({
 });
 //载入页执行  列表、时间函数
 var userOrgcode = $.cookie("userOrgcode");
+var getEnterprisesSelect=function () {
+        //获取寄件企业下拉框
+    var URL = ApiPath.TMSApi.businessData.enterprisesList;
+    var requestData = {
+    };
+    ajaxHelp.AjaxPost(URL,requestData,successEnterprisesSelect,null);
+}
+var successEnterprisesSelect=function (data) {
+    $.each(data.rows, function (index,item ) {
+        $("#ceOrgNameDispatchList").append(" <option value='"+item.cECode+"' >"+item.cEName+"</option>")
+    })
+}
+var getAppendTimeDispatchSelect=function () {
+    //获取追加时间段
+    var URL = ApiPath.TMSApi.dictionary.GetDictionary;
+    var requestData = {
+        dictTypeCode:"DLRQTM"
+    };
+    ajaxHelp.AjaxPost(URL,requestData,successAppendTimeDispatchSelect,null);
+}
+var successAppendTimeDispatchSelect=function (data) {
+        console.log(data)
+    $.each(data.dictValueList, function (index,item ) {
+        $("#appendTimeDispatchList").append(" <option value='"+item.dictValueCode+"' >"+item.dictValueName+"</option>")
+    })
+}
+var  gerStatusDispatchSelect=function () {
+    //获取状态下拉框
+    var URL = ApiPath.TMSApi.systemData.queryType;
+    var requestData = {};
+    ajaxHelp.AjaxPost(URL,requestData,successStatusDispatchSelect,null);
+}
+var successStatusDispatchSelect=function (data) {
+    $.each(data, function (index,item ) {
+        $("#statusDispatchList").append(" <option value='"+item.statusCode+"' >"+item.statusName+"</option>")
+    })
+}
+var getConsignmentSourceDispatchSelect=function () {
+      //获取订单来源下拉框
+    var URL = ApiPath.TMSApi.dictionary.GetDictionary;
+    var requestData = {
+        dictTypeCode:"CSGNSR"
+    };
+    ajaxHelp.AjaxPost(URL,requestData,successConsignmentSourceDispatchSelect,null);
+}
+var successConsignmentSourceDispatchSelect=function (data) {
+    $.each(data.dictValueList, function (index,item ) {
+        $("#consignmentSourceDispatchList").append(" <option value='"+item.dictValueCode+"' >"+item.dictValueName+"</option>")
+    })
+}
+var getSelectDispatchList=function () {
+    getEnterprisesSelect();
+    gerStatusDispatchSelect();
+    getAppendTimeDispatchSelect();
+    getConsignmentSourceDispatchSelect()
+}
+var searchDispatchList=function () {
+    //查询按钮
+    var  reqDeliveryDateFrom="";
+    var  createDateFrom="";
+    var  createDateEnd="";
+    if($("#createDateFromDispatchList").datebox('getValue')){
+        var createDateFrom=$("#createDateFromDispatchList").datebox('getValue')+" 00:00:00";
+    }
+    if($("#createDateFromDispatchList").datebox('getValue')){
+        var createDateEnd=$("#createDateFromDispatchList").datebox('getValue')+" 23:59:59";
+    }
+    if($("#reqDeliveryDateFromDispatchList").datebox('getValue')){
+        var appendTimeDispatchList=$("#appendTimeDispatchList").val();
+        var reqDeliveryDateFrom=$("#reqDeliveryDateFromDispatchList").datebox('getValue')+""+$("#appendTimeDispatchList").find("option:selected").text()+":00"
+    }
+    var URL = ApiPath.TMSApi.dispatchingManagement.searchDispatchingList;
+    var requestData = {
+        page:1,
+        rows:20,
+        consignmentNo:$("#consignmentNoDispatchList").val(),
+        senderCompany:$("#senderCompanyDispatchList").val(),
+        receiverCompany:$("#receiverCompanyDispatchList").val(),
+        ceOrgCode:$("#ceOrgNameDispatchList").val(),
+        senderContactName:$("#senderContactNameDispatchList").val(),
+        status:$("#statusDispatchList").val(),
+        createDateFrom:createDateFrom,
+        createDateEnd:createDateEnd,
+        reqDeliveryDateFrom:reqDeliveryDateFrom,
+        consignmentSource:$("#consignmentSourceDispatchList").val(),
+    };
+    ajaxHelp.AjaxPost(URL,requestData,successToPickupList,null);
+}
+getSelectDispatchList();
 loadDispatchList();
 

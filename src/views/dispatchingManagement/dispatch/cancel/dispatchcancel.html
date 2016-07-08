@@ -2,7 +2,7 @@
     <div id="searchbar" style="padding-left:60px;" >
         <ul class="sear" style=" overflow:hidden;">
             <li>
-                <span style="font-size: 26px" id="senderCompanyReDispatch"></span>
+                <span style="font-size: 26px" id="senderCompanyDispatchCancel"></span>
             </li>
             <li >
                 <div style="width: 150px;height: 26px;background:#f79449;margin-top: 8px;border: 1px solid #999  ;-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px; ">
@@ -13,35 +13,34 @@
                 </div>
             </li>
             <li>
-                <span style="font-size: 26px" id="receiverCompanyReDispatch"></span>
+                <span style="font-size: 26px" id="receiverCompanyDispatchCancel"></span>
             </li>
-
         </ul>
         <div style=" margin-bottom: 30px;margin-left: 120px;">
-            <span  id="reqDeliveryDateReDispatch"> </span>
+            <span  id="reqDeliveryDateDispatchCancel"> </span>
         </div>
     </div>
     <div class="control-group "style="text-align: left;margin-top: 60px">
         <label>
-            <span style="color:#f79449 ;">寄件人信息</span>
+            <span style="color:#f79449;">寄件人信息</span>
         </label>
     </div>
     <div class="cut-off-rule " >
     </div>
     <div class="control-view ">
         <label>
-            寄件人：<span id="senderContactNameReDispatch"></span>
+            寄件人：<span id="senderContactNameDispatchCancel"></span>
         </label>
         <label>
-            手机：<span id="senderMobileReDispatch"></span>
+            手机：<span id="senderMobileDispatchCancel"></span>
         </label>
         <label>
-            单位：<span id="senderCompanyReDispatchView"></span>
+            单位：<span id="senderCompanyDispatchCancelView"></span>
         </label>
     </div>
     <div class="control-view ">
         <label style="width:67%">
-            寄件地址：<span id="senderAddressReDispatch"></span>
+            寄件地址：<span id="senderAddressDispatchCancel"></span>
         </label>
     </div>
     <div class="control-group "style="text-align: left;margin-top: 60px">
@@ -53,53 +52,47 @@
     </div>
     <div class="control-view ">
         <label>
-            收件人：<span id="receiverContactNameReDispatch"></span>
+            收件人：<span id="receiverContactNameDispatchCancel"></span>
         </label>
         <label>
-            手机：<span id="receiverMobileReDispatch"></span>
+            手机：<span id="receiverMobileDispatchCancel"></span>
         </label>
         <label>
-            单位：<span id="receiverCompanyReDispatchView"></span>
+            单位：<span id="receiverCompanyDispatchCancelView"></span>
         </label>
     </div>
     <div class="control-view ">
         <label>
-            收件地址： <span id="receiverAddressReDispatch">aa</span>
+            收件地址： <span id="receiverAddressDispatchCancel"></span>
         </label>
         <label>
-            最晚送达时间：<span id="reqDeliveryDateReDispatchView"></span>
+            最晚送达时间：<span id="reqDeliveryDateDispatchCancelView"></span>
         </label>
     </div>
     <div class="control-group "style="text-align: left;margin-top: 30px">
         <label>
-            <span style="color:#f79449 ;">运单分派</span>
+            <span style="color:#f79449 ;">取消信息</span>
         </label>
     </div>
     <div class="cut-off-rule " >
     </div>
     <div class="control-view ">
         <label style="width: 100%">
-            原司机：<span id="pickupdriverbynameReDispatchOrigin"></span>
-        </label>
-    </div>
-    <div class="control-view ">
-        <label style="width: 100%">
-            取件司机：<select  id="pickupDriverIdReDispatch" style="width: 200px" >
-            <option value="">请选择司机</option>
+            取消原因：<select  id="cancelReasonDispatchCancel" style="width: 200px" >
         </select>
         </label>
     </div>
     <div class="control-view ">
         <label style="width: 100%">
-            备注： <input  id="remarkReDispatch" style="width: 28%"/>
+            备注： <input  id="remarkDispatchCancel" style="width: 28%"/>
         </label>
     </div>
     <div class="control-view ">
         <div class="button"  style="margin-top: -1px; margin-right: -2px">
-            <a href="#"onclick="ReDispatchSubmitAdd()" style="width: 133px;height: 30px;line-height: 30px">
+            <a href="#"onclick="DispatchCancelSubmitAdd()" style="width: 133px;height: 30px;line-height: 30px">
                 <span>提交</span>
             </a>
         </div>
     </div>
 </div>
-<script src="views/dispatchingManagement/topickup/topickupmanage/topickupView.js"></script>
+<script src="views/dispatchingManagement/dispatch/cancel/dispatchcancel.js"></script>

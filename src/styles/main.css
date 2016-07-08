@@ -166,6 +166,14 @@
 .sear{ overflow: hidden; float: left; margin: 0; padding: 0; width: 100%;}
 .sear li{ list-style: none; margin:16px 10px 16px 10px; float: left; font-family: 微软雅黑; color: #666; }
 .sear li> input{ width:  260px;height: 26px;}
+.sear li>label{
+    padding-left: 3%;
+    width: 30%;
+    padding-top: 8px;
+    float: left;
+    font-size:12px;
+    height: 26px;
+}
 .panel-header{ background:#00a1b7; }
 .panel{overflow: hidden;
     text-align: left;
@@ -229,24 +237,25 @@ html, .ng-scope {
     scrollbar-darkshadow-color: #666; /*立体滚动条强阴影的颜色*/
     scrollbar-track-color: #666; /*立体滚动条背景颜色*/
     scrollbar-base-color: #f8f8f8; /*滚动条的基本颜色*/
-    Cursor: url(mouse.cur); /*自定义个性鼠标*/
 }
 
 input, select, textarea {
     border: solid 1px #ccc;
     /*border: 0px;
     border-bottom: 1px solid #ccc;*/
-    padding: 5px;
-    border-radius: 4px;
+    border-radius: 2px;
 }
 
 label select {
-    max-width: 150px;
+    max-width: 200px;
 }
 
 label > input[type='text'], label select {
      font-size: 12px;
-     height: 28px;
+     height: 22px;
+     width: 145px;
+     border-color: #ccc;
+     color: #999;
 }
 
 input[type='number'] {
@@ -612,7 +621,6 @@ textarea {
     border: solid 1px #ccc;
     /*border: 0px;
     border-bottom: 1px solid #ccc;*/
-    padding: 5px;
     border-radius: 4px;
 }
 .control-group {
@@ -628,9 +636,10 @@ textarea {
 .control-view>label {
     padding-left: 3%;
     width: 30%;
-    padding-top: 8px;
+    padding-top: 15px;
     float: left;
     font-size:12px;
+
 }
 .control-group  >label>input{
     width:200px;

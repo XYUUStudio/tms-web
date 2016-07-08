@@ -102,10 +102,8 @@ var successImgListCC=function (data) {
 
 var EnterprisesSubmitAdd=function () {
     //赋值
-    var corpRegBizStartDate=$("#corpRegBizStartDateEnterprisesAdd").val()
-    corpRegBizStartDate=new Date().format('yyyy-MM-dd hh:ss')
-    var  corpRegBizEndDate=$("#corpRegBizEndDateEnterprisesAdd").val()
-    corpRegBizEndDate=new Date().format('yyyy-MM-dd hh:ss')
+    var corpRegBizStartDate=$("#corpRegBizStartDateEnterprisesAdd").datebox('getValue')+" 00:00:00";
+    var  corpRegBizEndDate=$("#corpRegBizEndDateEnterprisesAdd").datebox('getValue')+" 23:59:59";
     var URL = ApiPath.TMSApi.businessData.enterprisesRegister;
     var requestData = {
         cECode:$("#cECodeEnterprisesAdd").val(),
