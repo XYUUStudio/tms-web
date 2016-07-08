@@ -1,27 +1,19 @@
-<!--用户管理-新增-->
+<!--司机管理-新增-->
 <div class="content_id" style="width: 100%;height: 100%">
     <div class="content_left">
         <div class="control-group">
             <label>
-                账户名： <input class="easyui-textbox" id="accountNameUserAdd" data-options="prompt:'请输入账户名（必填）'"/>
+                账户名： <input class="easyui-textbox" id="accountNameDriverAdd" data-options="prompt:'请输入账户名（必填）'"/>
             </label>
         </div>
         <div class="control-group">
             <label>
-                初始密码： <input class="easyui-textbox" id="initialPwdUserAdd" data-options="prompt:'请输入初始密码（必填）'"/>
+                初始密码： <input class="easyui-textbox" id="initialPwdDriverAdd" data-options="prompt:'请输入初始密码（必填）'"/>
             </label>
         </div>
         <div class="control-group">
             <label>
-                确认密码： <input class="easyui-textbox" id="confirmPwdUserAdd" data-options="prompt:'请输入确认密码（必填）'"/>
-            </label>
-        </div>
-        <div class="control-group">
-            <label style="margin-right: 61px">
-                用户角色：
-                <select id="userRoleUserAdd" onchange="changeUserRole(this.value)" style="width: 212px;color:#999">
-
-                </select>
+                确认密码： <input class="easyui-textbox" id="confirmPwdDriverAdd" data-options="prompt:'请输入确认密码（必填）'"/>
             </label>
         </div>
         <div class="control-group">
@@ -30,13 +22,8 @@
             </label>
         </div>
         <div class="control-group">
-            <label>
-                手机号： <input class="easyui-textbox" id="mobileNoUserAdd" data-options="prompt:'请输入真实手机号（必填）'"/>
-            </label>
-        </div>
-        <div class="control-group">
             <label style="margin-right: 61px">
-                单位：
+                所属物流中心：
                 <select id="companyUserAdd" onchange="changeCompany(this.value)" style="width: 212px;color:#999">
 
                 </select>
@@ -48,15 +35,15 @@
                    style="width: 100px;height: 30px;line-height: 30px;margin-left: 15px">
                     <span>返回</span>
                 </a>
-                <a href="#" onclick="submitUserAdd()" style="width: 100px;height: 30px;line-height: 30px">
+                <a href="#" onclick="submitDriverAdd()" style="width: 100px;height: 30px;line-height: 30px">
                     <span>提交</span>
                 </a>
             </div>
         </div>
     </div>
 </div>
-<!--用户管理-注册成功提示Dialog-->
-<div id="dialog_regPromptUserAdd">
+<!--司机管理-注册成功提示Dialog-->
+<div id="regPromptDriverAdd">
     <div>
         <h1 style="color: black;text-align: center">注 册 成 功</h1>
     </div>
@@ -65,11 +52,11 @@
     </div>
     <div style="margin-top: 40px">
         <div class="button">
-            <a href="#" onclick="btn_regPromptUserAdd()"
+            <a href="#" onclick="submitRegPromptDriverAdd()"
                style="width: 80px;height: 30px;line-height: 30px;margin-right: 20px">
                 <span>是</span>
             </a>
-            <a href="#" onclick="javascript:$('#dialog_regPromptUserAdd').dialog('close')"
+            <a href="#" onclick="javascript:$('#regPromptDriverAdd').dialog('close')"
                style="width: 80px;height: 30px;line-height: 30px;margin-right: 20px;background: white;border: 1px solid #999">
                 <span style="color: #000">否</span>
             </a>
@@ -77,4 +64,4 @@
     </div>
 </div>
 
-<script src="views/user/add/userAdd.js"></script>
+<script src="views/driver/add/driverAdd.js"></script>

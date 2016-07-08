@@ -26,7 +26,12 @@ var ApiPath = {
             //用户编辑
             userEdit: AppConfig.TMSBasePath + "/user/modify",
             //用户角色
-            userRole: AppConfig.TMSBasePath + "/common/searchRole"
+            userRole: AppConfig.TMSBasePath + "/common/searchRole",
+            //司机列表
+            driverList: AppConfig.TMSBasePath + "/driver/search",
+            //司机列表-获取物流中心
+            logisticsCenter: AppConfig.TMSBasePath + "/common/searchLogisticsCenter",
+
         },
         dispatchingManagement: {
             //调度管理接口

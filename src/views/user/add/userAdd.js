@@ -29,6 +29,7 @@ var getCompany = function () {
 
 //获取所属公司-成功回调函数
 var successGetCompany = function (data) {
+    console.log(data);
     $.each(data.rows, function (index, item) {
         $("#companyUserAdd").append("<option value='" + item.cECode + "' >" + item.cEName + "</option>")
     });
@@ -54,7 +55,7 @@ var submitUserAdd = function () {
         role: $("#userRoleUserAdd").val(),
         userName: $("#nameUserAdd").val(),
         userMobile: $("#mobileNoUserAdd").val(),
-        orgCode: $("#companyUserAdd").val()
+        orgCode: $("#companyUserAdd").val(),
     };
     if (requestData.loginName == null || requestData.loginName == "") {
         $.messager.alert("提示", "账户名不能为空！", "error");
@@ -95,13 +96,13 @@ var successSubmitUserAdd = function () {
 //用户注册成功弹窗提示
 var regPromptUserAdd = {
     show: function () {
-        $("#dialog_regPrompt").dialog("open");
-        $("#dialog_regPrompt").window("center");
+        $("#dialog_regPromptUserAdd").dialog("open");
+        $("#dialog_regPromptUserAdd").window("center");
     }
 };
 
 //初始化Dialog
-$("#dialog_regPrompt").dialog({
+$("#dialog_regPromptUserAdd").dialog({
     title: "",
     closable: true,
     width: 350,
@@ -115,7 +116,7 @@ $("#dialog_regPrompt").dialog({
 
 //用户注册成功提示点击是跳转新增(续)页面
 var btn_regPromptUserAdd = function () {
-    $("#dialog_regPrompt").dialog("close");
+    $("#dialog_regPromptUserAdd").dialog("close");
     addTabHref("用户编辑", "views/user/edit/userEdit.html")
 };
 

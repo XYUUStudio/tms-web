@@ -3,7 +3,7 @@
  */
 var ajaxHelp = new AjaxHelp();
 
-//首次列表加载、翻页、更改页面大小都会触发
+//用户管理-加载页面
 var loadUserList = function (pageNumber, pageSize) {
     var URL = ApiPath.TMSApi.businessData.userList;
     if (pageNumber == undefined || pageNumber == 0) {
@@ -19,61 +19,40 @@ var loadUserList = function (pageNumber, pageSize) {
     ajaxHelp.AjaxPost(URL, requestData, successLoadUserList, null);
 };
 
-//成功回调函数
+//用户管理-加载页面成功回调函数
 var successLoadUserList = function (resultInfo) {
     $("#userList").datagrid("loadData", resultInfo);
-    $("#pp").pagination({
+    $("#paginationUserList").pagination({
         pageList: [10, 20, 30],
         pageSize: resultInfo.pageSize,
         total: resultInfo.total,
-        selected: true,
-        onSelectPage: function (pageNumber, pageSize) {
-            loadData(pageNumber, pageSize);
-        },
-        onChangePageSize: function (pageNumber, pageSize) {
-            var pageSize = $("#pp").combobox("getValues")
-            pageNumber = resultInfo.pageNumber;
-            pageSize = resultInfo.pageSize;
-            loadData(pageNumber, pageSize);
-        }
+        selected: true
     });
 };
 
-//查询
-var searchUserList = function () {
+//用户管理-查询
+var queryUserList = function () {
     var URL = ApiPath.TMSApi.businessData.userList;
     var requestData = {
-        searchValue: $("#searchValueUser").val(),
-        validStatus: $("#validStatusUser").val()
+        searchValue: $("#searchValueUserList").val(),
+        validStatus: $("#validStatusUserList").val()
     };
     ajaxHelp.AjaxPost(URL, requestData, successLoadUserList, null);
 };
 
-//用户新增
-var addUser = function () {
-    addTabHref("用户新增", "views/user/add/userAdd.html");
-};
-
-//用户编辑
-var editUser = function () {
-    var row = $("#userList").datagrid("getSelections");
-    if (!row || row == "") {
-        $.messager.alert("提示", "请选择需要编辑的用户", "error");
-    } else {
-        addTabHref("用户编辑", "views/user/edit/userEdit.html");
+//用户管理-重置密码
+var resetPwdUserList = function () {
+    var rowData = $("#userList").datagrid("getSelections");
+    if (!rowData || rowData == "") {
+        $.messager.alert("提示", "请选择用户!", "error");
+        return;
     }
+    $("#dialog_resetPwdUserList").dialog("open");
+    $("#dialog_resetPwdUserList").window("center");
 };
 
-//重置密码-弹窗
-var resetUserList = {
-    show: function () {
-        $("#dialog_reset").dialog("open");
-        $("#dialog_reset").window("center");
-    }
-};
-
-//初始化Dialog
-$("#dialog_reset").dialog({
+//用户管理-初始化Dialog
+$("#dialog_resetPwdUserList").dialog({
     title: "",
     closable: true,
     width: 350,
@@ -82,18 +61,18 @@ $("#dialog_reset").dialog({
     cache: false,
     modal: true,
     resizable: true,
-    loadingMessage: '正在加载...',
+    loadingMessage: '正在加载...'
 });
 
-//重置密码-提交
-var submitReset = function () {
+//用户管理-重置密码提交
+var submitResetPwdUserList = function () {
     var URL = ApiPath.TMSApi.businessData.userReset;
+    var rowData = $("#userList").datagrid("getSelections");
     var requestData = {
         loginPassword: $("#resetPwdUserList").val(),
-        userId: $.cookie("userId")
+        userId: rowData[0].loginID
     };
     var confirmPwd = $("#confirmPwdUserList").val();
-    console.log(requestData.loginPassword);
     if (requestData.loginPassword == null || requestData.loginPassword == "") {
         $.messager.alert("提示", "请输入重置密码!", "error");
         return;
@@ -106,17 +85,32 @@ var submitReset = function () {
         $.messager.alert("提示", "重置密码和确认密码必须一致!", "error");
         return;
     }
-    ajaxHelp.AjaxPost(URL, requestData, successSubmitReset, null);
+    ajaxHelp.AjaxPost(URL, requestData, successSubmitResetPwd, null);
 };
 
-//重置密码成功提交回调函数
-var successSubmitReset = function () {
+//用户管理-重置密码提交成功回调函数
+var successSubmitResetPwd = function () {
     alert("重置密码成功!");
-    $("#dialog_reset").dialog("close");
+    $("#dialog_resetPwdUserList").dialog("close");
 };
 
-//用户详情
-var detailUser = function () {
+//用户管理-新增
+var addUserList = function () {
+    addTabHref("用户新增", "views/user/add/userAdd.html");
+};
+
+//用户管理-编辑
+var editUserList = function () {
+    var rowData = $("#userList").datagrid("getSelections");
+    if (!rowData || rowData == "") {
+        $.messager.alert("提示", "请选择需要编辑的用户", "error");
+    } else {
+        addTabHref("用户编辑", "views/user/edit/userEdit.html");
+    }
+};
+
+//用户管理-详情
+var detailUserList = function () {
     addTabHref("用户详情", "views/user/detail/userDetail.html")
 };
 
@@ -137,11 +131,11 @@ var sortByColumn = function (sort, order) {
 
 //双击列表项获取数据集
 var getUserData = function () {
-    var row = $("#userList").datagrid('getSelections');
+    var row = $("#userList").datagrid("getSelections");
     return row;
 };
 
-//初始化用户注册管理列表
+//用户管理-初始化列表
 $("#userList").datagrid({
     striped: true,//设置为true将交替显示行背景
     checkOnSelect: true,//true:点击行选中或取消复选框;false:点击复选框选中或取消复选框
@@ -153,8 +147,7 @@ $("#userList").datagrid({
     iconCls: "icon-save",
     loadMsg: "正在加载，请稍等。。。。。。",//当从远程站点载入数据时，显示的一条快捷信息
     view: detailview,//定义数据表格的视图
-    onSortColumn: sortByColumn,//当用户对列排序时触发,参数如下:sort(排序字段名称);order(排序顺序)
-    onDblClickCell: detailUser,//当用户双击单元格时触发
+    onDblClickCell: detailUserList,//当用户双击单元格时触发
     detailFormatter: function (rowIndex, rowData) {//可以和onExpandRow合用
         return "<table><tr>" +
             "<td rowspan=2 style='border:0'></td>" +

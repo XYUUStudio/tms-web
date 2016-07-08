@@ -2,14 +2,31 @@
  * Created by medlog on 2016/7/5.
  */
 var ajaxHelp = new AjaxHelp();
-var param = getUserData();
+var rowData = $("#userList").datagrid("getSelections");
 var userInfo = new Object();
+
+//获取学历
+var getEducationUserEdit = function () {
+    var URL = ApiPath.TMSApi.dictionary.GetDictionary;
+    var requestData = {
+        dictTypeCode: "PRNEDU"
+    };
+    ajaxHelp.AjaxPost(URL, requestData, successGetEducationUserEdit, null);
+};
+
+//获取学历-成功回调函数
+var successGetEducationUserEdit = function (data) {
+    console.log(data);
+    $.each(data.dictValueList, function (index, item) {
+        $("#educationUserEdit").append("<option value='" + item.dictValueCode + "' >" + item.dictValueName + "</option>")
+    });
+};
 
 //获取用户信息
 var getUserInfo = function () {
     var URL = ApiPath.TMSApi.businessData.userDetail;
     var requestData = {
-        userId: param[0].userId
+        userId: rowData[0].userId
     };
     ajaxHelp.AjaxPost(URL, requestData, successUserEdit, null);
 };
@@ -32,7 +49,7 @@ var submitUserEdit = function () {
         userIDCard: $("#userIDCardUserEdit").val(),
         userMobile: $("#userMobileUserEdit").val(),
         userEmail: $("#userEmailUserEdit").val(),
-        userId: param[0].userId
+        userId: rowData[0].userId
     };
     ajaxHelp.AjaxPost(URL, requestData, successSubmitUserEdit, null);
 };
@@ -44,3 +61,6 @@ var successSubmitUserEdit = function () {
 
 //获取用户信息
 getUserInfo();
+
+//获取学历
+getEducationUserEdit();
