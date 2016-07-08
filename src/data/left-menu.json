@@ -67,10 +67,10 @@
         "data":[
             {
                 "title": "司机注册管理",
-                "url": "views/driver/driverRegisterManagement/list/driverList.html",
+                "url": "views/driver/list/driverList.html",
                 "type": 1,
                 "jsPathList": [
-                    "views/driver/driverRegisterManagement/list/driverList.js"
+                    "views/driver/list/driverList.js"
                 ]
             }
         ]

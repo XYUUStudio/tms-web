@@ -39,7 +39,7 @@ var successDoSearch = function (resultInfo) {
     $("#enterprisesList").datagrid('loadData', resultInfo);
 
     // var pager = $("#enterprisesList").datagrid('getPager');
-    $("#penterprisesPaginationp").pagination({
+    $("#enterprisesPagination").pagination({
         pageList:[10,20,30],
         pageSize:resultInfo.pageSize,
         total:resultInfo.total,
