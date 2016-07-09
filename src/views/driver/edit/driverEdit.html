@@ -1,10 +1,192 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!--司机管理-编辑-->
+<div class="button">
+    <a class="group" href="#" onclick="closeDriverEdit()">
+        <span>关闭</span>
+    </a>
+    <a class="group" href="#" onclick="submitDriverEdit()">
+        <span>提交</span>
+    </a>
+</div>
+<div class="content_id">
+    <div class="control-group" style="text-align: left;margin-top: 30px">
+        <label>
+            <span style="color:#f79449">个人信息</span>
+        </label>
+    </div>
+    <div class="cut-off-rule"></div>
+    <div class="control-view">
+        <label style="padding-left: 0%">
+            账户名：<span id="loginNameDriverEdit"></span>
+        </label>
+        <label style="padding-left: 0%">
+            所属物流中心：<span id="lCNameDriverEdit"></span>
+        </label>
+        <label style="padding-left: 0%">
+            姓名：<input id="userNameDriverEdit">
+        </label>
+    </div>
+    <div class="control-view">
 
-</body>
-</html>
+        <label style="padding-left: 0%">
+            身份证号：<input id="userIDCardDriverEdit">
+        </label>
+        <label style="padding-left: 0%">
+            手机号：<input id="userMobileDriverEdit">
+        </label>
+    </div>
+    <div class="control-view">
+        <label style="padding-left: 0%">
+            住址：<select id="provinceDriverEdit" style="width: 80px">
+            <option value="">请选择省</option>
+        </select>
+            <select id="cityDriverEdit" style="width: 80px">
+                <option value="">请选择市</option>
+            </select>
+            <select id="districtDriverEdit" style="width: 80px">
+                <option value="">请选择区</option>
+            </select>
+            <input id="addressDriverEdit" placeholder="请输入详细地址" style="width: 100px">
+        </label>
+    </div>
+    <div class="control-view">
+        <label style="padding-left: 0%">
+            邮箱：<input id="userEmailDriverEdit">
+        </label>
+        <label style="padding-left: 0%">
+            身份证上传：<input id="iDPositiveDriverEdit">
+            <button id="scanIDInverseDriverEdit">浏览</button>
+        </label>
+    </div>
+    <div class="control-group" style="text-align: left;margin-top: 30px">
+        <label>
+            <span style="color:#f79449">驾驶信息</span>
+        </label>
+    </div>
+    <div class="cut-off-rule"></div>
+    <div class="control-view">
+        <label style="padding-left: 0%">
+            驾驶证号：<input id="driverLicNoDriverEdit">
+        </label>
+        <label style="padding-left: 0%">
+            从业资格证号：<input id="roadFrtQCertNoDriverEdit">
+        </label>
+        <label style="padding-left: 0%">
+            有效期：<input id="driverLicEffectiveDateEndDriverEdit">
+        </label>
+    </div>
+    <div class="control-view">
+        <label style="padding-left: 0%">
+            发证日期：<input id="driverLicIssueDateDriverEdit">
+        </label>
+        <label style="padding-left: 0%">
+            驾驶证上传：<input id="driverLicPositiveDriverEdit">
+            <button id="scanDriverLicPositiveDriverEdit">浏览</button>
+        </label>
+    </div>
+    <div class="control-group" style="text-align: left;margin-top: 30px">
+        <label>
+            <span style="color:#f79449">车辆信息</span>
+        </label>
+    </div>
+    <div class="cut-off-rule"></div>
+    <div class="control-view">
+        <label style="padding-left: 0%">
+            车牌号：<input id="plateNoDriverEdit">
+        </label>
+        <label style="padding-left: 0%">
+            车型：<input id="vehicleLicSpecificationDriverEdit">
+        </label>
+        <label style="padding-left: 0%">
+            发证日期：<input id="vehicleLicIssueDateDriverEdit">
+        </label>
+    </div>
+    <div class="control-view">
+        <label style="padding-left: 0%">
+            年检有效日期：<input id="vehicleLicLastestInspEffEndDateDriverEdit">
+        </label>
+        <label style="padding-left: 0%">
+            车辆容积：<input id="vehicleCapacityDriverEdit">
+        </label>
+        <label style="padding-left: 0%">
+            营运证号：<input id="vehicleOPCertNoDriverEdit">
+        </label>
+    </div>
+    <div class="control-view">
+        <label style="padding-left: 0%">
+            车辆尺寸：<input id="vehicleLengthDriverEdit" placeholder="长" style="width: 40px;text-align: center">×
+            <input id="vehicleWidthDriverEdit" placeholder="宽" style="width: 40px;text-align: center">×
+            <input id="vehicleHeightDriverEdit" placeholder="高" style="width: 40px;text-align: center">
+        </label>
+        <label style="padding-left: 0%">
+            车辆所属：<input id="vehicleOwnerTypeDriverEdit">
+        </label>
+    </div>
+    <div class="control-view">
+        <label style="padding-left: 0%">
+            行驶证上传：<input id="vehicleLicPositiveDriverEdit">
+            <button id="scanVehicleLicPositiveDriverEdit">浏览</button>
+        </label>
+    </div>
+    <div class="control-group" style="text-align: left;margin-top: 30px">
+        <label>
+            <span style="color:#f79449">交保险信息</span>
+        </label>
+    </div>
+    <div class="cut-off-rule"></div>
+    <div class="control-view">
+        <label style="padding-left: 0%">
+            保险公司：<input id="compulsoryInsuranceCompanyDriverEdit">
+        </label>
+        <label style="padding-left: 0%">
+            保险单号：<input id="compulsoryInsuranceDocNoDriverEdit">
+        </label>
+        <label style="padding-left: 0%">
+            保险有效期：<input id="compulsoryInsuranceEffectiveEndDateDriverEdit">
+        </label>
+    </div>
+    <div class="control-view">
+        <label style="padding-left: 0%">
+            保险金额：<input id="compulsoryInsuranceAmtDriverEdit">
+        </label>
+        <label style="padding-left: 0%">
+            保单上传：<input id="compulsoryInsurancePositiveDriverEdit">
+            <button id="scanCompulsoryInsurancePositiveDriverEdit">浏览</button>
+        </label>
+    </div>
+    <div class="control-group" style="text-align: left;margin-top: 30px">
+        <label>
+            <span style="color:#f79449">商业险信息</span>
+        </label>
+    </div>
+    <div class="cut-off-rule"></div>
+    <div class="control-view">
+        <label style="padding-left: 0%">
+            保险公司：<input id="commercialInsuranceCompanyDriverEdit">
+        </label>
+        <label style="padding-left: 0%">
+            保险单号：<input id="commercialInsuranceDocNoDriverEdit">
+        </label>
+        <label style="padding-left: 0%">
+            保险有效期：<input id="commercialInsuranceEffectiveEndDateDriverEdit">
+        </label>
+    </div>
+    <div class="control-view">
+        <label style="padding-left: 0%">
+            保险金额：<input id="commercialInsuranceAmtDriverEdit">
+        </label>
+        <label style="padding-left: 0%">
+            保单上传：<input id="commercialInsurancePositiveDriverEdit">
+            <button id="scanCommercialInsurancePositiveDriverEdit">浏览</button>
+        </label>
+    </div>
+</div>
+<div class="button">
+    <a class="group" href="#" onclick="closeDriverEdit()">
+        <span>关闭</span>
+    </a>
+    <a class="group" href="#" onclick="submitDriverEdit()">
+        <span>提交</span>
+    </a>
+</div>
+
+<script src="views/driver/edit/driverEdit.js"></script>

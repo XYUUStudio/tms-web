@@ -45,13 +45,13 @@ var changeCompany = function () {
 
 };
 
-//用户新增
+//用户新增-提交
 var submitUserAdd = function () {
     var URL = ApiPath.TMSApi.businessData.userAdd;
-    var confirmPwd = $("#confirmPwdUserAdd").val();
+    var initialPwd = $("#initialPwdUserAdd").val();
     var requestData = {
         loginName: $("#accountNameUserAdd").val(),
-        loginPassword: $("#initialPwdUserAdd").val(),
+        loginPassword: $("#confirmPwdUserAdd").val(),
         role: $("#userRoleUserAdd").val(),
         userName: $("#nameUserAdd").val(),
         userMobile: $("#mobileNoUserAdd").val(),
@@ -61,15 +61,15 @@ var submitUserAdd = function () {
         $.messager.alert("提示", "账户名不能为空！", "error");
         return;
     }
-    if (requestData.loginPassword == null || requestData == "") {
+    if (initialPwd == null || initialPwd == "") {
         $.messager.alert("提示", "初始密码不能为空！", "error");
         return;
     }
-    if (confirmPwd == null || confirmPwd == "") {
+    if (requestData.loginPassword == null || requestData.loginPassword == "") {
         $.messager.alert("提示", "确认密码不能为空！", "error");
         return;
     }
-    if (requestData.loginPassword != confirmPwd) {
+    if (initialPwd != requestData.loginPassword) {
         $.messager.alert("提示", "初始密码和确认密码必须一致！", "error");
         return;
     }
@@ -88,17 +88,10 @@ var submitUserAdd = function () {
     ajaxHelp.AjaxPost(URL, requestData, successSubmitUserAdd, null);
 };
 
-//用户新增成功回调函数-弹窗
+//用户新增-提交成功回调函数
 var successSubmitUserAdd = function () {
-    regPromptUserAdd.show();
-};
-
-//用户注册成功弹窗提示
-var regPromptUserAdd = {
-    show: function () {
-        $("#dialog_regPromptUserAdd").dialog("open");
-        $("#dialog_regPromptUserAdd").window("center");
-    }
+    $("#dialog_regPromptUserAdd").dialog("open");
+    $("#dialog_regPromptUserAdd").window("center");
 };
 
 //初始化Dialog
@@ -114,7 +107,7 @@ $("#dialog_regPromptUserAdd").dialog({
     loadingMessage: '正在加载...',
 });
 
-//用户注册成功提示点击是跳转新增(续)页面
+//用户新增-注册成功提示点击是跳转新增(续)页面
 var btn_regPromptUserAdd = function () {
     $("#dialog_regPromptUserAdd").dialog("close");
     addTabHref("用户编辑", "views/user/edit/userEdit.html")
