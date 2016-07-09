@@ -3,17 +3,21 @@
  */
 var ajaxHelp = new AjaxHelp();
 var rowData = getdetailDriverList();
+console.log(rowData);
 
 //司机管理-详情
 var getDetailDriverDetail = function () {
     var URL = ApiPath.TMSApi.businessData.driverDetail;
-    var requestData = {};
+    var requestData = {
+        UserId: rowData[0].userId,
+        isDriverUser: "Y"
+    };
     ajaxHelp.AjaxPost(URL, requestData, successGetDetailDriverDetail, null);
 };
 
 //司机管理-详情成功回调函数
 var successGetDetailDriverDetail = function (responseData) {
-    console.log(responseData);
+    console.log(111);
     $("#loginNameDriverDetail").html(responseData.loginName);
     $("#lCNameDriverDetail").html(responseData.lCName);
     $("#userNameDriverDetail").html(responseData.userName);

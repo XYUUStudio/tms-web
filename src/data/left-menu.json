@@ -5,8 +5,8 @@
             {
                 "title": "400运单录入",
                 "url": "views/400orders/recordedSingle/singer.html",
-                "type":1,
-                "jsPathList":[
+                "type": 1,
+                "jsPathList": [
                     "views/400orders/recordedSingle/singer.js"
                 ]
             }
@@ -18,38 +18,37 @@
             {
                 "title": "调度列表",
                 "url": "views/dispatchingManagement/dispatch/list/dispatchList.html",
-                "type":1,
-                "jsPathList":[
+                "type": 1,
+                "jsPathList": [
                     "views/dispatchingManagement/dispatch/list/dispatchList.js"
                 ]
             },
             {
                 "title": "待接单列表",
                 "url": "views/dispatchingManagement/pendingorders/list/pendingordersList.html",
-                "type":1,
-                "jsPathList":[
+                "type": 1,
+                "jsPathList": [
                     "views/dispatchingManagement/pendingorders/list/pendingordersList.js"
                 ]
             },
             {
                 "title": "代取件列表",
                 "url": "views/dispatchingManagement/topickup/list/topickupList.html",
-                "type":1,
-                "jsPathList":[
+                "type": 1,
+                "jsPathList": [
                     "views/dispatchingManagement/topickup/list/topickupList.js"
                 ]
             }
         ]
     },
-
     {
         "group": "客户管理",
         "data": [
             {
                 "title": "企业注册管理",
                 "url": "views/enterprises/list/enterprisesList.html",
-                "type":1,
-                "jsPathList":[
+                "type": 1,
+                "jsPathList": [
                     "views/enterprises/list/enterprisesList.js"
                 ]
             },
@@ -64,8 +63,8 @@
         ]
     },
     {
-       "group":"司机管理" ,
-        "data":[
+        "group": "司机管理",
+        "data": [
             {
                 "title": "司机注册管理",
                 "url": "views/driver/list/driverList.html",
