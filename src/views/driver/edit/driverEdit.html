@@ -36,10 +36,11 @@
     </div>
     <div class="control-view">
         <label style="padding-left: 0%">
-            住址：<select id="provinceDriverEdit" style="width: 80px">
-            <option value="">请选择省</option>
-        </select>
-            <select id="cityDriverEdit" style="width: 80px">
+            住址：
+            <select id="provinceDriverEdit" onchange="changeProvinceDriverEdit(this.value)" style="width: 80px">
+                <option value="">请选择省</option>
+            </select>
+            <select id="cityDriverEdit" onchange="changeCityDriverEdit(this.value)" style="width: 80px">
                 <option value="">请选择市</option>
             </select>
             <select id="districtDriverEdit" style="width: 80px">
@@ -53,8 +54,9 @@
             邮箱：<input id="userEmailDriverEdit">
         </label>
         <label style="padding-left: 0%">
-            身份证上传：<input id="iDPositiveDriverEdit">
-            <button id="scanIDInverseDriverEdit">浏览</button>
+            身份证上传：<input id="iDPositiveDriverEdit" type="file" onchange="javascript:uploadIDDriverEdit(this)"
+                         style="width: 200px;border: #fff">
+            <!--<button id="scaniDPositiveDriverEdit">浏览</button>-->
         </label>
     </div>
     <div class="control-group" style="text-align: left;margin-top: 30px">
@@ -79,8 +81,9 @@
             发证日期：<input id="driverLicIssueDateDriverEdit">
         </label>
         <label style="padding-left: 0%">
-            驾驶证上传：<input id="driverLicPositiveDriverEdit">
-            <button id="scanDriverLicPositiveDriverEdit">浏览</button>
+            驾驶证上传：<input id="driverLicPositiveDriverEdit" type="file"
+                         onchange="javascript:uploadDriverLicDriverEdit(this)" style="width: 200px;border: #fff">
+            <!--<button id="scanDriverLicPositiveDriverEdit">浏览</button>-->
         </label>
     </div>
     <div class="control-group" style="text-align: left;margin-top: 30px">
@@ -123,8 +126,9 @@
     </div>
     <div class="control-view">
         <label style="padding-left: 0%">
-            行驶证上传：<input id="vehicleLicPositiveDriverEdit">
-            <button id="scanVehicleLicPositiveDriverEdit">浏览</button>
+            行驶证上传：<input id="vehicleLicPositiveDriverEdit" type="file"
+                         onchange="javascript:uploadVehicleLicDriverEdit(this)" style="width: 200px;border: #fff">
+            <!--<button id="scanVehicleLicPositiveDriverEdit">浏览</button>-->
         </label>
     </div>
     <div class="control-group" style="text-align: left;margin-top: 30px">
@@ -149,8 +153,10 @@
             保险金额：<input id="compulsoryInsuranceAmtDriverEdit">
         </label>
         <label style="padding-left: 0%">
-            保单上传：<input id="compulsoryInsurancePositiveDriverEdit">
-            <button id="scanCompulsoryInsurancePositiveDriverEdit">浏览</button>
+            保单上传：<input id="compulsoryInsurancePositiveDriverEdit" type="file"
+                        onchange="javascript:uploadCompulsoryInsuranceDriverEdit(this)"
+                        style="width: 200px;border: #fff">
+            <!--<button id="scanCompulsoryInsurancePositiveDriverEdit">浏览</button>-->
         </label>
     </div>
     <div class="control-group" style="text-align: left;margin-top: 30px">
@@ -175,8 +181,10 @@
             保险金额：<input id="commercialInsuranceAmtDriverEdit">
         </label>
         <label style="padding-left: 0%">
-            保单上传：<input id="commercialInsurancePositiveDriverEdit">
-            <button id="scanCommercialInsurancePositiveDriverEdit">浏览</button>
+            保单上传：<input id="commercialInsurancePositiveDriverEdit" type="file"
+                        onchange="javascript:uploadCommercialInsuranceDriverEdit(this)"
+                        style="width: 200px;border: #fff">
+            <!--<button id="scanCommercialInsurancePositiveDriverEdit">浏览</button>-->
         </label>
     </div>
 </div>
