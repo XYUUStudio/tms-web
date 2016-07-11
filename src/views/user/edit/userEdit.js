@@ -4,7 +4,7 @@
 var ajaxHelp = new AjaxHelp();
 var rowData = $("#userList").datagrid("getSelections");
 
-//用户编辑-获取学历
+//用户编辑-获取学历下拉框
 var getEducationUserEdit = function () {
     var URL = ApiPath.TMSApi.dictionary.GetDictionary;
     var requestData = {
@@ -12,7 +12,6 @@ var getEducationUserEdit = function () {
     };
     ajaxHelp.AjaxPost(URL, requestData, successGetEducationUserEdit, null);
 };
-//用户编辑-获取学历成功回调函数
 var successGetEducationUserEdit = function (data) {
     console.log(data);
     $.each(data.dictValueList, function (index, item) {
@@ -43,11 +42,11 @@ var successUserEdit = function (data) {
 var submitUserEdit = function () {
     var URL = ApiPath.TMSApi.businessData.userEdit;
     var requestData = {
+        userId: rowData[0].userId,
         userName: $("#userNameUserEdit").val(),
         userIDCard: $("#userIDCardUserEdit").val(),
         userMobile: $("#userMobileUserEdit").val(),
-        userEmail: $("#userEmailUserEdit").val(),
-        userId: rowData[0].userId
+        userEmail: $("#userEmailUserEdit").val()
     };
     ajaxHelp.AjaxPost(URL, requestData, successSubmitUserEdit, null);
 };

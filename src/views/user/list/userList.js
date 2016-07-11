@@ -85,6 +85,7 @@ var resetPwdUserList = function () {
     $("#dialog_resetPwdUserList").dialog("open");
     $("#dialog_resetPwdUserList").window("center");
 };
+//用户列表-重置密码Dialog初始化
 $("#dialog_resetPwdUserList").dialog({
     title: "",
     closable: true,
@@ -100,20 +101,22 @@ $("#dialog_resetPwdUserList").dialog({
 var submitResetPwdUserList = function () {
     var URL = ApiPath.TMSApi.businessData.userReset;
     var rowData = $("#userList").datagrid("getSelections");
+    //console.log(rowData[0].userId);
+    var resetPwd = $("#resetPwdUserList").val();
+    var loginPassword = $("#confirmPwdUserList").val();
     var requestData = {
-        loginPassword: $("#resetPwdUserList").val(),
+        loginPassword: loginPassword,
         userId: rowData[0].loginID
     };
-    var confirmPwd = $("#confirmPwdUserList").val();
-    if (requestData.loginPassword == null || requestData.loginPassword == "") {
+    if (resetPwd == null || resetPwd == "") {
         $.messager.alert("提示", "请输入重置密码!", "error");
         return;
     }
-    if (confirmPwd == null || confirmPwd == "") {
+    if (requestData.loginPassword == null || requestData.loginPassword == "") {
         $.messager.alert("提示", "请输入确认密码!", "error");
         return;
     }
-    if (requestData.loginPassword != confirmPwd) {
+    if (resetPwd != requestData.loginPassword) {
         $.messager.alert("提示", "重置密码和确认密码必须一致!", "error");
         return;
     }

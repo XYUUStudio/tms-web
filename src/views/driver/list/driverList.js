@@ -18,7 +18,7 @@ var successGetLogisticsCenter = function (data) {
 
 
 //司机列表-双击司机列表获取数据集
-var getdetailDriverList = function () {
+var getDetailDriverList = function () {
     var rowData = $("#driverList").datagrid("getSelections");
     return rowData;
 };
@@ -28,7 +28,7 @@ var detailDriverList = function () {
 };
 
 
-//司机列表-加载页面
+//司机列表-加载司机列表
 var loadDriverList = function (pageNumber, pageSize) {
     getLogCenterDriverList();
     var URL = ApiPath.TMSApi.businessData.driverList;
@@ -74,7 +74,6 @@ $("#driverList").datagrid({
             "</tr></table>";
     }
 });
-loadDriverList();
 
 
 //司机列表-查询
@@ -114,21 +113,22 @@ $("#dialog_resetPwdDriverList").dialog({
 var submitResetPwdDriverList = function () {
     var URL = ApiPath.TMSApi.businessData.userReset;
     var rowData = $("#driverList").datagrid("getSelections");
+    var resetPwd = $("#resetPwdDriverList").val();
+    var loginPassword = $("#confirmPwdDriverList").val();
     var requestData = {
-        loginPassword: $("#resetPwdDriverList").val(),
-        userId: rowData[0].loginID,
-        isDriverUser: "Y"
+        isDriverUser: "Y",
+        loginPassword: loginPassword,
+        userId: rowData[0].loginID
     };
-    var confirmPwd = $("#confirmPwdDriverList").val();
-    if (requestData.loginPassword == null || requestData.loginPassword == "") {
+    if (resetPwd == null || resetPwd == "") {
         $.messager.alert("提示", "请输入重置密码!", "error");
         return;
     }
-    if (confirmPwd == null || confirmPwd == "") {
+    if (requestData.loginPassword == null || requestData.loginPassword == "") {
         $.messager.alert("提示", "请输入确认密码!", "error");
         return;
     }
-    if (requestData.loginPassword != confirmPwd) {
+    if (resetPwd != requestData.loginPassword) {
         $.messager.alert("提示", "重置密码和确认密码必须一致!", "error");
         return;
     }
@@ -155,3 +155,7 @@ var editDriverList = function () {
         addTabHref("司机编辑", "views/driver/edit/driverEdit.html");
     }
 };
+
+
+//司机列表-加载司机列表
+loadDriverList();

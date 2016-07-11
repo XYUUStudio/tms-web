@@ -9,22 +9,19 @@ var rowData = $("#driverList").datagrid("getSelections");
 var getInfoDriverEdit = function () {
     var URL = ApiPath.TMSApi.businessData.driverDetail;
     var requestData = {
-        userId: rowData[0].userId,
-        userIDCard: rowData[0].userIDCard
+        userId: rowData[0].userId
     };
-    console.log(rowData);
     ajaxHelp.AjaxPost(URL, requestData, successGetInfoDriverEdit, null);
 };
-var successGetInfoDriverEdit = function (data) {
-    driverInfo = data;
-    $("#loginNameDriverEdit").val(data.loginName);
-    $("#lCNameDriverEdit").val(data.lCName);
-    $("#userNameDriverEdit").val(data.userName);
-    $("#userIDCardDriverEdit").val(data.userIDCard);
-    $("#userMobileDriverEdit").val(data.userMobile);
-
+var successGetInfoDriverEdit = function (responsedata) {
+    driverInfo = responsedata;
+    console.log(responsedata);
+    $("#loginNameDriverEdit").html(responsedata.loginName);
+    $("#lCNameDriverEdit").html(responsedata.lCName);
+    $("#userNameDriverEdit").val(responsedata.userName);
+    $("#userMobileDriverEdit").val(responsedata.userMobile);
 };
-//getInfoDriverEdit();
+getInfoDriverEdit();
 
 //司机编辑-获取省下拉框
 var getProvinceDriverEdit = function () {
@@ -36,7 +33,6 @@ var getProvinceDriverEdit = function () {
     ajaxHelp.AjaxPost(URL, requestData, successGetProvinceDriverEdit, null);
 };
 var successGetProvinceDriverEdit = function (data) {
-    console.log(data);
     $.each(data, function (index, item) {
         $("#provinceDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>")
     })
@@ -93,8 +89,8 @@ function uploadIDDriverEdit(imgData) {
     return true;
 }
 var iDPositiveURL = "";
-var successUploadIDDriverEdit = function (data) {
-    iDPositiveURL = data.url;
+var successUploadIDDriverEdit = function (responseData) {
+    iDPositiveURL = responseData.url;
 };
 
 
@@ -113,8 +109,8 @@ function uploadDriverLicDriverEdit(imgData) {
     return true;
 }
 var driverLicPositiveURL = "";
-var successUploadDriverLicDriverEdit = function (data) {
-    driverLicPositiveURL = data.url;
+var successUploadDriverLicDriverEdit = function (responseData) {
+    driverLicPositiveURL = responseData.url;
 };
 
 
@@ -133,8 +129,8 @@ function uploadVehicleLicDriverEdit(imgData) {
     return true;
 }
 var vehicleLicPositiveURL = "";
-var successUploadVehicleLicDriverEdit = function (data) {
-    vehicleLicPositiveURL = data.url;
+var successUploadVehicleLicDriverEdit = function (responseData) {
+    vehicleLicPositiveURL = responseData.url;
 };
 
 
@@ -153,8 +149,8 @@ function uploadCompulsoryInsuranceDriverEdit(imgData) {
     return true;
 }
 var compulsoryInsurancePositiveURL = "";
-var successUploadCompulsoryInsuranceDriverEdit = function (data) {
-    compulsoryInsurancePositiveURL = data.url;
+var successUploadCompulsoryInsuranceDriverEdit = function (responseData) {
+    compulsoryInsurancePositiveURL = responseData.url;
 };
 
 
@@ -173,8 +169,8 @@ function uploadCommercialInsuranceDriverEdit(imgData) {
     return true;
 }
 var commercialInsurancePositiveURL = "";
-var successUploadCommercialInsuranceDriverEdit = function (data) {
-    commercialInsurancePositiveURL = data.url;
+var successUploadCommercialInsuranceDriverEdit = function (responseData) {
+    commercialInsurancePositiveURL = responseData.url;
 };
 
 
@@ -215,11 +211,11 @@ var submitDriverEdit = function () {
         commercialInsuranceEffectiveEndDate: $("#commercialInsuranceEffectiveEndDateDriverEdit").val(),
         commercialInsuranceAmt: $("#commercialInsuranceAmtDriverEdit").val(),
         //图片上传
-        iDPositive: [{url: iDPositiveURL}],
-        driverLicPositive: [{url: driverLicPositiveURL}],
-        vehicleLicPositive: [{url: vehicleLicPositiveURL}],
-        compulsoryInsurancePositive: [{url: compulsoryInsurancePositiveURL}],
-        commercialInsurancePositive: [{url: commercialInsurancePositiveURL}]
+        iDPositive: {url: iDPositiveURL},
+        driverLicPositive: {url: driverLicPositiveURL, attachmentDesc: ""},
+        vehicleLicPositive: {url: vehicleLicPositiveURL, attachmentDesc: ""},
+        compulsoryInsurancePositive: {url: compulsoryInsurancePositiveURL, attachmentDesc: ""},
+        commercialInsurancePositive: {url: commercialInsurancePositiveURL, attachmentDesc: ""}
     };
     ajaxHelp.AjaxPost(URL, requestData, successSubmitDriverAdd, null);
 };

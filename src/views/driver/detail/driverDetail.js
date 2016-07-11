@@ -2,22 +2,20 @@
  * Created by medlog on 2016/7/8.
  */
 var ajaxHelp = new AjaxHelp();
-var rowData = getdetailDriverList();
+var rowData = getDetailDriverList();
 console.log(rowData);
+
 
 //司机管理-详情
 var getDetailDriverDetail = function () {
     var URL = ApiPath.TMSApi.businessData.driverDetail;
     var requestData = {
-        UserId: rowData[0].userId,
-        isDriverUser: "Y"
+        userId: rowData[0].userId
     };
     ajaxHelp.AjaxPost(URL, requestData, successGetDetailDriverDetail, null);
 };
-
-//司机管理-详情成功回调函数
 var successGetDetailDriverDetail = function (responseData) {
-    console.log(111);
+    console.log(responseData.iDPositive.url);
     $("#loginNameDriverDetail").html(responseData.loginName);
     $("#lCNameDriverDetail").html(responseData.lCName);
     $("#userNameDriverDetail").html(responseData.userName);
@@ -25,7 +23,11 @@ var successGetDetailDriverDetail = function (responseData) {
     $("#userMobileDriverDetail").html(responseData.userMobile);
     $("#userEmailDriverDetail").html(responseData.userEmail);
     $("#addressDriverDetail").html(responseData.address);
-    $("#iDPositiveDriverDetail").html(responseData.iDPositive);
+    //身份证正面
+    if(responseData.iDPositive.url!=""){
+        $("#iDPositiveDriverDetail").html('<img src="' + responseData.iDPositive.url + '" alt="" width="150" height="150" />')
+    }
+    //$("#iDPositiveDriverDetail").html(responseData.iDPositive);
     $("#iDInverseDriverDetail").html(responseData.iDInverse);
     $("#driverLicNoDriverDetail").html(responseData.driverLicNo);
     $("#roadFrtQCertNoDriverDetail").html(responseData.roadFrtQCertNo);
@@ -54,6 +56,7 @@ var successGetDetailDriverDetail = function (responseData) {
     $("#commercialInsuranceAmtDriverDetail").html(responseData.commercialInsuranceAmt);
     $("#commercialInsurancePositiveDriverDetail").html(responseData.commercialInsurancePositive);
 };
+
 
 //司机管理-详情
 getDetailDriverDetail();

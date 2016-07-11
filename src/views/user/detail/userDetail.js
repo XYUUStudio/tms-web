@@ -3,27 +3,28 @@
  */
 var ajaxHelp = new AjaxHelp();
 
-var param = getUserData();
+var rowData = getUserData();
+
 
 //用户详情
 var getUserDetail = function () {
     var URL = ApiPath.TMSApi.businessData.userDetail;
     var requestData = {
-        userId: param[0].userId
+        userId: rowData[0].userId
     };
     ajaxHelp.AjaxPost(URL, requestData, successGetUserDetail, null);
 };
 
 //用户详情成功回调函数
-var successGetUserDetail = function (data) {
-    $("#accountNameUserDetail").html(data.loginName);
-    $("#companyUserDetail").html(data.orgCode);
-    $("#nameUserDetail").html(data.userName);
-    $("#identifyNumberUserDetail").html(data.userIDCard);
-    $("#phoneNumberUserDetail").html(data.userMobile);
-    $("#emailUserDetail").html(data.userEmail);
-    $("#educationUserDetail").html(data.userEducation);
-    $("#postUserDetail").html(data.userEducation);
+var successGetUserDetail = function (responseData) {
+    $("#accountNameUserDetail").html(responseData.loginName);
+    $("#companyUserDetail").html(responseData.orgCode);
+    $("#nameUserDetail").html(responseData.userName);
+    $("#identifyNumberUserDetail").html(responseData.userIDCard);
+    $("#phoneNumberUserDetail").html(responseData.userMobile);
+    $("#emailUserDetail").html(responseData.userEmail);
+    $("#educationUserDetail").html(responseData.userEducation);
+    $("#postUserDetail").html(responseData.userJobDesc);
 };
 
 //用户详情

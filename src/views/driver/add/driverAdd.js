@@ -27,7 +27,8 @@ var submitDriverAdd = function () {
         loginName: $("#loginNameDriverAdd").val(),
         loginPassword: $("#confirmPwdDriverAdd").val(),
         userName: $("#userNameDriverAdd").val(),
-        loginMobileNo: "3123123"
+        userMobile: $("#userMobileDriverAdd").val(),
+        orgCode: $("#lCNameDriverAdd").val()
     };
     if (requestData.loginName == null || requestData.loginName == "") {
         $.messager.alert("提示", "账户名不能为空!", "error");
@@ -41,12 +42,20 @@ var submitDriverAdd = function () {
         $.messager.alert("提示", "确认密码不能为空!", "error");
         return;
     }
+    if (initialPwd != requestData.loginPassword) {
+        $.messager.alert("提示", "初始密码和确认密码必须一致!", "error");
+        return;
+    }
     if (requestData.userName == null || requestData.userName == "") {
         $.messager.alert("提示", "姓名不能为空!", "error");
         return;
     }
-    if (initialPwd != requestData.loginPassword) {
-        $.messager.alert("提示", "初始密码和确认密码必须一致!", "error");
+    if (requestData.userMobile == null || requestData.userMobile == "") {
+        $.messager.alert("提示", "手机号不能为空!", "error");
+        return;
+    }
+    if (requestData.userMobile.length != 11) {
+        $.messager.alert("提示", "请输入正确的手机号!", "error");
         return;
     }
     ajaxHelp.AjaxPost(URL, requestData, successSubmitUserAdd, null);
@@ -67,7 +76,7 @@ $("#dialog_regPromptDriverAdd").dialog({
     cache: false,
     modal: true,
     resizable: true,
-    loadingMessage: '正在加载...',
+    loadingMessage: '正在加载...'
 });
 
 
@@ -75,4 +84,10 @@ $("#dialog_regPromptDriverAdd").dialog({
 var submitRegPromptDriverAdd = function () {
     $("#dialog_regPromptDriverAdd").dialog("close");
     addTabHref("用户编辑", "views/driver/edit/driverEdit.html")
+};
+
+
+var returnDriverAdd = function () {
+    var currentTabTitle = $("#tab-memu-id").data("currtab");
+    $("#tabs").tabs("close", currentTabTitle);
 };
