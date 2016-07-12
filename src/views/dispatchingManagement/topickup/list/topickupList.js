@@ -11,7 +11,7 @@ var ajaxHelp = new AjaxHelp();
 //获取分页信息值
 //首次列表加载、翻页、更改页面大小都会触发
 
-var loadtoPickupList = function(pageNumber, pageSize){
+var loadToPickupList = function(pageNumber, pageSize){
     // 定义post  请求页地址
     var URL = ApiPath.TMSApi.dispatchingManagement.searchDispatchingList;
     if(pageNumber == undefined || pageNumber == 0 ){pageNumber = 1;}
@@ -25,7 +25,6 @@ var loadtoPickupList = function(pageNumber, pageSize){
     ajaxHelp.AjaxPost(URL,requestData,successToPickupList,null);
 }
 var successToPickupList = function (resultInfo) {
-    console.log(resultInfo)
     $("#toPickupList").datagrid('loadData', resultInfo);
     // var pager = $("#enterprisesList").datagrid('getPager');
     $("#toPickupPagination").pagination({
@@ -105,5 +104,5 @@ $("#toPickupList").datagrid({
 });
 //载入页执行  列表、时间函数
 var userOrgcode = $.cookie("userOrgcode");
-loadtoPickupList();
+loadToPickupList();
 

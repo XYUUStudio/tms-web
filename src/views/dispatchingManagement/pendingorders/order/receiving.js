@@ -54,7 +54,8 @@ var DispatchSubmitAdd=function () {
 }
 var successDispatchSubmitAdd=function (data) {
      alert("提交成功！")
-    loadtoPickupList()
+    $("#tabs").tabs('close','派单');
+    loadPendingordersList()
 }
 getPickupDriverId();
 

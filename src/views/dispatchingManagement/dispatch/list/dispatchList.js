@@ -15,9 +15,9 @@ var loadDispatchList = function(pageNumber, pageSize){
         rows:pageSize,
         lcOrgCode:userOrgcode
     };
-    ajaxHelp.AjaxPost(URL,requestData,successToPickupList,null);
+    ajaxHelp.AjaxPost(URL,requestData,successDispatchList,null);
 }
-var successToPickupList = function (resultInfo) {
+var successDispatchList = function (resultInfo) {
     $("#dispatchList").datagrid('loadData', resultInfo);
     // var pager = $("#enterprisesList").datagrid('getPager');
     $("#dispatchListPagination").pagination({
@@ -71,6 +71,9 @@ var dispatchCancel=function () {
     }else {
         addTabHref('取消','views/dispatchingManagement/dispatch/cancel/dispatchcancel.html');
     }
+}
+var dispatchClose=function () {
+    $("#tabs").tabs('close','调度列表');
 }
 var dispatchReassign=function () {
     //改派订单
@@ -196,8 +199,11 @@ var searchDispatchList=function () {
         consignmentSource:$("#consignmentSourceDispatchList").val(),
         lcOrgCode:userOrgcode
     };
-    ajaxHelp.AjaxPost(URL,requestData,successToPickupList,null);
+    ajaxHelp.AjaxPost(URL,requestData,successDispatchList,null);
 }
-getSelectDispatchList();
-loadDispatchList();
+var dispatchListLoad=function () {
+    getSelectDispatchList();
+    loadDispatchList();
+}
+dispatchListLoad();
 

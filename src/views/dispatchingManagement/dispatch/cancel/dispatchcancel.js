@@ -54,5 +54,7 @@ var DispatchCancelSubmitAdd=function () {
 }
 var successDispatchCancelSubmitAdd=function (data) {
     alert("提交成功！")
+    $("#tabs").tabs('close','取消');
+    dispatchListLoad();
 }
 getDispatchCancel();

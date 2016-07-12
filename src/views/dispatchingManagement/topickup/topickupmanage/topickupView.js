@@ -58,7 +58,8 @@ var ReDispatchSubmitAdd=function () {
 }
 var successReDispatchSubmitAdd=function (data) {
     alert("提交成功！")
-    loadtoPickupList();
+    $("#tabs").tabs('close','改派');
+    loadToPickupList();
 }
 getPickupDriverId();
 

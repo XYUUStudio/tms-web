@@ -184,9 +184,6 @@
     border-radius: 0 0 0 0;
     margin-top: -1px;
 }
-
-
-
 /*弹窗开始*/
 .tab{ margin: 0; background-color: #fff; overflow: hidden; border-bottom: 1px #e5e5e5 solid;}
 .tab a{ color: #666; text-decoration: none;  font-size: 12px; font-family: "微软雅黑"; width: 100px; float: left; text-align: center; line-height: 30px;}
@@ -197,13 +194,9 @@
 .datagrid-row-selected{  background: #00a1b7;}
 .combo-arrow{ background-color: #fff;}
 .consumables{ float: left; margin-left: 20px; margin-bottom: 20px;margin-top: 20px}
-
 .consumables1 li{list-style: none; text-align:center;overflow:hidden;}
-
-
 .consumables1 li ul li{float: left; width: 120px; margin: 10px 10px 10px 10px ;}
 .datagrid-row-selected{ color: #fff;}
-
 .heard{ background-color:#00a1b7; width: 960px; height: 100px; background-image: url("../images/top.png");}
 .heard h1{color: #fff; margin-left: 30px;}
 /*icon*/
@@ -216,18 +209,14 @@
 .chaxun1{background-position:-36px -40px;margin: 0 10px 0 0;}
 .yisheng{ background-position:  -106px -2px;}
 .shoushu{background-position: -166px -3px;}
-
 /*主题换肤样式*/
-
 .theme {
     margin: 10px auto;
 }
-
 .theme img {
     border: 0;
 }
 /*btt新增样式*/
-
 html, .ng-scope {
     scrollbar-arrow-color: #f4ae21; /*三角箭头的颜色*/
     scrollbar-face-color: #333; /*立体滚动条的颜色*/
@@ -238,30 +227,25 @@ html, .ng-scope {
     scrollbar-track-color: #666; /*立体滚动条背景颜色*/
     scrollbar-base-color: #f8f8f8; /*滚动条的基本颜色*/
 }
-
 input, select, textarea {
     border: solid 1px #ccc;
     /*border: 0px;
     border-bottom: 1px solid #ccc;*/
     border-radius: 2px;
 }
-
 label select {
     max-width: 200px;
 }
-
 label > input[type='text'], label select {
      font-size: 12px;
      /*height: 22px;*/
      width: 145px;
      border-color: #ccc;
-     color: #999;
+     /*color: #999;*/
 }
-
 input[type='number'] {
     text-align:right;
 }
-
 /*行上边距8像素*/
 .row-mt-8 {
     margin-top: 8px;
@@ -640,7 +624,7 @@ textarea {
     font-size:12px;
 }
 .control-view>label>span{
-    width:110px;text-align: right;float: left;
+    width:85px;text-align: right;float: left;
 }
 .control-group  >label>input select{
     width:200px;

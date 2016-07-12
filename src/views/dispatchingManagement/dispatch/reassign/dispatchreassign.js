@@ -262,7 +262,8 @@ var DispatchReSubmitAdd=function () {
 }
 var successDispatchReSubmitAdd=function (data) {
     alert("提交成功！")
+    $("#tabs").tabs('close','改单');
+    dispatchListLoad();
 }
-
 getAddressManage();
 

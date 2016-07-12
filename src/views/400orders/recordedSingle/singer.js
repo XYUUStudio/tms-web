@@ -37,7 +37,6 @@ var senderProvinceCodeSingerSelect=function () {
     ajaxHelp.AjaxPost(URL,requestData,successSenderCityCodeSinger,null);
 }
 var successSenderCityCodeSinger=function (data) {
-    console.log(data)
     $.each(data, function (index,item ) {
         $("#senderProvinceCodeSinger").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
     })
@@ -136,36 +135,56 @@ var verification=function () {
     //验证
     //之后追加
       var result=true;
+     console.log($("#ceOrgCodeSinger").val())
+     if($("#ceOrgCodeSinger").val()=="") {
+         alert("请选择客户公司！")
+         result = false;
+     }else  if ($("#senderContactNameSinger").val()==""){
+         alert("请输入寄件人！")
+         result = false;
+     }else  if ($("#senderMobileSinger").val()==""){
+         alert("请输入寄件人手机号码！")
+         result = false;
+     }
+     else  if ($("#senderCompanySinger").val()==""){
+         alert("请输入寄件人所在单位！")
+         result = false;
+     }
+    return result;
 }
 var SingerSubmitAdd=function () {
    //录单提交
-    var URL = ApiPath.TMSApi.dispatchingManagement.consignmentCommit;
-    var reqDeliveryDate=$("#reqDeliveryDateSinger").datebox('getValue')+" "+$("#appendTimeSinger").find("option:selected").text()+":00"
-    var requestData = {
-        ceOrgCode:$("#ceOrgCodeSinger").val(),
-        senderContactName:$("#senderContactNameSinger").val(),
-        senderMobile:$("#senderMobileSinger").val(),
-        senderCompany:$("#senderCompanySinger").val(),
-        senderProvinceCode:$("#senderProvinceCodeSinger").val(),
-        senderCityCode:$("#senderCityCodeSinger").val(),
-        senderDistrictCode:$("#senderDistrictCodeSinger").val(),
-        senderAddress:$("#senderAddressSinger").val(),
-        receiverContactName:$("#receiverContactNameSinger").val(),
-        receiverMobile:$("#receiverMobileSinger").val(),
-        receiverCompany:$("#receiverCompanySinger").val(),
-        receiverProvinceCode:$("#receiverProvinceCodeSinger").val(),
-        receiverCityCode:$("#receiverCityCodeSinger").val(),
-        receiverDistrictCode:$("#receiverDistrictCodeSinger").val(),
-        receiverAddress:$("#receiverAddressSinger").val(),
-        reqDeliveryDate:reqDeliveryDate,
-        patientName:$("#patientNameSinger").val(),
-        patientHPBedNo:$("#patientHPBedNoSinger").val(),
-        customerSpecialNote:$("#customerSpecialNoteSinger").val(),
-        patientHPNo:$("#patientHPNoSinger").val()
-    };
-    ajaxHelp.AjaxPost(URL,requestData,successSingerSubmitAdd,null);
+    if(verification()){
+        var URL = ApiPath.TMSApi.dispatchingManagement.consignmentCommit;
+        var reqDeliveryDate=$("#reqDeliveryDateSinger").datebox('getValue')+" "+$("#appendTimeSinger").find("option:selected").text()+":00"
+        var requestData = {
+            ceOrgCode:$("#ceOrgCodeSinger").val(),
+            senderContactName:$("#senderContactNameSinger").val(),
+            senderMobile:$("#senderMobileSinger").val(),
+            senderCompany:$("#senderCompanySinger").val(),
+            senderProvinceCode:$("#senderProvinceCodeSinger").val(),
+            senderCityCode:$("#senderCityCodeSinger").val(),
+            senderDistrictCode:$("#senderDistrictCodeSinger").val(),
+            senderAddress:$("#senderAddressSinger").val(),
+            receiverContactName:$("#receiverContactNameSinger").val(),
+            receiverMobile:$("#receiverMobileSinger").val(),
+            receiverCompany:$("#receiverCompanySinger").val(),
+            receiverProvinceCode:$("#receiverProvinceCodeSinger").val(),
+            receiverCityCode:$("#receiverCityCodeSinger").val(),
+            receiverDistrictCode:$("#receiverDistrictCodeSinger").val(),
+            receiverAddress:$("#receiverAddressSinger").val(),
+            reqDeliveryDate:reqDeliveryDate,
+            patientName:$("#patientNameSinger").val(),
+            patientHPBedNo:$("#patientHPBedNoSinger").val(),
+            customerSpecialNote:$("#customerSpecialNoteSinger").val(),
+            patientHPNo:$("#patientHPNoSinger").val()
+        };
+        ajaxHelp.AjaxPost(URL,requestData,successSingerSubmitAdd,null);
+    }
 }
 var successSingerSubmitAdd=function (data) {
     alert(data)
+    $("#tabs").tabs('close','400运单录入');
+    dispatchListLoad();
 }
 loadSing();
