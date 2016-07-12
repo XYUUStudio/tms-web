@@ -31,8 +31,10 @@ var ApiPath = {
             driverList: AppConfig.TMSBasePath + "/driver/search",
             //司机列表-获取物流中心
             logisticsCenter: AppConfig.TMSBasePath + "/common/searchLogisticsCenter",
-            //司机列表-详情
-            driverDetail: AppConfig.TMSBasePath + "/driver/detail"
+            //司机详情
+            driverDetail: AppConfig.TMSBasePath + "/driver/detail",
+            //司机编辑
+            driverEdit: AppConfig.TMSBasePath + "/driver/modify"
 
         },
         dispatchingManagement: {

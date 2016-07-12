@@ -3,7 +3,8 @@
  */
 var ajaxHelp = new AjaxHelp();
 
-//获取用户角色
+
+//用户添加-获取用户角色
 var getUserRole = function () {
     var URL = ApiPath.TMSApi.businessData.userRole;
     var requestData = {
@@ -11,8 +12,6 @@ var getUserRole = function () {
     };
     ajaxHelp.AjaxPost(URL, requestData, successGetUserRole, null);
 };
-
-//获取用户角色-成功回调函数
 var successGetUserRole = function (data) {
     console.log(data);
     $.each(data, function (index, item) {
@@ -20,14 +19,13 @@ var successGetUserRole = function (data) {
     });
 };
 
-//获取所属公司
+
+//用户添加-获取所属公司
 var getCompany = function () {
     var URL = ApiPath.TMSApi.businessData.enterprisesList;
     var requestData = {};
     ajaxHelp.AjaxPost(URL, requestData, successGetCompany, null);
 };
-
-//获取所属公司-成功回调函数
 var successGetCompany = function (data) {
     console.log(data);
     $.each(data.rows, function (index, item) {
@@ -35,41 +33,45 @@ var successGetCompany = function (data) {
     });
 };
 
+
 //修改用户角色
 var changeUserRole = function () {
 
 };
+
 
 //修改所属公司
 var changeCompany = function () {
 
 };
 
-//用户新增
+
+//用户新增-提交
 var submitUserAdd = function () {
     var URL = ApiPath.TMSApi.businessData.userAdd;
-    var confirmPwd = $("#confirmPwdUserAdd").val();
+    var initialPwd = $("#initialPwdUserAdd").val();
     var requestData = {
         loginName: $("#accountNameUserAdd").val(),
-        loginPassword: $("#initialPwdUserAdd").val(),
+        loginPassword: $("#confirmPwdUserAdd").val(),
         role: $("#userRoleUserAdd").val(),
         userName: $("#nameUserAdd").val(),
         userMobile: $("#mobileNoUserAdd").val(),
-        orgCode: $("#companyUserAdd").val(),
+        orgCode: $("#companyUserAdd").val()
     };
+    console.log(requestData.orgCode);
     if (requestData.loginName == null || requestData.loginName == "") {
         $.messager.alert("提示", "账户名不能为空！", "error");
         return;
     }
-    if (requestData.loginPassword == null || requestData == "") {
+    if (initialPwd == null || initialPwd == "") {
         $.messager.alert("提示", "初始密码不能为空！", "error");
         return;
     }
-    if (confirmPwd == null || confirmPwd == "") {
+    if (requestData.loginPassword == null || requestData.loginPassword == "") {
         $.messager.alert("提示", "确认密码不能为空！", "error");
         return;
     }
-    if (requestData.loginPassword != confirmPwd) {
+    if (initialPwd != requestData.loginPassword) {
         $.messager.alert("提示", "初始密码和确认密码必须一致！", "error");
         return;
     }
@@ -87,21 +89,13 @@ var submitUserAdd = function () {
     }
     ajaxHelp.AjaxPost(URL, requestData, successSubmitUserAdd, null);
 };
-
-//用户新增成功回调函数-弹窗
 var successSubmitUserAdd = function () {
-    regPromptUserAdd.show();
+    $("#dialog_regPromptUserAdd").dialog("open");
+    $("#dialog_regPromptUserAdd").window("center");
 };
 
-//用户注册成功弹窗提示
-var regPromptUserAdd = {
-    show: function () {
-        $("#dialog_regPromptUserAdd").dialog("open");
-        $("#dialog_regPromptUserAdd").window("center");
-    }
-};
 
-//初始化Dialog
+//用户添加-初始化Dialog
 $("#dialog_regPromptUserAdd").dialog({
     title: "",
     closable: true,
@@ -114,12 +108,15 @@ $("#dialog_regPromptUserAdd").dialog({
     loadingMessage: '正在加载...',
 });
 
-//用户注册成功提示点击是跳转新增(续)页面
+
+//用户新增-注册成功提示点击是跳转新增(续)页面
 var btn_regPromptUserAdd = function () {
     $("#dialog_regPromptUserAdd").dialog("close");
     addTabHref("用户编辑", "views/user/edit/userEdit.html")
 };
 
-getUserRole();
 
+//用户添加-获取用户角色
+getUserRole();
+//用户添加-获取所属公司
 getCompany();
