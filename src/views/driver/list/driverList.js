@@ -50,7 +50,10 @@ var successLoadDriverList = function (resultInfo) {
         pageList: [10, 20, 30],
         pageSize: resultInfo.pageSize,
         total: resultInfo.total,
-        selected: true
+        selected: true,
+        onSelectPage:function(pageNumber, pageSize){
+            loadUserList(pageNumber, pageSize);
+        }
     });
 };
 $("#driverList").datagrid({
@@ -137,6 +140,7 @@ var submitResetPwdDriverList = function () {
 var successSubmitResetPwdDriverList = function () {
     alert("重置密码成功!");
     $("#dialog_resetPwdDriverList").dialog("close");
+    loadDriverList();
 };
 
 

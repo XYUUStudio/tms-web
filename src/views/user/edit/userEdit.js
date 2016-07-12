@@ -2,9 +2,34 @@
  * Created by medlog on 2016/7/5.
  */
 var ajaxHelp = new AjaxHelp();
+//选中获取用户数据集合
 var rowData = $("#userList").datagrid("getSelections");
+var userInfo = new Object();
 
-//用户编辑-获取学历下拉框
+
+//获取用户信息
+var getUserInfo = function () {
+    var URL = ApiPath.TMSApi.businessData.userDetail;
+    var requestData = {
+        userId: rowData[0].userId
+    };
+    ajaxHelp.AjaxPost(URL, requestData, successUserEdit, null);
+};
+var successUserEdit = function (responseData) {
+    userInfo = responseData;
+    //赋值
+    $("#loginNameUserEdit").html(responseData.loginName);//账户名
+    $("#companyUserEdit").html(responseData.orgName);//所属公司
+    $("#userNameUserEdit").val(responseData.userName);//姓名
+    $("#userIDCardUserEdit").val(responseData.userIDCard);//身份证号
+    $("#userMobileUserEdit").val(responseData.userMobile);//手机
+    $("#userEmailUserEdit").val(responseData.userEmail);//邮箱
+    getEducationUserEdit();//学历
+    $("#postUserEdit").val(responseData.userJobDesc);//岗位
+};
+
+
+//获取学历下拉框
 var getEducationUserEdit = function () {
     var URL = ApiPath.TMSApi.dictionary.GetDictionary;
     var requestData = {
@@ -13,28 +38,12 @@ var getEducationUserEdit = function () {
     ajaxHelp.AjaxPost(URL, requestData, successGetEducationUserEdit, null);
 };
 var successGetEducationUserEdit = function (data) {
-    console.log(data);
     $.each(data.dictValueList, function (index, item) {
         $("#educationUserEdit").append("<option value='" + item.dictValueCode + "' >" + item.dictValueName + "</option>")
+        if (userInfo.userEducation == item.dictValueCode) {
+            $("#educationUserEdit").find("option[value='" + item.dictValueCode + "']").attr("selected", true)
+        }
     });
-};
-
-
-//用户编辑-获取用户信息
-var getUserInfo = function () {
-    var URL = ApiPath.TMSApi.businessData.userDetail;
-    var requestData = {
-        userId: rowData[0].userId
-    };
-    ajaxHelp.AjaxPost(URL, requestData, successUserEdit, null);
-};
-//用户编辑-获取用户信息成功回调函数
-var successUserEdit = function (data) {
-    $("#loginNameUserEdit").val(data.loginName);
-    $("#userNameUserEdit").val(data.userName);
-    $("#userIDCardUserEdit").val(data.userIDCard);
-    $("#userMobileUserEdit").val(data.userMobile);
-    $("#userEmailUserEdit").val(data.userEmail);
 };
 
 
@@ -43,22 +52,35 @@ var submitUserEdit = function () {
     var URL = ApiPath.TMSApi.businessData.userEdit;
     var requestData = {
         userId: rowData[0].userId,
-        userName: $("#userNameUserEdit").val(),
-        userIDCard: $("#userIDCardUserEdit").val(),
-        userMobile: $("#userMobileUserEdit").val(),
-        userEmail: $("#userEmailUserEdit").val()
+        userName: $("#userNameUserEdit").val(),//姓名
+        userIDCard: $("#userIDCardUserEdit").val(),//身份证号
+        userMobile: $("#userMobileUserEdit").val(),//手机
+        userEmail: $("#userEmailUserEdit").val(),//邮箱
+        userEducation: $("#educationUserEdit").val(),//学历
+        userJobDesc: $("#postUserEdit").val()//岗位
     };
+    if (requestData.userIDCard.length != 18) {
+        $.messager.alert("提示", "请输入正确的身份证号！", "error");
+        return;
+    }
+    if (requestData.userMobile.length != 11) {
+        $.messager.alert("提示", "请输入正确的手机号！", "error");
+        return;
+    }
     ajaxHelp.AjaxPost(URL, requestData, successSubmitUserEdit, null);
 };
-//用户编辑-提交成功回调函数
 var successSubmitUserEdit = function () {
-    alert("提交成功!");
+    alert("编辑成功!");
+    $("#tabs").tabs("close", "用户编辑");
+    loadUserList();
+};
+
+
+//点击返回
+var returnUserEdit = function () {
+    $("#tabs").tabs("close", "用户编辑");
 };
 
 
 //获取用户信息
 getUserInfo();
-
-
-//获取学历
-getEducationUserEdit();

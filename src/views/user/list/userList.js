@@ -9,13 +9,13 @@ var getUserData = function () {
     var rowData = $("#userList").datagrid("getSelections");
     return rowData;
 };
-//用户管理-详情
+//双击跳转至用户详情
 var detailUserList = function () {
     addTabHref("用户详情", "views/user/detail/userDetail.html")
 };
 
 
-//用户列表-加载页面
+//用户列表-加载列表
 var loadUserList = function (pageNumber, pageSize) {
     var URL = ApiPath.TMSApi.businessData.userList;
     if (pageNumber == undefined || pageNumber == 0) {
@@ -36,7 +36,10 @@ var successLoadUserList = function (resultInfo) {
         pageList: [10, 20, 30],
         pageSize: resultInfo.pageSize,
         total: resultInfo.total,
-        selected: true
+        selected: true,
+        onSelectPage:function(pageNumber, pageSize){
+            loadUserList(pageNumber, pageSize);
+        }
     });
 };
 $("#userList").datagrid({

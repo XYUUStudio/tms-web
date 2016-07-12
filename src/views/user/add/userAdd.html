@@ -1,54 +1,59 @@
 <!--用户新增-->
-<div class="content_id" style="width: 100%;height: 100%">
+<div class="content_id">
     <div class="content_left">
         <div class="control-group" style="text-align: left">
             <label style="margin-left: 42px">
-                账户名： <input class="easyui-textbox" id="accountNameUserAdd" data-options="prompt:'请输入账户名（必填）'" style="width: 200px"/>
+                账户名： <input class="easyui-textbox"  id="accountNameUserAdd" data-options="prompt:'请输入账户名（必填）'"
+                            style="width: 200px"/>
             </label>
         </div>
         <div class="control-group" style="text-align: left">
             <label style="margin-left: 30px">
-                初始密码： <input class="easyui-textbox" id="initialPwdUserAdd" data-options="prompt:'请输入初始密码（必填）'" style="width: 200px"/>
+                初始密码： <input class="easyui-textbox" id="initialPwdUserAdd" data-options="prompt:'请输入初始密码（必填）'"
+                             style="width: 200px"/>
             </label>
         </div>
         <div class="control-group" style="text-align: left">
             <label style="margin-left: 30px">
-                确认密码： <input class="easyui-textbox" id="confirmPwdUserAdd" data-options="prompt:'请输入确认密码（必填）'" style="width: 200px"/>
+                确认密码： <input class="easyui-textbox" id="confirmPwdUserAdd" data-options="prompt:'请输入确认密码（必填）'"
+                             style="width: 200px"/>
             </label>
         </div>
         <div class="control-group" style="text-align: left">
             <label style="margin-left: 30px">
                 用户角色：
                 <select id="userRoleUserAdd" onchange="changeUserRole(this.value)" style="width: 200px">
-
+                    <option value="">请选择</option>
                 </select>
             </label>
         </div>
         <div class="control-group" style="text-align: left">
             <label style="margin-left: 54px">
-                姓名： <input class="easyui-textbox" id="nameUserAdd" data-options="prompt:'请输入真实姓名（必填）'" style="width: 200px"/>
+                姓名： <input class="easyui-textbox" id="nameUserAdd" data-options="prompt:'请输入真实姓名（必填）'"
+                           style="width: 200px"/>
             </label>
         </div>
         <div class="control-group" style="text-align: left">
             <label style="margin-left: 42px">
-                手机号： <input class="easyui-textbox" id="mobileNoUserAdd" data-options="prompt:'请输入真实手机号（必填）'" style="width: 200px"/>
+                手机号： <input class="easyui-textbox" id="mobileNoUserAdd" data-options="prompt:'请输入真实手机号（必填）'"
+                            style="width: 200px"/>
             </label>
         </div>
         <div class="control-group" style="text-align: left">
             <label style="margin-left: 54px">
                 单位：
                 <select id="companyUserAdd" onchange="changeCompany(this.value)" style="width: 200px">
-
+                    <option value="">请选择</option>
                 </select>
             </label>
         </div>
-        <div class="control-group" style="text-align: left">
-            <div class="button" style="margin-top: -1px; margin-right: -2px">
-                <a class="group" href="#" onclick="alert('返回')"
-                   style="width: 100px;height: 30px;line-height: 30px;margin-left: 15px">
+        <div class="control-group">
+            <div class="button">
+                <a href="#" onclick="returnUserAdd()"
+                   style="width: 95px;height: 30px;margin-right: 17px">
                     <span>返回</span>
                 </a>
-                <a href="#" onclick="submitUserAdd()" style="width: 100px;height: 30px;line-height: 30px">
+                <a href="#" onclick="submitUserAdd()" style="width: 95px;height: 30px;margin-right: 10px">
                     <span>提交</span>
                 </a>
             </div>
@@ -56,25 +61,25 @@
     </div>
 </div>
 <!--用户新增-注册成功提示Dialog-->
-<div id="dialog_regPromptUserAdd">
-    <div>
-        <h1 style="color: black;text-align: center">注 册 成 功</h1>
-    </div>
-    <div style="margin-top: 40px">
-        <h2 style="text-align: center">是 否 继 续 完 善 个 人 信 息？</h2>
-    </div>
-    <div style="margin-top: 40px">
-        <div class="button">
-            <a href="#" onclick="btn_regPromptUserAdd()"
-               style="width: 80px;height: 30px;line-height: 30px;margin-right: 20px">
-                <span>是</span>
-            </a>
-            <a href="#" onclick="javascript:$('#dialog_regPromptUserAdd').dialog('close')"
-               style="width: 80px;height: 30px;line-height: 30px;margin-right: 20px;background: white;border: 1px solid #999">
-                <span style="color: #000">否</span>
-            </a>
-        </div>
-    </div>
-</div>
+<!--<div id="dialog_regPromptUserAdd">-->
+<!--<div>-->
+<!--<h1 style="color: black;text-align: center">注 册 成 功</h1>-->
+<!--</div>-->
+<!--<div style="margin-top: 40px">-->
+<!--<h2 style="text-align: center">是 否 继 续 完 善 个 人 信 息？</h2>-->
+<!--</div>-->
+<!--<div style="margin-top: 40px">-->
+<!--<div class="button">-->
+<!--<a href="#" onclick="btn_regPromptUserAdd()"-->
+<!--style="width: 80px;height: 30px;line-height: 30px;margin-right: 20px">-->
+<!--<span>是</span>-->
+<!--</a>-->
+<!--<a href="#" onclick="closeUserAdd()"-->
+<!--style="width: 80px;height: 30px;line-height: 30px;margin-right: 20px;background: white;border: 1px solid #999">-->
+<!--<span style="color: #000">否</span>-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 
 <script src="views/user/add/userAdd.js"></script>

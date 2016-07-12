@@ -3,43 +3,54 @@
     <div class="content_left">
         <div class="control-group" style="text-align: left">
             <label style="margin-left: 66px">
-                账户名： <input class="easyui-textbox" id="loginNameDriverAdd" data-options="prompt:'请输入账户名（必填）'" style="width: 200px"/>
+                <span> 账户名：</span>
+                <input class="easyui-textbox" id="loginNameDriverAdd" data-options="prompt:'请输入账户名（必填）'"
+                       style="width: 200px"/>
             </label>
         </div>
         <div class="control-group" style="text-align: left">
             <label style="margin-left: 54px">
-                初始密码： <input class="easyui-textbox" id="initialPwdDriverAdd" data-options="prompt:'请输入初始密码（必填）'" style="width: 200px"/>
+                <span>初始密码：</span>
+                <input class="easyui-textbox" id="initialPwdDriverAdd" data-options="prompt:'请输入初始密码（必填）'"
+                       style="width: 200px"/>
             </label>
         </div>
         <div class="control-group" style="text-align: left">
             <label style="margin-left: 54px">
-                确认密码： <input class="easyui-textbox" id="confirmPwdDriverAdd" data-options="prompt:'请输入确认密码（必填）'" style="width: 200px"/>
+                <span>确认密码：</span>
+                <input class="easyui-textbox" id="confirmPwdDriverAdd" data-options="prompt:'请输入确认密码（必填）'"
+                       style="width: 200px"/>
             </label>
         </div>
         <div class="control-group" style="text-align: left">
             <label style="margin-left: 78px">
-                姓名： <input class="easyui-textbox" id="userNameDriverAdd" data-options="prompt:'请输入真实姓名（必填）'" style="width: 200px"/>
+                <span>姓名：</span>
+                <input class="easyui-textbox" id="userNameDriverAdd" data-options="prompt:'请输入真实姓名（必填）'"
+                       style="width: 200px"/>
             </label>
         </div>
         <div class="control-group" style="text-align: left">
             <label style="margin-left: 66px">
-                手机号： <input class="easyui-textbox" id="userMobileDriverAdd" data-options="prompt:'请输入真实手机号（必填）'" style="width: 200px"/>
+                <span>手机号：</span>
+                <input class="easyui-textbox" id="userMobileDriverAdd" data-options="prompt:'请输入真实手机号（必填）'"
+                       style="width: 200px"/>
             </label>
         </div>
         <div class="control-group" style="text-align: left">
             <label style="margin-left: 30px">
-                所属物流中心：
-                <select id="lCNameDriverAdd" style="width: 200px">
+                <span>所属物流中心：</span>
+                <select id="logCenterDriverAdd" style="width: 100px">
+                    <option value="">请选择</option>
                 </select>
             </label>
         </div>
         <div class="control-group">
-            <div class="button" style="margin-top: -1px; margin-right: -2px">
-                <a class="group" href="#" onclick="returnDriverAdd()"
-                   style="width: 100px;height: 30px;line-height: 30px;margin-left: 15px">
+            <div class="button">
+                <a href="#" onclick="returnDriverAdd()"
+                   style="width: 95px;height: 30px;margin-left: 10px">
                     <span>返回</span>
                 </a>
-                <a href="#" onclick="submitDriverAdd()" style="width: 100px;height: 30px;line-height: 30px">
+                <a href="#" onclick="submitDriverAdd()" style="width: 95px;height: 30px">
                     <span>提交</span>
                 </a>
             </div>
@@ -47,25 +58,25 @@
     </div>
 </div>
 <!--司机新增-注册成功提示Dialog-->
-<div id="dialog_regPromptDriverAdd">
-    <div>
-        <h1 style="color: black;text-align: center">注 册 成 功</h1>
-    </div>
-    <div style="margin-top: 40px">
-        <h2 style="text-align: center">是 否 继 续 完 善 个 人 信 息？</h2>
-    </div>
-    <div style="margin-top: 40px">
-        <div class="button">
-            <a href="#" onclick="submitRegPromptDriverAdd()"
-               style="width: 80px;height: 30px;line-height: 30px;margin-right: 20px">
-                <span>是</span>
-            </a>
-            <a href="#" onclick="javascript:$('#dialog_regPromptDriverAdd').dialog('close')"
-               style="width: 80px;height: 30px;line-height: 30px;margin-right: 20px;background: white;border: 1px solid #999">
-                <span style="color: #000">否</span>
-            </a>
-        </div>
-    </div>
-</div>
+<!--<div id="dialog_regPromptDriverAdd">-->
+    <!--<div>-->
+        <!--<h1 style="color: black;text-align: center">注 册 成 功</h1>-->
+    <!--</div>-->
+    <!--<div style="margin-top: 40px">-->
+        <!--<h2 style="text-align: center">是 否 继 续 完 善 个 人 信 息？</h2>-->
+    <!--</div>-->
+    <!--<div style="margin-top: 40px">-->
+        <!--<div class="button">-->
+            <!--<a href="#" onclick="submitRegPromptDriverAdd()"-->
+               <!--style="width: 80px;height: 30px;line-height: 30px;margin-right: 20px">-->
+                <!--<span>是</span>-->
+            <!--</a>-->
+            <!--<a href="#" onclick="javascript:$('#dialog_regPromptDriverAdd').dialog('close')"-->
+               <!--style="width: 80px;height: 30px;line-height: 30px;margin-right: 20px;background: white;border: 1px solid #999">-->
+                <!--<span style="color: #000">否</span>-->
+            <!--</a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
 
 <script src="views/driver/add/driverAdd.js"></script>

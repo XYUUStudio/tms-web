@@ -4,7 +4,7 @@
 var ajaxHelp = new AjaxHelp();
 
 
-//司机新增-获取物流中心
+//获取物流中心下拉框
 var getLogCenterDriverAdd = function () {
     var URL = ApiPath.TMSApi.businessData.logisticsCenter;
     var requestData = {};
@@ -15,20 +15,19 @@ var successGetLogisticsCenter = function (data) {
         $("#logCenterDriverAdd").append("<option value='" + item.id + "' >" + item.name + "</option>")
     });
 };
-getLogCenterDriverAdd();
 
 
 //司机新增-提交
 var submitDriverAdd = function () {
     var URL = ApiPath.TMSApi.businessData.userAdd;
-    var initialPwd = $("#initialPwdDriverAdd").val();
+    var initialPwd = $("#initialPwdDriverAdd").val();//初始密码
     var requestData = {
         isDriverUser: "Y",
-        loginName: $("#loginNameDriverAdd").val(),
-        loginPassword: $("#confirmPwdDriverAdd").val(),
-        userName: $("#userNameDriverAdd").val(),
-        userMobile: $("#userMobileDriverAdd").val(),
-        orgCode: $("#lCNameDriverAdd").val()
+        loginName: $("#loginNameDriverAdd").val(),//账户名
+        loginPassword: $("#confirmPwdDriverAdd").val(),//确认密码
+        userName: $("#userNameDriverAdd").val(),//姓名
+        userMobile: $("#userMobileDriverAdd").val(),//手机号
+        orgCode: $("#logCenterDriverAdd").val()//所属物流中心
     };
     if (requestData.loginName == null || requestData.loginName == "") {
         $.messager.alert("提示", "账户名不能为空!", "error");
@@ -61,33 +60,40 @@ var submitDriverAdd = function () {
     ajaxHelp.AjaxPost(URL, requestData, successSubmitUserAdd, null);
 };
 var successSubmitUserAdd = function () {
-    $("#dialog_regPromptDriverAdd").dialog("open");
-    $("#dialog_regPromptDriverAdd").window("center");
+    //$("#dialog_regPromptDriverAdd").dialog("open");
+    //$("#dialog_regPromptDriverAdd").window("center");
+    alert("司机注册成功");
+    $("#tabs").tabs("close", "司机新增");
+    loadDriverList();
 };
 
 
 //司机新增-初始化注册成功提示Dialog
-$("#dialog_regPromptDriverAdd").dialog({
-    title: "",
-    closable: true,
-    width: 350,
-    height: 230,
-    closed: true,
-    cache: false,
-    modal: true,
-    resizable: true,
-    loadingMessage: '正在加载...'
-});
+//$("#dialog_regPromptDriverAdd").dialog({
+//    title: "",
+//    closable: true,
+//    width: 350,
+//    height: 230,
+//    closed: true,
+//    cache: false,
+//    modal: true,
+//    resizable: true,
+//    loadingMessage: '正在加载...'
+//});
 
 
 //司机新增-注册成功提示点击是跳转新增(续)页面
-var submitRegPromptDriverAdd = function () {
-    $("#dialog_regPromptDriverAdd").dialog("close");
-    addTabHref("用户编辑", "views/driver/edit/driverEdit.html")
-};
+//var submitRegPromptDriverAdd = function () {
+//    $("#dialog_regPromptDriverAdd").dialog("close");
+//    addTabHref("用户编辑", "views/driver/edit/driverEdit.html")
+//};
 
 
+//司机新增-取消
 var returnDriverAdd = function () {
-    var currentTabTitle = $("#tab-memu-id").data("currtab");
-    $("#tabs").tabs("close", currentTabTitle);
+    $("#tabs").tabs("close", "司机新增");
 };
+
+
+//获取物流中心下拉框
+getLogCenterDriverAdd();
