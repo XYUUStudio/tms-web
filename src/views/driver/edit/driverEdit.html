@@ -151,18 +151,14 @@
         </label>
     </div>
     <div class="control-view">
-        <a>
-            <!--<span><span class="required">*</span>行驶证上传：</span>-->
-            <!--<label>-->
-                <!--<input type="file" style="width: 200px;height:150px;border: #999;display: none" onchange="javascript:uploadVehicleLicDriverEdit(this)"/>-->
-            <!--</label>-->
-            <span style="text-align: right;float: left;">营业执照正本：</span>
+        <p>
+            <span style="text-align: right;float: left;">行驶证上传：</span>
             <label   style="display:inline-block;width: 150px;height: 150px;position:relative;text-align:center;border: 1px #999 solid">
                 <input type="file"id="attachmentCOEndDateEnterprisesAdd" onchange="javascript:uploadVehicleLicDriverEdit(this);" style="display:none" multiple="multiple"/>
-                <span id="DriverEditImga" target="_blank"><img id="DriverEditImg"  width="150px" height="150px;"src="../images/fujianimg.png"></span>
+                <a id="DriverEditImga" target="_blank"><img id="DriverEditImg"  width="150px" height="150px;"src="../images/fujianimg.png"></a>
             </label>
             <button onclick="delVehicleLicPositiveDriverEdit()">删除</button>
-        </a>
+        <p/>
         <label>
             <span><span class="required">*</span>车辆尺寸：</span>
             <input id="vehicleLengthDriverEdit" placeholder="长" style="width: 40px"/>
@@ -175,19 +171,8 @@
             <span><span class="required">*</span>车辆所属：</span>
             <input id="vehicleOwnerTypeDriverEdit"/>
         </label>
-
     </div>
 
-    <!--<div class="control-view">-->
-        <!--<label>-->
-            <!--<div style="margin-left: 80px">-->
-                <!--<div id="vehicleLicPositiveDriverEdit">-->
-                <!--</div>-->
-                <!--<div id="vehicleLicInverseDriverEdit">-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</label>-->
-    <!--</div>-->
     <div class="control-group" style="text-align: left;margin-top: 150px">
         <label>
             <span style="color:#f79449">交强险信息</span>
