@@ -221,6 +221,8 @@ function uploadVehicleLicDriverEdit(imgData) {
     var fr = new FileReader();
     fr.readAsDataURL(file);
     $(fr).load(function () {
+        $('#DriverEditImg').attr("src", fr.result)
+        $('#DriverEditImga').attr("href", fr.result)
         var URL = ApiPath.TMSApi.dictionary.upload;
         var requestData = {
             file: fr.result
@@ -235,7 +237,9 @@ var successUploadVehicleLicDriverEdit = function (responseData) {
 };
 //删除行驶证
 var delVehicleLicPositiveDriverEdit = function () {
-    $("#vehicleLicPositiveDriverEdit").html('<img src="" alt="" width="150" height="150"  border="0px"/>');
+    // $("#vehicleLicPositiveDriverEdit").html('<img src="" alt="" width="150" height="150"  border="0px"/>');
+    $('#DriverEditImg').attr("src","../images/fujianimg.png");
+    $('#DriverEditImga').removeAttr("href");
     vehicleLicPositiveURL = ""
 };
 //交强险保单上传

@@ -36,7 +36,7 @@ var getPickupDriverId=function () {
 var successGetPickupDriverId=function (data) {
     console.log(data)
      $.each(data,function (index,item) {
-         $("#pickupDriverIdDispatch").append(" <option value='"+item.userId+"' >"+item.lCName+"</option>")
+         $("#pickupDriverIdDispatch").append(" <option value='"+item.userId+"' >"+item.userName+"</option>")
      })
     getVulereceiving();
 }

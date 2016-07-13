@@ -15,8 +15,8 @@ var getEnterprisesInfo=function () {
 };
 var successEnterprisesEdit=function (data) {
       //赋值
-    EnterprisesInfo=data;
-    console.log(EnterprisesInfo)
+         console.log(data)
+         EnterprisesInfo=data;
         $("#cECodeEnterprisesEdit").val(data.cECode);
         $("#cENameEnterprisesEdit").val(data.cEName);
         $("#corpRegNoEnterprisesEdit").val(data.corpRegNo);
@@ -160,18 +160,22 @@ function  EnterprisesEditCCImg(imgData) {
 var delattachmentCO=function () {
     $('#imgEditCO').attr("src","../images/fujianimg.png");
     $('#imgEditCOa').removeAttr("href");
+    attachmentCOURL="";
 };
 var delattachmentCC=function () {
     $('#imgEditCC').attr("src","../images/fujianimg.png");
     $('#imgEditCCa').removeAttr("href");
+    attachmentCCURL="";
 };
 var successImgListCO=function (data) {
     //主图
     attachmentCOURL=data.url;
+    console.log(attachmentCOURL)
 };
 var successImgListCC=function (data) {
     //附图
-    attachmentCCURL=data.url
+    attachmentCCURL=data.url;
+    console.log(attachmentCCURL)
 };
 //必填验证
 var verification=function () {

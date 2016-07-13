@@ -7,7 +7,6 @@
 var ajaxHelp = new AjaxHelp();
 var pram=getEnterprisesDate();
 var EnterprisesView=new Object()
-console.log(pram[0])
 var getEnterprisesView=function () {
     var URL = ApiPath.TMSApi.businessData.enterprisesDetail;
     var requestData={

@@ -311,29 +311,50 @@ $(document).ready(function () {
 var Loginout = function () {
 
     window.location.href = "index.html";
-}
+};
 
-var changePsswd = {
+var changePwd = {
     show: function () {
-        $('#changePassWord').dialog('open');
+        $('#changePassword').dialog('open');
         //使Dialog居中显
-        $('#changePassWord').window('center');
+        $('#changePassword').window('center');
     },
-    verification: function () {
-
-    },
-    Save: function () {
+    // verification: function () {
+    // },
+    save: function () {
+        var ajaxHelp = new AjaxHelp();
+        var URL = ApiPath.TMSApi.UP.pcResetPwd;
+        var requestData = {
+            oldPwd: $("#oldPwd").val(),
+            newPwd: $("#newPwd").val(),
+            resetPwd:$("#resetPwd").val()
+        };
+        if(requestData.oldPwd==null||requestData.oldPwd==""){
+            $.messager.alert("提示", "请输入初始密码!", "error");
+            return;
+        }
+        if(requestData.newPwd==null||requestData.newPwd==""){
+            $.messager.alert("提示", "请输入新密码!", "error");
+            return;
+        }
+        if(requestData.resetPwd==null||requestData.resetPwd==""){
+            $.messager.alert("提示", "请输入确认密码!", "error");
+            return;
+        }
+        if(requestData.newPwd!=requestData.resetPwd){
+            $.messager.alert("提示", "请输入和确认密码必須一致!", "error");
+            return;
+        }
+       ajaxHelp.AjaxPost(URL,requestData,changePwd.saveSuccess(),null);
         //请求修改
-        $('#changePassWord').dialog('close')
     },
-    SaveSuccess: function () {
+    saveSuccess: function () {
         // 回调成功
-        $('#changePassWord').dialog('close')
+        $('#changePassword').dialog('close')
     }
+};
 
-}
-
-$('#changePassWord').dialog({
+$('#changePassword').dialog({
     title: '修改密码',
     // collapsible: true,
     // minimizable: true,
@@ -350,7 +371,7 @@ $('#changePassWord').dialog({
     buttons: [{
         text: '保存',
         handler: function () {
-            changePswd.Save()
+            changePwd.save()
         }
-    }],
+    }]
 });

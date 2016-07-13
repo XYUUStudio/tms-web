@@ -5,6 +5,8 @@ var ApiPath = {
             pcLogin: AppConfig.TMSBasePath + "/account/pcLogin",
             //登出
             pcLogout: AppConfig.TMSBasePath +"/account/logout",
+            //修改密码
+            pcResetPwd: AppConfig.TMSBasePath +"/account/resetPsw"
         },
         businessData: {
             //企业列表
