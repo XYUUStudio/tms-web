@@ -59,12 +59,28 @@ var submitUserEdit = function () {
         userEducation: $("#educationUserEdit").val(),//学历
         userJobDesc: $("#postUserEdit").val()//岗位
     };
+    if (requestData.userName == null || requestData.userName == "") {
+        $.messager.alert("提示", "请输入姓名！", "error");
+        return;
+    }
+    if (requestData.userIDCard == null || requestData.userIDCard == "") {
+        $.messager.alert("提示", "请输入身份证号！", "error");
+        return;
+    }
     if (requestData.userIDCard.length != 18) {
-        $.messager.alert("提示", "请输入正确的身份证号！", "error");
+        $.messager.alert("提示", "请输入18位身份证号！", "error");
+        return;
+    }
+    if (requestData.userMobile == null || requestData.userMobile == "") {
+        $.messager.alert("提示", "请输入手机号！", "error");
         return;
     }
     if (requestData.userMobile.length != 11) {
-        $.messager.alert("提示", "请输入正确的手机号！", "error");
+        $.messager.alert("提示", "请输入11位手机号！", "error");
+        return;
+    }
+    if (requestData.userEducation == null || requestData.userEducation == "") {
+        $.messager.alert("提示", "请选择学历！", "error");
         return;
     }
     ajaxHelp.AjaxPost(URL, requestData, successSubmitUserEdit, null);

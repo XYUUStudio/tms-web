@@ -3,43 +3,38 @@
     <div class="content_left">
         <div class="control-group" style="text-align: left">
             <label style="margin-left: 66px">
-                <span> 账户名：</span>
-                <input class="easyui-textbox" id="loginNameDriverAdd" data-options="prompt:'请输入账户名（必填）'"
-                       style="width: 200px"/>
+                <span><span class="required">*</span>账户名：</span>
+                <input id="loginNameDriverAdd" style="width: 200px"/>
             </label>
         </div>
         <div class="control-group" style="text-align: left">
             <label style="margin-left: 54px">
-                <span>初始密码：</span>
-                <input class="easyui-textbox" id="initialPwdDriverAdd" data-options="prompt:'请输入初始密码（必填）'"
-                       style="width: 200px"/>
+                <span><span class="required">*</span>初始密码：</span>
+                <input id="initialPwdDriverAdd" type="password" style="width: 200px"/>
             </label>
         </div>
         <div class="control-group" style="text-align: left">
             <label style="margin-left: 54px">
-                <span>确认密码：</span>
-                <input class="easyui-textbox" id="confirmPwdDriverAdd" data-options="prompt:'请输入确认密码（必填）'"
-                       style="width: 200px"/>
+                <span><span class="required">*</span>确认密码：</span>
+                <input id="confirmPwdDriverAdd" type="password" style="width: 200px"/>
             </label>
         </div>
         <div class="control-group" style="text-align: left">
             <label style="margin-left: 78px">
-                <span>姓名：</span>
-                <input class="easyui-textbox" id="userNameDriverAdd" data-options="prompt:'请输入真实姓名（必填）'"
-                       style="width: 200px"/>
+                <span><span class="required">*</span>姓名：</span>
+                <input id="userNameDriverAdd" style="width: 200px"/>
             </label>
         </div>
         <div class="control-group" style="text-align: left">
             <label style="margin-left: 66px">
-                <span>手机号：</span>
-                <input class="easyui-textbox" id="userMobileDriverAdd" data-options="prompt:'请输入真实手机号（必填）'"
-                       style="width: 200px"/>
+                <span><span class="required">*</span>手机号：</span>
+                <input id="userMobileDriverAdd" style="width: 200px"/>
             </label>
         </div>
         <div class="control-group" style="text-align: left">
             <label style="margin-left: 30px">
-                <span>所属物流中心：</span>
-                <select id="logCenterDriverAdd" style="width: 100px">
+                <span><span class="required">*</span>所属物流中心：</span>
+                <select id="logCenterDriverAdd" style="width: 80px">
                     <option value="">请选择</option>
                 </select>
             </label>

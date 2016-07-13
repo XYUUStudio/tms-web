@@ -13,7 +13,6 @@ var getUserRole = function () {
     ajaxHelp.AjaxPost(URL, requestData, successGetUserRole, null);
 };
 var successGetUserRole = function (responseData) {
-    //console.log(responseData);
     $.each(responseData, function (index, item) {
         $("#userRoleUserAdd").append("<option value='" + item.id + "' >" + item.name + "</option>")
     });
@@ -30,7 +29,6 @@ var getCompany = function () {
     ajaxHelp.AjaxPost(URL, requestData, successGetCompany, null);
 };
 var successGetCompany = function (responseData) {
-    //console.log(responseData);
     $.each(responseData.rows, function (index, item) {
         $("#companyUserAdd").append("<option value='" + item.enterpriseOrgCode + "' >" + item.cEName + "</option>")
     });
@@ -53,31 +51,39 @@ var submitUserAdd = function () {
         orgCode: $("#companyUserAdd").val()//单位
     };
     if (requestData.loginName == null || requestData.loginName == "") {
-        $.messager.alert("提示", "账户名不能为空！", "error");
+        $.messager.alert("提示", "请输入账户名！", "error");
         return;
     }
     if (initialPwd == null || initialPwd == "") {
-        $.messager.alert("提示", "初始密码不能为空！", "error");
+        $.messager.alert("提示", "请输入初始密码！", "error");
         return;
     }
     if (requestData.loginPassword == null || requestData.loginPassword == "") {
-        $.messager.alert("提示", "确认密码不能为空！", "error");
+        $.messager.alert("提示", "请输入确认密码！", "error");
         return;
     }
     if (initialPwd != requestData.loginPassword) {
         $.messager.alert("提示", "初始密码和确认密码必须一致！", "error");
         return;
     }
-    if (requestData.userName == null || requestData.userName == "") {
-        $.messager.alert("提示", "姓名不能为空！", "error");
+    if (requestData.role == null || requestData.role == "") {
+        $.messager.alert("提示", "请选择用户角色！", "error");
         return;
     }
-    if (requestData.userMobile.length != 11) {
-        $.messager.alert("提示", "手机号有误,请重新输入！", "error");
+    if (requestData.userName == null || requestData.userName == "") {
+        $.messager.alert("提示", "请输入姓名！", "error");
         return;
     }
     if (requestData.userMobile == null || requestData.userMobile == "") {
-        $.messager.alert("提示", "手机号不能为空！", "error");
+        $.messager.alert("提示", "请输入手机号！", "error");
+        return;
+    }
+    if (requestData.userMobile.length != 11) {
+        $.messager.alert("提示", "请输入11位手机号！", "error");
+        return;
+    }
+    if (requestData.orgCode == null || requestData.orgCode == "") {
+        $.messager.alert("提示", "请选择单位！", "error");
         return;
     }
     ajaxHelp.AjaxPost(URL, requestData, successSubmitUserAdd, null);

@@ -27,6 +27,12 @@ var successAppendTimeSingerSelec=function (data) {
         $("#appendTimeSinger").append(" <option value='"+item.dictValueCode+"' >"+item.dictValueName+"</option>")
     })
 }
+
+
+
+
+
+
 var senderProvinceCodeSingerSelect=function () {
     //寄件省份下拉框
     var URL = ApiPath.TMSApi.dictionary.admDivisionInfoSearch;
@@ -41,6 +47,46 @@ var successSenderCityCodeSinger=function (data) {
         $("#senderProvinceCodeSinger").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
     })
 }
+//发件省份修改
+var changeSenderProvince=function (data) {
+    var URL = ApiPath.TMSApi.dictionary.admDivisionInfoSearch;
+    var requestData = {
+        level:2,
+        parentDivCode:data
+    };
+    ajaxHelp.AjaxPost(URL,requestData,successChangeSenderProvince,null);
+}
+var successChangeSenderProvince=function (data) {
+    $("#senderCityCodeSinger").empty();
+    $("#senderCityCodeSinger").prepend("<option value=''>请选择</option>"); //为Select插入一个Option(第一个位置)
+    $("#senderDistrictCodeSinger").empty();
+    $("#senderDistrictCodeSinger").prepend("<option value=''>请选择</option>"); //为Select插入一个Option(第一个位置)
+    $.each(data, function (index,item ) {
+        $("#senderCityCodeSinger").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
+    })
+}
+//发件市区修改
+var changeSenderCity=function (data) {
+    var URL = ApiPath.TMSApi.dictionary.admDivisionInfoSearch;
+    var requestData = {
+        level:3,
+        parentDivCode:data
+    };
+    ajaxHelp.AjaxPost(URL,requestData,successChangeSenderCity,null);
+}
+var successChangeSenderCity=function (data) {
+    $("#senderDistrictCodeSinger").empty();
+    $("#senderDistrictCodeSinger").prepend("<option value=''>请选择</option>"); //为Select插入一个Option(第一个位置)
+    $.each(data, function (index,item ) {
+        $("#senderDistrictCodeSinger").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
+    })
+}
+
+
+
+
+
+
 var receiverProvinceCodeSingerSelect=function () {
     //收件省份
     var URL = ApiPath.TMSApi.dictionary.admDivisionInfoSearch;
@@ -89,40 +135,12 @@ var successChangeReceiveCity=function (data) {
         $("#receiverDistrictCodeSinger").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
     })
 }
-//发件省份修改
-var changeSenderProvince=function (data) {
-    var URL = ApiPath.TMSApi.dictionary.admDivisionInfoSearch;
-    var requestData = {
-        level:2,
-        parentDivCode:data
-    };
-    ajaxHelp.AjaxPost(URL,requestData,successChangeSenderProvince,null);
-}
-var successChangeSenderProvince=function (data) {
-    $("#senderCityCodeSinger").empty();
-    $("#senderCityCodeSinger").prepend("<option value=''>请选择</option>"); //为Select插入一个Option(第一个位置)
-    $("#senderDistrictCodeSinger").empty();
-    $("#senderDistrictCodeSinger").prepend("<option value=''>请选择</option>"); //为Select插入一个Option(第一个位置)
-    $.each(data, function (index,item ) {
-        $("#senderCityCodeSinger").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
-    })
-}
-//发件市区修改
-var changeSenderCity=function (data) {
-    var URL = ApiPath.TMSApi.dictionary.admDivisionInfoSearch;
-    var requestData = {
-        level:3,
-        parentDivCode:data
-    };
-    ajaxHelp.AjaxPost(URL,requestData,successChangeSenderCity,null);
-}
-var successChangeSenderCity=function (data) {
-    $("#senderDistrictCodeSinger").empty();
-    $("#senderDistrictCodeSinger").prepend("<option value=''>请选择</option>"); //为Select插入一个Option(第一个位置)
-    $.each(data, function (index,item ) {
-        $("#senderDistrictCodeSinger").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
-    })
-}
+
+
+
+
+
+
 
 
 var loadSing=function () {
@@ -134,29 +152,47 @@ var loadSing=function () {
 var verification=function () {
     //验证
     //之后追加
-      var result=true;
-     console.log($("#ceOrgCodeSinger").val())
-     if($("#ceOrgCodeSinger").val()=="") {
-         alert("请选择客户公司！")
-         result = false;
-     }else  if ($("#senderContactNameSinger").val()==""){
-         alert("请输入寄件人！")
-         result = false;
-     }else  if ($("#senderMobileSinger").val()==""){
-         alert("请输入寄件人手机号码！")
-         result = false;
-     }
-     else  if ($("#senderCompanySinger").val()==""){
-         alert("请输入寄件人所在单位！")
-         result = false;
-     }
+    var result=true;
+    console.log($("#ceOrgCodeSinger").val())
+    if($("#ceOrgCodeSinger").val()=="") {
+        alert("请选择客户公司！")
+        result = false;
+    }else  if ($("#senderContactNameSinger").val()==""){
+        alert("请输入寄件人姓名！")
+        result = false;
+    }else  if ($("#senderMobileSinger").val()==""){
+        alert("请输入寄件人手机号码！")
+        result = false;
+    }
+    else  if ($("#senderCompanySinger").val()==""){
+        alert("请输入寄件人所在单位！")
+        result = false;
+    }else  if($("#senderProvinceCodeSinger").val()==""||$("#senderCityCodeSinger").val()==""||$("#senderDistrictCodeSinger").val()==""||$("#senderAddressSinger").val()==""){
+        alert("请输入寄件人所在地址！")
+        result = false;
+    }else if ($("#receiverContactNameSinger").val()==""){
+        alert("请输入收件人姓名!")
+        result = false;
+    }else if($("#receiverMobileSinger").val()==""){
+        alert("请输入收件人手机号码!")
+        result = false;
+    }else if($("#receiverCompanySinger").val()==""){
+        alert("请输入收件人所在单位!")
+        result = false;
+    }else if($("#receiverProvinceCodeSinger").val()==""||$("#receiverCityCodeSinger").val()==""||$("#receiverDistrictCodeSinger").val()==""||$("#receiverAddressSinger").val()==""){
+        alert("请输入收件人所在地址！");
+        result = false;
+    }else  if($("#reqDeliveryDateSinger").datebox('getValue')==""){
+        alert("请选择最晚送达时间！");
+        result = false;
+    }
     return result;
 }
 var SingerSubmitAdd=function () {
-   //录单提交
+    //录单提交
     if(verification()){
         var URL = ApiPath.TMSApi.dispatchingManagement.consignmentCommit;
-        var reqDeliveryDate=$("#reqDeliveryDateSinger").datebox('getValue')+" "+$("#appendTimeSinger").find("option:selected").text()+":00"
+        var reqDeliveryDate=$("#reqDeliveryDateSinger").datebox('getValue')+" "+$("#appendTimeSinger").find("option:selected").text()+":00";
         var requestData = {
             ceOrgCode:$("#ceOrgCodeSinger").val(),
             senderContactName:$("#senderContactNameSinger").val(),
@@ -184,7 +220,7 @@ var SingerSubmitAdd=function () {
 }
 var successSingerSubmitAdd=function (data) {
     alert(data)
-    $("#tabs").tabs('close','400运单录入');
+    $("#tabs").tabs('close','电话录单');
     dispatchListLoad();
 }
 loadSing();

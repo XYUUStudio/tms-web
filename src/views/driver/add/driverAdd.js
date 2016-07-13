@@ -57,6 +57,10 @@ var submitDriverAdd = function () {
         $.messager.alert("提示", "请输入正确的手机号!", "error");
         return;
     }
+    if (requestData.orgCode == null || requestData.orgCode == "") {
+        $.messager.alert("提示", "请选择所属物流中心！", "error");
+        return;
+    }
     ajaxHelp.AjaxPost(URL, requestData, successSubmitUserAdd, null);
 };
 var successSubmitUserAdd = function () {
