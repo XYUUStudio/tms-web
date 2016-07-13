@@ -1,9 +1,39 @@
 [
+
+    {
+        "group": "调度管理",
+        "data": [
+            {
+                "title": "待接单",
+                "url": "views/dispatchingManagement/pendingorders/list/pendingordersList.html",
+                "type": 1,
+                "jsPathList": [
+                    "views/dispatchingManagement/pendingorders/list/pendingordersList.js"
+                ]
+            },
+            {
+                "title": "待取件",
+                "url": "views/dispatchingManagement/topickup/list/topickupList.html",
+                "type": 1,
+                "jsPathList": [
+                    "views/dispatchingManagement/topickup/list/topickupList.js"
+                ]
+            },
+            {
+                "title": "调度",
+                "url": "views/dispatchingManagement/dispatch/list/dispatchList.html",
+                "type": 1,
+                "jsPathList": [
+                    "views/dispatchingManagement/dispatch/list/dispatchList.js"
+                ]
+            }
+        ]
+    },
     {
         "group": "运单管理",
         "data": [
             {
-                "title": "400运单录入",
+                "title": "电话录单",
                 "url": "views/400orders/recordedSingle/singer.html",
                 "type": 1,
                 "jsPathList": [
@@ -13,39 +43,10 @@
         ]
     },
     {
-        "group": "调度管理",
-        "data": [
-            {
-                "title": "调度列表",
-                "url": "views/dispatchingManagement/dispatch/list/dispatchList.html",
-                "type": 1,
-                "jsPathList": [
-                    "views/dispatchingManagement/dispatch/list/dispatchList.js"
-                ]
-            },
-            {
-                "title": "待接单列表",
-                "url": "views/dispatchingManagement/pendingorders/list/pendingordersList.html",
-                "type": 1,
-                "jsPathList": [
-                    "views/dispatchingManagement/pendingorders/list/pendingordersList.js"
-                ]
-            },
-            {
-                "title": "代取件列表",
-                "url": "views/dispatchingManagement/topickup/list/topickupList.html",
-                "type": 1,
-                "jsPathList": [
-                    "views/dispatchingManagement/topickup/list/topickupList.js"
-                ]
-            }
-        ]
-    },
-    {
         "group": "客户管理",
         "data": [
             {
-                "title": "企业注册管理",
+                "title": "企业注册",
                 "url": "views/enterprises/list/enterprisesList.html",
                 "type": 1,
                 "jsPathList": [
@@ -53,7 +54,7 @@
                 ]
             },
             {
-                "title": "用户注册管理",
+                "title": "用户注册",
                 "url": "views/user/list/userList.html",
                 "type": 1,
                 "jsPathList": [

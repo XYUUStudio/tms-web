@@ -140,7 +140,7 @@ var verification=function () {
          alert("请选择客户公司！")
          result = false;
      }else  if ($("#senderContactNameSinger").val()==""){
-         alert("请输入寄件人！")
+         alert("请输入寄件人姓名！")
          result = false;
      }else  if ($("#senderMobileSinger").val()==""){
          alert("请输入寄件人手机号码！")
@@ -149,6 +149,24 @@ var verification=function () {
      else  if ($("#senderCompanySinger").val()==""){
          alert("请输入寄件人所在单位！")
          result = false;
+     }else  if($("#senderProvinceCodeSinger").val()==""||$("#senderCityCodeSinger").val()==""||$("#senderDistrictCodeSinger").val()==""||$("#senderAddressSinger").val()==""){
+         alert("请输入寄件人所在地址！")
+         result = false;
+     }else if ($("#receiverContactNameSinger").val()==""){
+         alert("请输入收件人姓名!")
+         result = false;
+     }else if($("#receiverMobileSinger").val()==""){
+         alert("请输入收件人手机号码!")
+         result = false;
+     }else if($("#receiverCompanySinger").val()==""){
+         alert("请输入收件人所在单位!")
+         result = false;
+     }else if($("#receiverProvinceCodeSinger").val()==""||$("#receiverCityCodeSinger").val()==""||$("#receiverDistrictCodeSinger").val()==""||$("#receiverAddressSinger").val()==""){
+         alert("请输入收件人所在地址！");
+         result = false;
+     }else  if($("#reqDeliveryDateSinger").datebox('getValue')==""){
+         alert("请选择最晚送达时间！");
+         result = false;
      }
     return result;
 }
@@ -156,7 +174,7 @@ var SingerSubmitAdd=function () {
    //录单提交
     if(verification()){
         var URL = ApiPath.TMSApi.dispatchingManagement.consignmentCommit;
-        var reqDeliveryDate=$("#reqDeliveryDateSinger").datebox('getValue')+" "+$("#appendTimeSinger").find("option:selected").text()+":00"
+        var reqDeliveryDate=$("#reqDeliveryDateSinger").datebox('getValue')+" "+$("#appendTimeSinger").find("option:selected").text()+":00";
         var requestData = {
             ceOrgCode:$("#ceOrgCodeSinger").val(),
             senderContactName:$("#senderContactNameSinger").val(),
@@ -184,7 +202,7 @@ var SingerSubmitAdd=function () {
 }
 var successSingerSubmitAdd=function (data) {
     alert(data)
-    $("#tabs").tabs('close','400运单录入');
+    $("#tabs").tabs('close','电话录单');
     dispatchListLoad();
 }
 loadSing();

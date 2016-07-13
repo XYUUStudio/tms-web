@@ -3,16 +3,16 @@
     <div id="searchbar" style="padding:3px;" >
         <ul class="sear" style=" overflow:hidden;">
             <div class="button ">
-                <a href="#"   onclick="javascript:dispatchClose()">
+                <a  class="group" href="#"   onclick="javascript:dispatchClose()">
                     <span>关闭</span>
                 </a>
-                <a href="#" onclick="javascript:dispatchCancel()">
+                <a  class="group" href="#" onclick="javascript:dispatchCancel()">
                     <span>取消</span>
                 </a>
-                <a href="#" onclick="javascript:dispatchReassign()">
+                <a  class="group" href="#" onclick="javascript:dispatchReassign()">
                     <span>改单</span>
                 </a>
-                <a class="group"  onclick="javascript:searchDispatchList()">
+                <a  class="group" class="group"  onclick="javascript:searchDispatchList()">
                     <span>查询</span>
                 </a>
             </div>
@@ -34,7 +34,7 @@
     </div>
     <div class="control-view ">
         <label>
-            <span>寄件企业：</span>
+            <span>下单公司：</span>
             <select id="ceOrgNameDispatchList">
             <option value="">请选择</option>
         </select>
@@ -48,7 +48,7 @@
             <span>状态：</span>
              <select id="statusDispatchList">
             <option value="">请选择</option>
-        </select>
+          </select>
         </label>
     </div>
     <div class="control-view">
@@ -62,8 +62,10 @@
             <select style="width: 60px" id="appendTimeDispatchList"></select>
         </label>
         <label>
-            <span>订单来源：</span>
-              <select id="consignmentSourceDispatchList"></select>
+            <span>运单来源：</span>
+              <select id="consignmentSourceDispatchList">
+                  <option value="">请选择</option>
+              </select>
         </label>
     </div>
     <table id="dispatchList"    toolbar="#toolbar" width="98%"  style="color: #fff;" >
@@ -75,12 +77,15 @@
             <th field="ck" checkbox="false" align="left"></th>
             <th field="consignmentNo" title="consignmentNo" align="left" width="150">运单号</th>
             <th field="senderCompany" title="senderCompany" align="left" width="100">寄件单位</th>
-            <th field="receiverCompany" title="receiverCompany" align="left" width="100">收件单位</th>
-            <th field="ceorgname" title="ceorgname" align="left"  width="160" editor="true">寄件企业</th>
             <th field="senderContactName" title="senderContactName" align="left" width="60">寄件人</th>
-            <th field="createDate" title="createDate" align="left" width="200">下单时间</th>
-            <th field="reqDeliveryDate" title="reqDeliveryDate" align="left" width="200">最晚送达时间</th>
-            <th field="statusname" title="statusname" align="left" width="80">状态</th>
+            <th field="receiverCompany" title="receiverCompany" align="left" width="100">收件单位</th>
+            <th field="receiverContactName" title="receiverContactName" align="left" width="60">收件人</th>
+            <th field="reqDeliveryDate" title="reqDeliveryDate" align="left" width="120">最晚送达时间</th>
+            <th field="pickupdriverbyname" title="pickupdriverbyname" align="left"  width="100" >司机</th>
+            <th field="ceorgname" title="ceorgname" align="left"  width="160" editor="true">下单公司</th>
+            <th field="createDate" title="createDate" align="left" width="120">下单时间</th>
+            <th field="statusname" title="statusname" align="left" width="60">状态</th>
+            <th field="consignmentSource" title="consignmentSource" align="left" width="30">来源</th>
         </tr>
         </thead>
     </table>

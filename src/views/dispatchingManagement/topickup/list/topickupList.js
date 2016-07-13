@@ -33,13 +33,7 @@ var successToPickupList = function (resultInfo) {
         total:resultInfo.total,
         selected:true,
         onSelectPage:function(pageNumber, pageSize){
-            loadData(pageNumber, pageSize);
-        },
-        onChangePageSize:function(pageNumber, pageSize){
-            var pageSize= $("#pendingOrdersPagination").combobox('getValues')
-            pageNumber=resultInfo.pageNumber;
-            pageSize=resultInfo.pageSize;
-            loadData(pageNumber, pageSize);
+            loadToPickupList(pageNumber, pageSize);
         },
     });
 }
@@ -70,6 +64,12 @@ var getToPickup=function () {
     var row = $("#toPickupList").datagrid('getSelections');
     return (row)
 }
+var ToPickupClose=function () {
+    // 关闭当前页
+    $("#tabs").tabs('close','待取件');
+}
+
+
 var ToPickupView=function () {
     //编辑数据
     var row = $("#toPickupList").datagrid('getSelections');

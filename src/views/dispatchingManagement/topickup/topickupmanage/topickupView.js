@@ -10,21 +10,31 @@ console.log(pram)
 var  getVuleToPickup=function () {
     $("#senderCompanyReDispatch").html(pram[0].senderCompany);
     $("#receiverCompanyReDispatch").html(pram[0].receiverCompany);
-    $("#reqDeliveryDateReDispatch").html(pram[0].reqDeliveryDate);
+    $("#reqDeliveryDateReDispatch").html(pram[0].reqDeliveryDate+" "+"前送达");
     $("#senderContactNameReDispatch").html(pram[0].senderContactName);
     $("#senderMobileReDispatch").html(pram[0].senderMobile);
     $("#senderCompanyReDispatchView").html(pram[0].senderCompany);
-    $("#senderAddressReDispatch").html(pram[0].senderAddress);
+    $("#senderAddressReDispatch").html(pram[0].senderprovincename+" "+pram[0].sendercityname+" "+pram[0].senderdistrictname+" "+pram[0].senderAddress);
     $("#receiverContactNameReDispatch").html(pram[0].receiverContactName);
     $("#receiverMobileReDispatch").html(pram[0].receiverMobile);
     $("#receiverCompanyReDispatchView").html(pram[0].receiverCompany);
-    $("#receiverAddressReDispatch").html(pram[0].receiverAddress);
+    $("#receiverAddressReDispatch").html(pram[0].senderprovincename+" "+pram[0].sendercityname+" "+pram[0].senderdistrictname+" "+pram[0].senderAddress);
     $("#reqDeliveryDateReDispatchView").html(pram[0].reqDeliveryDate);
     $("#remarkReDispatch").html(pram[0].remark)
     $("#pickupdriverbynameReDispatchOrigin").html(pram[0].pickupdriverbyname)
 }
 var userOrgcode = $.cookie("userOrgcode");
 var getPickupDriverId=function () {
+    //基本信息赋值
+    $("#consignmentNoReDispatch").html(pram[0].consignmentNo+" "+ pram[0].statusname);
+    $("#ceorgnameReDispatch").html(pram[0].ceorgname);
+    $("#lcorgnameReDispatch").html(pram[0].lcorgname);
+    $("#createDateReDispatch").html(pram[0].createDate);
+    $("#pickupdriverbynameReDispatch").html(pram[0].pickupdriverbyname);
+    $("#dispatchbynameReDispatch").html(pram[0].dispatchbyname);
+    $("#submitbynameReDispatch").html(pram[0].submitbyname)
+
+
     var URL = ApiPath.TMSApi.dictionary.getPickupDriverList;
     var requestData = {
         orgCode:userOrgcode
@@ -51,7 +61,8 @@ var ReDispatchSubmitAdd=function () {
         var URL = ApiPath.TMSApi.dispatchingManagement.modifyDispatch;
         var requestData={
             consignmentNo:pram[0].consignmentNo,
-            pickupDriverId:$("#pickupDriverIdReDispatch").val()
+            pickupDriverId:$("#pickupDriverIdReDispatch").val(),
+            remark:$("#remarkReDispatch").val()
         }
         ajaxHelp.AjaxPost(URL,requestData,successReDispatchSubmitAdd,null);
     }

@@ -28,23 +28,17 @@ var initLeftMenu = function () {
                         if (item.jsPathList != undefined && item.jsPathList.length != 0) {
                             var jsPathList = item.jsPathList;
                         }
-
                         accd += '<li><div ><a href="javascript:void(0);" class="easyui-linkbutton" plain="true" ';
                         accd += 'onclick="javascript:addTab(' + type + ',\'' + title + '\',\'' + url + '\',' + closableValue + ',\'' + jsPathList + '\');return false;">';
                         accd += '' + title + ' </a></div></li>'
-
                     });
-
                     accd += '</ul>';
-
                     $("#left_menu_content_id").accordion('add', {
                         title: group,
                         content: accd,
                         iconCls: iconCls
                     });
-
                 });
-
                 $('#left_menu_content_id').accordion('select', 0);
             }
 
@@ -315,10 +309,11 @@ $(document).ready(function () {
  */
 //退出事件
 var Loginout = function () {
+
     window.location.href = "index.html";
 }
 
-var changePswd = {
+var changePsswd = {
     show: function () {
         $('#changePassWord').dialog('open');
         //使Dialog居中显

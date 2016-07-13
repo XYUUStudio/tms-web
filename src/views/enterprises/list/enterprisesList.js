@@ -35,51 +35,31 @@ var SearchEnterprises = function(){
 }
 //成功后回调函数
 var successDoSearch = function (resultInfo) {
-    console.log(resultInfo)
     $("#enterprisesList").datagrid('loadData', resultInfo);
-
-    // var pager = $("#enterprisesList").datagrid('getPager');
     $("#enterprisesPagination").pagination({
         pageList:[10,20,30],
         pageSize:resultInfo.pageSize,
         total:resultInfo.total,
         selected:true,
-        // beforePageText: '第',//页数文本框前显示的汉字
-        // afterPageText: '页    共 {pages} 页',
-        // displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录',
         onSelectPage:function(pageNumber, pageSize){
-            loadData(pageNumber, pageSize);
-        },
-        onChangePageSize:function(pageNumber, pageSize){
-            var pageSize= $("#enterprisesPagination").combobox('getValues')
-            pageNumber=resultInfo.pageNumber;
-            pageSize=resultInfo.pageSize;
-            loadData(pageNumber, pageSize);
-        },
+            loadEnterprisesList(pageNumber, pageSize);
+        }
     });
-}
-//搜索数据方式二
-$('#searchbox').searchbox({
-    searcher:function(value,name){
-        alert(value + "," + name)
-    },
-    menu:'#search-single-cloumn',
-    prompt:'Please Input Value'
-});
+};
 // 按钮页面跳转
 var AddEnterprises=function () {
     //新增数据
     addTabHref('企业新增','views/enterprises/add/enterprisesAdd.html')
-}
+};
 
 var Viewenterprises=function(){
     //详情页面
     addTabHref('企业详情','views/enterprises/view/enterprisesView.html')
-}
+};
 var getEnterprisesDate=function () {
     var row = $("#enterprisesList").datagrid('getSelections');
     return (row)
-}
+};
 var Editenterprises=function () {
     //编辑数据
     var row = $("#enterprisesList").datagrid('getSelections');
@@ -88,7 +68,7 @@ var Editenterprises=function () {
     }else {
         addTabHref('企业编辑','views/enterprises/edit/enterprisesEdit.html');
     }
-}
+};
 $("#enterprisesList").datagrid({
     striped: true,
     checkOnSelect:true,
@@ -114,7 +94,7 @@ $("#enterprisesList").datagrid({
 });
 $("#validStatusEnterprises").combobox({
     panelHeight:'70px'
-})
+});
 //载入页执行  列表、时间函数
 loadEnterprisesList();
 
