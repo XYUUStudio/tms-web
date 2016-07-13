@@ -82,7 +82,7 @@ function  bbb(imgData) {
     });
 }
 var deleteattachmentCO=function () {
-    $('#imgListCO').attr("src","../images/fujianimg.png");
+    $('#imgListCO').html("src","../images/fujianimg.png");
      $('#imgListCOa').removeAttr("href");
     attachmentCOURL=""
 }

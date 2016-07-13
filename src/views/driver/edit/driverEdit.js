@@ -5,7 +5,8 @@ var ajaxHelp = new AjaxHelp();
 //选中获取司机数据集合
 var rowData = $("#driverList").datagrid("getSelections");
 var driverInfo = new Object();
-
+var compulsoryInsurancePositiveURL = "";
+var commercialInsurancePositiveURL = "";
 
 //获取司机信息
 var getInfoDriverEdit = function () {
@@ -41,6 +42,7 @@ var successGetInfoDriverEdit = function (responseData) {
     $("#commercialInsuranceDocNoDriverEdit").val(responseData.commercialInsuranceDocNo);//商业险单号
     $("#commercialInsuranceAmtDriverEdit").val(responseData.commercialInsuranceAmt);//商业险金额
     //地址
+    getProvinceDriverEdit();
     $("#provinceDriverEdit").val(responseData.residentProvinceCodeName);//省
     $("#cityDriverEdit").val(responseData.residentCityCodeName);//市
     $("#districtDriverEdit").val(responseData.residentDistrictCodeName);//区
@@ -88,6 +90,43 @@ var successGetProvinceDriverEdit = function (data) {
             $("#provinceDriverEdit").find("option[value='" + item.divCode + "']").attr("selected", true)
         }
     });
+    getCityDriverEdit();
+};
+//获取市下拉框
+var getCityDriverEdit = function () {
+    var URL = ApiPath.TMSApi.dictionary.admDivisionInfoSearch;
+    var requestData = {
+        level: 2,
+        parentDivCode: driverInfo.residentProvinceCode
+    };
+    ajaxHelp.AjaxPost(URL, requestData, successGetCityDriverEdit, null);
+};
+var successGetCityDriverEdit = function (data) {
+    $.each(data, function (index, item) {
+        $("#cityDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>")
+        if (driverInfo.residentCityCode == item.divCode) {
+            $("#cityDriverEdit").find("option[value='" + item.divCode + "']").attr("selected", true)
+        }
+    });
+    getDistrictDriverEdit();
+};
+//获取区下拉框
+var getDistrictDriverEdit = function () {
+    var URL = ApiPath.TMSApi.dictionary.admDivisionInfoSearch;
+    var requestData = {
+        level: 3,
+        parentDivCode: driverInfo.residentCityCode
+    };
+    ajaxHelp.AjaxPost(URL, requestData, successGetDistrictDriverEdit, null);
+};
+var successGetDistrictDriverEdit = function (data) {
+    $.each(data, function (index, item) {
+        $("#districtDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>")
+        if (driverInfo.residentDistrictCode == item.divCode) {
+            $("#districtDriverEdit").find("option[value='" + item.divCode + "']").attr("selected", true)
+        }
+    });
+    District();
 };
 //修改市
 var changeProvinceDriverEdit = function (data) {
@@ -137,10 +176,9 @@ function uploadIDDriverEdit(imgData) {
     var fr = new FileReader();
     fr.readAsDataURL(file);
     $(fr).load(function () {
+        $('#iDPositiveDriverEdit').html('<img src='+fr.result+'  alt="" width="200" height="80"  border="0px" />');
         var URL = ApiPath.TMSApi.dictionary.upload;
-        var requestData = {
-            file: fr.result
-        };
+        var requestData = {file: fr.result};
         ajaxHelp.AjaxForm(URL, requestData, successUploadIDDriverEdit, null);
     });
     return true;
@@ -214,7 +252,6 @@ function uploadCompulsoryInsuranceDriverEdit(imgData) {
     });
     return true;
 }
-var compulsoryInsurancePositiveURL = "";
 var successUploadCompulsoryInsuranceDriverEdit = function (responseData) {
     compulsoryInsurancePositiveURL = responseData.url;
 };
@@ -237,7 +274,6 @@ function uploadCommercialInsuranceDriverEdit(imgData) {
     });
     return true;
 }
-var commercialInsurancePositiveURL = "";
 var successUploadCommercialInsuranceDriverEdit = function (responseData) {
     commercialInsurancePositiveURL = responseData.url;
 };
@@ -339,7 +375,7 @@ var submitDriverEdit = function () {
         $.messager.alert("提示", "请输入地址！", "error");
         return;
     }
-    if (requestData.iDPositive == null || requestData.iDPositive == "") {
+    if (iDPositiveURL == "") {
         $.messager.alert("提示", "请上传身份证！", "error");
         return;
     }

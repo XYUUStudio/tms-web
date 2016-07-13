@@ -25,21 +25,21 @@
         </label>
         <label>
             <span><span class="required">*</span>姓名：</span>
-            <input id="userNameDriverEdit">
+            <input id="userNameDriverEdit"/>
         </label>
     </div>
     <div class="control-view">
         <label>
             <span><span class="required">*</span>身份证号：</span>
-            <input id="userIDCardDriverEdit">
+            <input id="userIDCardDriverEdit"/>
         </label>
         <label>
             <span><span class="required">*</span>手机号：</span>
-            <input id="userMobileDriverEdit">
+            <input id="userMobileDriverEdit"/>
         </label>
         <label>
             <span><span class="required">*</span>邮箱：</span>
-            <input id="userEmailDriverEdit">
+            <input id="userEmailDriverEdit"/>
         </label>
 
     </div>
@@ -55,25 +55,25 @@
             <select id="districtDriverEdit" style="width: 80px">
                 <option value="">请选择区</option>
             </select>
-            <input id="addressDriverEdit" placeholder="请输入详细地址" style="width: 200px">
+            <input id="addressDriverEdit" placeholder="请输入详细地址" style="width: 200px"/>
         </label>
     </div>
     <div class="control-view">
-        <label>
+        <label style="width: 100%">
             <span><span class="required">*</span>身份证上传：</span>
-            <input type="file" style="width: 200px;border: #fff"
-                   onchange="javascript:uploadIDDriverEdit(this)">
-            <button onclick="delIDPositiveDriverEdit()">删除</button>
-        </label>
-        <label>
-            <div style="margin-left: 80px">
-                <div id="iDPositiveDriverEdit">
-                </div>
-                <div id="iDInverseDriverEdit">
-                </div>
-            </div>
+            <input type="file" onchange="javascript:uploadIDDriverEdit(this)"/>
+            <button onclick="delIDPositiveDriverEdit()" >删除</button>
         </label>
     </div>
+    <div class="control-view">
+    <label style="margin-left:85px">
+        <div >
+            <div id="iDPositiveDriverEdit" style="float: left">
+            </div>
+
+        </div>
+    </label>
+        </div>
     <div class="control-group" style="text-align: left;margin-top: 150px">
         <label>
             <span style="color:#f79449">驾驶信息</span>
@@ -101,20 +101,21 @@
         </label>
     </div>
     <div class="control-view">
-        <label>
+        <label style="width: 100%">
             <span><span class="required">*</span>驾驶证上传：</span>
-            <input type="file" style="width: 200px;border: #fff"
-                   onchange="javascript:uploadDriverLicDriverEdit(this)">
+            <input type="file" style="width: 200px;border: #fff" onchange="javascript:uploadDriverLicDriverEdit(this)"/>
             <button onclick="delDriverLicPositiveDriverEdit()">删除</button>
         </label>
-        <label>
-            <div style="margin-left: 80px">
-                <div id="driverLicPositiveDriverEdit">
-                </div>
-                <div id="driverLicInverseDriverEdit">
-                </div>
+    </div>
+    <div class="control-view">
+    <label>
+        <div style="margin-left: 85px">
+            <div id="driverLicPositiveDriverEdit">
             </div>
-        </label>
+            <div id="driverLicInverseDriverEdit">
+            </div>
+        </div>
+    </label>
     </div>
     <div class="control-group" style="text-align: left;margin-top: 150px">
         <label>
@@ -125,52 +126,56 @@
     <div class="control-view">
         <label>
             <span><span class="required">*</span>车牌号：</span>
-            <input id="plateNoDriverEdit">
+            <input id="plateNoDriverEdit"/>
         </label>
         <label>
             <span><span class="required">*</span>车型：</span>
-            <input id="vehicleLicSpecificationDriverEdit">
+            <input id="vehicleLicSpecificationDriverEdit"/>
         </label>
         <label>
             <span><span class="required">*</span>发证日期：</span>
-            <input id="vehicleLicIssueDateDriverEdit" class="easyui-datebox">
+            <input id="vehicleLicIssueDateDriverEdit" class="easyui-datebox"/>
         </label>
     </div>
     <div class="control-view">
         <label>
             <span><span class="required">*</span>年检有效日期：</span>
-            <input id="vehicleLicLastestInspEffEndDateDriverEdit" class="easyui-datebox">
+            <input id="vehicleLicLastestInspEffEndDateDriverEdit" class="easyui-datebox"/>
         </label>
         <label>
             <span><span class="required">*</span>车辆容积：</span>
-            <input id="vehicleCapacityDriverEdit">
+            <input id="vehicleCapacityDriverEdit"/>
         </label>
         <label>
             <span><span class="required">*</span>营运证号：</span>
-            <input id="vehicleOPCertNoDriverEdit">
+            <input id="vehicleOPCertNoDriverEdit"/>
         </label>
     </div>
     <div class="control-view">
         <label>
             <span><span class="required">*</span>车辆尺寸：</span>
-            <input id="vehicleLengthDriverEdit" placeholder="长" style="width: 40px">
+            <input id="vehicleLengthDriverEdit" placeholder="长" style="width: 40px"/>
             <a>×</a>
-            <input id="vehicleWidthDriverEdit" placeholder="宽" style="width: 40px">
+            <input id="vehicleWidthDriverEdit" placeholder="宽" style="width: 40px"/>
             <a>×</a>
-            <input id="vehicleHeightDriverEdit" placeholder="高" style="width: 40px">
+            <input id="vehicleHeightDriverEdit" placeholder="高" style="width: 40px"/>
         </label>
-        <label style="width: 60%">
-            <span><span class="required">*</span>车辆所属：</span>
-            <input id="vehicleOwnerTypeDriverEdit">
-        </label>
+    </div>
+    <div class="control-view">
+    <label>
+        <span><span class="required">*</span>车辆所属：</span>
+        <input id="vehicleOwnerTypeDriverEdit"/>
+    </label>
     </div>
     <div class="control-view">
         <label>
             <span><span class="required">*</span>行驶证上传：</span>
             <input type="file" style="width: 200px;border: #fff"
-                   onchange="javascript:uploadVehicleLicDriverEdit(this)">
+                   onchange="javascript:uploadVehicleLicDriverEdit(this)"/>
             <button onclick="delVehicleLicPositiveDriverEdit()">删除</button>
         </label>
+    </div>
+    <div class="control-view">
         <label>
             <div style="margin-left: 80px">
                 <div id="vehicleLicPositiveDriverEdit">
@@ -189,28 +194,28 @@
     <div class="control-view">
         <label>
             <span><span class="required">*</span>保险公司：</span>
-            <input id="compulsoryInsuranceCompanyDriverEdit">
+            <input id="compulsoryInsuranceCompanyDriverEdit"/>
         </label>
         <label>
             <span><span class="required">*</span>保险单号：</span>
-            <input id="compulsoryInsuranceDocNoDriverEdit">
+            <input id="compulsoryInsuranceDocNoDriverEdit"/>
         </label>
         <label>
             <span><span class="required">*</span>保险有效期：</span>
-            <input id="compulsoryInsuranceEffectiveEndDateDriverEdit" class="easyui-datebox">
+            <input id="compulsoryInsuranceEffectiveEndDateDriverEdit" class="easyui-datebox"/>
         </label>
     </div>
     <div class="control-view">
         <label style="width:90%;">
             <span><span class="required">*</span>保险金额：</span>
-            <input id="compulsoryInsuranceAmtDriverEdit">
+            <input id="compulsoryInsuranceAmtDriverEdit"/>
         </label>
     </div>
     <div class="control-view">
         <label>
             <span><span class="required">*</span>保单上传：</span>
             <input type="file" style="width: 200px;border: #fff"
-                   onchange="javascript:uploadCompulsoryInsuranceDriverEdit(this)">
+                   onchange="javascript:uploadCompulsoryInsuranceDriverEdit(this)"/>
             <button onclick="delCompulsoryInsurancePositiveDriverEdit()">删除</button>
         </label>
         <label>
@@ -231,28 +236,28 @@
     <div class="control-view">
         <label>
             <span><span class="required">*</span>保险公司：</span>
-            <input id="commercialInsuranceCompanyDriverEdit">
+            <input id="commercialInsuranceCompanyDriverEdit"/>
         </label>
         <label>
             <span><span class="required">*</span>保险单号：</span>
-            <input id="commercialInsuranceDocNoDriverEdit">
+            <input id="commercialInsuranceDocNoDriverEdit"/>
         </label>
         <label>
             <span><span class="required">*</span>保险有效期：</span>
-            <input id="commercialInsuranceEffectiveEndDateDriverEdit" class="easyui-datebox">
+            <input id="commercialInsuranceEffectiveEndDateDriverEdit" class="easyui-datebox"/>
         </label>
     </div>
     <div class="control-view">
         <label style="width: 90%">
             <span><span class="required">*</span>保险金额：</span>
-            <input id="commercialInsuranceAmtDriverEdit">
+            <input id="commercialInsuranceAmtDriverEdit"/>
         </label>
     </div>
     <div class="control-view">
         <label>
             <span><span class="required">*</span>保单上传：</span>
             <input type="file" style="width: 200px;border: #fff"
-                   onchange="javascript:uploadCommercialInsuranceDriverEdit(this)">
+                   onchange="javascript:uploadCommercialInsuranceDriverEdit(this)"/>
             <button onclick="delCommercialInsurancePositiveDriverEdit()">删除</button>
         </label>
         <label style="margin-left: 80px">
