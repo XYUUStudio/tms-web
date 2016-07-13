@@ -6,12 +6,11 @@
  */
 var ajaxHelp = new AjaxHelp();
 var pram=dispatchList();
-console.log(pram[0])
 var  getValueDispatcheReassign=function () {
     $("#formerPickupDriver").val(pram[0].pickupdriverbyname);
     $("#senderCompanyDispatchRe").html(pram[0].senderCompany);
     $("#receiverCompanyDispatchRe").html(pram[0].receiverCompany);
-    $("#reqDeliveryDateDispatchReView").html(pram[0].reqDeliveryDate);
+    $("#reqDeliveryDateDispatchReView").html(pram[0].reqDeliveryDate+" 前送达");
     $("#senderContactNameDispatchRe").val(pram[0].senderContactName);
     $("#senderMobileDispatchRe").val(pram[0].senderMobile);
     $("#senderCompanyDispatchReView").val(pram[0].senderCompany);
@@ -224,10 +223,54 @@ var getAddressManage=function () {
     senderProvinceCodeSingerSelect();
     receiverProvinceCodeSingerSelect();
     getAppendTimeSingerSelect();
+    //寄件人详情赋值
+    $("#consignmentNoDispatchRe").html(pram[0].consignmentNo+" "+ pram[0].statusname);
+    $("#ceorgnameDisatchRe").html(pram[0].ceorgname);
+    $("#lcorgnameDisatchRe").html(pram[0].lcorgname);
+    $("#createDateDisatchRe").html(pram[0].createDate);
+    $("#pickupdriverbynameDisatchRe").html(pram[0].pickupdriverbyname);
+    $("#dispatchbynameDisatchRe").html(pram[0].dispatchbyname);
+    $("#submitbynameDisatchRe").html(pram[0].submitbyname)
  }
 var userOrgcode = $.cookie("userOrgcode");
 var verification=function () {
     var result=true;
+    if($("#senderContactNameDispatchRe").val()==""){
+        alert("请输入寄件人姓名！");
+        result=false;
+    }
+    else  if($("#senderMobileDispatchRe").val()==""){
+        alert("请输入寄件人手机号码！");
+        result=false;
+    }
+    else  if($("#senderCompanyDispatchReView").val()==""){
+        alert("请输入寄件人单位名称！");
+        result=false;
+    }
+    else  if($("#senderProvinceCodeDispatchRe").val()==""||$("#senderCityCodeDispatchRe").val()==""||$("#senderDistrictCodeDispatchRe").val()==""||$("#senderAddressDispatchRe").val()==""){
+        alert("请输入寄件人地址！");
+        result=false;
+    }
+    else  if($("#receiverContactNameDispatchRe").val()==""){
+        alert("请输入收件人姓名！");
+        result=false;
+    }
+    else  if($("#receiverMobileDispatchRe").val()==""){
+        alert("请输入收件人手机号码！");
+        result=false;
+    }
+    else  if($("#receiverCompanyDispatchReView").val()==""){
+        alert("请输入收件人单位名称！");
+        result=false;
+    }
+    else  if($("#receiverProvinceCodeDispatchRe").val()==""||$("#receiverCityCodeDispatchRe").val()==""||$("#receiverDistrictCodeDispatchRe").val()==""||$("#receiverAddressDispatchRe").val()==""){
+        alert("请输入收件人地址！");
+        result=false;
+    }
+    else  if($("#reqDeliveryDateDispatchRe").datebox('getValue')==""){
+        alert("请选择最晚送达时间！");
+        result=false;
+    }
     return  result;
 }
 var DispatchReSubmitAdd=function () {
@@ -261,9 +304,9 @@ var DispatchReSubmitAdd=function () {
     }
 }
 var successDispatchReSubmitAdd=function (data) {
-    alert("提交成功！")
+    alert("提交成功！");
     $("#tabs").tabs('close','改单');
-    dispatchListLoad();
+    loadDispatchList();
 }
 getAddressManage();
 

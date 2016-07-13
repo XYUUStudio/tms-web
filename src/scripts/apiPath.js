@@ -2,7 +2,9 @@ var ApiPath = {
     TMSApi: {
         UP: {
             //登录
-            pcLogin: AppConfig.TMSBasePath + "/account/pcLogin"
+            pcLogin: AppConfig.TMSBasePath + "/account/pcLogin",
+            //登出
+            pcLogout: AppConfig.TMSBasePath +"/account/logout",
         },
         businessData: {
             //企业列表
@@ -53,7 +55,9 @@ var ApiPath = {
             //运单详情
             consignmentDetail:AppConfig.TMSBasePath+"/consignment/detail",
             //运单事件
-            consignmentConsignmentEventDetail:AppConfig.TMSBasePath+"/consignment/consignmentEventDetail"
+            consignmentConsignmentEventDetail:AppConfig.TMSBasePath+"/consignment/consignmentEventDetail",
+            //评价详情
+            consignmentQueryEvaluate:AppConfig.TMSBasePath+"/consignment/queryEvaluate"
         },
         dictionary: {
             //公共字典
@@ -63,7 +67,9 @@ var ApiPath = {
             //图片上传
             upload: AppConfig.TMSBasePath + "/upload/basedata",
             //司机
-            getPickupDriverList: AppConfig.TMSBasePath + "/user/search"
+            getPickupDriverList: AppConfig.TMSBasePath + "/driver/search",
+            // 根据有效区域进行选择地址
+            getAdmdivisionValidatedSearch: AppConfig.TMSBasePath +"/systemData/admdivision/validatedSearch"
         },
         systemData:{
             //运单状态

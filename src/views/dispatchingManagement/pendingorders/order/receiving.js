@@ -3,24 +3,30 @@
  */
 var ajaxHelp = new AjaxHelp();
 var pram=getPendingOrdersDate();
-console.log(pram[0])
+console.log(pram[0].senderCompany)
 var  getVulereceiving=function () {
-      $("#senderCompanyDispatch").html(pram[0].senderCompany);
+    $("#senderCompanyDispatch").html(pram[0].senderCompany);
     $("#receiverCompanyDispatch").html(pram[0].receiverCompany);
-    $("#reqDeliveryDateDispatch").html(pram[0].reqDeliveryDate);
+    $("#reqDeliveryDateDispatch").html(pram[0].reqDeliveryDate+" "+"前送达");
     $("#senderContactNameDispatch").html(pram[0].senderContactName);
     $("#senderMobileDispatch").html(pram[0].senderMobile);
     $("#senderCompanyDispatchView").html(pram[0].senderCompany);
-    $("#senderAddressDispatch").html(pram[0].senderAddress);
+    $("#senderAddressDispatch").html(pram[0].senderprovincename+" "+pram[0].sendercityname+" "+pram[0].senderdistrictname+" "+pram[0].senderAddress);
     $("#receiverContactNameDispatch").html(pram[0].receiverContactName);
     $("#receiverMobileDispatch").html(pram[0].receiverMobile);
     $("#receiverCompanyDispatchView").html(pram[0].receiverCompany);
-    $("#receiverAddressDispatch").html(pram[0].receiverAddress);
+    $("#receiverAddressDispatch").html(pram[0].senderprovincename+" "+pram[0].sendercityname+" "+pram[0].senderdistrictname+" "+pram[0].senderAddress);
     $("#reqDeliveryDateDispatchView").html(pram[0].reqDeliveryDate);
     $("#remarkDispatch").html(pram[0].remark)
 }
 var userOrgcode = $.cookie("userOrgcode");
 var getPickupDriverId=function () {
+    //寄件人详情赋值
+    $("#consignmentNoDispatch").html(pram[0].consignmentNo+" "+ pram[0].statusname);
+    $("#ceorgnameDispatch").html(pram[0].ceorgname);
+    $("#lcorgnameDispatch").html(pram[0].lcorgname);
+    $("#submitbynameDispatch").html(pram[0].submitbyname)
+
     var URL = ApiPath.TMSApi.dictionary.getPickupDriverList;
     var requestData = {
         orgCode:userOrgcode
@@ -29,8 +35,8 @@ var getPickupDriverId=function () {
 }
 var successGetPickupDriverId=function (data) {
     console.log(data)
-     $.each(data.rows,function (index,item) {
-         $("#pickupDriverIdDispatch").append(" <option value='"+item.userId+"' >"+item.userName+"</option>")
+     $.each(data,function (index,item) {
+         $("#pickupDriverIdDispatch").append(" <option value='"+item.userId+"' >"+item.lCName+"</option>")
      })
     getVulereceiving();
 }
@@ -47,7 +53,8 @@ var DispatchSubmitAdd=function () {
         var URL = ApiPath.TMSApi.dispatchingManagement.dispatch;
         var requestData={
             consignmentNo:pram[0].consignmentNo,
-            pickupDriverId:$("#pickupDriverIdDispatch").val()
+            pickupDriverId:$("#pickupDriverIdDispatch").val(),
+            remark:$("#remarkDispatch").val()
         }
         ajaxHelp.AjaxPost(URL,requestData,successDispatchSubmitAdd,null);
     }

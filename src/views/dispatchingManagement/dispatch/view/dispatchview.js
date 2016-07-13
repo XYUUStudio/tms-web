@@ -3,10 +3,11 @@
  */
 
 var ajaxHelp = new AjaxHelp();
-var pram=dispatchList();
-var orderView=new Object();
-var rackRecordList=new  Object();
+var pram=dispatchList();// 单个订单号
+var orderView=new Object(); //订单详情
+var rackRecordList=new  Object();  //跟踪记录详情
  var trackRecordShow=function () {
+     //切换跟踪记录
     $("#orderDetail").css("background","#f5f5f5");
     $("#trackRecord").css("background","#f79449");
     $("#assessmentDetails").css("background","#f5f5f5");
@@ -36,6 +37,7 @@ var assessmentDetailsShow=function () {
     $("#orderPassBoxShow").hide();
 }
 var orderPassBox=function () {
+    //切换周转箱
     $("#orderPassBox").css("background","#f79449");
     $("#orderDetail").css("background","#f5f5f5");
     $("#trackRecord").css("background","#f5f5f5");
@@ -63,6 +65,7 @@ var orderDetailShow=function () {
     $("#assessmentDetailsShow").hide();
     $("#orderPassBoxShow").hide();
     $("#trackRecordShow").hide();
+
 }
 var getOrderDetail=function () {
     var URL = ApiPath.TMSApi.dispatchingManagement.consignmentDetail;
@@ -75,7 +78,7 @@ var getOrderDetail=function () {
 var successGetOrderDetail=function (data) {
     orderView=data;
     $("#ceorgnameOrderDetail").html(data.ceorgname);
-    $("#lcorgnameOrderDetail").html(data.lcorgnameOrde);
+    $("#lcorgnameOrderDetail").html(data.lcorgname);
     $("#submitbynameOrderDetail").html(data.submitbyname);
     $("#pickupdriverbynameOrderDetail").html(data.pickupdriverbyname);
     $("#dispatchbynameOrderDetail").html(data.dispatchbyname);
@@ -86,11 +89,11 @@ var successGetOrderDetail=function (data) {
     $("#senderContactNameOrderDetail").html(data.senderContactName);
     $("#senderMobileOrderDetail").html(data.senderMobile);
     $("#senderCompanyOrderDetail").html(data.senderCompany);
-    $("#senderAddressOrderDetail").html(data.senderAddress);
+    $("#senderAddressOrderDetail").html(data.senderprovincename+" "+data.sendercityname+" "+data.senderdistrictname+" "+data.senderAddress);
     $("#receiverContactNameOrderDetail").html(data.receiverContactName);
     $("#receiverMobileOrderDetail").html(data.receiverMobile);
     $("#receiverCompanyOrderDetail").html(data.receiverCompany);
-    $("#receiverCityCodeOrderDetail").html(data.receiverCityCode);
+    $("#receiverAddressOrderDetail").html(data.receiverprovincename+" "+data.receivercityname+" "+data.receiverdistrictname+" "+data.receiverCityCode);
     $("#patientNameOrderDetail").html(data.patientName);
     $("#patientHPBedNoOrderDetail").html(data.patientHPBedNo);
     $("#patientHPNoOrderDetail").html(data.patientHPNo);
@@ -98,6 +101,7 @@ var successGetOrderDetail=function (data) {
 
 }
 var getConsignmentEventDetail=function () {
+    // 获取运单跟踪记录API
     var URL = ApiPath.TMSApi.dispatchingManagement.consignmentConsignmentEventDetail;
     var requestData = {
         consignmentNo:pram[0].consignmentNo
@@ -107,11 +111,34 @@ var getConsignmentEventDetail=function () {
 var successGetConsignmentEventDetail=function (data) {
     rackRecordList=data;
 }
+var getAssessmentDetailsDetail=function () {
+    //获取评价详情API
+    var URL = ApiPath.TMSApi.dispatchingManagement.consignmentQueryEvaluate;
+    console.log(pram[0].consignmentNo)
+    var requestData = {
+        consignmentNo:pram[0].consignmentNo
+    };
+    ajaxHelp.AjaxPost(URL,requestData,successGetAssessmentDetailsDetail,null);
+}
+var successGetAssessmentDetailsDetail=function (data) {
+     //赋值
+     $("#dvvcode1nameOrderDetail").html(data.evaluationItemValueName1);
+     $("#EvaluationItemRemark1OrderDetail").html(data.evaluationItemRemark1);
+    if(data.attachment.length!=0){
+        $('.imgViewCO').html('<img src="' + data.attachment[0].url + '" alt="" width="150" height="150" />')
+    }
+    $("#dvvcode2nameOrderDetail").html(data.evaluationItemValueName2);
+    $("#dvvcode3nameOrderDetail").html(data.evaluationItemValueName3);
+    $("#dvvcode4nameOrderDetail").html(data.evaluationItemValueName4);
+    $("#dvvcode5nameOrderDetail").html(data.evaluationItemValueName5);
+}
 var orderDetailLoad=function () {
     //获取运单详情
     orderDetailShow();
     getOrderDetail();
     getConsignmentEventDetail();
+    getAssessmentDetailsDetail();
+    $("#consignmentNoDetailsShow").html(pram[0].consignmentNo+" "+ pram[0].statusname)
 }
 
 $("#trackRecordList").datagrid({

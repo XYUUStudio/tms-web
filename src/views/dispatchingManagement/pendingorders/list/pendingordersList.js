@@ -51,13 +51,7 @@ var successPendingordersListDoSearch = function (resultInfo) {
         total:resultInfo.total,
         selected:true,
         onSelectPage:function(pageNumber, pageSize){
-            searchPendingOrders(pageNumber, pageSize);
-        },
-        onChangePageSize:function(pageNumber, pageSize){
-            var pageSize= $("#pendingOrdersPagination").combobox('getValues')
-            pageNumber=resultInfo.pageNumber;
-            pageSize=resultInfo.pageSize;
-            searchPendingOrders(pageNumber, pageSize);
+            loadPendingordersList(pageNumber, pageSize);
         },
     });
 }
@@ -66,6 +60,10 @@ var successPendingordersListDoSearch = function (resultInfo) {
 var getPendingOrdersDate=function () {
     var row = $("#pendingOrdersList").datagrid('getSelections');
     return (row)
+}
+var sendClose=function () {
+    //关闭菜单
+    $("#tabs").tabs('close','待接单');
 }
 var sendOrders=function () {
     //编辑数据
@@ -101,6 +99,5 @@ $("#pendingOrdersList").datagrid({
 });
 //载入页执行  列表、时间函数
 var userOrgcode = $.cookie("userOrgcode");
-
 loadPendingordersList();
 

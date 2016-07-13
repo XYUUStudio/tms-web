@@ -26,13 +26,8 @@ var successDispatchList = function (resultInfo) {
         total:resultInfo.total,
         selected:true,
         onSelectPage:function(pageNumber, pageSize){
-            loadData(pageNumber, pageSize);
-        },
-        onChangePageSize:function(pageNumber, pageSize){
-            var pageSize= $("#dispatchListPagination").combobox('getValues')
-            pageNumber=resultInfo.pageNumber;
-            pageSize=resultInfo.pageSize;
-            loadData(pageNumber, pageSize);
+            // loadData(pageNumber, pageSize);
+            loadDispatchList(pageNumber, pageSize);
         },
     });
 }
@@ -73,7 +68,7 @@ var dispatchCancel=function () {
     }
 }
 var dispatchClose=function () {
-    $("#tabs").tabs('close','调度列表');
+    $("#tabs").tabs('close','调度');
 }
 var dispatchReassign=function () {
     //改派订单

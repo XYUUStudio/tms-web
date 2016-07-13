@@ -20,9 +20,46 @@
             <span  id="reqDeliveryDateDispatchCancel"> </span>
         </div>
     </div>
+    <div class="control-group "style="text-align: left;margin-top: 10px">
+        <label>
+            <span style="color:#f79449 ;">基本信息</span>
+            <span style="color:#f79449 ;margin-left:20px" id="consignmentNoDispatchCancel"></span>
+        </label>
+    </div>
+    <div class="cut-off-rule " >
+    </div>
+    <div class="control-view ">
+        <label>
+            <span>下单公司：</span>
+            <a id="ceorgnameDispatchCancel"></a>
+        </label>
+        <label>
+            <span>物流中心：</span>
+            <a id="lcorgnameDispatchCancel"></a>
+        </label>
+        <label>
+            <span>下单时间：</span>
+            <a  id="createDateDispatchCancel" ></a>
+        </label>
+    </div>
+    <div class="control-view ">
+        <label>
+            <span>司机：</span>
+            <a id="pickupdriverbynameDispatchCancel"></a>
+        </label>
+        <label>
+            <span>调度：</span>
+            <a id="dispatchbynameDispatchCancel"></a>
+        </label>
+        <label>
+            <span>下单人：</span>
+            <a id="submitbynameDispatchCancel"></a>
+        </label>
+    </div>
+
     <div class="control-group "style="text-align: left;margin-top: 60px">
         <label>
-            <span style="color:#f79449;">寄件人信息</span>
+            <span style="color:#f79449;">寄件信息</span>
         </label>
     </div>
     <div class="cut-off-rule " >
@@ -43,13 +80,13 @@
     </div>
     <div class="control-view ">
         <label style="width:67%">
-            <span>寄件地址：</span>
+            <span>地址：</span>
             <a id="senderAddressDispatchCancel"></a>
         </label>
     </div>
     <div class="control-group "style="text-align: left;margin-top: 60px">
         <label>
-            <span style="color:#f79449 ;">收件人信息</span>
+            <span style="color:#f79449 ;">收件信息</span>
         </label>
     </div>
     <div class="cut-off-rule " >
@@ -70,7 +107,7 @@
     </div>
     <div class="control-view ">
         <label>
-            <span>收件地址：</span>
+            <span>地址：</span>
            <a id="receiverAddressDispatchCancel"></a>
         </label>
         <label>
@@ -88,14 +125,14 @@
     <div class="control-view ">
         <label style="width: 100%">
             <span>取消原因：</span>
-            <select  id="cancelReasonDispatchCancel" style="width: 200px" >
+            <select  id="cancelReasonDispatchCancel" style="width: 200px" onchange="changeRemarkDispatchCancel()">
         </select>
         </label>
     </div>
     <div class="control-view ">
-        <label style="width: 100%">
+        <label style="width: 60%">
             <span> 备注：</span>
-            <input  id="remarkDispatchCancel" style="width: 28%"/>
+            <textarea style="width: 350px" id="remarkDispatchCancel"></textarea>
         </label>
     </div>
     <div class="control-view ">

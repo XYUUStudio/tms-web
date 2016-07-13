@@ -50,8 +50,19 @@
 .easyui-accordion ul li{ padding:0px;}
 .easyui-accordion ul li div{margin:2px 0px;padding-left:10px;padding-top:2px;text-align: left;border:0;}
 .easyui-accordion ul li div img{margin:4px ;vertical-align: middle; border: 0;width: 24px;height: 24px}
-
-
+.l-btn-text{
+    margin-left:30px ;
+}
+/*.menu-active {
+    border-color: #0b93d5;
+    color: #fff;
+    background: #4d4d4d;
+}
+.menu-item{
+    color: #fff;
+    background:#4d4d4d ;
+    border: none;
+}*/
 /*底部区域样式*/
 .buttom-layout {
     height:30px;
@@ -95,7 +106,7 @@
 .l-btn{color: #fff;}
 .accordion .accordion-header{ background: none;}
 .panel-header, .panel-body{ border: none;}
-.accordion .accordion-header-selected{ background: #00a1b7; }
+.accordion .accordion-header-selected{ background: #f79449; }
 .panel-title{
     font-size: 14px;
     font-weight: bold;
@@ -106,6 +117,49 @@
 }
 .panel-header{ background: #037e8f;}
 /*左侧导航结束*/
+
+/*内容框样式*/
+.tabs{
+    height: 26px;
+    background:#fff;
+
+}
+.tabs li.tabs-selected a.tabs-inner {
+    color: #666;
+}
+/*.tabs-header, .tabs-scroller-left, .tabs-scroller-right, .tabs-tool, .tabs, .tabs-panels, .tabs li a.tabs-inner, .tabs li.tabs-selected */
+a.tabs-inner, .tabs-header-bottom .tabs li.tabs-selected a.tabs-inner, .tabs-header-left .tabs li.tabs-selected
+a.tabs-inner, .tabs-header-right .tabs li.tabs-selected a.tabs-inner{ border-color:#999;}
+.tabs li.tabs-selected a.tabs-inner{
+    background:#fff;
+}
+.tabs-close{
+   background:#f79449 ;
+}
+.tabs li a.tabs-close {
+    url("../images/close.png");
+}
+.tabs li a.tabs-inner {
+    border-radius: 2px 2px 0 0;
+    border-style: solid;
+    border-width: 1px;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    margin: 0;
+    padding: 0 10px;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    background: #f79449;
+    color: #fff;
+}
+.tab-p-tool
+a:hover, .tab li
+a. tabs-close:hover,
+.tabs-scroller-voer{
+    background: #f79449;
+}
 /*刘开心修改样式*/
 .panel-body{
     background-color: #Ffffff;
@@ -128,7 +182,7 @@
     border-radius:2px;
 }
 .button{    background: #fff ;float: right;margin:16px 40px 16px 0}
-.group{ margin-left: 30px}
+.group{ margin-left: 2px}
 .button a {
     float: right;
     color: #fff;
@@ -164,7 +218,7 @@
 .datagrid-cell-c2-hpcodeName{ width: auto}
 .datagrid-header-row, .datagrid-row{ height: 32px;}
 .sear{ overflow: hidden; float: left; margin: 0; padding: 0; width: 100%;}
-.sear li{ list-style: none; margin:16px 10px 16px 10px; float: left; font-family: 微软雅黑; color: #666; }
+.sear li{ list-style: none; margin:2px 10px 2px 10px; float: left; font-family: 微软雅黑; color: #666; }
 .sear li> input{ width:  260px;height: 26px;}
 .sear li>label{
     padding-left: 3%;
@@ -174,7 +228,7 @@
     font-size:12px;
     height: 26px;
 }
-.panel-header{ background:#00a1b7; }
+.panel-header{ background:#4d4d4d; }
 .panel{overflow: hidden;
     text-align: left;
     margin: 0;
@@ -183,6 +237,13 @@
     -webkit-border-radius: 0 0 0 0;
     border-radius: 0 0 0 0;
     margin-top: -1px;
+}
+.l-btn-plain:hover {
+    background: #4d4d4d;
+    color: #f79449;
+    -moz-border-radius: 0px 0px 0px 0px;
+    -webkit-border-radius: 0px 0px 0px 0px;
+    border: none;
 }
 /*弹窗开始*/
 .tab{ margin: 0; background-color: #fff; overflow: hidden; border-bottom: 1px #e5e5e5 solid;}
@@ -232,6 +293,7 @@ input, select, textarea {
     /*border: 0px;
     border-bottom: 1px solid #ccc;*/
     border-radius: 2px;
+    font-size: 12px;
 }
 label select {
     max-width: 200px;
@@ -264,7 +326,6 @@ input[type='number'] {
 .table tbody tr {
     cursor: pointer;
 }
-
 .table-striped > tbody > tr:hover {
     background: #3498db;
     color: #fff;
@@ -420,10 +481,6 @@ input[type='number'] {
     background: #4cda60;
     box-shadow: 0 0 1px #4cda60;
 }
-/*提示样式结束*/
-
-/*提示样式开始*/
-
 /*必输样式*/
 .required {
     color: red;
@@ -524,45 +581,6 @@ input[type='number'] {
 
 }
 
-.row-fluid .widget-box .widget-content .control-group > label.Others,
-.row-fluid .widget-box .widget-content .control-group > .Vessel.Others {
-    width: 39%;
-}
-
-.row-fluid .widget-box .widget-content .control-group > label.Second,
-.row-fluid .widget-box .widget-content .control-group > .Vessel.Second {
-    width: 59%;
-}
-
-.row-fluid .widget-box .widget-content .control-group > label.All,
-.row-fluid .widget-box .widget-content .control-group > .Vessel.All {
-    width: 100%;
-}
-
-.row-fluid .widget-box .widget-content .control-group > label.All .Input,
-.row-fluid .widget-box .widget-content .control-group > .Vessel.All .Input,
-.row-fluid .widget-box .widget-content .control-group > label.Second .Input,
-.row-fluid .widget-box .widget-content .control-group > .Vessel.Second .Input {
-    width: 78%;
-}
-
-.row-fluid .widget-box .widget-content .control-group > label .Text,
-.row-fluid .widget-box .widget-content .control-group > .Vessel .Text {
-    line-height: 35px;
-    float: left;
-    font-size:12px;
-}
-
-.row-fluid .widget-box .widget-content .control-group > label .Left,
-.row-fluid .widget-box .widget-content .control-group > .Vessel .Left {
-    float: left;
-}
-
-.row-fluid .widget-box .widget-content .control-group > label .Right,
-.row-fluid .widget-box .widget-content .control-group > .Vessel .Right {
-    float: right;
-}
-
 .inp-chk {
     line-height: 20px;
 }
@@ -631,44 +649,6 @@ textarea {
     height: 20px;
     color: #999;
 }
-/*固定宽度的表格*/
-.control-group .table.fixed {
-}
-.control-group .table tbody > tr > th {
-    width:90px;
-}
-.control-group .table tbody > tr > th.No {
-    width: 60px;
-}
-.control-group .table tbody > tr > td {
-    padding: 3px 8px;
-}
-.control-group .table tbody > tr > td ul.tab-detail {
-    float:left;
-    list-style:none;
-    width:100%;
-}
-.control-group .table tbody > tr > td ul.tab-detail li {
-    float: left;
-    padding:5px;
-}
-.control-group .table tbody > tr > td ul.tab-detail li.all {
-    width: 100%;
-}
-.control-group .table tbody > tr > td ul.tab-detail li.third
-{
-    width:30%;
-}
-.control-group .table tbody > tr > td ul.tab-detail li.fourth {
-    width:39%;
-}
-.control-group .table tbody > tr > td ul.tab-detail li.sixth {
-    width:60%;
-}
-.control-group .table tbody > tr > td ul.tab-detail li.seventh {
-    width: 69%;
-}
-
 /*我的信息结束*/
 
 

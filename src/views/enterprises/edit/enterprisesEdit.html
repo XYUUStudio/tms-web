@@ -20,20 +20,20 @@
         <div class="control-group ">
             <label>
                 <span class="required">*</span>
-                注册地址：<select class="easyui-combobox"  id="corpRegProvinceCodeEnterprisesEdit" style="width: 70px ;color:#999">
+                注册地址：<select   id="corpRegProvinceCodeEnterprisesEdit" style="width: 70px ;color:#999" onchange="changeProvince(this.value)">
                 <option value="">请选择省</option>
             </select>
-                <select class="easyui-combobox"  id="corpRegCityCodeEnterprisesEdit" style="width: 70px;color:#999">
+                <select   id="corpRegCityCodeEnterprisesEdit" style="width: 70px;color:#999"  onchange="changeCity(this.value)">
                     <option value="">请选择市</option>
                 </select>
-                <select class="easyui-combobox"  id="corpRegDistrictCodeEnterprisesEdit" style="width: 70px;color:#999">
+                <select   id="corpRegDistrictCodeEnterprisesEdit" style="width: 70px;color:#999">
                     <option value="">请选择区</option>
                 </select>
             </label>
         </div>
         <div class="control-group ">
             <label>
-                <input   id="corpRegAddressEnterprisesEdit"  placeholder="请输入详细地址"/>
+                <input  type="text" id="corpRegAddressEnterprisesEdit"  placeholder="请输入详细地址" style="width: 215px"/>
             </label>
         </div>
         <div class="control-group ">

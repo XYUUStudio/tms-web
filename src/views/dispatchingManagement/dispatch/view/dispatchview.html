@@ -7,24 +7,26 @@
         <div class="navigation-cut" id="trackRecord" onclick="trackRecordShow()">
            <span id="trackRecord_Span">跟踪记录</span>
         </div>
-        <div class="navigation-cut" id="assessmentDetails" onclick="assessmentDetailsShow()">
-            <span id="assessmentDetails_Span">评价详情</span>
-        </div>
         <div class="navigation-cut" id="orderPassBox" onclick="orderPassBox()">
             <span id="orderPassBox_Span">运单周转箱</span>
         </div>
+        <div class="navigation-cut" id="assessmentDetails" onclick="assessmentDetailsShow()">
+            <span id="assessmentDetails_Span">评价详情</span>
+        </div>
+
     </div>
     <div  id="orderDetailShow" >
         <div class="control-group "style="text-align: left;margin-top: 10px">
             <label>
                 <span style="color:#f79449 ;margin-left:20px">基本信息</span>
+                <span style="color:#f79449 ;margin-left:20px" id="consignmentNoDetailsShow"></span>
             </label>
         </div>
         <div class="cut-off-rule " >
         </div>
         <div class="control-view ">
             <label>
-                <span>寄件公司：</span>
+                <span>下单公司：</span>
                 <a id="ceorgnameOrderDetail"></a>
             </label>
             <label>
@@ -32,8 +34,8 @@
                 <a id="lcorgnameOrderDetail"></a>
             </label>
             <label>
-                <span>下单人：</span>
-                <a id="submitbynameOrderDetail"></a>
+                <span>下单时间：</span>
+                <a  id="createDateOrderDetail" ></a>
             </label>
         </div>
         <div class="control-view ">
@@ -42,12 +44,12 @@
                 <a id="pickupdriverbynameOrderDetail"></a>
             </label>
             <label>
-                <span>接单人：</span>
+                <span>调度：</span>
                 <a id="dispatchbynameOrderDetail"></a>
             </label>
             <label>
-                <span>更新人：</span>
-                <a id="updatebynameOrderDetail"></a>
+                <span>下单人：</span>
+                <a id="submitbynameOrderDetail"></a>
             </label>
         </div>
         <div class="control-view ">
@@ -56,8 +58,8 @@
                 <a  id="deliverySignaturePasswordOrderDetail"></a>
             </label>
             <label>
-                <span>下单时间：</span>
-                <a  id="createDateOrderDetail" ></a>
+                <span>更新人：</span>
+                <a id="updatebynameOrderDetail"></a>
             </label>
             <label>
                 <span>更新时间：</span>
@@ -114,13 +116,13 @@
         </div>
         <div class="control-view ">
             <label style="width: 100%">
-                <span>收件地址：</span>
-                <a id="receiverCityCodeOrderDetail"></a>
+                <span>地址：</span>
+                <a id="receiverAddressOrderDetail"></a>
             </label>
         </div>
         <div class="control-group "style="text-align: left;margin-top: 40px">
             <label>
-                <span style="color:#f79449;margin-left:20px">手术信息</span>
+                <span style="color:#f79449;margin-left:20px">器械包信息</span>
             </label>
         </div>
         <div class="cut-off-rule " >
@@ -148,17 +150,17 @@
     </div>
     <div id="trackRecordShow">
         <div class="order_detai_bode">
-            <table id="trackRecordList"    toolbar="#toolbar" width="560"  style="color: #fff;" >
+            <table id="trackRecordList"    toolbar="#toolbar" width="90%"  style="color: #fff;" >
                 <!--<thead frozen="true" data-options="frozen:true">-->
                 <thead frozen="true">
                 </thead>
                 <thead>
                 <tr>
-                    <th field="eventOpDate" title="eventOpDate" align="left" width="150">日期</th>
-                    <th field="eventCodeName" title="eventCodeName" align="left" width="100">操作</th>
-                    <th field="eventOpByName" title="eventOpByName" align="left" width="100">操作人</th>
-                    <th field="eventOpByOrgName" title="eventOpByOrgName" align="left"  width="160" editor="true">操作组织</th>
-                    <th field="internalRemark1" title="internalRemark1" align="left" width="60">备注</th>
+                    <th field="eventOpDate" title="eventOpDate" align="left" >日期</th>
+                    <th field="eventCodeName" title="eventCodeName" align="left" >操作</th>
+                    <th field="eventOpByName" title="eventOpByName" align="left">操作员</th>
+                    <th field="eventOpByOrgName" title="eventOpByOrgName" align="left"  >操作组织</th>
+                    <th field="internalRemark1" title="internalRemark1" align="left" width="100">备注</th>
                 </tr>
                 </thead>
             </table>
@@ -168,48 +170,51 @@
          <div class="order_detai_bode">
              <div class="control-view ">
                  <label style="width: 100%">
-                    总体评分：
+                   <span>总体评分：</span>
                      <a id="dvvcode1nameOrderDetail"></a>
                  </label>
              </div>
              <div class="control-view">
-                 <label  style="width: 100%">
-                    评论：
-                     <a id="EvaluationItemRemark1"></a>
+                 <label  style="width:100%">
+                    <span>评论：</span>
+                     <a id="EvaluationItemRemark1OrderDetail"></a>
+                 </label>
+             </div>
+             <div class="control-view">
+                 <label  style="width:100%">
+                     <span>附图：</span>
+                     <div id="imgList">
+                         <div class="imgViewCO">
+                         </div>
+                     </div>
+                 </label>
+             </div>
+             <div class="control-view">
+                 <label  style="width:100%">
+                     物流服务评价
                  </label>
              </div>
              <div class="control-view">
                  <label  style="width: 100%">
-                     附图：
-                     <a id="senderContactNameDispatchCancel"></a>
-                 </label>
-             </div>
-             <div class="control-view">
-                 <label  style="width: 100%">
-                     物流总体评价：
-                 </label>
-             </div>
-             <div class="control-view">
-                 <label  style="width: 100%">
-                     形象：
+                     <span>形象：</span>
                      <a id="dvvcode2nameOrderDetail"></a>
                  </label>
              </div>
              <div class="control-view">
                  <label  style="width: 100%">
-                     态度：
+                     <span>态度：</span>
                      <a id="dvvcode3nameOrderDetail"></a>
                  </label>
              </div>
              <div class="control-view">
                  <label  style="width: 100%">
-                     操作规范：
+                     <span>操作规范：</span>
                      <a id="dvvcode4nameOrderDetail"></a>
                  </label>
              </div>
          <div class="control-view">
              <label  style="width: 100%">
-                 车容车貌：
+                 <span>车容车貌：</span>
                  <a id="dvvcode5nameOrderDetail"></a>
              </label>
          </div>
