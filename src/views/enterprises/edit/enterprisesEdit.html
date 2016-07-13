@@ -55,26 +55,20 @@
             </label>
         </div>
         <div class="control-group ">
-            <form>
-                营业执照正本:
-                <input type="file"id="attachmentCOEndDateEnterprisesAdd" onchange="javascript:EnterprisesEditImg(this);" style="width: 200px;border: #fff" multiple="multiple"/>
-                <button onclick="delattachmentCO()">删除</button>
-            </form>
-            <div  class="imgList"  >
-                <div class="imgEditCO">
-                </div>
-            </div>
+            <span style="text-align: right;float: left;margin-left: 110px">营业执照正本：</span>
+            <label style="display:inline-block;width: 150px;height: 150px;position:relative;text-align:center;border: 1px #999 solid">
+                <input type="file"id="attachmentCOEndDateEnterprisesAdd" onchange="javascript:EnterprisesEditImg(this);" style="display: none" />
+                <a id="imgEditCOa" target="_blank"><img id="imgEditCO"  width="150px" height="150px;"src="../images/fujianimg.png"></a>
+            </label>
+            <button onclick="delattachmentCO()">删除</button>
         </div>
         <div class="control-group ">
-            <form>
-                营业执照副本:
-                <input type="file"id="attachmentCCEndDateEnterprisesAdd" onchange="javascript:EnterprisesEditCCImg(this);" style="width: 200px;border: #fff" multiple="multiple"/>
-                <button onclick="delattachmentCC()">删除</button>
-            </form>
-            <div  class="imgList"  >
-                <div class="imgEditCC">
-                </div>
-            </div>
+            <span style="text-align: right;float: left;margin-left: 110px">营业执照副本：</span>
+            <label style="display:inline-block;width: 150px;height: 150px;position:relative;text-align:center;border: 1px #999 solid">
+                <input type="file"id="attachmentCCEndDateEnterprisesAdd" onchange="javascript:EnterprisesEditCCImg(this);" style="display: none" />
+                <a id="imgEditCCa" target="_blank"><img id="imgEditCC"  width="150px" height="150px;"src="../images/fujianimg.png"></a>
+            </label>
+            <button onclick="delattachmentCC()">删除</button>
         </div>
         <div class="control-group ">
             <div class="button"  style="margin-top: -1px; margin-right: -2px">
