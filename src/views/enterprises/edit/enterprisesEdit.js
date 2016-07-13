@@ -27,13 +27,13 @@ var successEnterprisesEdit=function (data) {
      if(data.attachmentCO.length!=0){
          if(data.attachmentCO[0].url!=""){
              attachmentCOURL=data.attachmentCO[0].url;
-             $('.imgEditCO').html('<img src="' + data.attachmentCO[0].url + '" alt="" width="150" height="150" />')
+             $('#imgEditCO').attr("src",data.attachmentCO[0].url)
          }
      }
      if(data.attachmentCC.length!=0){
          if(data.attachmentCC[0].url!=""){
              attachmentCCURL=data.attachmentCC[0].url;
-             $('.imgEditCC').html('<img src="' + data.attachmentCC[0].url + '" alt="" width="150" height="150" />')
+             $('#imgEditCC').attr("src",data.attachmentCC[0].url)
          }
      }
     getAdmDivision()
@@ -132,7 +132,8 @@ function  EnterprisesEditImg(imgData) {
     var r = new FileReader();
     r.readAsDataURL(file); //Base64
     $(r).load(function () {
-        $('.imgEditCO').html('<img src="' + r.result + '" alt="" width="150" height="150" />')
+        $('#imgEditCO').attr("src", r.result)
+        $('#imgEditCOa').attr("href", r.result)
         var URL= ApiPath.TMSApi.dictionary.upload;
         var requestData={
             file:r.result
@@ -146,7 +147,8 @@ function  EnterprisesEditCCImg(imgData) {
     var r = new FileReader();
     r.readAsDataURL(file); //Base64
     $(r).load(function () {
-        $('.imgEditCC').html('<img src="' + r.result + '" alt="" width="150" height="150" />')
+        $('#imgEditCC').attr("src", r.result)
+        $('#imgEditCCa').attr("href", r.result)
         var URL= ApiPath.TMSApi.dictionary.upload;
         var requestData={
             file:r.result
@@ -156,10 +158,12 @@ function  EnterprisesEditCCImg(imgData) {
     return true;
 }
 var delattachmentCO=function () {
-    $('.imgEditCO').html('<img src="" alt="" width="150" height="150"  border="0px" />');
+    $('#imgEditCO').attr("src","../images/fujianimg.png");
+    $('#imgEditCOa').removeAttr("href");
 };
 var delattachmentCC=function () {
-    $('.imgEditCC').html('<img src="" alt="" width="150" height="150"  border="0px" />');
+    $('#imgEditCC').attr("src","../images/fujianimg.png");
+    $('#imgEditCCa').removeAttr("href");
 };
 var successImgListCO=function (data) {
     //主图

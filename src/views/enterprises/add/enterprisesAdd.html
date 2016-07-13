@@ -47,36 +47,30 @@
         <div class="control-group ">
             <label>
                 <span class="required">*</span>
-                营业期限从:  <input type="text" class="easyui-datebox" id="corpRegBizStartDateEnterprisesAdd"   />
+                营业期限从：<input type="text" class="easyui-datebox" id="corpRegBizStartDateEnterprisesAdd"   />
             </label>
         </div>
         <div class="control-group ">
             <label>
                 <span class="required">*</span>
-                至:  <input type="text" class="easyui-datebox" id="corpRegBizEndDateEnterprisesAdd" />
+                至：<input type="text" class="easyui-datebox" id="corpRegBizEndDateEnterprisesAdd" />
             </label>
         </div>
         <div class="control-group ">
-            <form>
-                营业执照正本:
-                <input type="file"id="attachmentCOEndDateEnterprisesAdd" onchange="javascript:aaa(this);" style="width: 200px;border: #fff" multiple="multiple"/>
-                <button onclick="deleteattachmentCO()">删除</button>
-            </form>
-            <div  class="imgList"  >
-                <div class="imgListCO">
-                </div>
-            </div>
+            <span style="text-align: right;float: left;margin-left: 110px">营业执照正本：</span>
+            <label   style="display:inline-block;width: 150px;height: 150px;position:relative;text-align:center;border: 1px #999 solid">
+                <input type="file"id="attachmentCOEndDateEnterprisesAdd" onchange="javascript:aaa(this);" style="display:none" multiple="multiple"/>
+              <a id="imgListCOa" target="_blank"><img id="imgListCO"  width="150px" height="150px;"src="../images/fujianimg.png"></a>
+            </label>
+            <button onclick="deleteattachmentCO()">删除</button>
         </div>
         <div class="control-group ">
-            <form>
-                营业执照副本:
-                <input type="file"id="attachmentCCEndDateEnterprisesAdd" onchange="javascript:bbb(this);" style="width: 200px;border: #fff" multiple="multiple"/>
-                <button onclick="deleteattachmentCC">删除</button>
-            </form>
-            <div  id="imgList"  >
-                <div class="imgListCC">
-                </div>
-            </div>
+            <span style="text-align: right;float: left;margin-left: 110px">营业执照副本：</span>
+            <label style="display:inline-block;width: 150px;height: 150px;position:relative;text-align:center;border: 1px #999 solid">
+                <input type="file"id="attachmentCCEndDateEnterprisesAdd" onchange="javascript:bbb(this);" style="display:none" multiple="multiple"/>
+                <a id="imgListCCa" target="_blank"><img id="imgListCC"  width="150px" height="150px;"src="../images/fujianimg.png"></a>
+            </label>
+            <button onclick="deleteattachmentCC()">删除</button>
         </div>
         <div class="control-group ">
             <div class="button"  style="margin-top: -1px; margin-right: -2px">

@@ -13,7 +13,6 @@ var getAdmDivision=function () {
     ajaxHelp.AjaxPost(URL,requestData,successAdmDivision,null);
 }
 var successAdmDivision=function (data) {
-    console.log(data)
     $.each(data, function (index,item ) {
         $("#corpRegProvinceCodeEnterprisesAdd").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
     })
@@ -56,9 +55,10 @@ var successChangeCity=function (data) {
   function  aaa(imgData) {
       var file = imgData.files[0]; //选择上传的文件
       var r = new FileReader();
-      r.readAsDataURL(file); //Base64
+      r.readAsDataURL(file); //Bas e64
           $(r).load(function () {
-              $('.imgListCO').html('<img src="' + r.result + '" alt="" width="150" height="150" />')
+              $('#imgListCO').attr("src", r.result)
+              $('#imgListCOa').attr("href", r.result)
               var URL= ApiPath.TMSApi.dictionary.upload;
               var requestData={
                   file:r.result
@@ -72,8 +72,8 @@ function  bbb(imgData) {
     var r = new FileReader();
     r.readAsDataURL(file); //Base64
     $(r).load(function () {
-
-        $('.imgListCC').html('<img src="' + r.result + '" alt="" width="150" height="150"  />');
+        $('#imgListCC').attr("src", r.result)
+        $('#imgListCCa').attr("href", r.result)
         var URL= ApiPath.TMSApi.dictionary.upload;
         var requestData={
             file:r.result
@@ -81,12 +81,14 @@ function  bbb(imgData) {
         ajaxHelp.AjaxForm(URL,requestData,successImgListCC,null);
     });
 }
- var deleteattachmentCO=function () {
-    $('.imgListCO').html('<img src="" alt="" width="150" height="150"  border="0px" />');
+var deleteattachmentCO=function () {
+    $('#imgListCO').attr("src","../images/fujianimg.png");
+     $('#imgListCOa').removeAttr("href");
     attachmentCOURL=""
 }
 var deleteattachmentCC=function () {
-    $('.imgListCC').html('<img src="" alt="" width="150" height="150"  border="0px" />');
+    $('#imgListCC').attr("src","../images/fujianimg.png");
+    $('#imgListCCa').removeAttr("href");
     attachmentCCURL=""
 }
 var attachmentCCURL="";
