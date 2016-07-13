@@ -640,13 +640,13 @@ textarea {
     float: left;
     font-size:12px;
 }
-.control-view>a {
+.control-view>p {
     width: 30%;
     padding-top: 15px;
     float: left;
     font-size:12px;
 }
-.control-view>a>span{
+.control-view>p>span{
     width:85px;text-align: right;float: left;
 }
 .control-view>label>span{
