@@ -117,6 +117,49 @@
 }
 .panel-header{ background: #037e8f;}
 /*左侧导航结束*/
+
+/*内容框样式*/
+.tabs{
+    height: 26px;
+    background:#fff;
+
+}
+.tabs li.tabs-selected a.tabs-inner {
+    color: #666;
+}
+/*.tabs-header, .tabs-scroller-left, .tabs-scroller-right, .tabs-tool, .tabs, .tabs-panels, .tabs li a.tabs-inner, .tabs li.tabs-selected */
+a.tabs-inner, .tabs-header-bottom .tabs li.tabs-selected a.tabs-inner, .tabs-header-left .tabs li.tabs-selected
+a.tabs-inner, .tabs-header-right .tabs li.tabs-selected a.tabs-inner{ border-color:#999;}
+.tabs li.tabs-selected a.tabs-inner{
+    background:#fff;
+}
+.tabs-close{
+   background:#f79449 ;
+}
+.tabs li a.tabs-close {
+    url("../images/close.png");
+}
+.tabs li a.tabs-inner {
+    border-radius: 2px 2px 0 0;
+    border-style: solid;
+    border-width: 1px;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    margin: 0;
+    padding: 0 10px;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    background: #f79449;
+    color: #fff;
+}
+.tab-p-tool
+a:hover, .tab li
+a. tabs-close:hover,
+.tabs-scroller-voer{
+    background: #f79449;
+}
 /*刘开心修改样式*/
 .panel-body{
     background-color: #Ffffff;
@@ -283,7 +326,6 @@ input[type='number'] {
 .table tbody tr {
     cursor: pointer;
 }
-
 .table-striped > tbody > tr:hover {
     background: #3498db;
     color: #fff;
@@ -439,10 +481,6 @@ input[type='number'] {
     background: #4cda60;
     box-shadow: 0 0 1px #4cda60;
 }
-/*提示样式结束*/
-
-/*提示样式开始*/
-
 /*必输样式*/
 .required {
     color: red;
@@ -543,45 +581,6 @@ input[type='number'] {
 
 }
 
-.row-fluid .widget-box .widget-content .control-group > label.Others,
-.row-fluid .widget-box .widget-content .control-group > .Vessel.Others {
-    width: 39%;
-}
-
-.row-fluid .widget-box .widget-content .control-group > label.Second,
-.row-fluid .widget-box .widget-content .control-group > .Vessel.Second {
-    width: 59%;
-}
-
-.row-fluid .widget-box .widget-content .control-group > label.All,
-.row-fluid .widget-box .widget-content .control-group > .Vessel.All {
-    width: 100%;
-}
-
-.row-fluid .widget-box .widget-content .control-group > label.All .Input,
-.row-fluid .widget-box .widget-content .control-group > .Vessel.All .Input,
-.row-fluid .widget-box .widget-content .control-group > label.Second .Input,
-.row-fluid .widget-box .widget-content .control-group > .Vessel.Second .Input {
-    width: 78%;
-}
-
-.row-fluid .widget-box .widget-content .control-group > label .Text,
-.row-fluid .widget-box .widget-content .control-group > .Vessel .Text {
-    line-height: 35px;
-    float: left;
-    font-size:12px;
-}
-
-.row-fluid .widget-box .widget-content .control-group > label .Left,
-.row-fluid .widget-box .widget-content .control-group > .Vessel .Left {
-    float: left;
-}
-
-.row-fluid .widget-box .widget-content .control-group > label .Right,
-.row-fluid .widget-box .widget-content .control-group > .Vessel .Right {
-    float: right;
-}
-
 .inp-chk {
     line-height: 20px;
 }
@@ -650,44 +649,6 @@ textarea {
     height: 20px;
     color: #999;
 }
-/*固定宽度的表格*/
-.control-group .table.fixed {
-}
-.control-group .table tbody > tr > th {
-    width:90px;
-}
-.control-group .table tbody > tr > th.No {
-    width: 60px;
-}
-.control-group .table tbody > tr > td {
-    padding: 3px 8px;
-}
-.control-group .table tbody > tr > td ul.tab-detail {
-    float:left;
-    list-style:none;
-    width:100%;
-}
-.control-group .table tbody > tr > td ul.tab-detail li {
-    float: left;
-    padding:5px;
-}
-.control-group .table tbody > tr > td ul.tab-detail li.all {
-    width: 100%;
-}
-.control-group .table tbody > tr > td ul.tab-detail li.third
-{
-    width:30%;
-}
-.control-group .table tbody > tr > td ul.tab-detail li.fourth {
-    width:39%;
-}
-.control-group .table tbody > tr > td ul.tab-detail li.sixth {
-    width:60%;
-}
-.control-group .table tbody > tr > td ul.tab-detail li.seventh {
-    width: 69%;
-}
-
 /*我的信息结束*/
 
 
@@ -1013,7 +974,7 @@ textarea {
 .content_id{margin:20px 20px 0 20px;}
 .content_left{width: 460px;margin-left: 30px;float: left}
 .content_right{width: 560px;height: 380px ;float: left;display: inline ;background-image: url("../images/yangben.png"); background-repeat: no-repeat;}
-.imgListCO{margin-left: 160px;border: 1px;box-shadow: #999;background: #fff  }
+/*.imgListCO{margin-left: 160px;border: 1px;box-shadow: #999;background: #fff  }*/
 .imgListCC{margin-left: 160px;border: 1px;box-shadow: #999;;background: #fff }
 .imgEditCO{margin-left: 160px;border: 1px;box-shadow: #999;background: #fff  }
 .imgEditCC{margin-left: 160px;border: 1px;box-shadow: #999;;background: #fff }

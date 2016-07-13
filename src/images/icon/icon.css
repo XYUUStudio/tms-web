@@ -1,0 +1,240 @@
+﻿
+
+
+
+/*我的首页*/
+.tms-wed-i-tongyong {
+
+    background: url(../icon/sy.png) no-repeat ;
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+}
+
+/*调度管理*/
+.tms-wed-i-diaodu{
+    background:url(../icon/dd.png) no-repeat;
+    width: 20px;
+    height:20px;
+    display: inline-block;
+}
+    /*定位信息*/
+
+    /*我的首页*/
+
+    .tms-wed-i-tongyong.tms-web-shouye{
+        background-position: -2px 0;
+
+    }
+
+    /*客户管理*/
+   .tms-wed-i-tongyong.tms-web-kehu {
+        background-position: -30px 0;
+    }
+
+    /*司机管理*/
+    .tms-wed-i-tongyong.tms-web-siji {
+        background-position: -52px 0;
+    }
+
+    /*调度管理*/
+   .tms-wed-i-tongyong.tms-web-diaodu{
+        background-position: -80px 0;
+    }
+
+    /*运单管理*/
+   .tms-wed-i-tongyong.tms-web-yundan{
+        background-position: -100px 0;
+    }
+
+   /*监控管理*/
+   .tms-wed-i-tongyong.tms-web-jiankong{
+        background-position: -126px 0;
+    }
+
+	/*个人中心*/
+   .tms-wed-i-tongyong.tms-web-geren{
+        background-position: -200px 0;
+  }
+
+
+    /*注销登录*/
+   .tms-wed-i-tongyong.tms-web-zhuxiao {
+        background-position: -176px -2px;
+    }
+
+    /*修改密码*/
+    .tms-wed-i-tongyong.tms-web-xiugai {
+        background-position: -154px 0;
+    }
+	 /*右箭头*/
+    .tms-wed-i-tongyong.tms-web-right {
+        background-position: -250px 0;
+    }
+	/*上箭头*/
+    .tms-wed-i-tongyong.tms-web-top {
+        background-position: -276px 0;
+    }
+	/*关闭*/
+	.tms-wed-i-tongyong.tms-web-guanbi {
+        background-position: -226px 0;
+    }
+	.tms-wed-i-tongyong.tms-web-xinzeng
+	{background-position:-3px -26px;}
+
+	.tms-wed-i-tongyong.tms-web-jinyong
+	{background-position:-26px -26px}
+
+	/*调度管理*/
+	/*查询*/
+	 .tms-wed-i-diaodu.tms-web-chaxun{
+        background-position: -3px 0;
+
+    }
+
+    /*接单*/
+   .tms-wed-i-diaodu.tms-web-jiedan {
+        background-position: -30px -2px;
+    }
+
+    /*改单*/
+	 .tms-wed-i-diaodu.tms-web-gaidan{
+        background-position: -30px -4px;
+
+    }
+
+    /*派单*/
+   .tms-wed-i-diaodu.tms-web-paidan {
+        background-position: -52px -3px;
+    }
+    /*提交*/
+    .tms-wed-i-diaodu.tms-web-tijiao{
+        background-position: -58px -52px;
+    }
+	  /*取消*/
+    .tms-wed-i-diaodu.tms-web-quxiao{
+        background-position: -128px -3px;
+}
+	  /*编辑*/
+    .tms-wed-i-diaodu.tms-web-bianji{
+        background-position: -152px -3px;
+}
+
+
+
+    /*跟踪详情*/
+   .tms-wed-i-diaodu.tms-web-genzong{
+        background-position: -200px -3px;
+}
+
+
+    /*运单详情*/
+   .tms-wed-i-diaodu.tms-web-yundan {
+        background-position: -176px -3px;
+    }
+
+    /*评价详请*/
+    .tms-wed-i-diaodu.tms-web-pingjia {
+        background-position: -226px -3px;
+    }
+
+
+	 /*关闭*/
+    .tms-wed-i-diaodu.tms-web-guanbi {
+        background-position:-104px -3px;
+    }
+	 .tms-wed-i-diaodu.tms-web-xinzeng{
+        background-position: -6px -35px;
+    }
+
+	.tms-wed-i-diaodu.tms-web-gaipai
+	{background-position:-6px -35px;}
+
+
+
+	/*报台编辑添加详情结束*/
+
+	/*报台开始*/
+	/*搜索*/
+	 .tms-wed-i-baitai.tms-web-xinxi{
+        background-position: -3px -4px;
+
+    }
+	/*日期*/
+	 .tms-wed-i-baitai.tms-web-riqi{
+        background-position: -3px -22px;
+
+    }
+
+
+    /*新增*/
+   .tms-wed-i-baitai.tms-web-xinzeng {
+        background-position: -2px -62px;
+    }
+
+    /*导入*/
+	 .tms-wed-i-baitai.tms-web-daoru{
+        background-position: -2px -42px;
+
+    }
+
+    /*编辑*/
+   .tms-wed-i-baitai.tms-web-bianji{
+        background-position: -2px -86px;
+    }
+    /*详情*/
+    .tms-wed-i-baitai.tms-web-xiangqing {
+        background-position: -4px -110px;
+    }
+
+
+
+	/*报台结束*/
+
+
+		/*医疗追溯开始*/
+	/*信息*/
+	 .tms-wed-i-zhuisu.tms-web-xinxi{
+        background-position: -3px -4px;
+
+    }
+	/*供货*/
+	 .tms-wed-i-zhuisu.tms-web-gonghuo{
+        background-position: -3px -28px;
+
+    }
+
+
+    /*生产*/
+   .tms-wed-i-zhuisu.tms-web-shengchan{
+        background-position: -2px -54px;
+    }
+
+    /*手术*/
+	 .tms-wed-i-zhuisu.tms-web-shoushu{
+        background-position: -2px -76px;
+
+    }
+
+    /*信息*/
+   .tms-wed-i-zhuisu.tms-web-xinxis{
+        background-position: -30px -4px;
+    }
+    /*供货*/
+    .tms-wed-i-zhuisu.tms-web-gonghuos {
+        background-position:-30px -30px;
+    }
+	 /*生产*/
+	.tms-wed-i-zhuisu.tms-web-shengchans {
+        background-position:-30px -50px;
+    }
+	/*手术*/
+	.tms-wed-i-zhuisu.tms-web-shoushus {
+        background-position:-30px -76px;
+    }
+
+
+	/*医疗追溯结束*/
+
+
+
