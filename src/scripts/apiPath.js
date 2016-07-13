@@ -67,7 +67,9 @@ var ApiPath = {
             //图片上传
             upload: AppConfig.TMSBasePath + "/upload/basedata",
             //司机
-            getPickupDriverList: AppConfig.TMSBasePath + "/driver/search"
+            getPickupDriverList: AppConfig.TMSBasePath + "/driver/search",
+            // 根据有效区域进行选择地址
+            getAdmdivisionValidatedSearch: AppConfig.TMSBasePath +"/systemData/admdivision/validatedSearch"
         },
         systemData:{
             //运单状态

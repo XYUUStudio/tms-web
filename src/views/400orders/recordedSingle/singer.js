@@ -29,7 +29,7 @@ var successAppendTimeSingerSelec=function (data) {
 }
 var senderProvinceCodeSingerSelect=function () {
     //寄件省份下拉框
-    var URL = ApiPath.TMSApi.dictionary.admDivisionInfoSearch;
+    var URL = ApiPath.TMSApi.dictionary.getAdmdivisionValidatedSearch;
     var requestData = {
         level:1,
         parentDivCode:""
@@ -37,6 +37,7 @@ var senderProvinceCodeSingerSelect=function () {
     ajaxHelp.AjaxPost(URL,requestData,successSenderCityCodeSinger,null);
 }
 var successSenderCityCodeSinger=function (data) {
+    console.log(data)
     $.each(data, function (index,item ) {
         $("#senderProvinceCodeSinger").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
     })
@@ -195,7 +196,8 @@ var SingerSubmitAdd=function () {
             patientName:$("#patientNameSinger").val(),
             patientHPBedNo:$("#patientHPBedNoSinger").val(),
             customerSpecialNote:$("#customerSpecialNoteSinger").val(),
-            patientHPNo:$("#patientHPNoSinger").val()
+            patientHPNo:$("#patientHPNoSinger").val(),
+            consignmentSource:"TEL"
         };
         ajaxHelp.AjaxPost(URL,requestData,successSingerSubmitAdd,null);
     }

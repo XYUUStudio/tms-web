@@ -3,9 +3,9 @@
  */
 var ajaxHelp = new AjaxHelp();
 var pram=getPendingOrdersDate();
-console.log(pram[0])
+console.log(pram[0].senderCompany)
 var  getVulereceiving=function () {
-      $("#senderCompanyDispatch").html(pram[0].senderCompany);
+    $("#senderCompanyDispatch").html(pram[0].senderCompany);
     $("#receiverCompanyDispatch").html(pram[0].receiverCompany);
     $("#reqDeliveryDateDispatch").html(pram[0].reqDeliveryDate+" "+"前送达");
     $("#senderContactNameDispatch").html(pram[0].senderContactName);
@@ -35,8 +35,8 @@ var getPickupDriverId=function () {
 }
 var successGetPickupDriverId=function (data) {
     console.log(data)
-     $.each(data.rows,function (index,item) {
-         $("#pickupDriverIdDispatch").append(" <option value='"+item.userId+"' >"+item.userName+"</option>")
+     $.each(data,function (index,item) {
+         $("#pickupDriverIdDispatch").append(" <option value='"+item.userId+"' >"+item.lCName+"</option>")
      })
     getVulereceiving();
 }

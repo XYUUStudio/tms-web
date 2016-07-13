@@ -34,7 +34,6 @@ var getPickupDriverId=function () {
     $("#dispatchbynameReDispatch").html(pram[0].dispatchbyname);
     $("#submitbynameReDispatch").html(pram[0].submitbyname)
 
-
     var URL = ApiPath.TMSApi.dictionary.getPickupDriverList;
     var requestData = {
         orgCode:userOrgcode
@@ -43,8 +42,8 @@ var getPickupDriverId=function () {
 }
 var successGetPickupDriverId=function (data) {
     console.log(data)
-    $.each(data.rows,function (index,item) {
-        $("#pickupDriverIdReDispatch").append(" <option value='"+item.userId+"' >"+item.userName+"</option>")
+    $.each(data,function (index,item) {
+        $("#pickupDriverIdReDispatch").append(" <option value='"+item.userId+"' >"+item.lCName+"</option>")
     })
     getVuleToPickup();
 }

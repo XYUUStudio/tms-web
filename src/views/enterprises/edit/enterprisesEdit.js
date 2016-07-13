@@ -4,6 +4,8 @@
 var ajaxHelp = new AjaxHelp();
 var pram=getEnterprisesDate();
 var EnterprisesInfo=new  Object();
+var attachmentCCURL="";
+var attachmentCOURL="";
 var getEnterprisesInfo=function () {
     var URL = ApiPath.TMSApi.businessData.enterprisesDetail;
     var requestData={
@@ -24,11 +26,13 @@ var successEnterprisesEdit=function (data) {
         $("#corpRegBizEndDateEnterprisesEdit").val(data.corpRegBizEndDate);
      if(data.attachmentCO.length!=0){
          if(data.attachmentCO[0].url!=""){
+             attachmentCOURL=data.attachmentCO[0].url;
              $('.imgEditCO').html('<img src="' + data.attachmentCO[0].url + '" alt="" width="150" height="150" />')
          }
      }
      if(data.attachmentCC.length!=0){
          if(data.attachmentCC[0].url!=""){
+             attachmentCCURL=data.attachmentCC[0].url;
              $('.imgEditCC').html('<img src="' + data.attachmentCC[0].url + '" alt="" width="150" height="150" />')
          }
      }
@@ -153,21 +157,17 @@ function  EnterprisesEditCCImg(imgData) {
 }
 var delattachmentCO=function () {
     $('.imgEditCO').html('<img src="" alt="" width="150" height="150"  border="0px" />');
-    attachmentCOURL=""
 };
 var delattachmentCC=function () {
     $('.imgEditCC').html('<img src="" alt="" width="150" height="150"  border="0px" />');
-    attachmentCCURL=""
 };
-var attachmentCCURL="";
-var attachmentCOURL="";
 var successImgListCO=function (data) {
     //主图
-    attachmentCCURL=data.url;
+    attachmentCOURL=data.url;
 };
 var successImgListCC=function (data) {
     //附图
-    attachmentCOURL=data.url
+    attachmentCCURL=data.url
 };
 //必填验证
 var verification=function () {
