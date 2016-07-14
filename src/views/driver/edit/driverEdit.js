@@ -21,6 +21,7 @@ var getInfoDriverEdit = function () {
 };
 var successGetInfoDriverEdit = function (responseData) {
     //赋值
+    getProvinceDriverEdit();//获取省下拉框
     driverInfo = responseData;
     $("#loginNameDriverEdit").html(responseData.loginName);//账户名
     $("#logCenterDriverEdit").html(responseData.lCName);//所属物流中心
@@ -93,7 +94,7 @@ var successGetProvinceDriverEdit = function (data) {
             $("#provinceDriverEdit").find("option[value='" + item.divCode + "']").attr("selected", true)
         }
     });
-    getCityDriverEdit();
+        getCityDriverEdit();
 };
 //获取市下拉框
 var getCityDriverEdit = function () {
@@ -142,15 +143,14 @@ var changeProvinceDriverEdit = function (data) {
 };
 var successChangeProvinceDriverEdit = function (data) {
     $("#cityDriverEdit").empty();
-    $("#cityDriverEdit").prepend("<option value=''>请选择</option>"); //为Select插入一个Option(第一个位置)
     $("#districtDriverEdit").empty();
-    $("#districtDriverEdit").prepend("<option value=''>请选择</option>"); //为Select插入一个Option(第一个位置)
-    $.each(data, function (index, item) {
-        $("#cityDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>");
-        if (driverInfo.residentCityCode == item.divCode) {
-            $("#cityDriverEdit").find("option[value='" + item.divCode + "']").attr("selected", true)
-        }
-    });
+
+        $.each(data, function (index, item) {
+            $("#cityDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>");
+            //if (driverInfo.residentCityCode == item.divCode) {
+            //    $("#cityDriverEdit").find("option[value='" + item.divCode + "']").attr("selected", true)
+            //}
+        });
 };
 //修改区
 var changeCityDriverEdit = function (data) {
@@ -163,12 +163,12 @@ var changeCityDriverEdit = function (data) {
 };
 var successChangeCityDriverEdit = function (data) {
     $("#districtDriverEdit").empty();
-    $("#districtDriverEdit").prepend("<option value=''>请选择</option>"); //为Select插入一个Option(第一个位置)
+    $("#districtDriverEdit").prepend("<option value='9999'>请选择</option>"); //为Select插入一个Option(第一个位置)
     $.each(data, function (index, item) {
         $("#districtDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>");
-        if (driverInfo.residentDistrictCode == item.divCode) {
-            $("#districtDriverEdit").find("option[value='" + item.divCode + "']").attr("selected", true)
-        }
+        //if (driverInfo.residentDistrictCode == item.divCode) {
+        //    $("#districtDriverEdit").find("option[value='" + item.divCode + "']").attr("selected", true)
+        //}
     });
 };
 
@@ -366,12 +366,30 @@ var delCommercialInsurancePositiveDriverEdit = function () {
 var submitDriverEdit = function () {
     var URL = ApiPath.TMSApi.businessData.driverEdit;
     //时间对象格式化
-    var driverLicEffectiveDate = $("#driverLicEffectiveDateEndDriverEdit").datebox("getValue") + " " + "23:59:59";//驾驶证有效期
-    var driverLicIssueDate = $("#driverLicIssueDateDriverEdit").datebox("getValue") + " " + "23:59:59";//驾驶证发证日期
-    var vehicleLicIssueDate = $("#vehicleLicIssueDateDriverEdit").datebox("getValue") + " " + "23:59:59";//行驶证发证日期
-    var vehicleLicLastestInspEffDate = $("#vehicleLicLastestInspEffEndDateDriverEdit").datebox("getValue") + " " + "23:59:59";//行驶证年检有效日期
-    var compulsoryInsuranceEffectiveDate = $("#compulsoryInsuranceEffectiveEndDateDriverEdit").datebox("getValue") + " " + "23:59:59";//交强险有效期
-    var commercialInsuranceEffectiveDate = $("#commercialInsuranceEffectiveEndDateDriverEdit").datebox("getValue") + " " + "23:59:59";//商业险有效期
+    var driverLicEffectiveDate = $("#driverLicEffectiveDateEndDriverEdit").datebox("getValue");//驾驶证有效期
+    if ($("#driverLicEffectiveDateEndDriverEdit").datebox("getValue") != "") {
+        driverLicEffectiveDate = driverLicEffectiveDate +" "+ "23:59:59";
+    }
+    var driverLicIssueDate = $("#driverLicIssueDateDriverEdit").datebox("getValue");//驾驶证发证日期
+    if ($("#driverLicIssueDateDriverEdit").datebox("getValue")!="") {
+        driverLicIssueDate = driverLicIssueDate +" "+"23:59:59";
+    }
+    var vehicleLicIssueDate = $("#vehicleLicIssueDateDriverEdit").datebox("getValue");//行驶证发证日期
+    if ($("#vehicleLicIssueDateDriverEdit").datebox("getValue") != "") {
+        vehicleLicIssueDate = vehicleLicIssueDate+" "+ "23:59:59";
+    }
+    var vehicleLicLastestInspEffDate = $("#vehicleLicLastestInspEffEndDateDriverEdit").datebox("getValue");//行驶证年检有效日期
+    if ($("#vehicleLicLastestInspEffEndDateDriverEdit").datebox("getValue") != "") {
+        vehicleLicLastestInspEffDate = vehicleLicLastestInspEffDate+" "+ "23:59:59";
+    }
+    var compulsoryInsuranceEffectiveDate = $("#compulsoryInsuranceEffectiveEndDateDriverEdit").datebox("getValue");//交强险有效期
+    if ($("#compulsoryInsuranceEffectiveEndDateDriverEdit").datebox("getValue") != "") {
+        compulsoryInsuranceEffectiveDate = compulsoryInsuranceEffectiveDate +" "+ "23:59:59";
+    }
+    var commercialInsuranceEffectiveDate = $("#commercialInsuranceEffectiveEndDateDriverEdit").datebox("getValue");//商业险有效期
+    if ($("#commercialInsuranceEffectiveEndDateDriverEdit").datebox("getValue")!="") {
+        commercialInsuranceEffectiveDate = commercialInsuranceEffectiveDate +" "+ "23:59:59";
+    }
     var requestData = {
         userId: rowData[0].userId,
         userName: $("#userNameDriverEdit").val(),//姓名
@@ -461,100 +479,13 @@ var submitDriverEdit = function () {
         $.messager.alert("提示", "请输入驾驶证号！", "error");
         return;
     }
-    //if (requestData.roadFrtQCertNo == null || requestData.roadFrtQCertNo == "") {
-    //    $.messager.alert("提示", "请输入从业资格证号！", "error");
-    //    return;
-    //}
-    //if (requestData.driverLicEffectiveDateEnd.trim() == "23:59:59") {
-    //    $.messager.alert("提示", "请输入驾驶证有效期！", "error");
-    //    return;
-    //}
-    //if (requestData.driverLicIssueDate.trim() == "23:59:59") {
-    //    $.messager.alert("提示", "请输入驾驶证发证日期！", "error");
-    //    return;
-    //}
-    //if (driverInfo.driverLicPositive == null || driverInfo.driverLicPositive == "") {
-    //    $.messager.alert("提示", "请上传驾驶证！", "error");
-    //    return;
-    //}
+
     if (requestData.plateNo == null || requestData.plateNo == "") {
         $.messager.alert("提示", "请输入车牌号！", "error");
         return;
     }
-    //if (requestData.vehicleLicSpecification == null || requestData.vehicleLicSpecification == "") {
-    //    $.messager.alert("提示", "请输入车型！", "error");
-    //    return;
-    //}
-    //if (requestData.vehicleLicIssueDate.trim() == "23:59:59") {
-    //    $.messager.alert("提示", "请输入行驶证发证日期！", "error");
-    //    return;
-    //}
-    //if (requestData.vehicleLicLastestInspEffEndDate.trim() == "23:59:59") {
-    //    $.messager.alert("提示", "请输入行驶证年检有效日期！", "error");
-    //    return;
-    //}
-    //if (requestData.vehicleCapacity == null || requestData.vehicleCapacity == "") {
-    //    $.messager.alert("提示", "请输入车辆容积！", "error");
-    //    return;
-    //}
-    //if (requestData.vehicleOPCertNo == null || requestData.vehicleOPCertNo == "") {
-    //    $.messager.alert("提示", "请输入营运证号！", "error");
-    //    return;
-    //}
-    //if (requestData.vehicleLength == null || requestData.vehicleLength == "" ||
-    //    requestData.vehicleWidth == null || requestData.vehicleWidth == "" ||
-    //    requestData.vehicleHeight == null || requestData.vehicleHeight == "") {
-    //    $.messager.alert("提示", "请输入车辆尺寸！", "error");
-    //    return;
-    //}
-    //if (requestData.vehicleOwnerType == null || requestData.vehicleOwnerType == "") {
-    //    $.messager.alert("提示", "请输入车辆所属！", "error");
-    //    return;
-    //}
-    //if (driverInfo.vehicleLicPositive == null || requestData.vehicleLicPositive == "") {
-    //    $.messager.alert("提示", "请上传行驶证！", "error");
-    //    return;
-    //}
-    //if (requestData.compulsoryInsuranceCompany == null || requestData.compulsoryInsuranceCompany == "") {
-    //    $.messager.alert("提示", "请输入交强险公司！", "error");
-    //    return;
-    //}
-    //if (requestData.compulsoryInsuranceDocNo == null || requestData.compulsoryInsuranceDocNo == "") {
-    //    $.messager.alert("提示", "请输入交强险单号！", "error");
-    //    return;
-    //}
-    //if (requestData.compulsoryInsuranceEffectiveEndDate.trim() == "23:59:59") {
-    //    $.messager.alert("提示", "请输入交强险有效期！", "error");
-    //    return;
-    //}
-    //if (requestData.compulsoryInsuranceAmt == null || requestData.compulsoryInsuranceAmt == "") {
-    //    $.messager.alert("提示", "请输入交强险金额！", "error");
-    //    return;
-    //}
-    //if (driverInfo.compulsoryInsurancePositive == null || driverInfo.compulsoryInsurancePositive == "") {
-    //    $.messager.alert("提示", "请上传交强险保单！", "error");
-    //    return;
-    //}
-    //if (requestData.commercialInsuranceCompany == null || requestData.commercialInsuranceCompany == "") {
-    //    $.messager.alert("提示", "请输入商业险公司！", "error");
-    //    return;
-    //}
-    //if (requestData.commercialInsuranceDocNo == null || requestData.commercialInsuranceDocNo == "") {
-    //    $.messager.alert("提示", "请输入商业险单号！", "error");
-    //    return;
-    //}
-    //if (requestData.commercialInsuranceEffectiveEndDate.trim() == "23:59:59") {
-    //    $.messager.alert("提示", "请输入商业险有效期！", "error");
-    //    return;
-    //}
-    //if (requestData.commercialInsuranceAmt == null || requestData.commercialInsuranceAmt == "") {
-    //    $.messager.alert("提示", "请输入商业险金额！", "error");
-    //    return;
-    //}
-    //if (driverInfo.commercialInsurancePositive == null || driverInfo.commercialInsurancePositive == "") {
-    //    $.messager.alert("提示", "请上传商业险保单！", "error");
-    //    return;
-    //}
+
+    console.log(requestData)
     ajaxHelp.AjaxPost(URL, requestData, successSubmitDriverAdd, null);
 };
 var successSubmitDriverAdd = function () {
@@ -572,7 +503,99 @@ var closeDriverEdit = function () {
 
 
 getInfoDriverEdit();//获取司机信息
-getProvinceDriverEdit();//获取省下拉框
+
 getVehicleOwnerDriverEdit();//获取车辆所属下拉框
 getCompulsoryInsuranceCompanyDriverEdit();//获取交强险保险公司下拉框
 getCmmercialInsuranceCompanyDriverEdit();//获取商业险保险公司下拉框
+
+//if (requestData.roadFrtQCertNo == null || requestData.roadFrtQCertNo == "") {
+//    $.messager.alert("提示", "请输入从业资格证号！", "error");
+//    return;
+//}
+//if (requestData.driverLicEffectiveDateEnd.trim() == "23:59:59") {
+//    $.messager.alert("提示", "请输入驾驶证有效期！", "error");
+//    return;
+//}
+//if (requestData.driverLicIssueDate.trim() == "23:59:59") {
+//    $.messager.alert("提示", "请输入驾驶证发证日期！", "error");
+//    return;
+//}
+//if (driverInfo.driverLicPositive == null || driverInfo.driverLicPositive == "") {
+//    $.messager.alert("提示", "请上传驾驶证！", "error");
+//    return;
+//}
+
+//if (requestData.vehicleLicSpecification == null || requestData.vehicleLicSpecification == "") {
+//    $.messager.alert("提示", "请输入车型！", "error");
+//    return;
+//}
+//if (requestData.vehicleLicIssueDate.trim() == "23:59:59") {
+//    $.messager.alert("提示", "请输入行驶证发证日期！", "error");
+//    return;
+//}
+//if (requestData.vehicleLicLastestInspEffEndDate.trim() == "23:59:59") {
+//    $.messager.alert("提示", "请输入行驶证年检有效日期！", "error");
+//    return;
+//}
+//if (requestData.vehicleCapacity == null || requestData.vehicleCapacity == "") {
+//    $.messager.alert("提示", "请输入车辆容积！", "error");
+//    return;
+//}
+//if (requestData.vehicleOPCertNo == null || requestData.vehicleOPCertNo == "") {
+//    $.messager.alert("提示", "请输入营运证号！", "error");
+//    return;
+//}
+//if (requestData.vehicleLength == null || requestData.vehicleLength == "" ||
+//    requestData.vehicleWidth == null || requestData.vehicleWidth == "" ||
+//    requestData.vehicleHeight == null || requestData.vehicleHeight == "") {
+//    $.messager.alert("提示", "请输入车辆尺寸！", "error");
+//    return;
+//}
+//if (requestData.vehicleOwnerType == null || requestData.vehicleOwnerType == "") {
+//    $.messager.alert("提示", "请输入车辆所属！", "error");
+//    return;
+//}
+//if (driverInfo.vehicleLicPositive == null || requestData.vehicleLicPositive == "") {
+//    $.messager.alert("提示", "请上传行驶证！", "error");
+//    return;
+//}
+//if (requestData.compulsoryInsuranceCompany == null || requestData.compulsoryInsuranceCompany == "") {
+//    $.messager.alert("提示", "请输入交强险公司！", "error");
+//    return;
+//}
+//if (requestData.compulsoryInsuranceDocNo == null || requestData.compulsoryInsuranceDocNo == "") {
+//    $.messager.alert("提示", "请输入交强险单号！", "error");
+//    return;
+//}
+//if (requestData.compulsoryInsuranceEffectiveEndDate.trim() == "23:59:59") {
+//    $.messager.alert("提示", "请输入交强险有效期！", "error");
+//    return;
+//}
+//if (requestData.compulsoryInsuranceAmt == null || requestData.compulsoryInsuranceAmt == "") {
+//    $.messager.alert("提示", "请输入交强险金额！", "error");
+//    return;
+//}
+//if (driverInfo.compulsoryInsurancePositive == null || driverInfo.compulsoryInsurancePositive == "") {
+//    $.messager.alert("提示", "请上传交强险保单！", "error");
+//    return;
+//}
+//if (requestData.commercialInsuranceCompany == null || requestData.commercialInsuranceCompany == "") {
+//    $.messager.alert("提示", "请输入商业险公司！", "error");
+//    return;
+//}
+//if (requestData.commercialInsuranceDocNo == null || requestData.commercialInsuranceDocNo == "") {
+//    $.messager.alert("提示", "请输入商业险单号！", "error");
+//    return;
+//}
+//if (requestData.commercialInsuranceEffectiveEndDate.trim() == "23:59:59") {
+//    $.messager.alert("提示", "请输入商业险有效期！", "error");
+//    return;
+//}
+//if (requestData.commercialInsuranceAmt == null || requestData.commercialInsuranceAmt == "") {
+//    $.messager.alert("提示", "请输入商业险金额！", "error");
+//    return;
+//}
+//if (driverInfo.commercialInsurancePositive == null || driverInfo.commercialInsurancePositive == "") {
+//    $.messager.alert("提示", "请上传商业险保单！", "error");
+//    return;
+//}
