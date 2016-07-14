@@ -60,35 +60,74 @@ var submitUserEdit = function () {
         userJobDesc: $("#postUserEdit").val()//岗位
     };
     if (requestData.userName == null || requestData.userName == "") {
-        $.messager.alert("提示", "请输入姓名！", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "请输入姓名！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (requestData.userIDCard == null || requestData.userIDCard == "") {
-        $.messager.alert("提示", "请输入身份证号！", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "请输入身份证号！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (requestData.userIDCard.length != 18) {
-        $.messager.alert("提示", "请输入18位身份证号！", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "请输入18位身份证号！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (requestData.userMobile == null || requestData.userMobile == "") {
-        $.messager.alert("提示", "请输入手机号！", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "请输入手机号！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (requestData.userMobile.length != 11) {
-        $.messager.alert("提示", "请输入11位手机号！", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "请输入11位手机号！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (requestData.userEducation == null || requestData.userEducation == "") {
-        $.messager.alert("提示", "请选择学历！", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "请选择学历！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     ajaxHelp.AjaxPost(URL, requestData, successSubmitUserEdit, null);
 };
 var successSubmitUserEdit = function () {
-    alert("编辑成功!");
-    $("#tabs").tabs("close", "用户编辑");
-    loadUserList();
+    ds.dialog({
+        title: "消息提示",
+        content: "编辑成功！",
+        icon: "success.png",
+        width: "200",
+        height: "50",
+        timeout: 2
+    });
+    setTimeout(function () {
+        $("#tabs").tabs("close", "用户编辑");
+        loadUserList();
+    }, 2000)
 };
 
 

@@ -95,11 +95,16 @@ var queryDriverList = function () {
 var resetPwdDriverList = function () {
     var rowData = $("#driverList").datagrid("getSelections");
     if (!rowData || rowData == "") {
-        $.messager.alert("提示", "请选择司机!", "error");
-        return;
+        ds.dialog({
+            title: "消息提示",
+            content: "请选择司机！",
+            icon: "info.png",
+            onyes: true
+        });
+    } else {
+        $("#dialog_resetPwdDriverList").dialog("open");
+        $("#dialog_resetPwdDriverList").window("center");
     }
-    $("#dialog_resetPwdDriverList").dialog("open");
-    $("#dialog_resetPwdDriverList").window("center");
 };
 //司机列表-重置密码Dialog初始化
 $("#dialog_resetPwdDriverList").dialog({
@@ -125,23 +130,51 @@ var submitResetPwdDriverList = function () {
         userId: rowData[0].loginID
     };
     if (resetPwd == null || resetPwd == "") {
-        $.messager.alert("提示", "请输入重置密码!", "error");
+        $.messager.alert("提示", "请输入重置密码！", "error");
+        //ds.dialog({
+        //    title: "消息提示",
+        //    content: "请输入重置密码！",
+        //    icon: "info.png",
+        //    onyes: true
+        //});
         return;
     }
     if (requestData.loginPassword == null || requestData.loginPassword == "") {
-        $.messager.alert("提示", "请输入确认密码!", "error");
+        $.messager.alert("提示", "请输入确认密码！", "error");
+        //ds.dialog({
+        //    title: "消息提示",
+        //    content: "请输入确认密码！",
+        //    icon: "info.png",
+        //    onyes: true
+        //});
         return;
     }
     if (resetPwd != requestData.loginPassword) {
-        $.messager.alert("提示", "重置密码和确认密码必须一致!", "error");
+        $.messager.alert("提示", "重置密码和确认密码必须一致！", "error");
+        //ds.dialog({
+        //    title: "消息提示",
+        //    content: "重置密码和确认密码必须一致！",
+        //    icon: "info.png",
+        //    onyes: true
+        //});
         return;
     }
     ajaxHelp.AjaxPost(URL, requestData, successSubmitResetPwdDriverList, null);
 };
 var successSubmitResetPwdDriverList = function () {
-    alert("重置密码成功!");
+    $.messager.alert("提示", "重置密码成功！", "error");
     $("#dialog_resetPwdDriverList").dialog("close");
-    loadDriverList();
+    //ds.dialog({
+    //    title: "消息提示",
+    //    content: "重置密码成功！",
+    //    icon: "success.png",
+    //    width: "200",
+    //    height: "50",
+    //    timeout: 2
+    //});
+    //setTimeout(function () {
+    //    $("#dialog_resetPwdDriverList").dialog("close");
+    //}, 2000)
 };
 
 
@@ -155,7 +188,12 @@ var addDriverList = function () {
 var editDriverList = function () {
     var rowData = $("#driverList").datagrid("getSelections");
     if (!rowData || rowData == "") {
-        $.messager.alert("提示", "请选择司机!", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "请选择司机！",
+            icon: "info.png",
+            onyes: true
+        });
     } else {
         addTabHref("司机编辑", "views/driver/edit/driverEdit.html");
     }
