@@ -86,7 +86,12 @@ var AjaxException = function(){
 
     AjaxException.prototype.HttpEorr = function(data, callback) {
         /// <summary>报错处理</summary>
-        $.messager.alert('提示', "请求失败:"+data.status, "error");
+        ds.dialog({
+            title : '消息提示',
+            content :"请求失败"+" "+data.status,
+            onyes:true,
+            icon : "info.png"
+        });
         if (callback) {
             callback(data);
         }
