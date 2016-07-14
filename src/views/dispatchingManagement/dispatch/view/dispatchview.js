@@ -97,7 +97,7 @@ var successGetOrderDetail=function (data) {
     $("#patientNameOrderDetail").html(data.patientName);
     $("#patientHPBedNoOrderDetail").html(data.patientHPBedNo);
     $("#patientHPNoOrderDetail").html(data.patientHPNo);
-    $("#remarkOrderDetail").html(data.remark)
+    $("#remarkOrderDetail").html(data.customerSpecialNote)
 
 }
 var getConsignmentEventDetail=function () {

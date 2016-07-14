@@ -7,6 +7,7 @@
 var ajaxHelp = new AjaxHelp();
 var pram=dispatchList();
 var  getValueDispatcheReassign=function () {
+    console.log(pram[0])
     $("#formerPickupDriver").val(pram[0].pickupdriverbyname);
     $("#senderCompanyDispatchRe").html(pram[0].senderCompany);
     $("#receiverCompanyDispatchRe").html(pram[0].receiverCompany);
@@ -19,7 +20,7 @@ var  getValueDispatcheReassign=function () {
     $("#receiverMobileDispatchRe").val(pram[0].receiverMobile);
     $("#receiverCompanyDispatchReView").val(pram[0].receiverCompany);
     $("#receiverAddressDispatchRe").val(pram[0].receiverAddress);
-    $("#remarkDispatchRe").val(pram[0].remark)
+    $("#customerSpeciaNoteDispatchRe").val(pram[0].customerSpecialNote)
      $("#reqDeliveryDateDispatchRe").val(pram[0].reqDeliveryDate);
 }
 var getAppendTimeSingerSelect=function () {
@@ -343,12 +344,14 @@ var DispatchReSubmitAdd=function () {
             receiverDistrictCode:$("#receiverDistrictCodeDispatchRe").val(),
             receiverAddress:$("#receiverAddressDispatchRe").val(),
             reqDeliveryDate:reqDeliveryDate,
-            remark:$("#remarkDispatchRe").val()
+            customerSpecialNote:$("#customerSpeciaNoteDispatchRe").val()
         }
         ajaxHelp.AjaxPost(URL,requestData,successDispatchReSubmitAdd,null);
     }
 };
-var DispatchReSubmitClose
+var DispatchReSubmitClose=function () {
+    $("#tabs").tabs('close','改单');
+}
 var successDispatchReSubmitAdd=function (data) {
 
     ds.dialog({
