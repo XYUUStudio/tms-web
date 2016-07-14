@@ -13,11 +13,14 @@ var loadDispatchList = function(pageNumber, pageSize){
     var requestData = {
         page:pageNumber,
         rows:pageSize,
-        lcOrgCode:userOrgcode
+        lcOrgCode:userOrgcode,
+        sort:"updateDate",
+        order:"desc"
     };
     ajaxHelp.AjaxPost(URL,requestData,successDispatchList,null);
 }
 var successDispatchList = function (resultInfo) {
+    console.log(resultInfo)
     $("#dispatchList").datagrid('loadData', resultInfo);
     // var pager = $("#enterprisesList").datagrid('getPager');
     $("#dispatchListPagination").pagination({

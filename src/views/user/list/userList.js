@@ -80,6 +80,8 @@ var queryUserList = function () {
 //用户列表-重置密码
 var resetPwdUserList = function () {
     var rowData = $("#userList").datagrid("getSelections");
+    $("#resetPwdUserList").val("");
+    $("#confirmPwdUserList").val("");
     if (!rowData || rowData == "") {
         ds.dialog({
             title: "消息提示",
@@ -146,19 +148,14 @@ var submitResetPwdUserList = function () {
     ajaxHelp.AjaxPost(URL, requestData, successSubmitResetPwd, null);
 };
 var successSubmitResetPwd = function () {
-    $.messager.alert("提示", "重置密码成功！", "error");
     $("#dialog_resetPwdUserList").dialog("close");
-    //ds.dialog({
-    //    title: "消息提示",
-    //    content: "重置密码成功！",
-    //    icon: "success.png",
-    //    width: "200",
-    //    height: "50",
-    //    timeout: 2
-    //});
-    //setTimeout(function () {
-    //    $("#dialog_resetPwdUserList").dialog("close");
-    //}, 2000)
+    ds.dialog({
+       title: "消息提示",
+       content: "重置密码成功！",
+       icon: "success.png",
+       onyes: true,
+       timeout: 2
+    });
 };
 
 

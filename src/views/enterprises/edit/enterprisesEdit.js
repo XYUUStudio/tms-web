@@ -24,6 +24,7 @@ var successEnterprisesEdit=function (data) {
         $("#corpRegLegalRepEnterprisesEdit").val(data.corpRegLegalRep);
         $("#corpRegBizStartDateEnterprisesEdit").val(data.corpRegBizStartDate);
         $("#corpRegBizEndDateEnterprisesEdit").val(data.corpRegBizEndDate);
+        $("#corpRegAddressEnterprisesEdit").val(data.corpRegAddress)
      if(data.attachmentCO.length!=0){
          if(data.attachmentCO[0].url!=""){
              attachmentCOURL=data.attachmentCO[0].url;

@@ -67,7 +67,7 @@
         "group": "司机管理",
         "data": [
             {
-                "title": "司机注册管理",
+                "title": "司机注册",
                 "url": "views/driver/list/driverList.html",
                 "type": 1,
                 "jsPathList": [
@@ -75,10 +75,6 @@
                 ]
             }
         ]
-    },
-    {
-        "group": "监控管理",
-        "data": [
-        ]
     }
+
 ]

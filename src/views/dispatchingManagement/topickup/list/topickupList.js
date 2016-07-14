@@ -20,6 +20,8 @@ var loadToPickupList = function(pageNumber, pageSize){
         page:pageNumber,
         rows:pageSize,
         status:"CGSTS00060",
+        sort:"reqDeliveryDate",
+        order:"asc",
         lcOrgCode:userOrgcode
     };
     ajaxHelp.AjaxPost(URL,requestData,successToPickupList,null);
