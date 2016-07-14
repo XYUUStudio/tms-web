@@ -26,7 +26,13 @@ gulp.task('Scripts-dev', function(){
 			scripts.src + "/scripts/auth.js",
 			scripts.src + "/scripts/main.js",
 			scripts.src + "/scripts/msg.js",
-			scripts.src + "/scripts/myWebSocket.js"
+			scripts.src + "/scripts/myWebSocket.js",
+			scripts.src + "/scripts/dsdialog.js",
+			scripts.src + "/scripts/bootstrap/bootstrap.js",
+			scripts.src + "/scripts/bootstrap/bootstrap-editable.min.js",
+			scripts.src + "/scripts/bootstrap/bootstrap-timepicker.min.js",
+			scripts.src + "/scripts/bootstrap/bootstrap-wizard.js",
+			scripts.src + "/scripts/bootstrap/bootstrap-wysiwyg.js"
 		])
 		.pipe(replace('version: "dev"', 'version: "'+ version + '"'))
 		.pipe(concat('main.min.js'))
@@ -53,7 +59,13 @@ gulp.task('Scripts-test', function(){
 		scripts.src + "/scripts/auth.js",
 		scripts.src + "/scripts/main.js",
 		scripts.src + "/scripts/msg.js",
-		scripts.src + "/scripts/myWebSocket.js"
+		scripts.src + "/scripts/myWebSocket.js",
+		scripts.src + "/scripts/dsdialog.js",
+		scripts.src + "/scripts/bootstrap/bootstrap.js",
+		scripts.src + "/scripts/bootstrap/bootstrap-editable.min.js",
+		scripts.src + "/scripts/bootstrap/bootstrap-timepicker.min.js",
+		scripts.src + "/scripts/bootstrap/bootstrap-wizard.js",
+		scripts.src + "/scripts/bootstrap/bootstrap-wysiwyg.js"
 	])
 		.pipe(replace('version: "test"', 'version: "'+ version + '"'))
 		.pipe(concat('main.min.js'))
@@ -79,7 +91,13 @@ gulp.task('Scripts-production', function(){
 		scripts.src + "/scripts/auth.js",
 		scripts.src + "/scripts/main.js",
 		scripts.src + "/scripts/msg.js",
-		scripts.src + "/scripts/myWebSocket.js"
+		scripts.src + "/scripts/myWebSocket.js",
+		scripts.src + "scripts/dsdialog.js",
+		scripts.src + "/scripts/bootstrap/bootstrap.js",
+		scripts.src + "/scripts/bootstrap/bootstrap-editable.min.js",
+		scripts.src + "/scripts/bootstrap/bootstrap-timepicker.min.js",
+		scripts.src + "/scripts/bootstrap/bootstrap-wizard.js",
+		scripts.src + "/scripts/bootstrap/bootstrap-wysiwyg.js"
 	])
 		.pipe(replace('version: "production"', 'version: "'+ version + '"'))
 		.pipe(concat('main.min.js'))

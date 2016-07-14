@@ -12,15 +12,15 @@ var deploy = require('../config').deploy;
 var revisionHistory = require('../config').revisionHistory;
 
 gulp.task('Deploy-dev',function (cb) {
-    gulpSequence('Clean', ['Scripts-dev', 'Styles', 'Images'], 'Views',cb);
+    gulpSequence('Clean', ['Scripts-dev', 'Styles'], 'Views',cb);
 })
 
 gulp.task('Deploy-test',function (cb) {
-    gulpSequence('Clean', ['Scripts-test', 'Styles', 'Images'], 'Views',cb);
+    gulpSequence('Clean', ['Scripts-test', 'Styles'], 'Views',cb);
 })
 
 gulp.task('Deploy-production',function (cb) {
-    gulpSequence('Clean', ['Scripts-production', 'Styles', 'Images'], 'Views',cb);
+    gulpSequence('Clean', ['Scripts-production', 'Styles'], 'Views',cb);
 })
 
 gulp.task('Generate-history-version-dev',function () {

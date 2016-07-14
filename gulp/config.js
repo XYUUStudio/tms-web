@@ -29,7 +29,7 @@ module.exports = {
 		dist: dist + "/scripts",
 	},
 	styles:{
-		src: src + "/styles/**/*",
+		src: src + "/styles/**/*.css",
 		dist: dist + "/styles",
 		rev: tempBuild + "/rev/css"
 	},
