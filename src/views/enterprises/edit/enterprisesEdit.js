@@ -236,8 +236,16 @@ var EnterprisesSubmitEdit=function () {
     }
 };
 var successEnterprisesSubmitEdit=function () {
-    alert("提交成功！")
-    $("#tabs").tabs('close','企业编辑');
+    // alert("提交成功！")
+    ds.dialog({
+        title : '消息提示',
+        content : '提交成功！',
+        icon : "success.png",
+        width:'200',
+        height:'50',
+        timeout:2
+    });
+    setTimeout($("#tabs").tabs('close','企业编辑'),2000)
     loadEnterprisesList();
 };
 getEnterprisesInfo();
