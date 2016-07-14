@@ -51,39 +51,84 @@ var submitUserAdd = function () {
         orgCode: $("#companyUserAdd").val()//单位
     };
     if (requestData.loginName == null || requestData.loginName == "") {
-        $.messager.alert("提示", "请输入账户名！", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "请输入账户名！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (initialPwd == null || initialPwd == "") {
-        $.messager.alert("提示", "请输入初始密码！", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "请输入初始密码！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (requestData.loginPassword == null || requestData.loginPassword == "") {
-        $.messager.alert("提示", "请输入确认密码！", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "请输入确认密码！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (initialPwd != requestData.loginPassword) {
-        $.messager.alert("提示", "初始密码和确认密码必须一致！", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "初始密码和确认密码必须一致！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (requestData.role == null || requestData.role == "") {
-        $.messager.alert("提示", "请选择用户角色！", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "请选择用户角色！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (requestData.userName == null || requestData.userName == "") {
-        $.messager.alert("提示", "请输入姓名！", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "请输入姓名！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (requestData.userMobile == null || requestData.userMobile == "") {
-        $.messager.alert("提示", "请输入手机号！", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "请输入手机号！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (requestData.userMobile.length != 11) {
-        $.messager.alert("提示", "请输入11位手机号！", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "请输入11位手机号！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (requestData.orgCode == null || requestData.orgCode == "") {
-        $.messager.alert("提示", "请选择单位！", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "请选择单位！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     ajaxHelp.AjaxPost(URL, requestData, successSubmitUserAdd, null);
@@ -91,9 +136,18 @@ var submitUserAdd = function () {
 var successSubmitUserAdd = function () {
     //$("#dialog_regPromptUserAdd").dialog("open");
     //$("#dialog_regPromptUserAdd").window("center");
-    alert("用户注册成功");
-    $("#tabs").tabs("close", "用户新增");
-    loadUserList();
+    ds.dialog({
+        title: "消息提示",
+        content: "用户注册成功！",
+        icon: "success.png",
+        width: "200",
+        height: "50",
+        timeout: 2
+    });
+    setTimeout(function () {
+        $("#tabs").tabs("close", "用户新增");
+        loadUserList();
+    }, 2000)
 };
 
 

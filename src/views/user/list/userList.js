@@ -37,7 +37,7 @@ var successLoadUserList = function (resultInfo) {
         pageSize: resultInfo.pageSize,
         total: resultInfo.total,
         selected: true,
-        onSelectPage:function(pageNumber, pageSize){
+        onSelectPage: function (pageNumber, pageSize) {
             loadUserList(pageNumber, pageSize);
         }
     });
@@ -64,7 +64,6 @@ $("#userList").datagrid({
             "</tr></table>";
     }
 });
-loadUserList();
 
 
 //用户列表-查询
@@ -82,11 +81,16 @@ var queryUserList = function () {
 var resetPwdUserList = function () {
     var rowData = $("#userList").datagrid("getSelections");
     if (!rowData || rowData == "") {
-        $.messager.alert("提示", "请选择用户!", "error");
-        return;
+        ds.dialog({
+            title: "消息提示",
+            content: "请选择用户！",
+            icon: "info.png",
+            onyes: true
+        });
+    } else {
+        $("#dialog_resetPwdUserList").dialog("open");
+        $("#dialog_resetPwdUserList").window("center");
     }
-    $("#dialog_resetPwdUserList").dialog("open");
-    $("#dialog_resetPwdUserList").window("center");
 };
 //用户列表-重置密码Dialog初始化
 $("#dialog_resetPwdUserList").dialog({
@@ -104,7 +108,6 @@ $("#dialog_resetPwdUserList").dialog({
 var submitResetPwdUserList = function () {
     var URL = ApiPath.TMSApi.businessData.userReset;
     var rowData = $("#userList").datagrid("getSelections");
-    //console.log(rowData[0].userId);
     var resetPwd = $("#resetPwdUserList").val();
     var loginPassword = $("#confirmPwdUserList").val();
     var requestData = {
@@ -112,21 +115,51 @@ var submitResetPwdUserList = function () {
         userId: rowData[0].loginID
     };
     if (resetPwd == null || resetPwd == "") {
-        $.messager.alert("提示", "请输入重置密码!", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "请输入重置密码！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (requestData.loginPassword == null || requestData.loginPassword == "") {
-        $.messager.alert("提示", "请输入确认密码!", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "请输入确认密码！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (resetPwd != requestData.loginPassword) {
-        $.messager.alert("提示", "重置密码和确认密码必须一致!", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "重置密码和确认密码必须一致！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     ajaxHelp.AjaxPost(URL, requestData, successSubmitResetPwd, null);
 };
 var successSubmitResetPwd = function () {
-    alert("重置密码成功!");
+    ds.dialog({
+        title: "消息提示",
+        content: "重置密码成功！",
+        icon: "success.png",
+        width: "200",
+        height: "50",
+        timeout: 2
+    });
+    setTimeout(function () {
+        $("#dialog_resetPwdUserList").dialog("close");
+    }, 2000)
+};
+
+
+//重置密码取消
+var cancelResetPwdUserListjavascript = function () {
     $("#dialog_resetPwdUserList").dialog("close");
 };
 
@@ -141,9 +174,16 @@ var addUserList = function () {
 var editUserList = function () {
     var rowData = $("#userList").datagrid("getSelections");
     if (!rowData || rowData == "") {
-        $.messager.alert("提示", "请选择需要编辑的用户", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "请选择用户！",
+            icon: "info.png",
+            onyes: true
+        });
     } else {
         addTabHref("用户编辑", "views/user/edit/userEdit.html");
     }
 };
 
+
+loadUserList();

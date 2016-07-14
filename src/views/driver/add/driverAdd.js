@@ -30,35 +30,76 @@ var submitDriverAdd = function () {
         orgCode: $("#logCenterDriverAdd").val()//所属物流中心
     };
     if (requestData.loginName == null || requestData.loginName == "") {
-        $.messager.alert("提示", "账户名不能为空!", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "账户名不能为空！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (initialPwd == null || initialPwd == "") {
-        $.messager.alert("提示", "初始密码不能为空!", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "初始密码不能为空！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (requestData.loginPassword == null || requestData.loginPassword == "") {
-        $.messager.alert("提示", "确认密码不能为空!", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "确认密码不能为空！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (initialPwd != requestData.loginPassword) {
-        $.messager.alert("提示", "初始密码和确认密码必须一致!", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "初始密码和确认密码必须一致！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (requestData.userName == null || requestData.userName == "") {
-        $.messager.alert("提示", "姓名不能为空!", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "姓名不能为空！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (requestData.userMobile == null || requestData.userMobile == "") {
-        $.messager.alert("提示", "手机号不能为空!", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "手机号不能为空！",
+            icon: "info.png",
+            onyes: true
+        });
+
         return;
     }
     if (requestData.userMobile.length != 11) {
-        $.messager.alert("提示", "请输入正确的手机号!", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "请输入正确的手机号！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     if (requestData.orgCode == null || requestData.orgCode == "") {
-        $.messager.alert("提示", "请选择所属物流中心！", "error");
+        ds.dialog({
+            title: "消息提示",
+            content: "请选择所属物流中心！",
+            icon: "info.png",
+            onyes: true
+        });
         return;
     }
     ajaxHelp.AjaxPost(URL, requestData, successSubmitUserAdd, null);
@@ -66,9 +107,18 @@ var submitDriverAdd = function () {
 var successSubmitUserAdd = function () {
     //$("#dialog_regPromptDriverAdd").dialog("open");
     //$("#dialog_regPromptDriverAdd").window("center");
-    alert("司机注册成功");
-    $("#tabs").tabs("close", "司机新增");
-    loadDriverList();
+    ds.dialog({
+        title: "消息提示",
+        content: "司机注册成功！",
+        icon: "success.png",
+        width: "200",
+        height: "50",
+        timeout: 2
+    });
+    setTimeout(function () {
+        $("#tabs").tabs("close", "司机新增");
+        loadDriverList();
+    }, 2000)
 };
 
 
