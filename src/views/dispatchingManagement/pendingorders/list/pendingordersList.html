@@ -2,13 +2,8 @@
 <div>
     <div id="searchbar" style="padding:3px;" >
         <ul class="sear" style=" overflow:hidden;">
-            <li style="margin-top: 14px">
+            <li style="margin-top: 16px">
                 <input id="consignmentNoPendingOrders" class="easyui-textbox" data-options="prompt:'请输入运单号'" >
-                <div class="button"  style="margin-top: -1px;">
-                    <a href="#"onclick="searchPendingOrders()" style="width: 35px;height: 24px;line-height: 24px">
-                        <span>查询</span>
-                    </a>
-                </div>
             </li>
             <div class="button ">
                 <a href="#"  class="group"  onclick="javascript:sendClose(0)">
@@ -16,6 +11,9 @@
                 </a>
                 <a  class="group" href="#"   onclick="javascript:sendOrders()">
                     <span>派单</span>
+                </a>
+                <a  class="group" href="#"   onclick="javascript:searchPendingOrders()">
+                    <span>查询</span>
                 </a>
             </div>
         </ul>

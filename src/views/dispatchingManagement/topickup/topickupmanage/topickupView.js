@@ -50,7 +50,12 @@ var successGetPickupDriverId=function (data) {
 var verification=function () {
     var result=true;
     if($("#pickupDriverIdReDispatch").val()==""){
-        alert("请选择取件司机")
+        ds.dialog({
+            title : '消息提示',
+            content : '请选择取件司机！',
+            onyes:true,
+            icon : "info.png",
+        });
         result=false
     }
     return  result;
@@ -67,9 +72,18 @@ var ReDispatchSubmitAdd=function () {
     }
 }
 var successReDispatchSubmitAdd=function (data) {
-    alert("提交成功！")
-    $("#tabs").tabs('close','改派');
-    loadToPickupList();
-}
+    ds.dialog({
+        title : '消息提示',
+        content : '提交成功！',
+        icon : "success.png",
+        width:'200',
+        height:'50',
+        timeout:2
+    });
+    setTimeout(function(){
+        $("#tabs").tabs('close','改派');
+        loadToPickupList();
+    },2000)
+};
 getPickupDriverId();
 

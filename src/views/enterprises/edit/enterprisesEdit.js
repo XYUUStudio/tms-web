@@ -245,8 +245,11 @@ var successEnterprisesSubmitEdit=function () {
         height:'50',
         timeout:2
     });
-    setTimeout($("#tabs").tabs('close','企业编辑'),2000)
-    loadEnterprisesList();
+    setTimeout(function(){
+        $("#tabs").tabs('close','企业编辑');
+        loadEnterprisesList();
+    },2000)
+
 };
 getEnterprisesInfo();
 

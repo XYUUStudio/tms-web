@@ -2,13 +2,8 @@
 <div>
     <div id="searchbar" style="padding:3px;" >
         <ul class="sear" style=" overflow:hidden;">
-            <li style="margin-top: 14px">
+            <li style="margin-top: 16px">
                 <input id="searchValueEnterprises" class="easyui-textbox" data-options="prompt:'请输入企业编号/名称/法人名称'" >
-                <div class="button"  style="margin-top: -1px;">
-                        <a href="#"onclick="SearchEnterprises()" style="width: 35px;height: 24px;line-height: 24px">
-                        <span>查询</span>
-                    </a>
-                </div>
             </li>
             <!--<li>-->
                 <!--<div style="float: left;margin-top: 14px">-->
@@ -24,8 +19,11 @@
                     <a href="#"  class="group" onclick="javascript:Editenterprises()">
                         <span>编辑</span>
                     </a>
-                    <a href="#" onclick="javascript:AddEnterprises()">
+                    <a href="#"  class="group"  onclick="javascript:AddEnterprises()">
                         <span>新增</span>
+                    </a>
+                    <a href="#"  class="group"  onclick="javascript:SearchEnterprises()">
+                        <span>查询</span>
                     </a>
                 </div>
         </ul>

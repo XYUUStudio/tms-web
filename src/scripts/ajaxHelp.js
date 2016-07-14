@@ -4,7 +4,12 @@
 
 var AjaxException = function(){
     AjaxException.prototype.TokenException = function(){
-        $.messager.alert('提示', "登陆失效，请重新登陆", "error");
+        ds.dialog({
+            title : '消息提示',
+            content :'登陆失效，请重新登陆！',
+            onyes:true,
+            icon : "info.png"
+        });
         window.location.href = "index.html";
     }
 
@@ -13,30 +18,69 @@ var AjaxException = function(){
         switch (data.code) {
             case 1001:
             case "1001":
-                $.messager.alert('提示', "服务异常,错误编码：" + data.msg + "！", "error");
+                ds.dialog({
+                    title : '消息提示',
+                    content :'服务异常,错误编码：'+data.msg+"！",
+                    onyes:true,
+                    icon : "info.png"
+                });
                 break;
             case 2001:
             case "2001":
-                $.messager.alert('提示', "您没有访问的权限！", "error");
+                ds.dialog({
+                    title : '消息提示',
+                    content :'您没有访问的权限！',
+                    onyes:true,
+                    icon : "info.png"
+                })
                 break;
             case 3001:
             case "3001":
-                $.messager.alert('提示', "请确认您的必输项是否完整！", "error");
+                ds.dialog({
+                    title : '消息提示',
+                    content :'请确认您的必输项是否完整！',
+                    onyes:true,
+                    icon : "info.png"
+                });
                 break;
             case 5001:
             case "5001":
-                $.messager.alert('提示', "数据已经存在！", "error");
+                ds.dialog({
+                    title : '消息提示',
+                    content :'数据已经存在！',
+                    onyes:true,
+                    icon : "info.png"
+                });
                 break;
             case 4001:
             case "4001":
-                $.messager.alert('提示', "用户信息失效，请重新登录！", "error");
+                ds.dialog({
+                    title : '消息提示',
+                    content :'用户信息失效，请重新登录',
+                    onyes:true,
+                    icon : "info.png"
+                });
                 break;
             case 0:
             case "0":
                 callback(data.info);
                 break;
+            case 1:
+            case "1":
+                ds.dialog({
+                    title : '消息提示',
+                    content : data.info,
+                    onyes:true,
+                    icon : "info.png"
+                });
+                break;
             default:
-                $.messager.alert('提示', "未知异常：" + data.msg + "|" + data.msg + "！", "error");
+                ds.dialog({
+                    title : '消息提示',
+                    content :"未知异常"+" "+data.msg,
+                    onyes:true,
+                    icon : "info.png"
+                });
         }
     }
 

@@ -3,7 +3,6 @@
  */
 var ajaxHelp = new AjaxHelp();
 var pram=getPendingOrdersDate();
-console.log(pram[0].senderCompany)
 var  getVulereceiving=function () {
     $("#senderCompanyDispatch").html(pram[0].senderCompany);
     $("#receiverCompanyDispatch").html(pram[0].receiverCompany);
@@ -18,7 +17,7 @@ var  getVulereceiving=function () {
     $("#receiverAddressDispatch").html(pram[0].senderprovincename+" "+pram[0].sendercityname+" "+pram[0].senderdistrictname+" "+pram[0].senderAddress);
     $("#reqDeliveryDateDispatchView").html(pram[0].reqDeliveryDate);
     $("#remarkDispatch").html(pram[0].remark)
-}
+};
 var userOrgcode = $.cookie("userOrgcode");
 var getPickupDriverId=function () {
     //寄件人详情赋值
@@ -32,14 +31,13 @@ var getPickupDriverId=function () {
         orgCode:userOrgcode
     };
     ajaxHelp.AjaxPost(URL,requestData,successGetPickupDriverId,null);
-}
+};
 var successGetPickupDriverId=function (data) {
-    console.log(data)
      $.each(data,function (index,item) {
          $("#pickupDriverIdDispatch").append(" <option value='"+item.userId+"' >"+item.userName+"</option>")
-     })
+     });
     getVulereceiving();
-}
+};
 var verification=function () {
     var result=true;
      if($("#pickupDriverIdDispatch").val()==""){
@@ -47,7 +45,7 @@ var verification=function () {
          result=false
      }
     return  result;
-}
+};
 var DispatchSubmitAdd=function () {
     if(verification()){
         var URL = ApiPath.TMSApi.dispatchingManagement.dispatch;
@@ -55,14 +53,23 @@ var DispatchSubmitAdd=function () {
             consignmentNo:pram[0].consignmentNo,
             pickupDriverId:$("#pickupDriverIdDispatch").val(),
             remark:$("#remarkDispatch").val()
-        }
+        };
         ajaxHelp.AjaxPost(URL,requestData,successDispatchSubmitAdd,null);
     }
-}
-var successDispatchSubmitAdd=function (data) {
-     alert("提交成功！")
-    $("#tabs").tabs('close','派单');
-    loadPendingordersList()
-}
+};
+var successDispatchSubmitAdd=function () {
+    ds.dialog({
+        title : '消息提示',
+        content : '提交成功！',
+        icon : "success.png",
+        width:'200',
+        height:'50',
+        timeout:2
+    });
+    setTimeout(function(){
+        $("#tabs").tabs('close','派单');
+        loadPendingordersList()
+    },2000);
+};
 getPickupDriverId();
 
