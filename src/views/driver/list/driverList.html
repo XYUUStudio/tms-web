@@ -2,15 +2,15 @@
 <div>
     <div style="padding: 3px">
         <ul class="sear" style="overflow: hidden">
-            <li>
+            <li style="margin-top: 16px">
                 <input id="searchValueDriverList" class="easyui-textbox" data-options="prompt: '请输入用户账号/姓名/手机号'">
-                <div class="button" style="margin-top: -1px">
-                    <a href="#" onclick="queryDriverList()" style="width: 35px;height: 24px;line-height: 24px">
-                        <span>查询</span>
-                    </a>
-                </div>
+                <!--<div class="button" style="margin-top: -1px">-->
+                <!--<a href="#" onclick="queryDriverList()" style="width: 35px;height: 24px;line-height: 24px">-->
+                <!--<span>查询</span>-->
+                <!--</a>-->
+                <!--</div>-->
             </li>
-            <li>
+            <li style="margin-top: 16px">
                 <div style="float: left">
                     <select id="logisticsCenterDriverList" style="width: 150px;color:#999">
                         <option value="" ,select="true">请选择所属物流中心</option>
@@ -21,11 +21,14 @@
                 <a href="#" onclick="editDriverList()">
                     <span>编辑</span>
                 </a>
-                <a href="#" onclick="addDriverList()">
+                <a href="#" onclick="addDriverList()" style="margin-right: 3px">
                     <span>新增</span>
                 </a>
-                <a href="#" onclick="resetPwdDriverList()">
+                <a href="#" onclick="resetPwdDriverList()" style="margin-right: 3px">
                     <span>重置密码</span>
+                </a>
+                <a href="#" onclick="queryDriverList()" style="margin-right: 3px">
+                    <span>查询</span>
                 </a>
             </div>
         </ul>
@@ -70,7 +73,7 @@
             <a href="#" onclick="submitResetPwdDriverList()" style="width: 80px;height: 30px;line-height: 30px">
                 <span>重置</span>
             </a>
-            <a href="#"  onclick="javascript:$('#dialog_resetPwdDriverList').dialog('close')"
+            <a href="#" onclick="javascript:$('#dialog_resetPwdDriverList').dialog('close')"
                style="width: 80px;height: 30px;line-height: 30px;margin-right: 20px;background: white;border: 1px solid #999">
                 <span style="color: #000">取消</span>
             </a>

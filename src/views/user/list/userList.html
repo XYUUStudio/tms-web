@@ -1,33 +1,36 @@
 <div>
     <div style="padding: 3px">
         <ul class="sear" style="overflow: hidden">
-            <li>
-                <input id="searchValueUserList" placeholder="请输入用户账号/姓名/手机号">
-                <div class="button" style="margin-top: -1px">
-                    <a href="#" onclick="queryUserList()" style="width: 35px;height: 24px;line-height: 24px">
-                        <span>查询</span>
-                    </a>
-                </div>
+            <li style="margin-top: 16px">
+                <input id="searchValueUserList" class="easyui-textbox" data-options="prompt:'请输入用户账号/姓名/手机号'">
+                <!--<div class="button" style="margin-top: -1px">-->
+                <!--<a href="#" onclick="queryUserList()" style="width: 35px;height: 24px;line-height: 24px">-->
+                <!--<span>查询</span>-->
+                <!--</a>-->
+                <!--</div>-->
             </li>
-            <li>
-                <div style="float: left">
-                    <span>状态</span>
-                    <select class="easyui-combobox" id="validStatusUserList" style="width: 60px">
-                        <option value="" selected="selected">全部</option>
-                        <option value="Y">有效</option>
-                        <option value="N">无效</option>
-                    </select>
-                </div>
-            </li>
+            <!--<li>-->
+            <!--<div style="float: left">-->
+            <!--<span>状态</span>-->
+            <!--<select class="easyui-combobox" id="validStatusUserList" style="width: 60px">-->
+            <!--<option value="" selected="selected">全部</option>-->
+            <!--<option value="Y">有效</option>-->
+            <!--<option value="N">无效</option>-->
+            <!--</select>-->
+            <!--</div>-->
+            <!--</li>-->
             <div class="button">
                 <a href="#" onclick="editUserList()">
                     <span>编辑</span>
                 </a>
-                <a href="#" onclick="addUserList()">
+                <a href="#" onclick="addUserList()" style="margin-right: 3px">
                     <span>新增</span>
                 </a>
-                <a onclick="resetPwdUserList()">
+                <a onclick="resetPwdUserList()" style="margin-right: 3px">
                     <span>重置密码</span>
+                </a>
+                <a onclick="queryUserList()" style="margin-right: 3px">
+                    <span>查询</span>
                 </a>
             </div>
         </ul>

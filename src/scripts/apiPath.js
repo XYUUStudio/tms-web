@@ -4,9 +4,9 @@ var ApiPath = {
             //登录
             pcLogin: AppConfig.TMSBasePath + "/account/pcLogin",
             //登出
-            pcLogout: AppConfig.TMSBasePath +"/account/logout",
+            pcLogout: AppConfig.TMSBasePath + "/account/logout",
             //修改密码
-            pcResetPwd: AppConfig.TMSBasePath +"/account/resetPsw"
+            pcResetPwd: AppConfig.TMSBasePath + "/account/resetPsw"
         },
         businessData: {
             //企业列表
@@ -45,38 +45,42 @@ var ApiPath = {
             //调度管理接口
             searchDispatchingList: AppConfig.TMSBasePath + "/consignment/search",
             //派单
-            dispatch:AppConfig.TMSBasePath+"/consignment/dispatch",
+            dispatch: AppConfig.TMSBasePath + "/consignment/dispatch",
             //改派
-            modifyDispatch:AppConfig.TMSBasePath+"/consignment/modifyDispatch",
+            modifyDispatch: AppConfig.TMSBasePath + "/consignment/modifyDispatch",
             //运单提交
-            consignmentCommit:AppConfig.TMSBasePath+"/consignment/commit",
+            consignmentCommit: AppConfig.TMSBasePath + "/consignment/commit",
             //运单取消
-            consignmentCancel:AppConfig.TMSBasePath+"/consignment/cancel",
+            consignmentCancel: AppConfig.TMSBasePath + "/consignment/cancel",
             //运单修改
-            consignmentModify:AppConfig.TMSBasePath+"/consignment/modify",
+            consignmentModify: AppConfig.TMSBasePath + "/consignment/modify",
             //运单详情
-            consignmentDetail:AppConfig.TMSBasePath+"/consignment/detail",
+            consignmentDetail: AppConfig.TMSBasePath + "/consignment/detail",
             //运单事件
-            consignmentConsignmentEventDetail:AppConfig.TMSBasePath+"/consignment/consignmentEventDetail",
+            consignmentConsignmentEventDetail: AppConfig.TMSBasePath + "/consignment/consignmentEventDetail",
             //评价详情
-            consignmentQueryEvaluate:AppConfig.TMSBasePath+"/consignment/queryEvaluate"
+            consignmentQueryEvaluate: AppConfig.TMSBasePath + "/consignment/queryEvaluate"
         },
         dictionary: {
             //公共字典
-            GetDictionary:AppConfig.TMSBasePath+"/systemData/dictionary/queryType",
+            GetDictionary: AppConfig.TMSBasePath + "/systemData/dictionary/queryType",
             //省市区
             admDivisionInfoSearch: AppConfig.TMSBasePath + "/systemData/admdivision/search",
             //图片上传
             upload: AppConfig.TMSBasePath + "/upload/basedata",
             //司机
             getPickupDriverList: AppConfig.TMSBasePath + "/driver/search",
-            // 根据有效区域进行选择地址
-            getAdmdivisionValidatedSearch: AppConfig.TMSBasePath +"/systemData/admdivision/validatedSearch"
+            //根据有效区域进行选择地址
+            getAdmdivisionValidatedSearch: AppConfig.TMSBasePath + "/systemData/admdivision/validatedSearch"
         },
-        systemData:{
+        systemData: {
             //运单状态
-            queryType:AppConfig.TMSBasePath+"/systemData/status/cgStatusTypeList"
+            queryType: AppConfig.TMSBasePath + "/systemData/status/cgStatusTypeList",
+            //车辆所属
+            vehicleOwner: AppConfig.TMSBasePath + "/systemData/dictionary/queryType",
+            //保险公司
+            insuranceCompany: AppConfig.TMSBasePath + "/systemData/dictionary/queryType"
         },
-        orderSearch: AppConfig.TMSBasePath + "/dispatchingManagement/search",
+        orderSearch: AppConfig.TMSBasePath + "/dispatchingManagement/search"
     }
 }

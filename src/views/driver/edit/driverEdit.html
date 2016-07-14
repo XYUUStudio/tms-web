@@ -3,7 +3,7 @@
     <a href="#" onclick="closeDriverEdit()">
         <span>关闭</span>
     </a>
-    <a href="#" onclick="submitDriverEdit()">
+    <a href="#" onclick="submitDriverEdit()" style="margin-right: 3px">
         <span>提交</span>
     </a>
 </div>
@@ -65,7 +65,7 @@
                 <input type="file" style="display:none" multiple="multiple"
                        onchange="uploadIDPositiveDriverEdit(this)"/>
                 <a id="a_iDPositiveDriverEdit" target="_blank">
-                    <img id="img_iDPositiveDriverEdit" width="150px" height="150px;" src="../images/fujianimg.png">
+                    <img id="img_iDPositiveDriverEdit" width="150px" height="150px;" src="../../../images/fujianimg.png">
                 </a>
             </label>
             <button onclick="delIDPositiveDriverEdit()">删除</button>
@@ -115,7 +115,7 @@
                        onchange="uploadDriverLicPositiveDriverEdit(this)"/>
                 <a id="a_driverLicPositiveDriverEdit" target="_blank">
                     <img id="img_driverLicPositiveDriverEdit" width="150px" height="150px;"
-                         src="../images/fujianimg.png">
+                         src="../../../images/fujianimg.png">
                 </a>
             </label>
             <button onclick="delDriverLicPositiveDriverEdit()">删除</button>
@@ -176,7 +176,9 @@
         </label>
         <label>
             <span>车辆所属：</span>
-            <input id="vehicleOwnerTypeDriverEdit"/>
+            <select id="vehicleOwnerTypeDriverEdit" style="width: 124px">
+                <option value="">请选择</option>
+            </select>
         </label>
     </div>
     <div class="control-view">
@@ -188,7 +190,7 @@
                        onchange="uploadVehicleLicPositiveDriverEdit(this)"/>
                 <a id="a_vehicleLicPositiveDriverEdit" target="_blank">
                     <img id="img_vehicleLicPositiveDriverEdit" width="150px" height="150px;"
-                         src="../images/fujianimg.png">
+                         src="../../../images/fujianimg.png">
                 </a>
             </label>
             <button onclick="delVehicleLicPositiveDriverEdit()">删除</button>
@@ -203,7 +205,9 @@
     <div class="control-view">
         <label>
             <span>保险公司：</span>
-            <input id="compulsoryInsuranceCompanyDriverEdit"/>
+            <select id="compulsoryInsuranceCompanyDriverEdit" style="width: 124px">
+                <option value="">请选择保险公司：</option>
+            </select>
         </label>
         <label>
             <span>保险单号：</span>
@@ -221,20 +225,19 @@
         </label>
     </div>
     <div class="control-view">
-        <label>
-            <span><span class="required">*</span>保单上传：</span>
-            <input type="file" style="width: 200px;border: #fff"
-                   onchange="javascript:uploadCompulsoryInsuranceDriverEdit(this)"/>
+        <p>
+            <span style="text-align: right;float: left;">保单上传：</span>
+            <label
+                style="display:inline-block;width: 150px;height: 150px;position:relative;text-align:center;border: 1px #999 solid">
+                <input type="file" style="display:none" multiple="multiple"
+                       onchange="uploadCompulsoryInsuranceDriverEdit(this)"/>
+                <a id="a_compulsoryInsurancePositiveDriverEdit" target="_blank">
+                    <img id="img_compulsoryInsuranceInverseDriverEdit" width="150px" height="150px;"
+                         src="../../../images/fujianimg.png">
+                </a>
+            </label>
             <button onclick="delCompulsoryInsurancePositiveDriverEdit()">删除</button>
-        </label>
-        <label>
-            <div style="margin-left: 80px">
-                <div id="compulsoryInsurancePositiveDriverEdit">
-                </div>
-                <div id="compulsoryInsuranceInverseDriverEdit">
-                </div>
-            </div>
-        </label>
+        </p>
     </div>
     <div class="control-group" style="text-align: left;margin-top: 250px">
         <label>
@@ -245,7 +248,9 @@
     <div class="control-view">
         <label>
             <span>保险公司：</span>
-            <input id="commercialInsuranceCompanyDriverEdit"/>
+            <select id="commercialInsuranceCompanyDriverEdit" style="width: 124px">
+                <option value="">请选择保险公司：</option>
+            </select>
         </label>
         <label>
             <span>保险单号：</span>
@@ -263,27 +268,26 @@
         </label>
     </div>
     <div class="control-view">
-        <label>
-            <span>保单上传：</span>
-            <input type="file" style="width: 200px;border: #fff"
-                   onchange="javascript:uploadCommercialInsuranceDriverEdit(this)"/>
+        <p>
+            <span style="text-align: right;float: left;">保单上传：</span>
+            <label
+                style="display:inline-block;width: 150px;height: 150px;position:relative;text-align:center;border: 1px #999 solid">
+                <input type="file" style="display:none" multiple="multiple"
+                       onchange="uploadCommercialInsuranceDriverEdit(this)"/>
+                <a id="a_commercialInsurancePositiveDriverEdit" target="_blank">
+                    <img id="img_commercialInsurancePositiveDriverEdit" width="150px" height="150px;"
+                         src="../../../images/fujianimg.png">
+                </a>
+            </label>
             <button onclick="delCommercialInsurancePositiveDriverEdit()">删除</button>
-        </label>
-        <label style="margin-left: 80px">
-            <div>
-                <div id="commercialInsurancePositiveDriverEdit">
-                </div>
-                <div id="commercialInsuranceInverseDriverEdit">
-                </div>
-            </div>
-        </label>
+        </p>
     </div>
 </div>
 <div class="button" style="margin-top: 150px">
     <a href="#" onclick="closeDriverEdit()">
         <span>关闭</span>
     </a>
-    <a href="#" onclick="submitDriverEdit()">
+    <a href="#" onclick="submitDriverEdit()" style="margin-right: 3px">
         <span>提交</span>
     </a>
 </div>
