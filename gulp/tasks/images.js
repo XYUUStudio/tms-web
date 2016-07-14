@@ -5,7 +5,7 @@ var cache = require('gulp-cache');//图片缓存，只有图片替换了才压�
 
 gulp.task('Images', function(){
 	return gulp.src(config.src)
-		.pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
+		.pipe(imagemin())
 		.pipe(gulp.dest(config.dist))
 });
 
