@@ -138,35 +138,85 @@ var verification=function () {
       var result=true;
      console.log($("#ceOrgCodeSinger").val())
      if($("#ceOrgCodeSinger").val()=="") {
-         alert("请选择客户公司！")
+         ds.dialog({
+             title : '消息提示',
+             content : '请选择客户公司！',
+             onyes:true,
+             icon : "info.png",
+         });
          result = false;
      }else  if ($("#senderContactNameSinger").val()==""){
-         alert("请输入寄件人姓名！")
+         ds.dialog({
+             title : '消息提示',
+             content : '请输入寄件人姓名！',
+             onyes:true,
+             icon : "info.png",
+         });
          result = false;
      }else  if ($("#senderMobileSinger").val()==""){
-         alert("请输入寄件人手机号码！")
+         ds.dialog({
+             title : '消息提示',
+             content : '请输入寄件人手机号码！',
+             onyes:true,
+             icon : "info.png",
+         });
          result = false;
      }
      else  if ($("#senderCompanySinger").val()==""){
-         alert("请输入寄件人所在单位！")
+         ds.dialog({
+             title : '消息提示',
+             content : '请输入寄件人所在单位！',
+             onyes:true,
+             icon : "info.png",
+         });
          result = false;
      }else  if($("#senderProvinceCodeSinger").val()==""||$("#senderCityCodeSinger").val()==""||$("#senderDistrictCodeSinger").val()==""||$("#senderAddressSinger").val()==""){
-         alert("请输入寄件人所在地址！")
+         ds.dialog({
+             title : '消息提示',
+             content : '请输入寄件人所在地址！',
+             onyes:true,
+             icon : "info.png",
+         });
          result = false;
      }else if ($("#receiverContactNameSinger").val()==""){
-         alert("请输入收件人姓名!")
+         ds.dialog({
+             title : '消息提示',
+             content : '请输入收件人姓名！',
+             onyes:true,
+             icon : "info.png",
+         });
          result = false;
      }else if($("#receiverMobileSinger").val()==""){
-         alert("请输入收件人手机号码!")
+         ds.dialog({
+             title : '消息提示',
+             content : '请输入收件人手机号码！',
+             onyes:true,
+             icon : "info.png",
+         });
          result = false;
      }else if($("#receiverCompanySinger").val()==""){
-         alert("请输入收件人所在单位!")
+         ds.dialog({
+             title : '消息提示',
+             content : '请输入收件人所在单位！',
+             onyes:true,
+             icon : "info.png",
+         });
          result = false;
      }else if($("#receiverProvinceCodeSinger").val()==""||$("#receiverCityCodeSinger").val()==""||$("#receiverDistrictCodeSinger").val()==""||$("#receiverAddressSinger").val()==""){
-         alert("请输入收件人所在地址！");
+         ds.dialog({
+             title : '消息提示',
+             content : '请输入收件人所在地址！',
+             onyes:true,
+             icon : "info.png",
+         });
          result = false;
      }else  if($("#reqDeliveryDateSinger").datebox('getValue')==""){
-         alert("请选择最晚送达时间！");
+         ds.dialog({
+             title : '消息提示',
+             content : '请选择最晚送达时间！',
+             onyes:true,
+             icon : "info.png",
+         });
          result = false;
      }
     return result;
@@ -203,8 +253,17 @@ var SingerSubmitAdd=function () {
     }
 }
 var successSingerSubmitAdd=function (data) {
-    alert(data)
-    $("#tabs").tabs('close','电话录单');
-    dispatchListLoad();
+    ds.dialog({
+        title : '消息提示',
+        content : data,
+        icon : "success.png",
+        width:'200',
+        height:'50',
+        timeout:2
+    });
+    setTimeout(function(){
+        $("#tabs").tabs('close','电话录单');
+        dispatchListLoad();
+    },2000)
 }
 loadSing();
