@@ -74,7 +74,12 @@ var ToPickupView=function () {
     //编辑数据
     var row = $("#toPickupList").datagrid('getSelections');
     if(!row||row==""){
-        $.messager.alert('提示', "请选择需要派单的订单！", "error");
+        ds.dialog({
+            title : '消息提示',
+            content : '请选择需要派单的订单！',
+            onyes:true,
+            icon : "info.png",
+        });
     }else {
         addTabHref('改派','views/dispatchingManagement/topickup/topickupmanage/topickupView.html');
     }

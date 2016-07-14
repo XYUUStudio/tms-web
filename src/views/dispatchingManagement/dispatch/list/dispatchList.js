@@ -62,7 +62,12 @@ var dispatchCancel=function () {
     //取消订单
     var row = $("#dispatchList").datagrid('getSelections');
     if(!row||row==""){
-        $.messager.alert('提示', "请选择需要取消的订单！", "error");
+        ds.dialog({
+            title : '消息提示',
+            content : '请选择需要取消的订单！',
+            onyes:true,
+            icon : "info.png"
+        });
     }else {
         addTabHref('取消','views/dispatchingManagement/dispatch/cancel/dispatchcancel.html');
     }
@@ -74,7 +79,12 @@ var dispatchReassign=function () {
     //改派订单
     var row = $("#dispatchList").datagrid('getSelections');
     if(!row||row==""){
-        $.messager.alert('提示', "请选择需要修改的订单！", "error");
+        ds.dialog({
+            title : '消息提示',
+            content : '请选择需要修改的订单！',
+            onyes:true,
+            icon : "info.png"
+        });
     }else {
         addTabHref('改单','views/dispatchingManagement/dispatch/reassign/dispatchreassign.html');
     }
