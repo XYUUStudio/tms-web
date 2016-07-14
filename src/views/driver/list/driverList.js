@@ -94,6 +94,8 @@ var queryDriverList = function () {
 //司机列表-重置密码
 var resetPwdDriverList = function () {
     var rowData = $("#driverList").datagrid("getSelections");
+    $("#resetPwdDriverList").val("");
+    $("#confirmPwdDriverList").val("");
     if (!rowData || rowData == "") {
         ds.dialog({
             title: "消息提示",
@@ -161,19 +163,14 @@ var submitResetPwdDriverList = function () {
     ajaxHelp.AjaxPost(URL, requestData, successSubmitResetPwdDriverList, null);
 };
 var successSubmitResetPwdDriverList = function () {
-    $.messager.alert("提示", "重置密码成功！", "error");
     $("#dialog_resetPwdDriverList").dialog("close");
-    //ds.dialog({
-    //    title: "消息提示",
-    //    content: "重置密码成功！",
-    //    icon: "success.png",
-    //    width: "200",
-    //    height: "50",
-    //    timeout: 2
-    //});
-    //setTimeout(function () {
-    //    $("#dialog_resetPwdDriverList").dialog("close");
-    //}, 2000)
+    ds.dialog({
+        title: "消息提示",
+        content: "重置密码成功！",
+        icon: "success.png",
+        onyes: true,
+        timeout: 2
+    });
 };
 
 
