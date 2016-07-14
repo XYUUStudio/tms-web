@@ -77,6 +77,10 @@ var DispatchCancelSubmitAdd=function () {
         ajaxHelp.AjaxPost(URL,requestData,successDispatchCancelSubmitAdd,null);
     }
 }
+var DispatchCancelSubmitClose=function () {
+    //关闭取消页
+    $("#tabs").tabs('close','取消');
+}
 var successDispatchCancelSubmitAdd=function (data) {
     ds.dialog({
         title : '消息提示',

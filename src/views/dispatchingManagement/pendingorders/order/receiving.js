@@ -57,6 +57,10 @@ var DispatchSubmitAdd=function () {
         ajaxHelp.AjaxPost(URL,requestData,successDispatchSubmitAdd,null);
     }
 };
+var DispatchSubmitClose=function () {
+    //关闭派单页面
+    $("#tabs").tabs('close','派单');
+}
 var successDispatchSubmitAdd=function () {
     ds.dialog({
         title : '消息提示',

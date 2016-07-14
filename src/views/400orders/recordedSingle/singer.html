@@ -1,6 +1,6 @@
 <div class="content_id">
     <div class="control-view ">
-        <label style="padding-left: 0%;">
+        <label style="padding-left: 0%; margin-top: -10px;">
             <span> <span class="required">*</span>下单公司：</span>
             <select id="ceOrgCodeSinger">
             <option value="">请选择下单公司</option>
@@ -43,12 +43,12 @@
             <input style="width: 100px" id="senderAddressSinger"/>
         </label>
     </div>
-    <div class="control-group "style="text-align: left;margin-top: 60px">
+    <div class="control-group "style="text-align: left;margin-top: 45px">
         <label >
             <span style="color:#f79449 ;">收件信息</span>
         </label>
     </div>
-    <div class="cut-off-rule " >
+    <div class="cut-off-rule" >
     </div>
     <div class="control-view ">
         <label style="padding-left: 0%;">
@@ -79,7 +79,12 @@
             <input  style="width: 100px" id="receiverAddressSinger"/>
         </label>
     </div>
-    <div class="cut-off-rule " style="margin-top: 60px" >
+    <div class="control-group "style="text-align: left;margin-top: 45px">
+        <label >
+            <span style="color:#f79449 ;">器械包信息</span>
+        </label>
+    </div>
+    <div class="cut-off-rule "  >
     </div>
     <div class="control-view ">
         <label style="padding-left: 0%;">
@@ -109,8 +114,11 @@
         </label>
     </div>
     <div class="control-view ">
-        <div class="button"  style="margin-top: 100px; margin-right: -2px">
-            <a href="#"onclick="SingerSubmitAdd()" style="width: 133px;height: 30px;line-height: 30px">
+        <div class="button"  style="margin-top: 20px; margin-right: -2px">
+            <a href="#" class="group" onclick="SingerSubmitClose()" style="width: 80px;height: 30px;line-height: 30px">
+                <span>关闭</span>
+            </a>
+            <a href="#" class="group" onclick="SingerSubmitAdd()" style="width: 80px;height: 30px;line-height: 30px">
                 <span>提交</span>
             </a>
         </div>

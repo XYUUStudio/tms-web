@@ -71,6 +71,9 @@ var ReDispatchSubmitAdd=function () {
         ajaxHelp.AjaxPost(URL,requestData,successReDispatchSubmitAdd,null);
     }
 }
+var ReDispatchSubmitClose=function () {
+    $("#tabs").tabs('close','改派');
+}
 var successReDispatchSubmitAdd=function (data) {
     ds.dialog({
         title : '消息提示',

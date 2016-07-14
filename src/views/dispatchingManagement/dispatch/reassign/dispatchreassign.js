@@ -348,6 +348,10 @@ var DispatchReSubmitAdd=function () {
         ajaxHelp.AjaxPost(URL,requestData,successDispatchReSubmitAdd,null);
     }
 };
+var DispatchReSubmitClose=function () {
+    //改单关闭
+    $("#tabs").tabs('close','改单');
+}
 var successDispatchReSubmitAdd=function (data) {
 
     ds.dialog({
