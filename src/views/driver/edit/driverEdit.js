@@ -4,11 +4,14 @@
 var ajaxHelp = new AjaxHelp();
 var rowData = $("#driverList").datagrid("getSelections");//选中获取司机数据集合
 var driverInfo = "";//接口返回的司机详情
-var iDPositiveURL = "";//身份证URL
+var iDPositiveURL = "";//身份证正面URL
+var iDInverseURL = "";//身份证反面URL
 var driverLicPositiveURL = "";//驾驶证URL
 var vehicleLicPositiveURL = "";//行驶证URL
-var compulsoryInsurancePositiveURL = "";//交强险保单
-var commercialInsurancePositiveURL = "";//商业险保单
+var compulsoryInsurancePositiveURL = "";//交强险保单正面URL
+var compulsoryInsuranceInverseURL = "";//交强险保单反面URL
+var commercialInsurancePositiveURL = "";//商业险保单正面URL
+var commercialInsuranceInverseURL = "";//商业险保单反面URL
 
 
 //获取司机信息
@@ -38,18 +41,18 @@ var successGetInfoDriverEdit = function (responseData) {
     $("#vehicleLengthDriverEdit").val(responseData.vehicleLength);//长
     $("#vehicleWidthDriverEdit").val(responseData.vehicleWidth);//宽
     $("#vehicleHeightDriverEdit").val(responseData.vehicleHeight);//高
-    $("#vehicleOwnerTypeDriverEdit").val(responseData.vehicleOwnerType);//车辆所属
-    $("#compulsoryInsuranceCompanyDriverEdit").val(responseData.compulsoryInsuranceCompany);//交强险公司
+    getVehicleOwnerDriverEdit();//车辆所属
+    getCompulsoryInsuranceCompanyDriverEdit();//交强险公司
     $("#compulsoryInsuranceDocNoDriverEdit").val(responseData.compulsoryInsuranceDocNo);//交强险单号
     $("#compulsoryInsuranceAmtDriverEdit").val(responseData.compulsoryInsuranceAmt);//交强险金额
-    $("#commercialInsuranceCompanyDriverEdit").val(responseData.commercialInsuranceCompany);//商业险公司
+    getCmmercialInsuranceCompanyDriverEdit();//商业险公司
     $("#commercialInsuranceDocNoDriverEdit").val(responseData.commercialInsuranceDocNo);//商业险单号
     $("#commercialInsuranceAmtDriverEdit").val(responseData.commercialInsuranceAmt);//商业险金额
     //地址
     getProvinceDriverEdit();
-    $("#provinceDriverEdit").val(responseData.residentProvinceCodeName);//省
-    $("#cityDriverEdit").val(responseData.residentCityCodeName);//市
-    $("#districtDriverEdit").val(responseData.residentDistrictCodeName);//区
+    //$("#provinceDriverEdit").val(responseData.residentProvinceCodeName);//省
+    //$("#cityDriverEdit").val(responseData.residentCityCodeName);//市
+    //$("#districtDriverEdit").val(responseData.residentDistrictCodeName);//区
     $("#addressDriverEdit").val(responseData.residentAddress);//详细地址
     //日期
     $("#driverLicEffectiveDateEndDriverEdit").val(responseData.driverLicEffectiveDateEnd);//驾驶证有效期
@@ -59,22 +62,46 @@ var successGetInfoDriverEdit = function (responseData) {
     $("#compulsoryInsuranceEffectiveEndDateDriverEdit").val(responseData.compulsoryInsuranceEffectiveEndDate);//交强险有效期
     $("#commercialInsuranceEffectiveEndDateDriverEdit").val(responseData.commercialInsuranceEffectiveEndDate);//商业险有效期
     //图片
-    if (responseData.iDPositive != null) {
-        //$("#iDPositiveURLDriverEdit").val(responseData.iDPositive.url);
-        $("#iDPositiveDriverEdit").html('<img src="' + responseData.iDPositive.url + '" alt="" width="200" height="80" />')
-    }//身份证正面
-    if (responseData.driverLicPositive != null) {
-        $("#driverLicPositiveDriverEdit").html('<img src="' + responseData.driverLicPositive.url + '" alt="" width="200" height="80" />')
-    }//驾驶证正面
-    if (responseData.vehicleLicPositive != null) {
-        $("#vehicleLicPositiveDriverEdit").html('<img src="' + responseData.vehicleLicPositive.url + '" alt="" width="200" height="80" />')
-    }//行驶证正面
-    if (responseData.compulsoryInsurancePositive != null) {
-        $("#compulsoryInsurancePositiveDriverEdit").html('<img src="' + responseData.compulsoryInsurancePositive.url + '" alt="" width="200" height="80" />')
-    }//交强险保单
-    if (responseData.commercialInsurancePositive != null) {
-        $("#commercialInsurancePositiveDriverEdit").html('<img src="' + responseData.commercialInsurancePositive.url + '" alt="" width="200" height="80" />')
-    }//商业险保单
+    if (responseData.iDPositive.url != "") {
+        //身份证正面
+        iDPositiveURL = responseData.iDPositive.url;
+        $("#img_iDPositiveDriverEdit").attr("src", responseData.iDPositive.url)
+    }
+    if (responseData.iDInverse.url != "") {
+        //身份证反面
+        iDInverseURL = responseData.iDInverse.url;
+        $("#img_iDInverseDriverEdit").attr("src", responseData.iDInverse.url)
+    }
+    if (responseData.driverLicPositive.url != "") {
+        //驾驶证
+        driverLicPositiveURL = responseData.driverLicPositive.url;
+        $("#img_driverLicPositiveDriverEdit").attr("src", responseData.driverLicPositive.url)
+    }
+    if (responseData.vehicleLicPositive.url != "") {
+        //行驶证
+        vehicleLicPositiveURL = responseData.vehicleLicPositive.url;
+        $("#img_vehicleLicPositiveDriverEdit").attr("src", responseData.vehicleLicPositive.url)
+    }
+    if (responseData.compulsoryInsurancePositive.url != "") {
+        //交强险保单正面
+        compulsoryInsurancePositiveURL = responseData.compulsoryInsurancePositive.url;
+        $("#img_compulsoryInsurancePositiveDriverEdit").attr("src", responseData.compulsoryInsurancePositive.url)
+    }
+    if (responseData.compulsoryInsuranceInverse.url != "") {
+        //交强险保单反面
+        compulsoryInsuranceInverseURL = responseData.compulsoryInsuranceInverse.url;
+        $("#img_compulsoryInsuranceInverseDriverEdit").attr("src", responseData.compulsoryInsuranceInverse.url)
+    }
+    if (responseData.commercialInsurancePositive.url != "") {
+        //商业险保单正面
+        commercialInsurancePositiveURL = responseData.commercialInsurancePositive.url;
+        $("#img_commercialInsurancePositiveDriverEdit").attr("src", responseData.commercialInsurancePositive.url)
+    }
+    if (responseData.commercialInsuranceInverse.url != "") {
+        //商业险保单反面
+        commercialInsuranceInverseURL = responseData.commercialInsuranceInverse.url;
+        $("#img_commercialInsuranceInverseDriverEdit").attr("src", responseData.commercialInsuranceInverse.url)
+    }
 };
 
 
@@ -130,7 +157,7 @@ var successGetDistrictDriverEdit = function (data) {
             $("#districtDriverEdit").find("option[value='" + item.divCode + "']").attr("selected", true)
         }
     });
-    changeProvinceDriverEdit();
+    //changeProvinceDriverEdit();
 };
 //修改市
 var changeProvinceDriverEdit = function (data) {
@@ -143,14 +170,12 @@ var changeProvinceDriverEdit = function (data) {
 };
 var successChangeProvinceDriverEdit = function (data) {
     $("#cityDriverEdit").empty();
+    $("#cityDriverEdit").prepend("<option value=''>请选择市</option>"); //为Select插入一个Option(第一个位置)
     $("#districtDriverEdit").empty();
-
+    $("#districtDriverEdit").prepend("<option value=''>请选择区</option>"); //为Select插入一个Option(第一个位置)
     $.each(data, function (index, item) {
-        $("#cityDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>");
-        //if (driverInfo.residentCityCode == item.divCode) {
-        //    $("#cityDriverEdit").find("option[value='" + item.divCode + "']").attr("selected", true)
-        //}
-    });
+        $("#cityDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>")
+    })
 };
 //修改区
 var changeCityDriverEdit = function (data) {
@@ -163,13 +188,10 @@ var changeCityDriverEdit = function (data) {
 };
 var successChangeCityDriverEdit = function (data) {
     $("#districtDriverEdit").empty();
-    $("#districtDriverEdit").prepend("<option value='9999'>请选择</option>"); //为Select插入一个Option(第一个位置)
+    $("#districtDriverEdit").prepend("<option value=''>请选择区</option>"); //为Select插入一个Option(第一个位置)
     $.each(data, function (index, item) {
-        $("#districtDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>");
-        //if (driverInfo.residentDistrictCode == item.divCode) {
-        //    $("#districtDriverEdit").find("option[value='" + item.divCode + "']").attr("selected", true)
-        //}
-    });
+        $("#districtDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>")
+    })
 };
 
 
@@ -202,7 +224,7 @@ var getCompulsoryInsuranceCompanyDriverEdit = function () {
 var successGetCompulsoryInsuranceCompanyDriverEdit = function (responseData) {
     $.each(responseData.dictValueList, function (index, item) {
         $("#compulsoryInsuranceCompanyDriverEdit").append("<option value='" + item.dictValueCode + "' >" + item.dictValueName + "</option>")
-        if (driverInfo.vehicleOwnerType == item.dictValueCode) {
+        if (driverInfo.compulsoryInsuranceCompany == item.dictValueCode) {
             $("#compulsoryInsuranceCompanyDriverEdit").find("option[value='" + item.dictValueCode + "']").attr("selected", true)
         }
     });
@@ -220,14 +242,14 @@ var getCmmercialInsuranceCompanyDriverEdit = function () {
 var successGetCmmercialInsuranceCompanyDriverEdit = function (responseData) {
     $.each(responseData.dictValueList, function (index, item) {
         $("#commercialInsuranceCompanyDriverEdit").append("<option value='" + item.dictValueCode + "' >" + item.dictValueName + "</option>")
-        if (driverInfo.vehicleOwnerType == item.dictValueCode) {
+        if (driverInfo.commercialInsuranceCompany == item.dictValueCode) {
             $("#commercialInsuranceCompanyDriverEdit").find("option[value='" + item.dictValueCode + "']").attr("selected", true)
         }
     });
 };
 
 
-//身份证上传
+//身份证正面上传
 var uploadIDPositiveDriverEdit = function (imgData) {
     var file = imgData.files[0];//选择上传的文件
     var fr = new FileReader();
@@ -246,11 +268,38 @@ var uploadIDPositiveDriverEdit = function (imgData) {
 var successUploadIDPositiveDriverEdit = function (responseData) {
     iDPositiveURL = responseData.url;
 };
-//删除身份证
+//删除身份证正面
 var delIDPositiveDriverEdit = function () {
     $("#img_iDPositiveDriverEdit").attr("src", "../images/fujianimg.png");
     $("#a_iDPositiveDriverEdit").removeAttr("href");
     iDPositiveURL = ""
+};
+
+
+//身份证反面上传
+var uploadIDInverseDriverEdit = function (imgData) {
+    var file = imgData.files[0];//选择上传的文件
+    var fr = new FileReader();
+    fr.readAsDataURL(file);
+    $(fr).load(function () {
+        $("#img_iDInverseDriverEdit").attr("src", fr.result);
+        $("#a_iDInverseDriverEdit").attr("href", fr.result);
+        var URL = ApiPath.TMSApi.dictionary.upload;
+        var requestData = {
+            file: fr.result
+        };
+        ajaxHelp.AjaxForm(URL, requestData, successUploadIDInverseDriverEdit, null);
+    });
+    return true;
+};
+var successUploadIDInverseDriverEdit = function (responseData) {
+    iDInverseURL = responseData.url;
+};
+//删除身份证反面
+var delIDInverseDriverEdit = function () {
+    $("#img_iDInverseDriverEdit").attr("src", "../images/fujianimg.png");
+    $("#a_iDInverseDriverEdit").removeAttr("href");
+    iDInverseURL = ""
 };
 
 
@@ -308,8 +357,35 @@ var delVehicleLicPositiveDriverEdit = function () {
 };
 
 
-//交强险保单上传
-var uploadCompulsoryInsuranceDriverEdit = function (imgData) {
+//交强险保单正面上传
+var uploadCompulsoryInsurancePositiveDriverEdit = function (imgData) {
+    var file = imgData.files[0];//选择上传的文件
+    var fr = new FileReader();
+    fr.readAsDataURL(file);
+    $(fr).load(function () {
+        $("#img_compulsoryInsurancePositiveDriverEdit").attr("src", fr.result);
+        $("#a_compulsoryInsurancePositiveDriverEdit").attr("href", fr.result);
+        var URL = ApiPath.TMSApi.dictionary.upload;
+        var requestData = {
+            file: fr.result
+        };
+        ajaxHelp.AjaxForm(URL, requestData, successUploadCompulsoryInsurancePositiveDriverEdit, null);
+    });
+    return true;
+};
+var successUploadCompulsoryInsurancePositiveDriverEdit = function (responseData) {
+    compulsoryInsurancePositiveURL = responseData.url;
+};
+//删除交强险保单正面
+var delCompulsoryInsurancePositiveDriverEdit = function () {
+    $("#img_compulsoryInsurancePositiveDriverEdit").attr("src", "../images/fujianimg.png");
+    $("#a_compulsoryInsurancePositiveDriverEdit").removeAttr("href");
+    compulsoryInsurancePositiveURL = ""
+};
+
+
+//交强险保单反面上传
+var uploadCompulsoryInsuranceInverseDriverEdit = function (imgData) {
     var file = imgData.files[0];//选择上传的文件
     var fr = new FileReader();
     fr.readAsDataURL(file);
@@ -320,22 +396,22 @@ var uploadCompulsoryInsuranceDriverEdit = function (imgData) {
         var requestData = {
             file: fr.result
         };
-        ajaxHelp.AjaxForm(URL, requestData, successUploadCompulsoryInsuranceDriverEdit, null);
+        ajaxHelp.AjaxForm(URL, requestData, successUploadCompulsoryInsuranceInverseDriverEdit, null);
     });
     return true;
 };
-var successUploadCompulsoryInsuranceDriverEdit = function (responseData) {
-    compulsoryInsurancePositiveURL = responseData.url;
+var successUploadCompulsoryInsuranceInverseDriverEdit = function (responseData) {
+    compulsoryInsuranceInverseURL = responseData.url;
 };
-//删除行驶证
-var delCompulsoryInsurancePositiveDriverEdit = function () {
+//删除交强险保单反面
+var delCompulsoryInsuranceInverseDriverEdit = function () {
     $("#img_compulsoryInsuranceInverseDriverEdit").attr("src", "../images/fujianimg.png");
     $("#a_compulsoryInsuranceInverseDriverEdit").removeAttr("href");
-    compulsoryInsurancePositiveURL = ""
+    compulsoryInsuranceInverseURL = ""
 };
 
 
-//商业险保单上传
+//商业险保单正面上传
 var uploadCommercialInsuranceDriverEdit = function (imgData) {
     var file = imgData.files[0];//选择上传的文件
     var fr = new FileReader();
@@ -347,18 +423,45 @@ var uploadCommercialInsuranceDriverEdit = function (imgData) {
         var requestData = {
             file: fr.result
         };
-        ajaxHelp.AjaxForm(URL, requestData, successUploadCommercialInsuranceDriverEdit, null);
+        ajaxHelp.AjaxForm(URL, requestData, successUploadCommercialInsurancePositiveDriverEdit, null);
     });
     return true;
 };
-var successUploadCommercialInsuranceDriverEdit = function (responseData) {
+var successUploadCommercialInsurancePositiveDriverEdit = function (responseData) {
     commercialInsurancePositiveURL = responseData.url;
 };
-//删除商业险保单
+//删除商业险保单正面
 var delCommercialInsurancePositiveDriverEdit = function () {
     $("#img_commercialInsurancePositiveDriverEdit").attr("src", "../images/fujianimg.png");
     $("#a_commercialInsurancePositiveDriverEdit").removeAttr("href");
     commercialInsurancePositiveURL = ""
+};
+
+
+//商业险保单反面上传
+var uploadCommercialInsuranceInverseDriverEdit = function (imgData) {
+    var file = imgData.files[0];//选择上传的文件
+    var fr = new FileReader();
+    fr.readAsDataURL(file);
+    $(fr).load(function () {
+        $("#img_commercialInsuranceInverseDriverEdit").attr("src", fr.result);
+        $("#a_commercialInsuranceInverseDriverEdit").attr("href", fr.result);
+        var URL = ApiPath.TMSApi.dictionary.upload;
+        var requestData = {
+            file: fr.result
+        };
+        ajaxHelp.AjaxForm(URL, requestData, successUploadCommercialInsuranceInverseDriverEdit, null);
+    });
+    return true;
+};
+var successUploadCommercialInsuranceInverseDriverEdit = function (responseData) {
+    commercialInsuranceInverseURL = responseData.url;
+};
+//删除商业险保单反面
+var delCommercialInsuranceInverseDriverEdit = function () {
+    $("#img_commercialInsuranceInverseDriverEdit").attr("src", "../images/fujianimg.png");
+    $("#a_commercialInsuranceInverseDriverEdit").removeAttr("href");
+    commercialInsuranceInverseURL = ""
 };
 
 
@@ -426,10 +529,13 @@ var submitDriverEdit = function () {
         commercialInsuranceEffectiveEndDate: commercialInsuranceEffectiveDate,//商业险有效期
         //图片上传
         iDPositive: {url: iDPositiveURL, attachmentDesc: ""},
+        iDInverse: {url: iDInverseURL, attachmentDesc: ""},
         driverLicPositive: {url: driverLicPositiveURL, attachmentDesc: ""},
         vehicleLicPositive: {url: vehicleLicPositiveURL, attachmentDesc: ""},
         compulsoryInsurancePositive: {url: compulsoryInsurancePositiveURL, attachmentDesc: ""},
-        commercialInsurancePositive: {url: commercialInsurancePositiveURL, attachmentDesc: ""}
+        compulsoryInsuranceInverse: {url: compulsoryInsuranceInverseURL, attachmentDesc: ""},
+        commercialInsurancePositive: {url: commercialInsurancePositiveURL, attachmentDesc: ""},
+        commercialInsuranceInverse: {url: commercialInsuranceInverseURL, attachmentDesc: ""}
     };
     if (requestData.userName == null || requestData.userName == "") {
         ds.dialog({
@@ -540,7 +646,6 @@ var submitDriverEdit = function () {
         });
         return;
     }
-
     if (requestData.plateNo == null || requestData.plateNo == "") {
         ds.dialog({
             title: "消息提示",
@@ -550,6 +655,42 @@ var submitDriverEdit = function () {
         });
         return;
     }
+    //if (requestData.vehicleCapacity.isNaN) {
+    //    ds.dialog({
+    //        title: "消息提示",
+    //        content: "车辆容积必须为数字！",
+    //        icon: "info.png",
+    //        onyes: true
+    //    });
+    //    return;
+    //}
+    //if (requestData.vehicleLength.isNaN || requestData.vehicleWidth.isNaN || requestData.vehicleHeight.isNaN) {
+    //    ds.dialog({
+    //        title: "消息提示",
+    //        content: "车辆尺寸必须为数字！",
+    //        icon: "info.png",
+    //        onyes: true
+    //    });
+    //    return;
+    //}
+    //if (requestData.commercialInsuranceAmt.isNaN) {
+    //    ds.dialog({
+    //        title: "消息提示",
+    //        content: "交强险金额必须为数字！",
+    //        icon: "info.png",
+    //        onyes: true
+    //    });
+    //    return;
+    //}
+    //if (requestData.commercialInsuranceAmt.isNaN) {
+    //    ds.dialog({
+    //        title: "消息提示",
+    //        content: "商业险金额必须为数字！",
+    //        icon: "info.png",
+    //        onyes: true
+    //    });
+    //    return;
+    //}
     ajaxHelp.AjaxPost(URL, requestData, successSubmitDriverAdd, null);
 };
 var successSubmitDriverAdd = function () {
@@ -577,9 +718,9 @@ var closeDriverEdit = function () {
 
 getInfoDriverEdit();//获取司机信息
 
-getVehicleOwnerDriverEdit();//获取车辆所属下拉框
-getCompulsoryInsuranceCompanyDriverEdit();//获取交强险保险公司下拉框
-getCmmercialInsuranceCompanyDriverEdit();//获取商业险保险公司下拉框
+//getVehicleOwnerDriverEdit();//获取车辆所属下拉框
+//getCompulsoryInsuranceCompanyDriverEdit();//获取交强险保险公司下拉框
+//getCmmercialInsuranceCompanyDriverEdit();//获取商业险保险公司下拉框
 
 //if (requestData.roadFrtQCertNo == null || requestData.roadFrtQCertNo == "") {
 //    $.messager.alert("提示", "请输入从业资格证号！", "error");

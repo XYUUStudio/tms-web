@@ -101,8 +101,7 @@ $("#dialog_resetPwdUserList").dialog({
     closed: true,
     cache: false,
     modal: true,
-    resizable: true,
-    loadingMessage: '正在加载...'
+    loadingMessage: "正在加载..."
 });
 //用户列表-重置密码提交
 var submitResetPwdUserList = function () {
@@ -111,8 +110,8 @@ var submitResetPwdUserList = function () {
     var resetPwd = $("#resetPwdUserList").val();
     var loginPassword = $("#confirmPwdUserList").val();
     var requestData = {
-        loginPassword: loginPassword,
-        userId: rowData[0].loginID
+        userId: rowData[0].loginID,
+        loginPassword: loginPassword
     };
     if (resetPwd == null || resetPwd == "") {
         $.messager.alert("提示", "请输入重置密码！", "error");
