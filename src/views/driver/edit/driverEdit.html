@@ -31,11 +31,11 @@
     <div class="control-view">
         <label>
             <span><span class="required">*</span>身份证号：</span>
-            <input id="userIDCardDriverEdit"/>
+            <input id="userIDCardDriverEdit" style="width: 130px"/>
         </label>
         <label>
             <span><span class="required">*</span>手机号：</span>
-            <input id="userMobileDriverEdit"/>
+            <input id="userMobileDriverEdit" style="width:150px"/>
         </label>
         <label>
             <span><span class="required">*</span>邮箱：</span>
@@ -56,28 +56,33 @@
     </div>
     <div class="control-view">
         <p>
-            <span style="text-align: right;float: left;">身份证上传：</span>
+            <span style="text-align: right;float: left;">身份证正面上传：</span>
             <label
-                style="display:inline-block;width: 150px;height: 150px;position:relative;text-align:center;border: 1px #999 solid">
+                style="display:inline-block;width: 150px;height: 80px;position:relative;text-align:center;border: 1px #999 solid">
                 <input type="file" style="display:none" multiple="multiple"
                        onchange="uploadIDPositiveDriverEdit(this)"/>
                 <a id="a_iDPositiveDriverEdit" target="_blank">
-                    <img id="img_iDPositiveDriverEdit" width="150px" height="150px;" src="../images/fujianimg.png">
+                    <img id="img_iDPositiveDriverEdit" width="150px" height="80px;" src="../images/fujianimg.png">
                 </a>
             </label>
             <button onclick="delIDPositiveDriverEdit()">删除</button>
         </p>
     </div>
     <div class="control-view">
-        <label style="margin-left:85px">
-            <div>
-                <div id="iDPositiveDriverEdit" style="float: left">
-                </div>
-
-            </div>
-        </label>
+        <p>
+            <span style="text-align: right;float: left;">身份证反面上传：</span>
+            <label
+                style="display:inline-block;width: 150px;height: 80px;position:relative;text-align:center;border: 1px #999 solid">
+                <input type="file" style="display:none" multiple="multiple"
+                       onchange="uploadIDInverseDriverEdit(this)"/>
+                <a id="a_iDInverseDriverEdit" target="_blank">
+                    <img id="img_iDInverseDriverEdit" width="150px" height="80px;" src="../images/fujianimg.png">
+                </a>
+            </label>
+            <button onclick="delIDInverseDriverEdit()">删除</button>
+        </p>
     </div>
-    <div class="control-group" style="text-align: left;margin-top: 250px">
+    <div class="control-group" style="text-align: left;margin-top: 130px">
         <label>
             <span style="color:#f79449">驾驶信息</span>
         </label>
@@ -107,27 +112,27 @@
         <p>
             <span style="text-align: right;float: left;">驾驶证上传：</span>
             <label
-                style="display:inline-block;width: 150px;height: 150px;position:relative;text-align:center;border: 1px #999 solid">
+                style="display:inline-block;width: 150px;height: 80px;position:relative;text-align:center;border: 1px #999 solid">
                 <input type="file" style="display:none" multiple="multiple"
                        onchange="uploadDriverLicPositiveDriverEdit(this)"/>
                 <a id="a_driverLicPositiveDriverEdit" target="_blank">
-                    <img id="img_driverLicPositiveDriverEdit" width="150px" height="150px;"
+                    <img id="img_driverLicPositiveDriverEdit" width="150px" height="80px;"
                          src="../images/fujianimg.png">
                 </a>
             </label>
             <button onclick="delDriverLicPositiveDriverEdit()">删除</button>
         </p>
     </div>
-    <div class="control-view">
-        <label>
-            <div style="margin-left: 85px">
-                <div id="driverLicPositiveDriverEdit">
-                </div>
-                <div id="driverLicInverseDriverEdit">
-                </div>
-            </div>
-        </label>
-    </div>
+    <!--<div class="control-view">-->
+    <!--<label>-->
+    <!--<div style="margin-left: 85px">-->
+    <!--<div id="driverLicPositiveDriverEdit">-->
+    <!--</div>-->
+    <!--<div id="driverLicInverseDriverEdit">-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</label>-->
+    <!--</div>-->
     <div class="control-group" style="text-align: left;margin-top: 250px">
         <label>
             <span style="color:#f79449">车辆信息</span>
@@ -155,7 +160,8 @@
         </label>
         <label>
             <span>车辆容积：</span>
-            <input id="vehicleCapacityDriverEdit"/>
+            <input id="vehicleCapacityDriverEdit" style="width:100px"/>
+            <a>方</a>
         </label>
         <label>
             <span>营运证号：</span>
@@ -182,11 +188,11 @@
         <p>
             <span style="text-align: right;float: left;">行驶证上传：</span>
             <label
-                style="display:inline-block;width: 150px;height: 150px;position:relative;text-align:center;border: 1px #999 solid">
+                style="display:inline-block;width: 150px;height: 80px;position:relative;text-align:center;border: 1px #999 solid">
                 <input type="file" style="display:none" multiple="multiple"
                        onchange="uploadVehicleLicPositiveDriverEdit(this)"/>
                 <a id="a_vehicleLicPositiveDriverEdit" target="_blank">
-                    <img id="img_vehicleLicPositiveDriverEdit" width="150px" height="150px;"
+                    <img id="img_vehicleLicPositiveDriverEdit" width="150px" height="80px;"
                          src="../images/fujianimg.png">
                 </a>
             </label>
@@ -218,22 +224,38 @@
     <div class="control-view">
         <label style="width:90%;">
             <span>保险金额：</span>
-            <input id="compulsoryInsuranceAmtDriverEdit"/>
+            <input id="compulsoryInsuranceAmtDriverEdit" style="width:100px"/>
+            <a>万</a>
         </label>
     </div>
     <div class="control-view">
         <p>
-            <span style="text-align: right;float: left;">保单上传：</span>
+            <span style="text-align: right;float: left;">保单正面上传：</span>
             <label
-                style="display:inline-block;width: 150px;height: 150px;position:relative;text-align:center;border: 1px #999 solid">
+                style="display:inline-block;width: 150px;height: 80px;position:relative;text-align:center;border: 1px #999 solid">
                 <input type="file" style="display:none" multiple="multiple"
-                       onchange="uploadCompulsoryInsuranceDriverEdit(this)"/>
+                       onchange="uploadCompulsoryInsurancePositiveDriverEdit(this)"/>
                 <a id="a_compulsoryInsurancePositiveDriverEdit" target="_blank">
-                    <img id="img_compulsoryInsuranceInverseDriverEdit" width="150px" height="150px;"
+                    <img id="img_compulsoryInsurancePositiveDriverEdit" width="150px" height="80px;"
                          src="../images/fujianimg.png">
                 </a>
             </label>
             <button onclick="delCompulsoryInsurancePositiveDriverEdit()">删除</button>
+        </p>
+    </div>
+    <div class="control-view">
+        <p>
+            <span style="text-align: right;float: left;">保单反面上传：</span>
+            <label
+                style="display:inline-block;width: 150px;height: 80px;position:relative;text-align:center;border: 1px #999 solid">
+                <input type="file" style="display:none" multiple="multiple"
+                       onchange="uploadCompulsoryInsuranceInverseDriverEdit(this)"/>
+                <a id="a_compulsoryInsuranceInsuranceDriverEdit" target="_blank">
+                    <img id="img_compulsoryInsuranceInverseDriverEdit" width="150px" height="80px;"
+                         src="../images/fujianimg.png">
+                </a>
+            </label>
+            <button onclick="delCompulsoryInsuranceInverseDriverEdit()">删除</button>
         </p>
     </div>
     <div class="control-group" style="text-align: left;margin-top: 250px">
@@ -261,22 +283,38 @@
     <div class="control-view">
         <label style="width: 90%">
             <span>保险金额：</span>
-            <input id="commercialInsuranceAmtDriverEdit"/>
+            <input id="commercialInsuranceAmtDriverEdit" style="width:100px"/>
+            <a>万</a>
         </label>
     </div>
     <div class="control-view">
         <p>
-            <span style="text-align: right;float: left;">保单上传：</span>
+            <span style="text-align: right;float: left;">保单正面上传：</span>
             <label
-                style="display:inline-block;width: 150px;height: 150px;position:relative;text-align:center;border: 1px #999 solid">
+                style="display:inline-block;width: 150px;height: 80px;position:relative;text-align:center;border: 1px #999 solid">
                 <input type="file" style="display:none" multiple="multiple"
                        onchange="uploadCommercialInsuranceDriverEdit(this)"/>
                 <a id="a_commercialInsurancePositiveDriverEdit" target="_blank">
-                    <img id="img_commercialInsurancePositiveDriverEdit" width="150px" height="150px;"
+                    <img id="img_commercialInsurancePositiveDriverEdit" width="150px" height="80px;"
                          src="../images/fujianimg.png">
                 </a>
             </label>
             <button onclick="delCommercialInsurancePositiveDriverEdit()">删除</button>
+        </p>
+    </div>
+    <div class="control-view">
+        <p>
+            <span style="text-align: right;float: left;">保单反面上传：</span>
+            <label
+                style="display:inline-block;width: 150px;height: 80px;position:relative;text-align:center;border: 1px #999 solid">
+                <input type="file" style="display:none" multiple="multiple"
+                       onchange="uploadCommercialInsuranceInverseDriverEdit(this)"/>
+                <a id="a_commercialInsuranceInverseDriverEdit" target="_blank">
+                    <img id="img_commercialInsuranceInverseDriverEdit" width="150px" height="80px;"
+                         src="../images/fujianimg.png">
+                </a>
+            </label>
+            <button onclick="delCommercialInsuranceInverseDriverEdit()">删除</button>
         </p>
     </div>
 </div>

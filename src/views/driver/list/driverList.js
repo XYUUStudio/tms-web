@@ -10,8 +10,8 @@ var getLogCenterDriverList = function () {
     var requestData = {};
     ajaxHelp.AjaxPost(URL, requestData, successGetLogisticsCenter, null);
 };
-var successGetLogisticsCenter = function (data) {
-    $.each(data, function (index, item) {
+var successGetLogisticsCenter = function (responseData) {
+    $.each(responseData, function (index, item) {
         $("#logisticsCenterDriverList").append("<option value='" + item.id + "' >" + item.name + "</option>")
     });
 };
@@ -115,7 +115,6 @@ $("#dialog_resetPwdDriverList").dialog({
     closed: true,
     cache: false,
     modal: true,
-    resizable: true,
     loadingMessage: "正在加载..."
 });
 //司机列表-重置密码提交

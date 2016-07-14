@@ -27,22 +27,21 @@ var successGetDetailDriverDetail = function (responseData) {
     $("#vehicleLicSpecificationDriverDetail").html(responseData.vehicleLicSpecification);//车型
     $("#vehicleCapacityDriverDetail").html(responseData.vehicleCapacity);//车辆容量
     $("#vehicleOPCertNoDriverDetail").html(responseData.vehicleOPCertNo);//行驶证营运证号
-    $("#vehicleLengthDriverDetail").html(responseData.vehicleLength + "×");//长
-    $("#vehicleWidthDriverDetail").html(responseData.vehicleWidth + "×");//宽
+    $("#vehicleLengthDriverDetail").html(responseData.vehicleLength);//长
+    $("#vehicleWidthDriverDetail").html(responseData.vehicleWidth);//宽
     $("#vehicleHeightDriverDetail").html(responseData.vehicleHeight);//高
-    $("#vehicleOwnerTypeDriverDetail").html(responseData.vehicleOwnerType);//车辆所属
-    $("#compulsoryInsuranceCompanyDriverDetail").html(responseData.compulsoryInsuranceCompany);//交强险公司
+    $("#vehicleOwnerTypeDriverDetail").html(responseData.vehicleOwnerTypeName);//车辆所属
+    $("#compulsoryInsuranceCompanyDriverDetail").html(responseData.compulsoryInsuranceCompanyName);//交强险公司
     $("#compulsoryInsuranceDocNoDriverDetail").html(responseData.compulsoryInsuranceDocNo);//交强险单号
     $("#compulsoryInsuranceAmtDriverDetail").html(responseData.compulsoryInsuranceAmt);//交强险金额
-    $("#commercialInsuranceCompanyDriverDetail").html(responseData.commercialInsuranceCompany);//商业险公司
+    $("#commercialInsuranceCompanyDriverDetail").html(responseData.commercialInsuranceCompanyName);//商业险公司
     $("#commercialInsuranceDocNoDriverDetail").html(responseData.commercialInsuranceDocNo);//商业险单号
     $("#commercialInsuranceAmtDriverDetail").html(responseData.commercialInsuranceAmt);//商业险金额
     //地址
-    var province = responseData.residentProvinceCodeName;//省
-    var city = responseData.residentCityCodeName;//市
-    var district = responseData.residentDistrictCodeName;//区
-    var address = responseData.residentAddress;//详细地址
-    $("#addressDriverDetail").html(province + city + district + address);
+    $("#provinceDriverDetail").html(responseData.residentProvinceCodeName);//省
+    $("#cityDriverDetail").html(responseData.residentCityCodeName);//市
+    $("#districtDriverDetail").html(responseData.residentDistrictCodeName);//区
+    $("#addressDriverDetail").html(responseData.residentAddress);//详细地址
     //日期
     $("#driverLicEffectiveDateEndDriverDetail").html(responseData.driverLicEffectiveDateEnd);//驾驶证有效期
     $("#driverLicIssueDateDriverDetail").html(responseData.driverLicIssueDate);//驾驶证发证日期
@@ -52,21 +51,37 @@ var successGetDetailDriverDetail = function (responseData) {
     $("#commercialInsuranceEffectiveEndDateDriverDetail").html(responseData.commercialInsuranceEffectiveEndDate);//商业险有效期
     //图片
     if (responseData.iDPositive != null) {
-        $("#iDPositiveDriverDetail").html('<img src="' + responseData.iDPositive.url + '" alt="" width="200" height="80" />')
-    }//身份证正面
-    //$("#iDInverseDriverDetail").html(responseData.iDInverse);
+        //身份证正面
+        $("#iDPositiveDriverDetail").html('<img src="' + responseData.iDPositive.url + '" alt="" width="150" height="80" />')
+    }
+    if (responseData.iDInverse != null) {
+        //身份证反面
+        $("#iDInverseDriverDetail").html('<img src="' + responseData.iDInverse.url + '" alt="" width="150" height="80" />')
+    }
     if (responseData.driverLicPositive != null) {
-        $("#driverLicPositiveDriverDetail").html('<img src="' + responseData.driverLicPositive.url + '" alt="" width="200" height="80" />')
-    }//驾驶证正面
+        //驾驶证
+        $("#driverLicPositiveDriverDetail").html('<img src="' + responseData.driverLicPositive.url + '" alt="" width="150" height="80" />')
+    }
     if (responseData.vehicleLicPositive != null) {
-        $("#vehicleLicPositiveDriverDetail").html('<img src="' + responseData.vehicleLicPositive.url + '" alt="" width="200" height="80" />')
-    }//行驶证正面
+        //行驶证
+        $("#vehicleLicPositiveDriverDetail").html('<img src="' + responseData.vehicleLicPositive.url + '" alt="" width="150" height="80" />')
+    }
     if (responseData.compulsoryInsurancePositive != null) {
-        $("#compulsoryInsurancePositiveDriverDetail").html('<img src="' + responseData.compulsoryInsurancePositive.url + '" alt="" width="200" height="80" />')
-    }//交强险保单正面
+        //交强险保单正面
+        $("#compulsoryInsurancePositiveDriverDetail").html('<img src="' + responseData.compulsoryInsurancePositive.url + '" alt="" width="150" height="80" />')
+    }
+    if (responseData.compulsoryInsuranceInverse != null) {
+        //交强险保单反面
+        $("#compulsoryInsuranceInverseDriverDetail").html('<img src="' + responseData.compulsoryInsuranceInverse.url + '" alt="" width="150" height="80" />')
+    }
     if (responseData.commercialInsurancePositive != null) {
-        $("#commercialInsurancePositiveDriverDetail").html('<img src="' + responseData.commercialInsurancePositive.url + '" alt="" width="200" height="80" />')
-    }//商业险保单正面
+        //商业险保单正面
+        $("#commercialInsurancePositiveDriverDetail").html('<img src="' + responseData.commercialInsurancePositive.url + '" alt="" width="150" height="80" />')
+    }
+    if (responseData.commercialInsuranceInverse != null) {
+        //商业险保单反面
+        $("#commercialInsuranceInverseDriverDetail").html('<img src="' + responseData.commercialInsuranceInverse.url + '" alt="" width="150" height="80" />')
+    }
 };
 
 
