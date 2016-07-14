@@ -59,17 +59,17 @@ var successGetInfoDriverEdit = function (responseData) {
         //$("#iDPositiveURLDriverEdit").val(responseData.iDPositive.url);
         $("#iDPositiveDriverEdit").html('<img src="' + responseData.iDPositive.url + '" alt="" width="200" height="80" />')
     }//身份证正面
-    if (responseData.iDPositive != null) {
-        $("#driverLicPositiveDriverEdit").html('<img src="' + responseData.iDPositive.url + '" alt="" width="200" height="80" />')
+    if (responseData.driverLicPositive != null) {
+        $("#driverLicPositiveDriverEdit").html('<img src="' + responseData.driverLicPositive.url + '" alt="" width="200" height="80" />')
     }//驾驶证正面
-    if (responseData.iDPositive != null) {
-        $("#vehicleLicPositiveDriverEdit").html('<img src="' + responseData.iDPositive.url + '" alt="" width="200" height="80" />')
+    if (responseData.vehicleLicPositive != null) {
+        $("#vehicleLicPositiveDriverEdit").html('<img src="' + responseData.vehicleLicPositive.url + '" alt="" width="200" height="80" />')
     }//行驶证正面
-    if (responseData.iDPositive != null) {
-        $("#compulsoryInsurancePositiveDriverEdit").html('<img src="' + responseData.iDPositive.url + '" alt="" width="200" height="80" />')
+    if (responseData.compulsoryInsurancePositive != null) {
+        $("#compulsoryInsurancePositiveDriverEdit").html('<img src="' + responseData.compulsoryInsurancePositive.url + '" alt="" width="200" height="80" />')
     }//交强险保单
-    if (responseData.iDPositive != null) {
-        $("#commercialInsurancePositiveDriverEdit").html('<img src="' + responseData.iDPositive.url + '" alt="" width="200" height="80" />')
+    if (responseData.commercialInsurancePositive != null) {
+        $("#commercialInsurancePositiveDriverEdit").html('<img src="' + responseData.commercialInsurancePositive.url + '" alt="" width="200" height="80" />')
     }//商业险保单
 };
 
@@ -171,75 +171,85 @@ var successChangeCityDriverEdit = function (data) {
 
 
 //身份证上传
-function uploadIDDriverEdit(imgData) {
+var uploadIDPositiveDriverEdit = function (imgData) {
     var file = imgData.files[0];//选择上传的文件
     var fr = new FileReader();
     fr.readAsDataURL(file);
     $(fr).load(function () {
-        $('#iDPositiveDriverEdit').html('<img src='+fr.result+'  alt="" width="200" height="80"  border="0px" />');
+        $("#img_iDPositiveDriverEdit").attr("src", fr.result);
+        $("#a_iDPositiveDriverEdit").attr("href", fr.result);
         var URL = ApiPath.TMSApi.dictionary.upload;
-        var requestData = {file: fr.result};
-        ajaxHelp.AjaxForm(URL, requestData, successUploadIDDriverEdit, null);
+        var requestData = {
+            file: fr.result
+        };
+        ajaxHelp.AjaxForm(URL, requestData, successUploadIDPositiveDriverEdit, null);
     });
     return true;
-}
+};
 var iDPositiveURL = "";
-var successUploadIDDriverEdit = function (responseData) {
+var successUploadIDPositiveDriverEdit = function (responseData) {
     iDPositiveURL = responseData.url;
 };
 //删除身份证
 var delIDPositiveDriverEdit = function () {
-    $("#iDPositiveDriverEdit").html('<img src="" alt="" width="150" height="150"  border="0px"/>');
+    $("#img_iDPositiveDriverEdit").attr("src", "../images/fujianimg.png");
+    $("#a_iDPositiveDriverEdit").removeAttr("href");
     iDPositiveURL = ""
 };
+
+
 //驾驶证上传
-function uploadDriverLicDriverEdit(imgData) {
+var uploadDriverLicPositiveDriverEdit = function (imgData) {
     var file = imgData.files[0];//选择上传的文件
     var fr = new FileReader();
     fr.readAsDataURL(file);
     $(fr).load(function () {
+        $("#img_driverLicPositiveDriverEdit").attr("src", fr.result);
+        $("#a_driverLicPositiveDriverEdit").attr("href", fr.result);
         var URL = ApiPath.TMSApi.dictionary.upload;
         var requestData = {
             file: fr.result
         };
-        ajaxHelp.AjaxForm(URL, requestData, successUploadDriverLicDriverEdit, null);
+        ajaxHelp.AjaxForm(URL, requestData, successUploadDriverLicPositiveDriverEdit, null);
     });
     return true;
-}
-var driverLicPositiveURL = "";
-var successUploadDriverLicDriverEdit = function (responseData) {
-    driverLicPositiveURL = responseData.url;
+};
+var driverLicPositive = "";
+var successUploadDriverLicPositiveDriverEdit = function (responseData) {
+    driverLicPositive = responseData.url;
 };
 //删除驾驶证
 var delDriverLicPositiveDriverEdit = function () {
-    $("#driverLicPositiveDriverEdit").html('<img src="" alt="" width="150" height="150"  border="0px"/>');
-    driverLicPositiveURL = ""
+    $("#img_driverLicPositiveDriverEdit").attr("src", "../images/fujianimg.png");
+    $("#a_driverLicPositiveDriverEdit").removeAttr("href");
+    driverLicPositive = ""
 };
+
+
 //行驶证上传
-function uploadVehicleLicDriverEdit(imgData) {
+var uploadVehicleLicPositiveDriverEdit = function (imgData) {
     var file = imgData.files[0];//选择上传的文件
     var fr = new FileReader();
     fr.readAsDataURL(file);
     $(fr).load(function () {
-        $('#DriverEditImg').attr("src", fr.result)
-        $('#DriverEditImga').attr("href", fr.result)
+        $("#img_vehicleLicPositiveDriverEdit").attr("src", fr.result);
+        $("#a_vehicleLicPositiveDriverEdit").attr("href", fr.result);
         var URL = ApiPath.TMSApi.dictionary.upload;
         var requestData = {
             file: fr.result
         };
-        ajaxHelp.AjaxForm(URL, requestData, successUploadVehicleLicDriverEdit, null);
+        ajaxHelp.AjaxForm(URL, requestData, successUploadVehicleLicPositiveDriverEdit, null);
     });
     return true;
-}
+};
 var vehicleLicPositiveURL = "";
-var successUploadVehicleLicDriverEdit = function (responseData) {
+var successUploadVehicleLicPositiveDriverEdit = function (responseData) {
     vehicleLicPositiveURL = responseData.url;
 };
 //删除行驶证
 var delVehicleLicPositiveDriverEdit = function () {
-    // $("#vehicleLicPositiveDriverEdit").html('<img src="" alt="" width="150" height="150"  border="0px"/>');
-    $('#DriverEditImg').attr("src","../images/fujianimg.png");
-    $('#DriverEditImga').removeAttr("href");
+    $("#img_vehicleLicPositiveDriverEdit").attr("src", "../images/fujianimg.png");
+    $("#a_vehicleLicPositiveDriverEdit").removeAttr("href");
     vehicleLicPositiveURL = ""
 };
 //交强险保单上传

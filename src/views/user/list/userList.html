@@ -2,7 +2,7 @@
     <div style="padding: 3px">
         <ul class="sear" style="overflow: hidden">
             <li>
-                <input id="searchValueUserList" class="easyui-textbox" data-options="prompt: '请输入用户账号/姓名/手机号'">
+                <input id="searchValueUserList" placeholder="请输入用户账号/姓名/手机号">
                 <div class="button" style="margin-top: -1px">
                     <a href="#" onclick="queryUserList()" style="width: 35px;height: 24px;line-height: 24px">
                         <span>查询</span>
@@ -13,7 +13,7 @@
                 <div style="float: left">
                     <span>状态</span>
                     <select class="easyui-combobox" id="validStatusUserList" style="width: 60px">
-                        <option value="" ,select="true">全部</option>
+                        <option value="" selected="selected">全部</option>
                         <option value="Y">有效</option>
                         <option value="N">无效</option>
                     </select>
@@ -74,7 +74,7 @@
                 <span>重置</span>
             </a>
             <a href="#" onclick="javascript:$('#dialog_resetPwdUserList').dialog('close')"
-               style="width: 80px;height: 30px;line-height: 30px;margin-right: 20px;background: white;border: 1px solid #999">
+               style="width: 80px;height: 30px;line-height: 30px;margin-right: 3px;background: white;border: 1px solid #999">
                 <span style="color: #000">取消</span>
             </a>
         </div>

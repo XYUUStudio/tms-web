@@ -22,6 +22,8 @@ var getDetailDriverList = function () {
     var rowData = $("#driverList").datagrid("getSelections");
     return rowData;
 };
+
+
 //司机列表-详情
 var detailDriverList = function () {
     addTabHref("司机详情", "views/driver/detail/driverDetail.html");
@@ -30,7 +32,6 @@ var detailDriverList = function () {
 
 //司机列表-加载司机列表
 var loadDriverList = function (pageNumber, pageSize) {
-    getLogCenterDriverList();
     var URL = ApiPath.TMSApi.businessData.driverList;
     if (pageNumber == undefined || pageNumber == 0) {
         pageNumber = 1;
@@ -51,8 +52,8 @@ var successLoadDriverList = function (resultInfo) {
         pageSize: resultInfo.pageSize,
         total: resultInfo.total,
         selected: true,
-        onSelectPage:function(pageNumber, pageSize){
-            loadUserList(pageNumber, pageSize);
+        onSelectPage: function (pageNumber, pageSize) {
+            loadDriverList(pageNumber, pageSize);
         }
     });
 };
@@ -163,3 +164,5 @@ var editDriverList = function () {
 
 //司机列表-加载司机列表
 loadDriverList();
+//获取所属物流中心下拉框
+getLogCenterDriverList();
