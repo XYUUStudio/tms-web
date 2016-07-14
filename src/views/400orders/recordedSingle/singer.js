@@ -25,8 +25,11 @@ var getAppendTimeSingerSelect=function () {
     ajaxHelp.AjaxPost(URL,requestData,successAppendTimeSingerSelec,null);
 };
 var successAppendTimeSingerSelec=function (data) {
+    var  getToday= new Date().format('yyyy-MM-dd hh:ss ');
+    $("#reqDeliveryDateSinger").datebox("setValue", getToday);
     $.each(data.dictValueList, function (index,item ) {
         $("#appendTimeSinger").append(" <option value='"+item.dictValueCode+"' >"+item.dictValueName+"</option>")
+        $("#appendTimeSinger option:last").prop("selected", 'selected');
     })
 };
 var senderProvinceCodeSingerSelect=function () {
@@ -266,6 +269,7 @@ var SingerSubmitClose=function () {
         yesText : '确定',
         onyes:function(){
             $("#tabs").tabs('close','电话录单');
+            this.close();
             return false;
         },
         noText : '取消',
@@ -276,6 +280,7 @@ var SingerSubmitClose=function () {
     });
 };
 var successSingerSubmitAdd=function (data) {
+    console.log(data)
     ds.dialog({
         title : '消息提示',
         content : data,
@@ -289,4 +294,5 @@ var successSingerSubmitAdd=function (data) {
         loadDispatchList();
     },2000)
 }
+
 loadSing();

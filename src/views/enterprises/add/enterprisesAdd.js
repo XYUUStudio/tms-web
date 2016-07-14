@@ -95,11 +95,12 @@ var attachmentCCURL="";
 var attachmentCOURL="";
 var successImgListCO=function (data) {
     //主图
-    attachmentCCURL=data.url;
+    attachmentCOURL=data.url;
+
 }
 var successImgListCC=function (data) {
     //附图
-    attachmentCOURL=data.url
+    attachmentCCURL=data.url
 }
 var verification=function () {
     var resule=true;
@@ -157,6 +158,9 @@ var EnterprisesSubmitAdd=function () {
         };
         ajaxHelp.AjaxPost(URL,requestData,successEnterprisesSubmitAdd,null);
     }
+}
+var EnterprisesSubmitClose=function () {
+    $("#tabs").tabs('close','企业新增');
 }
 var successEnterprisesSubmitAdd=function () {
     ds.dialog({

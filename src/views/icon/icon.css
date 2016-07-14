@@ -5,7 +5,7 @@
 /*我的首页*/
 .tms-wed-i-tongyong {
 
-    background: url(../icon/sy.png) no-repeat ;
+    background: url(sy.png) no-repeat ;
     width: 22px;
     height: 22px;
     display: inline-block;
@@ -13,7 +13,7 @@
 
 /*调度管理*/
 .tms-wed-i-diaodu{
-    background:url(../icon/dd.png) no-repeat;
+    background:url(dd.png) no-repeat;
     width: 20px;
     height:20px;
     display: inline-block;

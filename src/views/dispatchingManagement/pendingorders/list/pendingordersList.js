@@ -17,6 +17,8 @@ var loadPendingordersList = function(pageNumber, pageSize){
         page:pageNumber,
         rows:pageSize,
         status:"CGSTS00050",
+        sort:"reqDeliveryDate",
+        order:"asc",
         lcOrgCode:userOrgcode
     };
     ajaxHelp.AjaxPost(URL,requestData,successPendingordersListDoSearch,null);

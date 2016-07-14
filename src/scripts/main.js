@@ -84,6 +84,7 @@ var addTab = function (type, title, url, closableValue, jsPathList) {
 var addTabContent = function (title, url, closableValue) {
     if ($('#tabs').tabs('exists', title)) {
         $('#tabs').tabs('select', title);
+        return false;
     } else {
         if ("undefined" === typeof arguments[2]) {
             closableValue = true;
@@ -105,17 +106,13 @@ var addTabContent = function (title, url, closableValue) {
                 ajaxLoadEnd();
             };
         }
-
         $('#tabs').tabs('add', {
             title: title,
             content: iframe,
             closable: closableValue
         });
-
     }
-
     tabClose();
-
 };
 
 /**
