@@ -14,7 +14,7 @@ gulp.task('Views', function(){
 		.pipe(replace('styles/main.css', 'styles/main.min.css'))
 		.pipe(replace('styles/login.css', 'styles/login.min.css'))
 
-		.pipe(replace('<link rel="stylesheet" type="text/css" href="styles/bootstrap/bootstrap-overrides.css">', '<link rel="stylesheet" type="text/css" href="styles/bootstrap/bootstrap-overrides.min.css">"></script>'))
+		.pipe(replace('<link rel="stylesheet" type="text/css" href="styles/bootstrap/bootstrap-overrides.css">', '<link rel="stylesheet" type="text/css" href="styles/bootstrap/bootstrap-overrides.min.css">'))
 		.pipe(replace('<link rel="stylesheet" type="text/css" href="styles/bootstrap/bootstrap-responsive.css">', '<link rel="stylesheet" type="text/css" href="styles/bootstrap/bootstrap-responsive.min.css">'))
 		.pipe(replace('<link rel="stylesheet" type="text/css" href="styles/bootstrap/font-awesome.css">', '<link rel="stylesheet" type="text/css" href="styles/bootstrap/font-awesome.min.css">'))
 
@@ -32,6 +32,7 @@ gulp.task('Views', function(){
 		.pipe(replace('<script src="scripts/main.js"></script>', ''))
 		.pipe(replace('<script src="scripts/myWebSocket.js"></script>', ''))
 		.pipe(replace('<script src="scripts/dsdialog.js"></script>', ''))
+		.pipe(replace('<script src="scripts/common.js"></script>', ''))
 		.pipe(replace('<script src="scripts/bootstrap/bootstrap.js"></script>', ''))
 		.pipe(replace('<script src="scripts/bootstrap/bootstrap-editable.min.js"></script>', ''))
 		.pipe(replace('<script src="scripts/bootstrap/bootstrap-timepicker.min.js"></script>', ''))
