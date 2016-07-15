@@ -4,15 +4,17 @@
 var ajaxHelp = new AjaxHelp();
 
 
-//司机列表-获取物流中心
+//司机列表-获取物流中心h
 var getLogCenterDriverList = function () {
     var URL = ApiPath.TMSApi.businessData.logisticsCenter;
     var requestData = {};
     ajaxHelp.AjaxPost(URL, requestData, successGetLogisticsCenter, null);
 };
 var successGetLogisticsCenter = function (responseData) {
+    $("#logCenterDriverList").empty();
+    $("#logCenterDriverList").prepend("<option value=''>请选择所属物流中心</option>");
     $.each(responseData, function (index, item) {
-        $("#logisticsCenterDriverList").append("<option value='" + item.id + "' >" + item.name + "</option>")
+        $("#logCenterDriverList").append("<option value='" + item.id + "' >" + item.name + "</option>")
     });
 };
 

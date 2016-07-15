@@ -167,9 +167,9 @@ var changeProvinceDriverEdit = function (provinceCode) {
 };
 var successChangeProvinceDriverEdit = function (data) {
     $("#cityDriverEdit").empty();
-    $("#cityDriverEdit").prepend("<option value=''>请选择市</option>"); //为Select插入一个Option(第一个位置)
+    $("#cityDriverEdit").prepend("<option value=''>请选择市</option>");//为Select插入一个Option(第一个位置)
     $("#districtDriverEdit").empty();
-    $("#districtDriverEdit").prepend("<option value=''>请选择区</option>"); //为Select插入一个Option(第一个位置)
+    $("#districtDriverEdit").prepend("<option value=''>请选择区</option>");
     if (flag == true) {
         $.each(data, function (index, item) {
             $("#cityDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>");
@@ -190,7 +190,7 @@ var changeCityDriverEdit = function (cityCode) {
 };
 var successChangeCityDriverEdit = function (data) {
     $("#districtDriverEdit").empty();
-    $("#districtDriverEdit").prepend("<option value=''>请选择区</option>"); //为Select插入一个Option(第一个位置)
+    $("#districtDriverEdit").prepend("<option value=''>请选择区</option>");
     if (flag == true) {
         $.each(data, function (index, item) {
             $("#districtDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>")
