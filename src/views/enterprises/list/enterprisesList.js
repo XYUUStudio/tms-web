@@ -54,7 +54,7 @@ var AddEnterprises=function () {
 
 var Viewenterprises=function(){
     //详情页面
-    addTabHref('企业详情','views/enterprises/view/enterprisesView.html')
+    addTabHrefUpdate('企业详情','views/enterprises/view/enterprisesView.html')
 };
 var getEnterprisesDate=function () {
     var row = $("#enterprisesList").datagrid('getSelections');

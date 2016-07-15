@@ -3,34 +3,30 @@
  */
 $(function () {
     //得到焦点
-    $("#password").focus(function () {
+    $("#password").focus(function(){
         $("#left_hand").animate({
-            left: "150",
+            left: "160",
             top: " -38"
-        }, {
-            step: function () {
-                if (parseInt($("#left_hand").css("left")) > 140) {
-                    $("#left_hand").attr("class", "left_hand");
-                }
+        },{step: function(){
+            if(parseInt($("#left_hand").css("left"))>140){
+                $("#left_hand").attr("class","left_hand");
             }
-        }, 2000);
+        }}, 2000);
         $("#right_hand").animate({
-            right: "-64",
+            right: "-71",
             top: "-38px"
-        }, {
-            step: function () {
-                if (parseInt($("#right_hand").css("right")) > -70) {
-                    $("#right_hand").attr("class", "right_hand");
-                }
+        },{step: function(){
+            if(parseInt($("#right_hand").css("right"))> -72){
+                $("#right_hand").attr("class","right_hand");
             }
-        }, 2000);
+        }}, 2000);
     });
     //失去焦点
     $("#password").blur(function () {
         $("#left_hand").attr("class", "initial_left_hand");
         $("#left_hand").attr("style", "left:100px;top:-12px;");
         $("#right_hand").attr("class", "initial_right_hand");
-        $("#right_hand").attr("style", "right:-112px;top:-12px");
+        $("#right_hand").attr("style", "right:-130px;top:-12px");
     });
 
     // 登录验证
@@ -69,11 +65,13 @@ $(function () {
     var success = function (data) {
         console.log(data);
         var bb=data.toString();
-        console.log(bb)
         // //请求成功跳转登录页面
         $.cookie('token', data.token,{expires:data.excessTime/3600/24});
-        $.cookie('userOrgcode', data.loginUserInfo.orgCode);
-        $.cookie('userId', data.loginUserInfo.userId);
+        $.cookie('userOrgcode', data.loginUserInfo.orgCode,{expires:data.excessTime/3600/24});
+        $.cookie('userId', data.loginUserInfo.userId,{expires:data.excessTime/3600/24});
+        $.cookie('userorgname', data.loginUserInfo.userorgname,{expires:data.excessTime/3600/24});
+        $.cookie('userName', data.loginUserInfo.userName,{expires:data.excessTime/3600/24});
+        $.cookie('userJobDesc',data.loginUserInfo.userJobDesc,{expires:data.excessTime/3600/24})
         window.location.href = "main.html";
     }
     keyLogin = function (e) {

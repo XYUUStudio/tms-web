@@ -26,10 +26,8 @@ var getDetailDriverList = function () {
 
 //司机列表-详情
 var detailDriverList = function () {
-    addTabHref("司机详情", "views/driver/detail/driverDetail.html");
+    addTabHrefUpdate("司机详情", "views/driver/detail/driverDetail.html");
 };
-
-
 //司机列表-加载司机列表
 var loadDriverList = function (pageNumber, pageSize) {
     var URL = ApiPath.TMSApi.businessData.driverList;

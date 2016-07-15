@@ -11,7 +11,7 @@ var getUserData = function () {
 };
 //双击跳转至用户详情
 var detailUserList = function () {
-    addTabHref("用户详情", "views/user/detail/userDetail.html")
+    addTabHrefUpdate("用户详情", "views/user/detail/userDetail.html")
 };
 
 

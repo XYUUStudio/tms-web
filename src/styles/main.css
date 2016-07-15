@@ -76,9 +76,8 @@
 }
 /*登录页内容显示*/
 .tabs-panels {
-
     background-size:cover;
-    background: url("../images/body.png")left center no-repeat;
+    background: url("../images/body.gif")left center no-repeat #1ed6ae;
 }
 /*主题换肤样式*/
 .theme {

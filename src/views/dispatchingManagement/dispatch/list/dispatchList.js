@@ -94,7 +94,7 @@ var dispatchReassign=function () {
 }
 var dispatchView=function () {
     //运单详情
-    addTabHref('运单详情','views/dispatchingManagement/dispatch/view/dispatchview.html');
+    addTabHrefUpdate('运单详情','views/dispatchingManagement/dispatch/view/dispatchview.html');
 }
 $("#dispatchList").datagrid({
     striped: true,

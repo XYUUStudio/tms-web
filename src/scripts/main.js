@@ -63,7 +63,6 @@ var GetServerSearchFunction=function () {
     ajaxHelp.AjaxPost(URL,requestData,SuccessFunction,null);
 }
 var SuccessFunction=function (data) {
-    console.log(data)
     getMeunList(data)
 }
 /**
@@ -75,23 +74,19 @@ var addTab = function (type, title, url, closableValue) {
         addTabContent(title, url, closableValue);
     } else if (type === 1) {
         if ($('#tabs').tabs('exists', title)) {
-            ds.dialog({
-                title : '消息提示',
-                content : "【"+title+"】页面已打开，为了保证你的数据不丢失，请提交或关闭您已打开的【"+title+"】页面！",
-                onyes:true,
-                width:280,
-                icon : "info.png",
-            });
             $('#tabs').tabs('select', title);
-        }else {
+            if(url=="views/400orders/recordedSingle/singer.html"){
+                ds.dialog({
+                    title : '消息提示',
+                    content : "【"+title+"】页面已打开，为了保证你的数据不丢失，请提交或关闭您已打开的【"+title+"】页面！",
+                    onyes:true,
+                    width:280,
+                    icon : "info.png",
+                });
+            }
+        }
+        else {
             addTabHref(title, url, closableValue);
-            //动态加载js
-            // if (jsPathList != "undefined" && jsPathList != "") {
-            //     var addJsPathlist = jsPathList.split(",");
-            //     $.each(addJsPathlist, function (i, item) {
-            //         $.getScript(item);
-            //     });
-            // }
         }
     }
 };
@@ -145,8 +140,15 @@ var addTabContent = function (title, url, closableValue) {
 var addTabHref = function (title, url, closableValue) {
     //  加载新的tabs 页面
     if ($('#tabs').tabs('exists', title)) {
-        // alert("已有相同页面打开！")
+        ds.dialog({
+            title : '消息提示',
+            content : "【"+title+"】页面已打开，为了保证你的数据不丢失，请提交或关闭您已打开的【"+title+"】页面！",
+            onyes:true,
+            width:280,
+            icon : "info.png",
+        });
         $('#tabs').tabs('select', title);
+
     } else {
         if ("undefined" === typeof arguments[2]) {
             closableValue = true
@@ -157,9 +159,32 @@ var addTabHref = function (title, url, closableValue) {
             closable: closableValue,
         });
     }
-
     tabClose();
 };
+
+var addTabHrefUpdate = function (title, url, closableValue) {
+    //  加载新的tabs 页面
+    if ($('#tabs').tabs('exists', title)) {
+        // alert("已有相同页面打开！")
+        $('#tabs').tabs('close', title);
+        $('#tabs').tabs('add', {
+            title: title,
+            href: url,
+            closable: closableValue,
+        });
+    } else {
+        if ("undefined" === typeof arguments[2]) {
+            closableValue = true
+        }
+        $('#tabs').tabs('add', {
+            title: title,
+            href: url,
+            closable: closableValue,
+        });
+    }
+    tabClose();
+};
+
 //个人信息
 var personal = function () {
     addTabHref('个人设置', 'views/personal/index.html', 'views/personal/index.js')
@@ -290,7 +315,11 @@ $(document).ready(function () {
     }else {
         GetServerSearchFunction();
     }
-;
+
+    var userName = $.cookie("userName");
+    var userorgname = $.cookie("userorgname");
+    var userJobDesc = $.cookie("userJobDesc");
+    $("#MainUserInfo").html(userorgname+" "+userJobDesc+" "+userName)
     //换肤
     // $(function () {
     //     $('#theme_id').tooltip({
