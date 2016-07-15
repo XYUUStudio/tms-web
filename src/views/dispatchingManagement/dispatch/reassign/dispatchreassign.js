@@ -87,7 +87,7 @@ var successGetSenderDistrict=function (data) {
     //获取区域
     $.each(data, function (index,item ) {
         $("#senderDistrictCodeDispatchRe").append(" <option value='"+item.divCode+"' >"+item.divName+"</option>")
-        if(pram[0].DistrictCode==item.divCode){
+        if(pram[0].senderDistrictCode==item.divCode){
             $("#senderDistrictCodeDispatchRe").find("option[value='"+item.divCode+"']").attr("selected",true)
         }
     })
@@ -326,6 +326,7 @@ var DispatchReSubmitAdd=function () {
         if($("#reqDeliveryDateDispatchRe").datebox('getValue')){
             reqDeliveryDate=$("#reqDeliveryDateDispatchRe").datebox('getValue')+" "+$("#appendTimeDispatchRe").find("option:selected").text()+":00"
         }
+
         var requestData={
             consignmentNo:pram[0].consignmentNo,
             lcOrgCode:userOrgcode,

@@ -5,5 +5,5 @@ var AppConfig = {
     TMSWebSocketBasePath: "ws://192.168.1.84:8081/tms-api",
     OMSBasePath: "http://192.168.1.84:8081/oms-api",
     version: "dev",
-    development:true
+    development:false
 };

@@ -76,10 +76,9 @@
 }
 /*登录页内容显示*/
 .tabs-panels {
-    width: 100%;
-    height: 100%;
+
     background-size:cover;
-    background: url("../images/body.png");
+    background: url("../images/body.png")left center no-repeat;
 }
 /*主题换肤样式*/
 .theme {
@@ -1040,7 +1039,7 @@ a.disabled, a.disabled:hover{ cursor:default; pointer-events:none;}
 .ds_dialog{ color:#333; font:12px/1.5 "Microsoft Yahei",Arial; position:absolute; left:44%; top:44%; z-index:1999; outline:0;}
 .ds_dialog, .ds_dialog_border, .ds_dialog_panel .ds_dialog_title, .ds_dialog_title h3{ margin:0; padding:0;}
 .ds_dialog_border, .ds_dialog_panel{ border-collapse:collapse; margin:0; padding:0;}
-.ds_dialog_tl, .ds_dialog_tc, .ds_dialog_tr, .ds_dialog_ml, .ds_dialog_mr, .ds_dialog_bl, .ds_dialog_bc, .ds_dialog_br{ background:#000; background:rgba(0,0,0,.5); margin:0; padding:0; filter:Alpha(opacity=50);}
+.ds_dialog_tl, .ds_dialog_tc, .ds_dialog_tr, .ds_dialog_ml, .ds_dialog_mr, .ds_dialog_bl, .ds_dialog_bc, .ds_dialog_br{  background:rgba(0,0,0,0); margin:0; padding:0; filter:Alpha(opacity=0);}
 .ds_dialog_tl, .ds_dialog_tr, .ds_dialog_bl, .ds_dialog_br{ height:8px; width:8px;}
 .ds_dialog_inner{ background:#fff; border-top:1px solid #7697d0; position:relative;}
 .ds_dialog_header{ vertical-align:top;}

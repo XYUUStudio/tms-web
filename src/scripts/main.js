@@ -56,7 +56,16 @@ var getDateTime = function () {
     var dateime = today.format('yyyy-MM-dd hh:mm:ss');
     $('#dateime_id').html(week + ' ' + dateime);
 };
-
+var GetServerSearchFunction=function () {
+    var ajaxHelp = new AjaxHelp();
+    var URL = ApiPath.TMSApi.UP.searchFunction;
+    var requestData = {}
+    ajaxHelp.AjaxPost(URL,requestData,SuccessFunction,null);
+}
+var SuccessFunction=function (data) {
+    console.log(data)
+    getMeunList(data)
+}
 /**
  * 加载Tabs
  * type:0以 Content形式加载,1以Url 形式加载
@@ -278,6 +287,8 @@ $(document).ready(function () {
     });
     if(AppConfig.development){
         initLeftMenu()
+    }else {
+        GetServerSearchFunction();
     }
 ;
     //换肤
