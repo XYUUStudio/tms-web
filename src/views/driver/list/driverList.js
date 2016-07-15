@@ -11,8 +11,6 @@ var getLogCenterDriverList = function () {
     ajaxHelp.AjaxPost(URL, requestData, successGetLogisticsCenter, null);
 };
 var successGetLogisticsCenter = function (responseData) {
-    $("#logCenterDriverList").empty();
-    $("#logCenterDriverList").prepend("<option value=''>请选择所属物流中心</option>");
     $.each(responseData, function (index, item) {
         $("#logCenterDriverList").append("<option value='" + item.id + "' >" + item.name + "</option>")
     });
@@ -87,7 +85,7 @@ var queryDriverList = function () {
     var URL = ApiPath.TMSApi.businessData.driverList;
     var requestData = {
         searchValue: $("#searchValueDriverList").val(),
-        orgCode: $("#logisticsCenterDriverList").val()
+        orgCode: $("#logCenterDriverList").val()
     };
     ajaxHelp.AjaxPost(URL, requestData, successLoadDriverList, null);
 };
@@ -126,10 +124,9 @@ var submitResetPwdDriverList = function () {
     var URL = ApiPath.TMSApi.businessData.userReset;
     var rowData = $("#driverList").datagrid("getSelections");
     var resetPwd = $("#resetPwdDriverList").val();
-    var loginPassword = $("#confirmPwdDriverList").val();
     var requestData = {
         isDriverUser: "Y",
-        loginPassword: loginPassword,
+        loginPassword: $("#confirmPwdDriverList").val(),
         userId: rowData[0].loginID
     };
     if (resetPwd == null || resetPwd == "") {
