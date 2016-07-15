@@ -98,8 +98,8 @@ var resetPwdUserList = function () {
 $("#dialog_resetPwdUserList").dialog({
     title: "",
     closable: true,
-    width: 350,
-    height: 230,
+    width: 300,
+    height: 200,
     closed: true,
     cache: false,
     modal: true,
@@ -160,7 +160,7 @@ var successSubmitResetPwd = function () {
 
 
 //重置密码取消
-var cancelResetPwdUserListjavascript = function () {
+var cancelResetPwdUserList = function () {
     $("#dialog_resetPwdUserList").dialog("close");
 };
 

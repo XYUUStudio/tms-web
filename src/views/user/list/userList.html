@@ -2,7 +2,8 @@
     <div style="padding: 3px">
         <ul class="sear" style="overflow: hidden">
             <li style="margin-top: 16px">
-                <input id="searchValueUserList" class="easyui-textbox" data-options="prompt:'请输入用户账号/姓名/手机号'">
+                <input id="searchValueUserList" placeholder="请输入用户账号/姓名/手机号" type="text"
+                       style="height: 20px;padding-left: 3px">
                 <!--<div class="button" style="margin-top: -1px">-->
                 <!--<a href="#" onclick="queryUserList()" style="width: 35px;height: 24px;line-height: 24px">-->
                 <!--<span>查询</span>-->
@@ -59,7 +60,7 @@
     <div>
         <h2 style="margin-left: 20px;color: black">重置密码</h2>
     </div>
-    <div style="margin-top: 30px">
+    <div style="margin-top: 20px">
         <label style="margin-left: 40px">
             <span><span class="required">*</span>重置密码：</span>
             <input id="resetPwdUserList" type="text"/>
@@ -72,13 +73,13 @@
         </label>
     </div>
     <div>
-        <div class="button" style="margin-top: 30px; margin-right: 47px">
-            <a href="#" onclick="submitResetPwdUserList()" style="width: 80px;height: 30px;line-height: 30px">
-                <span>重置</span>
-            </a>
-            <a href="#" onclick="cancelResetPwdUserListjavascript()"
-               style="width: 80px;height: 30px;line-height: 30px;margin-right: 3px;background: white;border: 1px solid #999">
+        <div class="button" style="margin-top: 20px">
+            <a href="#" onclick="cancelResetPwdUserList()"
+               style="width: 73px;height: 25px;margin-left:3px;background: white;border: 1px solid #999">
                 <span style="color: #000">取消</span>
+            </a>
+            <a href="#" onclick="submitResetPwdUserList()" style="width: 73px">
+                <span>重置</span>
             </a>
         </div>
     </div>

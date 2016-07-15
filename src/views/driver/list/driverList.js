@@ -112,8 +112,8 @@ var resetPwdDriverList = function () {
 $("#dialog_resetPwdDriverList").dialog({
     title: "",
     closable: true,
-    width: 350,
-    height: 230,
+    width: 300,
+    height: 200,
     closed: true,
     cache: false,
     modal: true,
@@ -171,6 +171,12 @@ var successSubmitResetPwdDriverList = function () {
         onyes: true,
         timeout: 2
     });
+};
+
+
+//重置密码取消
+var cancelResetPwdDriverList = function () {
+    $("#dialog_resetPwdDriverList").dialog("close");
 };
 
 
