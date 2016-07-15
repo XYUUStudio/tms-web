@@ -8,39 +8,8 @@ var initLeftMenu = function () {
         type: "GET",
         url: "data/left-menu.json",
         dataType: "json",
-        success: function (result) {
-            console.log(result)
-            if (result) {
-                var data = result;
-                var accd = '';
-                $.each(data, function (i, item) {
-                    var group = item.group;
-                    var groupData = item.data;
-                    var iconCls = item.icon;
-                    accd = '<ul>';
-
-                    $.each(groupData, function (i, item) {
-                        var title = item.title;
-                        var icon = item.icon;
-                        var url = item.url;
-                        var type = item.type;
-                        var closableValue = true;
-                        if (item.jsPathList != undefined && item.jsPathList.length != 0) {
-                            var jsPathList = item.jsPathList;
-                        }
-                        accd += '<li><div ><a href="javascript:void(0);" class="easyui-linkbutton" plain="true" ';
-                        accd += 'onclick="javascript:addTab(' + type + ',\'' + title + '\',\'' + url + '\',' + closableValue + ',\'' + jsPathList + '\');return false;">';
-                        accd += '' + title + ' </a></div></li>'
-                    });
-                    accd += '</ul>';
-                    $("#left_menu_content_id").accordion('add', {
-                        title: group,
-                        content: accd,
-                        iconCls: iconCls
-                    });
-                });
-                $('#left_menu_content_id').accordion('select', 0);
-            }
+        success: function (data) {
+            getMeunList(data)
 
         },
         error: function () {
@@ -48,8 +17,37 @@ var initLeftMenu = function () {
         }
     });
 };
-
-
+var getMeunList=function (result) {
+    //获取菜单列表
+        var data = result;
+        var accd = '';
+        $.each(data, function (i, item) {
+            var group = item.group;
+            var groupData = item.data;
+            var iconCls = item.icon;
+            accd = '<ul>';
+            $.each(groupData, function (i, item) {
+                var title = item.title;
+                var icon = item.icon;
+                var url = item.url;
+                var type = item.type;
+                var closableValue = true;
+                // if (item.jsPathList != undefined && item.jsPathList.length != 0) {
+                //     var jsPathList = item.jsPathList;
+                // }
+                accd += '<li><div ><a href="javascript:void(0);" class="easyui-linkbutton" plain="true" ';
+                accd += 'onclick="javascript:addTab(' + type + ',\'' + title + '\',\'' + url + '\',' + closableValue + ');return false;">';
+                accd += '' + title + ' </a></div></li>'
+            });
+            accd += '</ul>';
+            $("#left_menu_content_id").accordion('add', {
+                title: group,
+                content: accd,
+                iconCls: iconCls
+            });
+        });
+        $('#left_menu_content_id').accordion('select', 0);
+}
 var getDateTime = function () {
     //获取当地时间
     var weekArray = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
@@ -63,17 +61,28 @@ var getDateTime = function () {
  * 加载Tabs
  * type:0以 Content形式加载,1以Url 形式加载
  */
-var addTab = function (type, title, url, closableValue, jsPathList) {
+var addTab = function (type, title, url, closableValue) {
     if (type === 0) {
         addTabContent(title, url, closableValue);
     } else if (type === 1) {
-        addTabHref(title, url, closableValue);
-        //动态加载js
-        if (jsPathList != "undefined" && jsPathList != "") {
-            var addJsPathlist = jsPathList.split(",");
-            $.each(addJsPathlist, function (i, item) {
-                $.getScript(item);
+        if ($('#tabs').tabs('exists', title)) {
+            ds.dialog({
+                title : '消息提示',
+                content : "【"+title+"】页面已打开，为了保证你的数据不丢失，请提交或关闭您已打开的【"+title+"】页面！",
+                onyes:true,
+                width:280,
+                icon : "info.png",
             });
+            $('#tabs').tabs('select', title);
+        }else {
+            addTabHref(title, url, closableValue);
+            //动态加载js
+            // if (jsPathList != "undefined" && jsPathList != "") {
+            //     var addJsPathlist = jsPathList.split(",");
+            //     $.each(addJsPathlist, function (i, item) {
+            //         $.getScript(item);
+            //     });
+            // }
         }
     }
 };
@@ -83,8 +92,14 @@ var addTab = function (type, title, url, closableValue, jsPathList) {
  */
 var addTabContent = function (title, url, closableValue) {
     if ($('#tabs').tabs('exists', title)) {
+        ds.dialog({
+            title : '消息提示',
+            content : "【"+title+"】页面已打开，为了保证你的数据不丢失，\n 请提交或关闭您已打开的【"+title+"】页面！",
+            onyes:true,
+            width:280,
+            icon : "info.png",
+        });
         $('#tabs').tabs('select', title);
-        return false;
     } else {
         if ("undefined" === typeof arguments[2]) {
             closableValue = true;
@@ -96,7 +111,6 @@ var addTabContent = function (title, url, closableValue) {
         iframe.frameBorder = 0;
         iframe.height = '100%';
         iframe.width = '100%';
-
         if (iframe.attachEvent) {
             iframe.attachEvent("onload", function () {
                 ajaxLoadEnd();
@@ -137,12 +151,10 @@ var addTabHref = function (title, url, closableValue) {
 
     tabClose();
 };
-
 //个人信息
 var personal = function () {
     addTabHref('个人设置', 'views/personal/index.html', 'views/personal/index.js')
 }
-
 /**
  * Tabs 监听添加 tab事件
  */
@@ -264,30 +276,33 @@ $(document).ready(function () {
     $(function () {
         setInterval('getDateTime()', 1000);
     });
-    initLeftMenu();
+    if(AppConfig.development){
+        initLeftMenu()
+    }
+;
     //换肤
-    $(function () {
-        $('#theme_id').tooltip({
-            content: $('<div></div>'),
-            showEvent: 'click',
-            onUpdate: function (content) {
-                content.panel({
-                    width: 200,
-                    border: false,
-                    title: '更换皮肤',
-                    href: 'views/theme/feedbacklist.html'
-                });
-            },
-            onShow: function () {
-                var t = $(this);
-                t.tooltip('tip').unbind().bind('mouseenter', function () {
-                    t.tooltip('show');
-                }).bind('mouseleave', function () {
-                    t.tooltip('hide');
-                });
-            }
-        });
-    });
+    // $(function () {
+    //     $('#theme_id').tooltip({
+    //         content: $('<div></div>'),
+    //         showEvent: 'click',
+    //         onUpdate: function (content) {
+    //             content.panel({
+    //                 width: 200,
+    //                 border: false,
+    //                 title: '更换皮肤',
+    //                 href: 'views/theme/feedbacklist.html'
+    //             });
+    //         },
+    //         onShow: function () {
+    //             var t = $(this);
+    //             t.tooltip('tip').unbind().bind('mouseenter', function () {
+    //                 t.tooltip('show');
+    //             }).bind('mouseleave', function () {
+    //                 t.tooltip('hide');
+    //             });
+    //         }
+    //     });
+    // });
     /**
      * 监听tab 事件
      */
@@ -298,7 +313,6 @@ $(document).ready(function () {
         onLoadTab();
         onUpdateTab();
     })
-
 });
 
 /**************************************************************
@@ -306,10 +320,14 @@ $(document).ready(function () {
  */
 //退出事件
 var Loginout = function () {
-
-    window.location.href = "index.html";
+    var ajaxHelp = new AjaxHelp();
+    var URL = ApiPath.TMSApi.UP.pcLogout;
+    var requestData = {}
+    ajaxHelp.AjaxPost(URL,requestData,SuccessLoginout,null);
 };
-
+var SuccessLoginout=function () {
+    window.location.href = "index.html";
+}
 var changePwd = {
     show: function () {
         $('#changePassword').dialog('open');

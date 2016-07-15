@@ -22,6 +22,14 @@ Date.prototype.format = function(format) {
     }
     return format;
 }
+// 消息提示框
+// Message.prototype.success=function () {
+//      alert(222)
+// }
+
+
+
+
 // 日期控件
 // prototype.getdata=function (dataid,datevalue) {
 //     return(

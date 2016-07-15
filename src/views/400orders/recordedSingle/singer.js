@@ -26,7 +26,7 @@ var getAppendTimeSingerSelect=function () {
 };
 var successAppendTimeSingerSelec=function (data) {
     var  getToday= new Date().format('yyyy-MM-dd hh:ss ');
-    $("#reqDeliveryDateSinger").datebox("setValue", getToday);
+    $("#reqDeliveryDateSinger").val(getToday);
     $.each(data.dictValueList, function (index,item ) {
         $("#appendTimeSinger").append(" <option value='"+item.dictValueCode+"' >"+item.dictValueName+"</option>")
         $("#appendTimeSinger option:last").prop("selected", 'selected');

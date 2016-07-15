@@ -6,26 +6,17 @@
             {
                 "title": "待接单",
                 "url": "views/dispatchingManagement/pendingorders/list/pendingordersList.html",
-                "type": 1,
-                "jsPathList": [
-                    "views/dispatchingManagement/pendingorders/list/pendingordersList.js"
-                ]
+                "type": 1
             },
             {
                 "title": "待取件",
                 "url": "views/dispatchingManagement/topickup/list/topickupList.html",
-                "type": 1,
-                "jsPathList": [
-                    "views/dispatchingManagement/topickup/list/topickupList.js"
-                ]
+                "type": 1
             },
             {
                 "title": "调度",
                 "url": "views/dispatchingManagement/dispatch/list/dispatchList.html",
-                "type": 1,
-                "jsPathList": [
-                    "views/dispatchingManagement/dispatch/list/dispatchList.js"
-                ]
+                "type": 1
             }
         ]
     },
@@ -35,10 +26,7 @@
             {
                 "title": "电话录单",
                 "url": "views/400orders/recordedSingle/singer.html",
-                "type": 1,
-                "jsPathList": [
-                    "views/400orders/recordedSingle/singer.js"
-                ]
+                "type": 1
             }
         ]
     },
@@ -48,18 +36,12 @@
             {
                 "title": "企业注册",
                 "url": "views/enterprises/list/enterprisesList.html",
-                "type": 1,
-                "jsPathList": [
-                    "views/enterprises/list/enterprisesList.js"
-                ]
+                "type": 1
             },
             {
                 "title": "用户注册",
                 "url": "views/user/list/userList.html",
-                "type": 1,
-                "jsPathList": [
-                    "views/user/list/userList.js"
-                ]
+                "type": 1
             }
         ]
     },
@@ -69,12 +51,8 @@
             {
                 "title": "司机注册",
                 "url": "views/driver/list/driverList.html",
-                "type": 1,
-                "jsPathList": [
-                    "views/driver/list/driverList.js"
-                ]
+                "type": 1
             }
         ]
     }
-
 ]

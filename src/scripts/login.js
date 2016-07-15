@@ -64,15 +64,17 @@ $(function () {
             ajaxHelp.AjaxPost(URL, requestData, success, null);
         }
 
-        // window.location.href = "main.html";
+
     }
     var success = function (data) {
-        //console.log(data);
-        //请求成功跳转登录页面
-        window.location.href = "main.html";
-        $.cookie('token', data.token);
+        console.log(data);
+        var bb=data.toString();
+        console.log(bb)
+        // //请求成功跳转登录页面
+        $.cookie('token', data.token,{expires:data.excessTime/3600/24});
         $.cookie('userOrgcode', data.loginUserInfo.orgCode);
         $.cookie('userId', data.loginUserInfo.userId);
+        window.location.href = "main.html";
     }
     keyLogin = function (e) {
         var keycode = window.event ? e.keyCode : e.which;
@@ -80,5 +82,4 @@ $(function () {
             Login();
         }
     }
-
 });
