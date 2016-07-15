@@ -1,7 +1,7 @@
 <!--司机管理-编辑-->
 <div class="button">
-    <a href="#" onclick="closeDriverEdit()">
-        <span>关闭</span>
+    <a href="#" onclick="closeDriverEdit()" style="height: 25px;background: white;border: 1px solid #999">
+        <span style="color: #000">关闭</span>
     </a>
     <a href="#" onclick="submitDriverEdit()" style="margin-right: 3px">
         <span>提交</span>
@@ -25,38 +25,41 @@
         </label>
         <label>
             <span><span class="required">*</span>姓名：</span>
-            <input id="userNameDriverEdit"/>
+            <input id="userNameDriverEdit" type="text"/>
         </label>
     </div>
     <div class="control-view">
         <label>
             <span><span class="required">*</span>身份证号：</span>
-            <input id="userIDCardDriverEdit" style="width: 130px"/>
+            <input id="userIDCardDriverEdit" type="text"/>
         </label>
         <label>
             <span><span class="required">*</span>手机号：</span>
-            <input id="userMobileDriverEdit" style="width:150px"/>
+            <input id="userMobileDriverEdit" type="text"/>
         </label>
         <label>
             <span><span class="required">*</span>邮箱：</span>
-            <input id="userEmailDriverEdit"/>
+            <input id="userEmailDriverEdit" type="text"/>
         </label>
     </div>
     <div class="control-view">
         <label style="width:90% ">
             <span><span class="required">*</span>住址：</span>
             <select id="provinceDriverEdit" onchange="changeProvinceDriverEdit(this.value)" style="width: 80px">
+                <option value="">请选择省</option>
             </select>
             <select id="cityDriverEdit" onchange="changeCityDriverEdit(this.value)" style="width: 80px">
+                <option value="">请选择市</option>
             </select>
             <select id="districtDriverEdit" style="width: 80px">
+                <option value="">请选择区</option>
             </select>
-            <input id="addressDriverEdit" placeholder="请输入详细地址" style="width: 200px"/>
+            <input id="addressDriverEdit" type="text"/>
         </label>
     </div>
     <div class="control-view">
         <p>
-            <span style="text-align: right;float: left;">身份证正面上传：</span>
+            <span style="text-align: right;float: left;">身份证正<br>面上传：</span>
             <label
                 style="display:inline-block;width: 150px;height: 80px;position:relative;text-align:center;border: 1px #999 solid">
                 <input type="file" style="display:none" multiple="multiple"
@@ -70,7 +73,7 @@
     </div>
     <div class="control-view">
         <p>
-            <span style="text-align: right;float: left;">身份证反面上传：</span>
+            <span style="text-align: right;float: left;">身份证反<br>面上传：</span>
             <label
                 style="display:inline-block;width: 150px;height: 80px;position:relative;text-align:center;border: 1px #999 solid">
                 <input type="file" style="display:none" multiple="multiple"
@@ -91,11 +94,11 @@
     <div class="control-view">
         <label>
             <span><span class="required">*</span>驾驶证号：</span>
-            <input id="driverLicNoDriverEdit">
+            <input id="driverLicNoDriverEdit" type="text">
         </label>
         <label>
             <span>从业资格证号：</span>
-            <input id="roadFrtQCertNoDriverEdit">
+            <input id="roadFrtQCertNoDriverEdit" type="text">
         </label>
         <label>
             <span>有效期：</span>
@@ -123,16 +126,6 @@
             <button onclick="delDriverLicPositiveDriverEdit()">删除</button>
         </p>
     </div>
-    <!--<div class="control-view">-->
-    <!--<label>-->
-    <!--<div style="margin-left: 85px">-->
-    <!--<div id="driverLicPositiveDriverEdit">-->
-    <!--</div>-->
-    <!--<div id="driverLicInverseDriverEdit">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</label>-->
-    <!--</div>-->
     <div class="control-group" style="text-align: left;margin-top: 250px">
         <label>
             <span style="color:#f79449">车辆信息</span>
@@ -142,11 +135,11 @@
     <div class="control-view">
         <label>
             <span><span class="required">*</span>车牌号：</span>
-            <input id="plateNoDriverEdit"/>
+            <input id="plateNoDriverEdit" type="text"/>
         </label>
         <label>
             <span>车型：</span>
-            <input id="vehicleLicSpecificationDriverEdit"/>
+            <input id="vehicleLicSpecificationDriverEdit" type="text"/>
         </label>
         <label>
             <span>发证日期：</span>
@@ -160,27 +153,27 @@
         </label>
         <label>
             <span>车辆容积：</span>
-            <input id="vehicleCapacityDriverEdit" style="width:100px"/>
+            <input id="vehicleCapacityDriverEdit" type="text" style="width:130px"/>
             <a>方</a>
         </label>
         <label>
             <span>营运证号：</span>
-            <input id="vehicleOPCertNoDriverEdit"/>
+            <input id="vehicleOPCertNoDriverEdit" type="text"/>
         </label>
     </div>
     <div class="control-view">
         <label>
             <span>车辆尺寸：</span>
-            <input id="vehicleLengthDriverEdit" placeholder="长" style="width: 40px"/>
+            <input id="vehicleLengthDriverEdit" type="text" placeholder="长" style="width: 30px;text-align: center"/>
             <a>×</a>
-            <input id="vehicleWidthDriverEdit" placeholder="宽" style="width: 40px"/>
+            <input id="vehicleWidthDriverEdit" type="text" placeholder="宽" style="width: 30px;text-align: center"/>
             <a>×</a>
-            <input id="vehicleHeightDriverEdit" placeholder="高" style="width: 40px"/>
+            <input id="vehicleHeightDriverEdit" type="text" placeholder="高" style="width: 30px;text-align: center"/>
             <a>米</a>
         </label>
         <label>
             <span>车辆所属：</span>
-            <select id="vehicleOwnerTypeDriverEdit" style="width: 124px">
+            <select id="vehicleOwnerTypeDriverEdit" style="width: 80px">
                 <option value="">请选择</option>
             </select>
         </label>
@@ -209,13 +202,13 @@
     <div class="control-view">
         <label>
             <span>保险公司：</span>
-            <select id="compulsoryInsuranceCompanyDriverEdit" style="width: 124px">
+            <select id="compulsoryInsuranceCompanyDriverEdit" type="text" style="width: 120px">
                 <option value="">请选择保险公司：</option>
             </select>
         </label>
         <label>
             <span>保险单号：</span>
-            <input id="compulsoryInsuranceDocNoDriverEdit"/>
+            <input id="compulsoryInsuranceDocNoDriverEdit" type="text"/>
         </label>
         <label>
             <span>保险有效期：</span>
@@ -225,7 +218,7 @@
     <div class="control-view">
         <label style="width:90%;">
             <span>保险金额：</span>
-            <input id="compulsoryInsuranceAmtDriverEdit" style="width:100px"/>
+            <input id="compulsoryInsuranceAmtDriverEdit" type="text" style="width:90px"/>
             <a>万</a>
         </label>
     </div>
@@ -268,13 +261,13 @@
     <div class="control-view">
         <label>
             <span>保险公司：</span>
-            <select id="commercialInsuranceCompanyDriverEdit" style="width: 124px">
+            <select id="commercialInsuranceCompanyDriverEdit" style="width: 120px">
                 <option value="">请选择保险公司：</option>
             </select>
         </label>
         <label>
             <span>保险单号：</span>
-            <input id="commercialInsuranceDocNoDriverEdit"/>
+            <input id="commercialInsuranceDocNoDriverEdit" type="text"/>
         </label>
         <label>
             <span>保险有效期：</span>
@@ -284,7 +277,7 @@
     <div class="control-view">
         <label style="width: 90%">
             <span>保险金额：</span>
-            <input id="commercialInsuranceAmtDriverEdit" style="width:100px"/>
+            <input id="commercialInsuranceAmtDriverEdit" type="text" style="width:90px"/>
             <a>万</a>
         </label>
     </div>
@@ -320,8 +313,8 @@
     </div>
 </div>
 <div class="button" style="margin-top: 150px">
-    <a href="#" onclick="closeDriverEdit()">
-        <span>关闭</span>
+    <a href="#" onclick="closeDriverEdit()" style="height: 25px;background: white;border: 1px solid #999">
+        <span style="color: #000">关闭</span>
     </a>
     <a href="#" onclick="submitDriverEdit()" style="margin-right: 3px">
         <span>提交</span>

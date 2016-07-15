@@ -12,6 +12,7 @@ var compulsoryInsurancePositiveURL = "";//交强险保单正面URL
 var compulsoryInsuranceInverseURL = "";//交强险保单反面URL
 var commercialInsurancePositiveURL = "";//商业险保单正面URL
 var commercialInsuranceInverseURL = "";//商业险保单反面URL
+var flag = true;
 
 
 //获取司机信息
@@ -24,7 +25,6 @@ var getInfoDriverEdit = function () {
 };
 var successGetInfoDriverEdit = function (responseData) {
     //赋值
-    getProvinceDriverEdit();//获取省下拉框
     driverInfo = responseData;
     $("#loginNameDriverEdit").html(responseData.loginName);//账户名
     $("#logCenterDriverEdit").html(responseData.lCName);//所属物流中心
@@ -48,11 +48,7 @@ var successGetInfoDriverEdit = function (responseData) {
     getCmmercialInsuranceCompanyDriverEdit();//商业险公司
     $("#commercialInsuranceDocNoDriverEdit").val(responseData.commercialInsuranceDocNo);//商业险单号
     $("#commercialInsuranceAmtDriverEdit").val(responseData.commercialInsuranceAmt);//商业险金额
-    //地址
-    getProvinceDriverEdit();
-    //$("#provinceDriverEdit").val(responseData.residentProvinceCodeName);//省
-    //$("#cityDriverEdit").val(responseData.residentCityCodeName);//市
-    //$("#districtDriverEdit").val(responseData.residentDistrictCodeName);//区
+    getProvinceDriverEdit();//省市区
     $("#addressDriverEdit").val(responseData.residentAddress);//详细地址
     //日期
     $("#driverLicEffectiveDateEndDriverEdit").val(responseData.driverLicEffectiveDateEnd);//驾驶证有效期
@@ -118,10 +114,11 @@ var successGetProvinceDriverEdit = function (data) {
     $.each(data, function (index, item) {
         $("#provinceDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>");
         if (driverInfo.residentProvinceCode == item.divCode) {
-            $("#provinceDriverEdit").find("option[value='" + item.divCode + "']").attr("selected", true)
+            $("#provinceDriverEdit").find("option[value='" + item.divCode + "']").attr("selected", true);
+            getCityDriverEdit();
         }
     });
-    getCityDriverEdit();
+
 };
 //获取市下拉框
 var getCityDriverEdit = function () {
@@ -134,12 +131,12 @@ var getCityDriverEdit = function () {
 };
 var successGetCityDriverEdit = function (data) {
     $.each(data, function (index, item) {
-        $("#cityDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>")
+        $("#cityDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>");
         if (driverInfo.residentCityCode == item.divCode) {
-            $("#cityDriverEdit").find("option[value='" + item.divCode + "']").attr("selected", true)
+            $("#cityDriverEdit").find("option[value='" + item.divCode + "']").attr("selected", true);
+            getDistrictDriverEdit();
         }
     });
-    getDistrictDriverEdit();
 };
 //获取区下拉框
 var getDistrictDriverEdit = function () {
@@ -152,20 +149,20 @@ var getDistrictDriverEdit = function () {
 };
 var successGetDistrictDriverEdit = function (data) {
     $.each(data, function (index, item) {
-        $("#districtDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>")
+        $("#districtDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>");
         if (driverInfo.residentDistrictCode == item.divCode) {
             $("#districtDriverEdit").find("option[value='" + item.divCode + "']").attr("selected", true)
         }
     });
-    //changeProvinceDriverEdit();
 };
-//修改市
-var changeProvinceDriverEdit = function (data) {
+//修改省后获取相应的市、区下拉框
+var changeProvinceDriverEdit = function (provinceCode) {
     var URL = ApiPath.TMSApi.dictionary.admDivisionInfoSearch;
     var requestData = {
         level: 2,
-        parentDivCode: data
+        parentDivCode: provinceCode
     };
+    flag = requestData.parentDivCode == "" ? false : true;
     ajaxHelp.AjaxPost(URL, requestData, successChangeProvinceDriverEdit, null);
 };
 var successChangeProvinceDriverEdit = function (data) {
@@ -173,25 +170,32 @@ var successChangeProvinceDriverEdit = function (data) {
     $("#cityDriverEdit").prepend("<option value=''>请选择市</option>"); //为Select插入一个Option(第一个位置)
     $("#districtDriverEdit").empty();
     $("#districtDriverEdit").prepend("<option value=''>请选择区</option>"); //为Select插入一个Option(第一个位置)
-    $.each(data, function (index, item) {
-        $("#cityDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>")
-    })
+    if (flag == true) {
+        $.each(data, function (index, item) {
+            $("#cityDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>");
+
+        })
+    }
+
 };
-//修改区
-var changeCityDriverEdit = function (data) {
+//修改市后获取相应的区下拉框
+var changeCityDriverEdit = function (cityCode) {
     var URL = ApiPath.TMSApi.dictionary.admDivisionInfoSearch;
     var requestData = {
         level: 3,
-        parentDivCode: data
+        parentDivCode: cityCode
     };
+    flag = requestData.parentDivCode == "" ? false : true;
     ajaxHelp.AjaxPost(URL, requestData, successChangeCityDriverEdit, null);
 };
 var successChangeCityDriverEdit = function (data) {
     $("#districtDriverEdit").empty();
     $("#districtDriverEdit").prepend("<option value=''>请选择区</option>"); //为Select插入一个Option(第一个位置)
-    $.each(data, function (index, item) {
-        $("#districtDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>")
-    })
+    if (flag == true) {
+        $.each(data, function (index, item) {
+            $("#districtDriverEdit").append("<option value='" + item.divCode + "' >" + item.divName + "</option>")
+        })
+    }
 };
 
 
