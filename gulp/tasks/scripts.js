@@ -10,7 +10,13 @@ var myVersion = require('../util/myVersion');
 
 gulp.task('Scripts-dev', function(){
 	var version = "TMSWEBDEV" + myVersion();
-	gulp.src(scripts.src + "/scripts/login.js")
+	gulp.src([
+			scripts.src + "/scripts/login.js",
+			config.dev 	+ "/AppConfig.js",
+			scripts.src + "/scripts/apiPath.js",
+			scripts.src + "/scripts/ajaxHelp.js",
+			scripts.src + "/scripts/dsdialog.js"
+		])
 		.pipe(concat('login.min.js'))
 		.pipe(uglify())
 		.pipe(gulp.dest(scripts.dist));
@@ -44,13 +50,19 @@ gulp.task('Scripts-dev', function(){
 
 gulp.task('Scripts-test', function(){
 	var version = "TMSWEBTST" + myVersion();
-	gulp.src(scripts.src + "/scripts/login.js")
+	gulp.src([
+			scripts.src + "/scripts/login.js",
+			config.test + "/AppConfig.js",
+			scripts.src + "/scripts/apiPath.js",
+			scripts.src + "/scripts/ajaxHelp.js",
+			scripts.src + "/scripts/dsdialog.js"
+		])
 		.pipe(concat('login.min.js'))
 		.pipe(uglify())
 		.pipe(gulp.dest(scripts.dist));
 
 	gulp.src([
-		config.test 	+ "/AppConfig.js",
+		config.test + "/AppConfig.js",
 		scripts.src + "/scripts/apiPath.js",
 		scripts.src + "/scripts/ajaxHelp.js",
 		scripts.src + "/scripts/datagrid-detailview.js",
@@ -77,7 +89,13 @@ gulp.task('Scripts-test', function(){
 
 gulp.task('Scripts-production', function(){
 	var version = "TMSWEBPRO" + myVersion();
-	gulp.src(scripts.src + "/scripts/login.js")
+	gulp.src([
+			scripts.src + "/scripts/login.js",
+			config.production 	+ "/AppConfig.js",
+			scripts.src + "/scripts/apiPath.js",
+			scripts.src + "/scripts/ajaxHelp.js",
+			scripts.src + "/scripts/dsdialog.js"
+		])
 		.pipe(concat('login.min.js'))
 		.pipe(uglify())
 		.pipe(gulp.dest(scripts.dist));
