@@ -2,30 +2,30 @@
  * Created by medlog on 2016/7/5.
  */
 var ajaxHelp = new AjaxHelp();
-//选中获取用户数据集合
+//获取用户信息(userId)
 var rowData = $("#userList").datagrid("getSelections");
-var userInfo = new Object();
+var userDetail = new Object();
 
 
-//获取用户信息
-var getUserInfo = function () {
+//获取用户详情
+var getDetailUserEdit = function () {
     var URL = ApiPath.TMSApi.businessData.userDetail;
     var requestData = {
         userId: rowData[0].userId
     };
-    ajaxHelp.AjaxPost(URL, requestData, successUserEdit, null);
+    ajaxHelp.AjaxPost(URL, requestData, successGetDetailUserEdit, null);
 };
-var successUserEdit = function (responseData) {
-    userInfo = responseData;
+var successGetDetailUserEdit = function (resultInfo) {
+    userDetail = resultInfo;
     //赋值
-    $("#loginNameUserEdit").html(responseData.loginName);//账户名
-    $("#companyUserEdit").html(responseData.orgName);//所属公司
-    $("#userNameUserEdit").val(responseData.userName);//姓名
-    $("#userIDCardUserEdit").val(responseData.userIDCard);//身份证号
-    $("#userMobileUserEdit").val(responseData.userMobile);//手机
-    $("#userEmailUserEdit").val(responseData.userEmail);//邮箱
+    $("#loginNameUserEdit").html(resultInfo.loginName);//账户名
+    $("#companyUserEdit").html(resultInfo.orgName);//所属公司
+    $("#userNameUserEdit").val(resultInfo.userName);//姓名
+    $("#userIDCardUserEdit").val(resultInfo.userIDCard);//身份证号
+    $("#userMobileUserEdit").val(resultInfo.userMobile);//手机
+    $("#userEmailUserEdit").val(resultInfo.userEmail);//邮箱
     getEducationUserEdit();//学历
-    $("#postUserEdit").val(responseData.userJobDesc);//岗位
+    $("#postUserEdit").val(resultInfo.userJobDesc);//岗位
 };
 
 
@@ -40,14 +40,14 @@ var getEducationUserEdit = function () {
 var successGetEducationUserEdit = function (data) {
     $.each(data.dictValueList, function (index, item) {
         $("#educationUserEdit").append("<option value='" + item.dictValueCode + "' >" + item.dictValueName + "</option>")
-        if (userInfo.userEducation == item.dictValueCode) {
+        if (userDetail.userEducation == item.dictValueCode) {
             $("#educationUserEdit").find("option[value='" + item.dictValueCode + "']").attr("selected", true)
         }
     });
 };
 
 
-//用户编辑-提交
+//用户提交
 var submitUserEdit = function () {
     var URL = ApiPath.TMSApi.businessData.userEdit;
     var requestData = {
@@ -131,11 +131,11 @@ var successSubmitUserEdit = function () {
 };
 
 
-//点击返回
+//返回点击
 var returnUserEdit = function () {
     $("#tabs").tabs("close", "用户编辑");
 };
 
 
-//获取用户信息
-getUserInfo();
+//获取用户详情
+getDetailUserEdit();

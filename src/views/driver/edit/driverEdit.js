@@ -2,7 +2,8 @@
  * Created by medlog on 2016/7/8.
  */
 var ajaxHelp = new AjaxHelp();
-var rowData = $("#driverList").datagrid("getSelections");//选中获取司机数据集合
+//获取司机信息(userId)
+var rowData = $("#driverList").datagrid("getSelections");
 var driverInfo = "";//接口返回的司机详情
 var iDPositiveURL = "";//身份证正面URL
 var iDInverseURL = "";//身份证反面URL
@@ -15,15 +16,15 @@ var commercialInsuranceInverseURL = "";//商业险保单反面URL
 var flag = true;
 
 
-//获取司机信息
-var getInfoDriverEdit = function () {
+//获取司机详情
+var getDetailDriverEdit = function () {
     var URL = ApiPath.TMSApi.businessData.driverDetail;
     var requestData = {
         userId: rowData[0].userId
     };
-    ajaxHelp.AjaxPost(URL, requestData, successGetInfoDriverEdit, null);
+    ajaxHelp.AjaxPost(URL, requestData, successGetDetailDriverEdit, null);
 };
-var successGetInfoDriverEdit = function (responseData) {
+var successGetDetailDriverEdit = function (responseData) {
     //赋值
     driverInfo = responseData;
     $("#loginNameDriverEdit").html(responseData.loginName);//账户名
@@ -361,7 +362,7 @@ var delVehicleLicPositiveDriverEdit = function () {
 };
 
 
-//交强险保单正面上传
+//交强险保单正本上传
 var uploadCompulsoryInsurancePositiveDriverEdit = function (imgData) {
     var file = imgData.files[0];//选择上传的文件
     var fr = new FileReader();
@@ -380,7 +381,7 @@ var uploadCompulsoryInsurancePositiveDriverEdit = function (imgData) {
 var successUploadCompulsoryInsurancePositiveDriverEdit = function (responseData) {
     compulsoryInsurancePositiveURL = responseData.url;
 };
-//删除交强险保单正面
+//删除交强险保单正本
 var delCompulsoryInsurancePositiveDriverEdit = function () {
     $("#img_compulsoryInsurancePositiveDriverEdit").attr("src", "../images/fujianimg.png");
     $("#a_compulsoryInsurancePositiveDriverEdit").removeAttr("href");
@@ -388,7 +389,7 @@ var delCompulsoryInsurancePositiveDriverEdit = function () {
 };
 
 
-//交强险保单反面上传
+//交强险保单副本上传
 var uploadCompulsoryInsuranceInverseDriverEdit = function (imgData) {
     var file = imgData.files[0];//选择上传的文件
     var fr = new FileReader();
@@ -407,7 +408,7 @@ var uploadCompulsoryInsuranceInverseDriverEdit = function (imgData) {
 var successUploadCompulsoryInsuranceInverseDriverEdit = function (responseData) {
     compulsoryInsuranceInverseURL = responseData.url;
 };
-//删除交强险保单反面
+//删除交强险保单副本
 var delCompulsoryInsuranceInverseDriverEdit = function () {
     $("#img_compulsoryInsuranceInverseDriverEdit").attr("src", "../images/fujianimg.png");
     $("#a_compulsoryInsuranceInverseDriverEdit").removeAttr("href");
@@ -415,7 +416,7 @@ var delCompulsoryInsuranceInverseDriverEdit = function () {
 };
 
 
-//商业险保单正面上传
+//商业险保单正本上传
 var uploadCommercialInsuranceDriverEdit = function (imgData) {
     var file = imgData.files[0];//选择上传的文件
     var fr = new FileReader();
@@ -434,7 +435,7 @@ var uploadCommercialInsuranceDriverEdit = function (imgData) {
 var successUploadCommercialInsurancePositiveDriverEdit = function (responseData) {
     commercialInsurancePositiveURL = responseData.url;
 };
-//删除商业险保单正面
+//删除商业险保单正本
 var delCommercialInsurancePositiveDriverEdit = function () {
     $("#img_commercialInsurancePositiveDriverEdit").attr("src", "../images/fujianimg.png");
     $("#a_commercialInsurancePositiveDriverEdit").removeAttr("href");
@@ -442,7 +443,7 @@ var delCommercialInsurancePositiveDriverEdit = function () {
 };
 
 
-//商业险保单反面上传
+//商业险保单副本上传
 var uploadCommercialInsuranceInverseDriverEdit = function (imgData) {
     var file = imgData.files[0];//选择上传的文件
     var fr = new FileReader();
@@ -461,7 +462,7 @@ var uploadCommercialInsuranceInverseDriverEdit = function (imgData) {
 var successUploadCommercialInsuranceInverseDriverEdit = function (responseData) {
     commercialInsuranceInverseURL = responseData.url;
 };
-//删除商业险保单反面
+//删除商业险保单副本
 var delCommercialInsuranceInverseDriverEdit = function () {
     $("#img_commercialInsuranceInverseDriverEdit").attr("src", "../images/fujianimg.png");
     $("#a_commercialInsuranceInverseDriverEdit").removeAttr("href");
@@ -469,7 +470,7 @@ var delCommercialInsuranceInverseDriverEdit = function () {
 };
 
 
-//司机编辑-提交
+//编辑提交
 var submitDriverEdit = function () {
     var URL = ApiPath.TMSApi.businessData.driverEdit;
     //时间对象格式化
@@ -713,14 +714,14 @@ var successSubmitDriverAdd = function () {
 };
 
 
-//司机编辑-关闭
+//编辑关闭
 var closeDriverEdit = function () {
     alert("关闭");
     $("#tabs").tabs("close", "司机编辑");
 };
 
 
-getInfoDriverEdit();//获取司机信息
+getDetailDriverEdit();//获取司机信息
 
 //getVehicleOwnerDriverEdit();//获取车辆所属下拉框
 //getCompulsoryInsuranceCompanyDriverEdit();//获取交强险保险公司下拉框

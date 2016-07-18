@@ -4,31 +4,13 @@
 var ajaxHelp = new AjaxHelp();
 
 
-//司机列表-获取物流中心h
-var getLogCenterDriverList = function () {
-    var URL = ApiPath.TMSApi.businessData.logisticsCenter;
-    var requestData = {};
-    ajaxHelp.AjaxPost(URL, requestData, successGetLogisticsCenter, null);
-};
-var successGetLogisticsCenter = function (responseData) {
-    $.each(responseData, function (index, item) {
-        $("#logCenterDriverList").append("<option value='" + item.id + "' >" + item.name + "</option>")
-    });
-};
-
-
-//司机列表-双击司机列表获取数据集
-var getDetailDriverList = function () {
-    var rowData = $("#driverList").datagrid("getSelections");
-    return rowData;
-};
-
-
-//司机列表-详情
+//司机详情界面跳转
 var detailDriverList = function () {
     addTabHrefUpdate("司机详情", "views/driver/detail/driverDetail.html");
 };
-//司机列表-加载司机列表
+
+
+//加载司机列表
 var loadDriverList = function (pageNumber, pageSize) {
     var URL = ApiPath.TMSApi.businessData.driverList;
     if (pageNumber == undefined || pageNumber == 0) {
@@ -78,7 +60,20 @@ $("#driverList").datagrid({
 });
 
 
-//司机列表-查询
+//获取所属物流中心下拉框
+var getLogCenterDriverList = function () {
+    var URL = ApiPath.TMSApi.businessData.logisticsCenter;
+    var requestData = {};
+    ajaxHelp.AjaxPost(URL, requestData, successGetLogisticsCenter, null);
+};
+var successGetLogisticsCenter = function (responseData) {
+    $.each(responseData, function (index, item) {
+        $("#logCenterDriverList").append("<option value='" + item.id + "' >" + item.name + "</option>")
+    });
+};
+
+
+//查询
 var queryDriverList = function () {
     var URL = ApiPath.TMSApi.businessData.driverList;
     var requestData = {
@@ -89,7 +84,7 @@ var queryDriverList = function () {
 };
 
 
-//司机列表-重置密码
+//重置密码
 var resetPwdDriverList = function () {
     var rowData = $("#driverList").datagrid("getSelections");
     $("#resetPwdDriverList").val("");
@@ -106,7 +101,7 @@ var resetPwdDriverList = function () {
         $("#dialog_resetPwdDriverList").window("center");
     }
 };
-//司机列表-重置密码Dialog初始化
+//重置密码Dialog初始化
 $("#dialog_resetPwdDriverList").dialog({
     title: "",
     closable: true,
@@ -117,7 +112,7 @@ $("#dialog_resetPwdDriverList").dialog({
     modal: true,
     loadingMessage: "正在加载..."
 });
-//司机列表-重置密码提交
+//重置密码提交
 var submitResetPwdDriverList = function () {
     var URL = ApiPath.TMSApi.businessData.userReset;
     var rowData = $("#driverList").datagrid("getSelections");
@@ -177,13 +172,13 @@ var cancelResetPwdDriverList = function () {
 };
 
 
-//司机列表-新增
+//司机新增界面跳转
 var addDriverList = function () {
     addTabHref("司机新增", "views/driver/add/driverAdd.html");
 };
 
 
-//司机列表-编辑
+//司机编辑界面跳转
 var editDriverList = function () {
     var rowData = $("#driverList").datagrid("getSelections");
     if (!rowData || rowData == "") {
@@ -199,7 +194,7 @@ var editDriverList = function () {
 };
 
 
-//司机列表-加载司机列表
+//加载司机列表
 loadDriverList();
 //获取所属物流中心下拉框
 getLogCenterDriverList();

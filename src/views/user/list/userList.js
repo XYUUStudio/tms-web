@@ -4,18 +4,13 @@
 var ajaxHelp = new AjaxHelp();
 
 
-//双击列表项获取数据集
-var getUserData = function () {
-    var rowData = $("#userList").datagrid("getSelections");
-    return rowData;
-};
-//双击跳转至用户详情
+//用户详情界面跳转
 var detailUserList = function () {
     addTabHrefUpdate("用户详情", "views/user/detail/userDetail.html")
 };
 
 
-//用户列表-加载列表
+//加载用户列表
 var loadUserList = function (pageNumber, pageSize) {
     var URL = ApiPath.TMSApi.businessData.userList;
     if (pageNumber == undefined || pageNumber == 0) {
@@ -66,18 +61,18 @@ $("#userList").datagrid({
 });
 
 
-//用户列表-查询
+//查询
 var queryUserList = function () {
     var URL = ApiPath.TMSApi.businessData.userList;
     var requestData = {
-        searchValue: $("#searchValueUserList").val(),
-        validStatus: $("#validStatusUserList").val()
+        searchValue: $("#searchValueUserList").val()
+        //validStatus: $("#validStatusUserList").val()
     };
     ajaxHelp.AjaxPost(URL, requestData, successLoadUserList, null);
 };
 
 
-//用户列表-重置密码
+//重置密码
 var resetPwdUserList = function () {
     var rowData = $("#userList").datagrid("getSelections");
     $("#resetPwdUserList").val("");
@@ -94,7 +89,7 @@ var resetPwdUserList = function () {
         $("#dialog_resetPwdUserList").window("center");
     }
 };
-//用户列表-重置密码Dialog初始化
+//重置密码Dialog初始化
 $("#dialog_resetPwdUserList").dialog({
     title: "",
     closable: true,
@@ -105,7 +100,7 @@ $("#dialog_resetPwdUserList").dialog({
     modal: true,
     loadingMessage: "正在加载..."
 });
-//用户列表-重置密码提交
+//重置密码提交
 var submitResetPwdUserList = function () {
     var URL = ApiPath.TMSApi.businessData.userReset;
     var rowData = $("#userList").datagrid("getSelections");
@@ -150,11 +145,11 @@ var submitResetPwdUserList = function () {
 var successSubmitResetPwd = function () {
     $("#dialog_resetPwdUserList").dialog("close");
     ds.dialog({
-       title: "消息提示",
-       content: "重置密码成功！",
-       icon: "success.png",
-       onyes: true,
-       timeout: 2
+        title: "消息提示",
+        content: "重置密码成功！",
+        icon: "success.png",
+        onyes: true,
+        timeout: 2
     });
 };
 
@@ -165,13 +160,13 @@ var cancelResetPwdUserList = function () {
 };
 
 
-//用户管理-新增
+//用户新增界面跳转
 var addUserList = function () {
     addTabHref("用户新增", "views/user/add/userAdd.html");
 };
 
 
-//用户管理-编辑
+//用户编辑界面跳转
 var editUserList = function () {
     var rowData = $("#userList").datagrid("getSelections");
     if (!rowData || rowData == "") {
@@ -187,4 +182,5 @@ var editUserList = function () {
 };
 
 
+//加载用户列表
 loadUserList();

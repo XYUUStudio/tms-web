@@ -17,9 +17,6 @@ var successGetUserRole = function (responseData) {
         $("#userRoleUserAdd").append("<option value='" + item.id + "' >" + item.name + "</option>")
     });
 };
-//修改用户角色
-var changeUserRole = function () {
-};
 
 
 //获取所属公司下拉框
@@ -33,12 +30,9 @@ var successGetCompany = function (responseData) {
         $("#companyUserAdd").append("<option value='" + item.enterpriseOrgCode + "' >" + item.cEName + "</option>")
     });
 };
-//修改所属公司
-var changeCompany = function () {
-};
 
 
-//用户新增-提交
+//新增提交
 var submitUserAdd = function () {
     var URL = ApiPath.TMSApi.businessData.userAdd;
     var initialPwd = $("#initialPwdUserAdd").val();//初始密码
@@ -181,13 +175,13 @@ var successSubmitUserAdd = function () {
 //};
 
 
-//用户新增-取消
+//新增返回
 var returnUserAdd = function () {
     $("#tabs").tabs("close", "用户新增");
 };
 
 
-//用户添加-获取用户角色下拉框
+//获取用户角色下拉框
 getUserRole();
-//用户添加-获取所属公司下拉框
+//获取所属公司下拉框
 getCompany();

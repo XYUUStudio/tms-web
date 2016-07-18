@@ -4,7 +4,7 @@
 var ajaxHelp = new AjaxHelp();
 
 
-//获取物流中心下拉框
+//获取所属物流中心下拉框
 var getLogCenterDriverAdd = function () {
     var URL = ApiPath.TMSApi.businessData.logisticsCenter;
     var requestData = {};
@@ -17,7 +17,7 @@ var successGetLogisticsCenter = function (data) {
 };
 
 
-//司机新增-提交
+//新增提交
 var submitDriverAdd = function () {
     var URL = ApiPath.TMSApi.businessData.userAdd;
     var initialPwd = $("#initialPwdDriverAdd").val();//初始密码
@@ -143,11 +143,11 @@ var successSubmitUserAdd = function () {
 //};
 
 
-//司机新增-取消
+//新增返回
 var returnDriverAdd = function () {
     $("#tabs").tabs("close", "司机新增");
 };
 
 
-//获取物流中心下拉框
+//获取所属物流中心下拉框
 getLogCenterDriverAdd();
