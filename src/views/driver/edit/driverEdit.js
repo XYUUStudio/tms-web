@@ -42,14 +42,14 @@ var successGetDetailDriverEdit = function (responseData) {
     $("#vehicleLengthDriverEdit").val(responseData.vehicleLength);//长
     $("#vehicleWidthDriverEdit").val(responseData.vehicleWidth);//宽
     $("#vehicleHeightDriverEdit").val(responseData.vehicleHeight);//高
-    getVehicleOwnerDriverEdit();//车辆所属
-    getCompulsoryInsuranceCompanyDriverEdit();//交强险公司
+    getVehicleOwnerDriverEdit();//车辆所属下拉框
+    getCompulsoryInsuranceCompanyDriverEdit();//交强险公司下拉框
     $("#compulsoryInsuranceDocNoDriverEdit").val(responseData.compulsoryInsuranceDocNo);//交强险单号
     $("#compulsoryInsuranceAmtDriverEdit").val(responseData.compulsoryInsuranceAmt);//交强险金额
-    getCmmercialInsuranceCompanyDriverEdit();//商业险公司
+    getCmmercialInsuranceCompanyDriverEdit();//商业险公司下拉框
     $("#commercialInsuranceDocNoDriverEdit").val(responseData.commercialInsuranceDocNo);//商业险单号
     $("#commercialInsuranceAmtDriverEdit").val(responseData.commercialInsuranceAmt);//商业险金额
-    getProvinceDriverEdit();//省市区
+    getProvinceDriverEdit();//省市区下拉框
     $("#addressDriverEdit").val(responseData.residentAddress);//详细地址
     //日期
     $("#driverLicEffectiveDateEndDriverEdit").val(responseData.driverLicEffectiveDateEnd);//驾驶证有效期
