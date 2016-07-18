@@ -40,7 +40,7 @@ gulp.task('Generate-history-version-dev',function () {
 
 gulp.task('Generate-history-version-test',function () {
     var folderName = programName + "-test-TMSWEBTST" + myVersion();
-    var backPath = revisionHistory.dev + "/" + folderName;
+    var backPath = revisionHistory.test + "/" + folderName;
     fs.exists(deploy.tempBuild, function(exists){
         if(exists){
             console.log("文件夹已存在,继续执行:" + path.dirname(backPath));
@@ -55,7 +55,7 @@ gulp.task('Generate-history-version-test',function () {
 
 gulp.task('Generate-history-version-production',function () {
     var folderName = programName + "-production-TMSWEBPRO" + myVersion();
-    var backPath = revisionHistory.dev + "/" + folderName;
+    var backPath = revisionHistory.production + "/" + folderName;
     fs.exists(deploy.tempBuild, function(exists){
         if(exists){
             console.log("文件夹已存在,继续执行:" + path.dirname(backPath));
