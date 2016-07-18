@@ -93,7 +93,7 @@ var successGetOrderDetail=function (data) {
     $("#receiverContactNameOrderDetail").html(data.receiverContactName);
     $("#receiverMobileOrderDetail").html(data.receiverMobile);
     $("#receiverCompanyOrderDetail").html(data.receiverCompany);
-    $("#receiverAddressOrderDetail").html(data.receiverprovincename+" "+data.receivercityname+" "+data.receiverdistrictname+" "+data.receiverCityCode);
+    $("#receiverAddressOrderDetail").html(data.receiverprovincename+" "+data.receivercityname+" "+data.receiverdistrictname+" "+data.receiverAddress);
     $("#patientNameOrderDetail").html(data.patientName);
     $("#patientHPBedNoOrderDetail").html(data.patientHPBedNo);
     $("#patientHPNoOrderDetail").html(data.patientHPNo);

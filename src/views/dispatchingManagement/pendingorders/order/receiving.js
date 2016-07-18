@@ -86,7 +86,7 @@ var successDispatchSubmitAdd=function () {
         icon : "success.png",
         width:'200',
         height:'50',
-        timeout:2
+        timeout:1
     });
     setTimeout(function(){
         $("#tabs").tabs('close','派单');

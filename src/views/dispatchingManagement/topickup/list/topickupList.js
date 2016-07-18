@@ -56,7 +56,7 @@ var searchToPickup = function(){
         status:"CGSTS00060",
         lcOrgCode:userOrgcode
     };
-    ajaxHelp.AjaxPost(URL,requestData,successToPickupListDoSearch,null);
+    ajaxHelp.AjaxPost(URL,requestData,successToPickupList,null);
 }
 //成功后回调函数
 
