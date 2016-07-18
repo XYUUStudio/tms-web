@@ -61,7 +61,9 @@ var ApiPath = {
             //运单事件
             consignmentConsignmentEventDetail: AppConfig.TMSBasePath + "/consignment/consignmentEventDetail",
             //评价详情
-            consignmentQueryEvaluate: AppConfig.TMSBasePath + "/consignment/queryEvaluate"
+            consignmentQueryEvaluate:AppConfig.TMSBasePath + "/consignment/queryEvaluate",
+            //表格导出
+            export:AppConfig.TMSBasePath +"/export/consignment"
         },
         dictionary: {
             //公共字典

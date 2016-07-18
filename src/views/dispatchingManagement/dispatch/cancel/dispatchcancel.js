@@ -3,6 +3,7 @@
  */
 var ajaxHelp = new AjaxHelp();
 var pram=dispatchList();
+var userOrgcode = $.cookie("userOrgcode");
 console.log(pram)
 var  getVuleDispatchCancel=function () {
     $("#senderCompanyDispatchCancel").html(pram[0].senderCompany);
@@ -17,12 +18,8 @@ var  getVuleDispatchCancel=function () {
     $("#receiverCompanyDispatchCancelView").html(pram[0].receiverCompany);
     $("#receiverAddressDispatchCancel").html(pram[0].senderprovincename+" "+pram[0].sendercityname+" "+pram[0].senderdistrictname+" "+pram[0].senderAddress);
     $("#reqDeliveryDateDispatchCancelView").html(pram[0].reqDeliveryDate);
-    $("#remarkDispatchCancel").html(pram[0].remark)
-    $("#pickupdriverbynameDispatchCancelOrigin").html(pram[0].pickupdriverbyname)
-}
-var userOrgcode = $.cookie("userOrgcode");
-var getDispatchCancel=function () {
-    //基本信息赋值
+    $("#remarkDispatchCancel").html(pram[0].remark);
+    $("#pickupdriverbynameDispatchCancelOrigin").html(pram[0].pickupdriverbyname);
     $("#consignmentNoDispatchCancel").html(pram[0].consignmentNo+" "+ pram[0].statusname);
     $("#ceorgnameDispatchCancel").html(pram[0].ceorgname);
     $("#lcorgnameDispatchCancel").html(pram[0].lcorgname);
@@ -30,9 +27,9 @@ var getDispatchCancel=function () {
     $("#pickupdriverbynameDispatchCancel").html(pram[0].pickupdriverbyname);
     $("#dispatchbynameDispatchCancel").html(pram[0].dispatchbyname);
     $("#submitbynameDispatchCancel").html(pram[0].submitbyname)
-
-
-
+    $("#customerSpecialNoteDispatchCancel").html(pram[0].customerSpecialNote)
+}
+var getDispatchCancel=function () {
     var URL = ApiPath.TMSApi.dictionary.GetDictionary;
     var requestData = {
         dictTypeCode:"CGCLRS"
@@ -43,7 +40,6 @@ var successGetPickupDriverId=function (data) {
     $.each(data.dictValueList,function (index,item) {
         $("#cancelReasonDispatchCancel").append(" <option value='"+item.dictTypeCode+"' >"+item.dictValueName+"</option>")
     });
-    console.log(data)
     $("#remarkDispatchCancel").val(data.dictValueList[0].dictValueName)
     getVuleDispatchCancel();
 }
@@ -95,4 +91,20 @@ var successDispatchCancelSubmitAdd=function (data) {
         loadDispatchList();
     },2000)
 }
+
+var getDispatchCancelDetail=function () {
+    var URL = ApiPath.TMSApi.dispatchingManagement.consignmentDetail;
+    var requestData = {
+        consignmentNo:pram[0].consignmentNo
+    };
+    ajaxHelp.AjaxPost(URL,requestData,successGetDispatchCancelDetail,null);
+}
+var successGetDispatchCancelDetail=function (data) {
+    if(data.cgodRec){
+        $("#recordDispatchCancel").attr('src',data.cgodRec.url)
+    }else {
+        $("#recordDispatchCancel").hide()
+    }
+}
+getDispatchCancelDetail()
 getDispatchCancel();

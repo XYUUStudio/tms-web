@@ -20,8 +20,9 @@ var  getVuleToPickup=function () {
     $("#receiverCompanyReDispatchView").html(pram[0].receiverCompany);
     $("#receiverAddressReDispatch").html(pram[0].senderprovincename+" "+pram[0].sendercityname+" "+pram[0].senderdistrictname+" "+pram[0].senderAddress);
     $("#reqDeliveryDateReDispatchView").html(pram[0].reqDeliveryDate);
-    $("#remarkReDispatch").html(pram[0].remark)
-    $("#pickupdriverbynameReDispatchOrigin").html(pram[0].pickupdriverbyname)
+    $("#remarkReDispatch").html(pram[0].remark);
+    $("#pickupdriverbynameReDispatchOrigin").html(pram[0].pickupdriverbyname);
+    $("#customerSpecialNoteReDispatch").html(pram[0].customerSpecialNote)
 }
 var userOrgcode = $.cookie("userOrgcode");
 var getPickupDriverId=function () {
@@ -33,7 +34,6 @@ var getPickupDriverId=function () {
     $("#pickupdriverbynameReDispatch").html(pram[0].pickupdriverbyname);
     $("#dispatchbynameReDispatch").html(pram[0].dispatchbyname);
     $("#submitbynameReDispatch").html(pram[0].submitbyname)
-
     var URL = ApiPath.TMSApi.dictionary.getPickupDriverList;
     var requestData = {
         orgCode:userOrgcode
@@ -41,11 +41,25 @@ var getPickupDriverId=function () {
     ajaxHelp.AjaxPost(URL,requestData,successGetPickupDriverId,null);
 }
 var successGetPickupDriverId=function (data) {
-    console.log(data)
     $.each(data,function (index,item) {
         $("#pickupDriverIdReDispatch").append(" <option value='"+item.userId+"' >"+item.userName+"</option>")
     })
     getVuleToPickup();
+}
+var getPickupDetail=function () {
+    //获取订单详情
+    var URL = ApiPath.TMSApi.dispatchingManagement.consignmentDetail;
+    var requestData = {
+        consignmentNo:pram[0].consignmentNo
+    };
+    ajaxHelp.AjaxPost(URL,requestData,successGetPickupDetail,null);
+}
+var successGetPickupDetail=function (data) {
+    if(data.cgodRec){
+        $("#recordReDispatch").attr('src',data.cgodRec.url)
+    }else {
+        $("#recordReDispatch").hide()
+    }
 }
 var verification=function () {
     var result=true;
@@ -88,5 +102,8 @@ var successReDispatchSubmitAdd=function (data) {
         loadToPickupList();
     },2000)
 };
-getPickupDriverId();
-
+var loadToPickup=function () {
+    getPickupDriverId();
+    getPickupDetail();
+};
+loadToPickup()

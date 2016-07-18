@@ -16,7 +16,8 @@ var  getVulereceiving=function () {
     $("#receiverCompanyDispatchView").html(pram[0].receiverCompany);
     $("#receiverAddressDispatch").html(pram[0].senderprovincename+" "+pram[0].sendercityname+" "+pram[0].senderdistrictname+" "+pram[0].senderAddress);
     $("#reqDeliveryDateDispatchView").html(pram[0].reqDeliveryDate);
-    $("#remarkDispatch").html(pram[0].remark)
+    $("#remarkDispatch").html(pram[0].remark);
+    $("#customerSpecialNoteDispatch").html(pram[0].customerSpecialNote)
 };
 var userOrgcode = $.cookie("userOrgcode");
 var getPickupDriverId=function () {
@@ -38,6 +39,23 @@ var successGetPickupDriverId=function (data) {
      });
     getVulereceiving();
 };
+var getReceivingDetail=function () {
+    //获取订单详情
+    var URL = ApiPath.TMSApi.dispatchingManagement.consignmentDetail;
+    var requestData = {
+        consignmentNo:pram[0].consignmentNo
+    };
+    ajaxHelp.AjaxPost(URL,requestData,successGetReceivingDetail,null);
+};
+var successGetReceivingDetail=function (data) {
+    // 获取录音URL
+    if(data.cgodRec){
+        $("#recordOrderDispatch").attr('src',data.cgodRec.url)
+    }else {
+        $("#recordOrderDispatch").hide()
+    }
+};
+
 var verification=function () {
     var result=true;
      if($("#pickupDriverIdDispatch").val()==""){
@@ -75,5 +93,9 @@ var successDispatchSubmitAdd=function () {
         loadPendingordersList()
     },2000);
 };
-getPickupDriverId();
-
+var loadReceiving=function () {
+     //
+    getPickupDriverId();
+    getReceivingDetail();
+}
+loadReceiving();

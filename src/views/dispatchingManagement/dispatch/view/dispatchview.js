@@ -97,7 +97,12 @@ var successGetOrderDetail=function (data) {
     $("#patientNameOrderDetail").html(data.patientName);
     $("#patientHPBedNoOrderDetail").html(data.patientHPBedNo);
     $("#patientHPNoOrderDetail").html(data.patientHPNo);
-    $("#remarkOrderDetail").html(data.customerSpecialNote)
+    $("#customerSpecialNoteOrderDetail").html(data.customerSpecialNote)
+    if(data.cgodRec){
+        $("#recordOrderDetail").attr('src',data.cgodRec.url)
+    }else {
+        $("#recordOrderDispatch").hide()
+    }
 
 }
 var getConsignmentEventDetail=function () {
@@ -114,7 +119,6 @@ var successGetConsignmentEventDetail=function (data) {
 var getAssessmentDetailsDetail=function () {
     //获取评价详情API
     var URL = ApiPath.TMSApi.dispatchingManagement.consignmentQueryEvaluate;
-    console.log(pram[0].consignmentNo)
     var requestData = {
         consignmentNo:pram[0].consignmentNo
     };
@@ -122,15 +126,18 @@ var getAssessmentDetailsDetail=function () {
 }
 var successGetAssessmentDetailsDetail=function (data) {
      //赋值
-     $("#dvvcode1nameOrderDetail").html(data.evaluationItemValueName1);
-     $("#EvaluationItemRemark1OrderDetail").html(data.evaluationItemRemark1);
-    if(data.attachment.length!=0){
-        $('.imgViewCO').html('<img src="' + data.attachment[0].url + '" alt="" width="150" height="150" />')
+    if(data){
+        $("#dvvcode1nameOrderDetail").html(data.evaluationItemValueName1);
+        $("#EvaluationItemRemark1OrderDetail").html(data.evaluationItemRemark1);
+        if(data.attachment.length!=0){
+            $('.imgViewCO').html('<img src="' + data.attachment[0].url + '" alt="" width="150" height="150" />')
+        }
+        $("#dvvcode2nameOrderDetail").html(data.evaluationItemValueName2);
+        $("#dvvcode3nameOrderDetail").html(data.evaluationItemValueName3);
+        $("#dvvcode4nameOrderDetail").html(data.evaluationItemValueName4);
+        $("#dvvcode5nameOrderDetail").html(data.evaluationItemValueName5);
     }
-    $("#dvvcode2nameOrderDetail").html(data.evaluationItemValueName2);
-    $("#dvvcode3nameOrderDetail").html(data.evaluationItemValueName3);
-    $("#dvvcode4nameOrderDetail").html(data.evaluationItemValueName4);
-    $("#dvvcode5nameOrderDetail").html(data.evaluationItemValueName5);
+
 }
 var orderDetailLoad=function () {
     //获取运单详情

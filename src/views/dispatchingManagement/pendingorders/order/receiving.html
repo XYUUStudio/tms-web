@@ -17,12 +17,12 @@
             </li>
 
         </ul>
-  <div style=" margin-bottom: 30px;margin-left: 180px;">
+  <div style=" margin-bottom: 10px;margin-left: 180px;">
     <span  id="reqDeliveryDateDispatch"></span>
   </div>
     </div>
 
-    <div class="control-group "style="text-align: left;margin-top: 10px">
+    <div class="control-group  "style="text-align: left;margin-top: 10px">
         <label>
             <span style="color:#f79449 ;">基本信息</span>
             <span style="color:#f79449 ;margin-left:20px" id="consignmentNoDispatch"></span>
@@ -67,9 +67,22 @@
         </label>
     </div>
     <div class="control-view ">
-        <label style="width:67%">
+        <label style="width:60%">
             <span>地址：</span>
             <a id="senderAddressDispatch"></a>
+        </label>
+    </div>
+    <div class="control-view ">
+        <label style="width:60%">
+            <span>特殊要求：</span>
+            <a id="customerSpecialNoteDispatch"></a>
+        </label>
+        <label>
+            <span>留言：</span>
+            <div style="float: left">
+                <audio controls="controls"  preload="auto " src=" " id="recordOrderDispatch" >
+                </audio>
+            </div>
         </label>
     </div>
     <div class="control-group "style="text-align: left;margin-top: 45px">
@@ -94,7 +107,7 @@
         </label>
     </div>
     <div class="control-view ">
-        <label>
+        <label style="width: 60%">
             <span>地址：</span>
             <a id="receiverAddressDispatch"></a>
         </label>
@@ -111,18 +124,15 @@
     <div class="cut-off-rule " >
     </div>
     <div class="control-view ">
-        <label style="width: 100%">
+        <label >
             <span> 取件司机：</span>
            <select  id="pickupDriverIdDispatch" style="width: 200px" >
             <option value="">请选择司机</option>
         </select>
         </label>
-
-    </div>
-    <div class="control-view ">
         <label style="width: 60%">
             <span>备注：</span>
-            <textarea style="width: 320px" id="remarkDispatch"></textarea>
+            <input style="width: 72%" id="remarkDispatch"/>
         </label>
     </div>
     <div class="control-view ">

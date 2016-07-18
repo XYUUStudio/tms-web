@@ -29,7 +29,7 @@
         </label>
     </div>
     <div class="control-view ">
-        <label style="padding-left: 0%;width: 46%">
+        <label style="padding-left: 0%;width: 60%">
             <span><span class="required">*</span>地址：</span>
             <select  id="senderProvinceCodeSinger"onchange="changeSenderProvince(this.value)"  style="width: 70px ;color:#999">
             <option value="">请选择省</option>
@@ -40,7 +40,7 @@
             <select  id="senderDistrictCodeSinger" style="width: 70px;color:#999">
                 <option value="">请选择区</option>
             </select>
-            <input style="width: 100px" id="senderAddressSinger"/>
+            <input style="width: 230px" id="senderAddressSinger"/>
         </label>
     </div>
     <div class="control-group "style="text-align: left;margin-top: 45px">
@@ -65,7 +65,7 @@
         </label>
     </div>
     <div class="control-view ">
-        <label style="padding-left: 0%;width: 46%">
+        <label style="padding-left: 0%;width: 60%">
             <span><span class="required">*</span>地址：</span>
             <select id="receiverProvinceCodeSinger" onchange="changeReceiveProvince(this.value)" style="width: 70px ;color:#999">
             <option value="">请选择省</option>
@@ -76,7 +76,7 @@
             <select  id="receiverDistrictCodeSinger" style="width: 70px;color:#999">
                 <option value="">请选择区</option>
             </select>
-            <input  style="width: 100px" id="receiverAddressSinger"/>
+            <input  style="width: 230px" id="receiverAddressSinger"/>
         </label>
     </div>
     <div class="control-group "style="text-align: left;margin-top: 45px">
@@ -92,25 +92,26 @@
             <input class="easyui-datebox"  id="reqDeliveryDateSinger" style="width: 100px"/>
             <select style="width: 60px" id="appendTimeSinger"></select>
         </label>
-        <label style="padding-left: 0%;">
+        <label style="padding-left: 0%;width: 60%">
+            <span  style="float: left">特殊要求：</span>
+            <input   style="width: 72%"  id="customerSpecialNoteSinger"/>
+        </label>
+
+    </div>
+    <div class="control-view ">
+        <label style="padding-left: 0%;clear:left;">
             <span>患者：</span>
-             <input id="patientNameSinger"/>
+            <input  type="text" id="patientNameSinger"/>
         </label>
         <label style="padding-left: 0%;">
             <span>床号：</span>
-            <input id="patientHPBedNoSinger"/>
-        </label>
-    </div>
-    <div class="control-view ">
-        <label style="padding-left: 0%;clear:left;width: 60%">
-           <span  style="float: left">特殊要求：</span>
-            <textarea   style="width: 320px"  id="customerSpecialNoteSinger"></textarea>
+            <input type="text" id="patientHPBedNoSinger"/>
         </label>
     </div>
     <div class="control-view ">
         <label  style="padding-left: 0%;">
             <span>住院号：</span>
-            <input  id="patientHPNoSinger"/>
+            <input  type="text" id="patientHPNoSinger"/>
         </label>
     </div>
     <div class="control-view ">

@@ -2,27 +2,104 @@
  * Created by medlog-dev-2 on 2016/7/6.
  */
 var ajaxHelp = new AjaxHelp();
-//获取分页信息值
-//首次列表加载、翻页、更改页面大小都会触发
+var userOrgcode = $.cookie("userOrgcode");
+var  reqDeliveryDateFrom="";
+var  createDateFrom="";
+var  createDateEnd="";
 
-var loadDispatchList = function(pageNumber, pageSize){
-    // 定义post  请求页地址
-    var URL = ApiPath.TMSApi.dispatchingManagement.searchDispatchingList;
+//载入页执行  列表、时间函数
+var getEnterprisesSelect=function () {
+    //获取寄件企业下拉框
+    var URL = ApiPath.TMSApi.businessData.enterprisesList;
+    var requestData = {
+    };
+    ajaxHelp.AjaxPost(URL,requestData,successEnterprisesSelect,null);
+}
+var successEnterprisesSelect=function (data) {
+    console.log(data)
+    $.each(data.rows, function (index,item ) {
+        $("#ceOrgNameDispatchList").append(" <option value='"+item.enterpriseOrgCode+"' >"+item.cEName+"</option>")
+    })
+}
+var getAppendTimeDispatchSelect=function () {
+    //获取追加时间段
+    var URL = ApiPath.TMSApi.dictionary.GetDictionary;
+    var requestData = {
+        dictTypeCode:"DLRQTM"
+    };
+    ajaxHelp.AjaxPost(URL,requestData,successAppendTimeDispatchSelect,null);
+}
+var successAppendTimeDispatchSelect=function (data) {
+    $.each(data.dictValueList, function (index,item ) {
+        $("#appendTimeDispatchList").append(" <option value='"+item.dictValueCode+"' >"+item.dictValueName+"</option>")
+    })
+}
+var  gerStatusDispatchSelect=function () {
+    //获取状态下拉框
+    var URL = ApiPath.TMSApi.systemData.queryType;
+    var requestData = {};
+    ajaxHelp.AjaxPost(URL,requestData,successStatusDispatchSelect,null);
+}
+var successStatusDispatchSelect=function (data) {
+    $.each(data, function (index,item ) {
+        $("#statusDispatchList").append(" <option value='"+item.statusCode+"' >"+item.statusName+"</option>")
+    })
+}
+var getConsignmentSourceDispatchSelect=function () {
+    //获取订单来源下拉框
+    var URL = ApiPath.TMSApi.dictionary.GetDictionary;
+    var requestData = {
+        dictTypeCode:"CSGNSR"
+    };
+    ajaxHelp.AjaxPost(URL,requestData,successConsignmentSourceDispatchSelect,null);
+}
+var successConsignmentSourceDispatchSelect=function (data) {
+    $.each(data.dictValueList, function (index,item ) {
+        $("#consignmentSourceDispatchList").append(" <option value='"+item.dictValueCode+"' >"+item.dictValueName+"</option>")
+    })
+}
+//查询条件
+var QueryDispatchList=function (pageNumber, pageSize) {
+    if($("#createDateFromDispatchList").val()){
+         createDateFrom=$("#createDateFromDispatchList").datebox('getValue')+" 00:00:00";
+    }
+    if($("#createDateFromDispatchList").val()){
+         createDateEnd=$("#createDateEndDispatchList").datebox('getValue')+" 23:59:59";
+    }
+    if($("#reqDeliveryDateFromDispatchList").val()){
+        var appendTimeDispatchList=$("#appendTimeDispatchList").val();
+         reqDeliveryDateFrom=$("#reqDeliveryDateFromDispatchList").datebox('getValue')+""+$("#appendTimeDispatchList").find("option:selected").text()+":00"
+    }
     if(pageNumber == undefined || pageNumber == 0 ){pageNumber = 1;}
     if(pageSize == undefined || pageSize == 0 ){pageSize = 20;}
     var requestData = {
         page:pageNumber,
         rows:pageSize,
+        consignmentNo:$("#consignmentNoDispatchList").val(),
+        senderCompany:$("#senderCompanyDispatchList").val(),
+        receiverCompany:$("#receiverCompanyDispatchList").val(),
+        ceOrgCode:$("#ceOrgNameDispatchList").val(),
+        senderContactName:$("#senderContactNameDispatchList").val(),
+        status:$("#statusDispatchList").val(),
+        createDateFrom:createDateFrom,
+        createDateEnd:createDateEnd,
+        reqDeliveryDateFrom:reqDeliveryDateFrom,
+        consignmentSource:$("#consignmentSourceDispatchList").val(),
         lcOrgCode:userOrgcode,
         sort:"updateDate",
         order:"desc"
     };
+    return requestData;
+}
+var loadDispatchList = function(pageNumber, pageSize){
+    // 定义post  请求页地址
+    var URL = ApiPath.TMSApi.dispatchingManagement.searchDispatchingList;
+    var requestData = QueryDispatchList(pageNumber,pageSize)
     ajaxHelp.AjaxPost(URL,requestData,successDispatchList,null);
 }
 var successDispatchList = function (resultInfo) {
     console.log(resultInfo)
     $("#dispatchList").datagrid('loadData', resultInfo);
-    // var pager = $("#enterprisesList").datagrid('getPager');
     $("#dispatchListPagination").pagination({
         pageList:[10,20,30],
         pageSize:resultInfo.pageSize,
@@ -34,29 +111,14 @@ var successDispatchList = function (resultInfo) {
         },
     });
 }
-//排序回调函数
-var doSort = function(sort, order){
-    var URL = ApiPath.TMSApi.dispatchingManagement.searchDispatchingList;
-    var options = $("#dispatchList").datagrid('getPager').data("pagination").options;
-    var currPage = options.pageNumber;
-    var pageSize = options.pageSize;
-    var requestData = {page:currPage, rows:pageSize,sort:sort,order:order};
-    ajaxHelp.AjaxPost(URL,requestData,successPendingordersListDoSearch,null);
-}
+
 //查询
-var searchToPickup = function(){
+var searchDispatchList=function () {
+    //查询按钮
+    var requestData =QueryDispatchList();
     var URL = ApiPath.TMSApi.dispatchingManagement.searchDispatchingList;
-    var requestData = {
-        consignmentNo: $('#consignmentNoToPicku').val(),
-        status:"CGSTS00060",
-        lcOrgCode:userOrgcode
-    };
-    ajaxHelp.AjaxPost(URL,requestData,successToPickupListDoSearch,null);
-}
-//成功后回调函数
-
-// 按钮页面跳转
-
+    ajaxHelp.AjaxPost(URL,requestData,successDispatchList,null);
+};
 var dispatchList=function () {
     var row = $("#dispatchList").datagrid('getSelections');
     return (row)
@@ -96,6 +158,59 @@ var dispatchView=function () {
     //运单详情
     addTabHrefUpdate('运单详情','views/dispatchingManagement/dispatch/view/dispatchview.html');
 }
+
+var exportDispatchList=function () {
+    //导出条件过滤
+   var exportURL = ApiPath.TMSApi.dispatchingManagement.export;
+    var exportInfo=GetExportVal()
+
+    loadDispatchList();
+    window.open(exportURL+"?"+exportInfo)
+}
+var GetExportVal =  function () {
+        var string = "";
+        string= "sort="+"updateDate";
+        string= string+"&lcOrgCode="+userOrgcode;
+        string= string+"&order="+"desc";
+        if ($("#consignmentNoDispatchList").val()){
+            string = string+"&consignmentNo="+$("#consignmentNoDispatchList").val();
+        }
+        if($("#senderCompanyDispatchList").val()){
+            string= string+"&senderCompany="+$("#senderCompanyDispatchList").val();
+        }
+        if($("#receiverCompanyDispatchList").val()){
+            string= string+"&receiverCompany="+$("#receiverCompanyDispatchList").val();
+        }
+        if($("#ceOrgNameDispatchList").val()){
+            string= string+"&ceOrgCode="+$("#ceOrgNameDispatchList").val();
+        }
+        if($("#senderContactNameDispatchList").val()){
+            string= string+"&senderContactName="+$("#senderContactNameDispatchList").val();
+        }
+        if($("#statusDispatchList").val()){
+            string= string+"&status="+$("#statusDispatchList").val();
+        }
+        if($("#createDateFromDispatchList").val()){
+            string= string+"&createDateFrom="+$("#createDateFromDispatchList").datebox('getValue')+" 00:00:00";
+        }
+        if($("#createDateFromDispatchList").val()){
+            string= string+"&createDateEnd="+$("#createDateEndDispatchList").datebox('getValue')+" 23:59:59";
+        }
+        if($("#reqDeliveryDateFromDispatchList").val()){
+            string= string+"&reqDeliveryDateFrom="+$("#reqDeliveryDateFromDispatchList").datebox('getValue')+""+$("#appendTimeDispatchList").find("option:selected").text()+":00";
+        }
+        if($("#consignmentSourceDispatchList").val()){
+            string= string+"&consignmentSource="+$("#consignmentSourceDispatchList").val();
+        }
+      return string;
+}
+var dispatchListLoad=function () {
+    getEnterprisesSelect();
+    gerStatusDispatchSelect();
+    getAppendTimeDispatchSelect();
+    getConsignmentSourceDispatchSelect()
+    loadDispatchList();
+};
 $("#dispatchList").datagrid({
     striped: true,
     checkOnSelect:true,
@@ -118,100 +233,6 @@ $("#dispatchList").datagrid({
             '</tr></table>';
     }
 });
-//载入页执行  列表、时间函数
-var userOrgcode = $.cookie("userOrgcode");
-var getEnterprisesSelect=function () {
-        //获取寄件企业下拉框
-    var URL = ApiPath.TMSApi.businessData.enterprisesList;
-    var requestData = {
-    };
-    ajaxHelp.AjaxPost(URL,requestData,successEnterprisesSelect,null);
-}
-var successEnterprisesSelect=function (data) {
-    $.each(data.rows, function (index,item ) {
-        $("#ceOrgNameDispatchList").append(" <option value='"+item.cECode+"' >"+item.cEName+"</option>")
-    })
-}
-var getAppendTimeDispatchSelect=function () {
-    //获取追加时间段
-    var URL = ApiPath.TMSApi.dictionary.GetDictionary;
-    var requestData = {
-        dictTypeCode:"DLRQTM"
-    };
-    ajaxHelp.AjaxPost(URL,requestData,successAppendTimeDispatchSelect,null);
-}
-var successAppendTimeDispatchSelect=function (data) {
-        console.log(data)
-    $.each(data.dictValueList, function (index,item ) {
-        $("#appendTimeDispatchList").append(" <option value='"+item.dictValueCode+"' >"+item.dictValueName+"</option>")
-    })
-}
-var  gerStatusDispatchSelect=function () {
-    //获取状态下拉框
-    var URL = ApiPath.TMSApi.systemData.queryType;
-    var requestData = {};
-    ajaxHelp.AjaxPost(URL,requestData,successStatusDispatchSelect,null);
-}
-var successStatusDispatchSelect=function (data) {
-    $.each(data, function (index,item ) {
-        $("#statusDispatchList").append(" <option value='"+item.statusCode+"' >"+item.statusName+"</option>")
-    })
-}
-var getConsignmentSourceDispatchSelect=function () {
-      //获取订单来源下拉框
-    var URL = ApiPath.TMSApi.dictionary.GetDictionary;
-    var requestData = {
-        dictTypeCode:"CSGNSR"
-    };
-    ajaxHelp.AjaxPost(URL,requestData,successConsignmentSourceDispatchSelect,null);
-}
-var successConsignmentSourceDispatchSelect=function (data) {
-    $.each(data.dictValueList, function (index,item ) {
-        $("#consignmentSourceDispatchList").append(" <option value='"+item.dictValueCode+"' >"+item.dictValueName+"</option>")
-    })
-}
-var getSelectDispatchList=function () {
-    getEnterprisesSelect();
-    gerStatusDispatchSelect();
-    getAppendTimeDispatchSelect();
-    getConsignmentSourceDispatchSelect()
-}
-var searchDispatchList=function () {
-    //查询按钮
-    var  reqDeliveryDateFrom="";
-    var  createDateFrom="";
-    var  createDateEnd="";
-    if($("#createDateFromDispatchList").datebox('getValue')){
-        var createDateFrom=$("#createDateFromDispatchList").datebox('getValue')+" 00:00:00";
-    }
-    if($("#createDateFromDispatchList").datebox('getValue')){
-        var createDateEnd=$("#createDateFromDispatchList").datebox('getValue')+" 23:59:59";
-    }
-    if($("#reqDeliveryDateFromDispatchList").datebox('getValue')){
-        var appendTimeDispatchList=$("#appendTimeDispatchList").val();
-        var reqDeliveryDateFrom=$("#reqDeliveryDateFromDispatchList").datebox('getValue')+""+$("#appendTimeDispatchList").find("option:selected").text()+":00"
-    }
-    var URL = ApiPath.TMSApi.dispatchingManagement.searchDispatchingList;
-    var requestData = {
-        page:1,
-        rows:20,
-        consignmentNo:$("#consignmentNoDispatchList").val(),
-        senderCompany:$("#senderCompanyDispatchList").val(),
-        receiverCompany:$("#receiverCompanyDispatchList").val(),
-        ceOrgCode:$("#ceOrgNameDispatchList").val(),
-        senderContactName:$("#senderContactNameDispatchList").val(),
-        status:$("#statusDispatchList").val(),
-        createDateFrom:createDateFrom,
-        createDateEnd:createDateEnd,
-        reqDeliveryDateFrom:reqDeliveryDateFrom,
-        consignmentSource:$("#consignmentSourceDispatchList").val(),
-        lcOrgCode:userOrgcode
-    };
-    ajaxHelp.AjaxPost(URL,requestData,successDispatchList,null);
-}
-var dispatchListLoad=function () {
-    getSelectDispatchList();
-    loadDispatchList();
-}
 dispatchListLoad();
+
 

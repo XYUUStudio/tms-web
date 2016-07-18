@@ -16,7 +16,7 @@
                 <span style="font-size: 26px" id="receiverCompanyDispatchCancel"></span>
             </li>
         </ul>
-        <div style=" margin-bottom: 30px;margin-left:  220px;">
+        <div style=" margin-bottom: 10px;margin-left:  220px;">
             <span  id="reqDeliveryDateDispatchCancel"> </span>
         </div>
     </div>
@@ -57,7 +57,7 @@
         </label>
     </div>
 
-    <div class="control-group "style="text-align: left;margin-top: 60px">
+    <div class="control-group "style="text-align: left;margin-top: 45px">
         <label>
             <span style="color:#f79449;">寄件信息</span>
         </label>
@@ -79,12 +79,25 @@
         </label>
     </div>
     <div class="control-view ">
-        <label style="width:67%">
+        <label style="width:60%">
             <span>地址：</span>
             <a id="senderAddressDispatchCancel"></a>
         </label>
     </div>
-    <div class="control-group "style="text-align: left;margin-top: 60px">
+    <div class="control-view ">
+        <label style="width:60%">
+            <span>特殊要求：</span>
+            <a id="customerSpecialNoteDispatchCancel"></a>
+        </label>
+        <label >
+            <span>留言：</span>
+            <div style="float: left">
+                <audio controls="controls"  src=" " id="recordDispatchCancel"></audio>
+            </div>
+        </label>
+        </label>
+    </div>
+    <div class="control-group "style="text-align: left;margin-top: 45px">
         <label>
             <span style="color:#f79449 ;">收件信息</span>
         </label>
@@ -106,7 +119,7 @@
         </label>
     </div>
     <div class="control-view ">
-        <label>
+        <label style="width: 60%">
             <span>地址：</span>
            <a id="receiverAddressDispatchCancel"></a>
         </label>
@@ -115,7 +128,7 @@
             <a id="reqDeliveryDateDispatchCancelView"></a>
         </label>
     </div>
-    <div class="control-group "style="text-align: left;margin-top: 60px">
+    <div class="control-group "style="text-align: left;margin-top: 45px">
         <label>
             <a style="color:#f79449 ;">取消信息</a>
         </label>
@@ -123,18 +136,17 @@
     <div class="cut-off-rule " >
     </div>
     <div class="control-view ">
-        <label style="width: 100%">
+        <label>
             <span>取消原因：</span>
             <select  id="cancelReasonDispatchCancel" style="width: 200px" onchange="changeRemarkDispatchCancel()">
         </select>
         </label>
-    </div>
-    <div class="control-view ">
         <label style="width: 60%">
             <span> 备注：</span>
-            <textarea style="width: 350px" id="remarkDispatchCancel"></textarea>
+            <input style="width: 72%" id="remarkDispatchCancel"/>
         </label>
     </div>
+
     <div class="control-view ">
         <div class="button"  style="margin-top: -1px; margin-right: -2px">
             <a href="#" class="group" onclick="DispatchCancelSubmitClose()" style="width: 80px;height: 30px;line-height: 30px">

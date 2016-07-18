@@ -2,16 +2,16 @@
 <div class="content_id">
     <div class="navigation-body">
        <div class="navigation-cut" style="margin-left: 30px" id="orderDetail" onclick="orderDetailShow()">
-            <span id="orderDetail_Span">运单详情</span>
+            <a id="orderDetail_Span" href="#">运单详情</a>
        </div>
         <div class="navigation-cut" id="trackRecord" onclick="trackRecordShow()">
-           <span id="trackRecord_Span">跟踪记录</span>
+           <a id="trackRecord_Span" href="#">跟踪记录</a>
         </div>
         <div class="navigation-cut" id="orderPassBox" onclick="orderPassBox()">
-            <span id="orderPassBox_Span">运单周转箱</span>
+            <a id="orderPassBox_Span" href="#">运单周转箱</a>
         </div>
         <div class="navigation-cut" id="assessmentDetails" onclick="assessmentDetailsShow()">
-            <span id="assessmentDetails_Span">评价详情</span>
+            <a id="assessmentDetails_Span" href="#">评价详情</a>
         </div>
 
     </div>
@@ -57,14 +57,14 @@
                 <span>提货密码：</span>
                 <a  id="deliverySignaturePasswordOrderDetail"></a>
             </label>
-            <label>
-                <span>更新人：</span>
-                <a id="updatebynameOrderDetail"></a>
-            </label>
-            <label>
-                <span>更新时间：</span>
-                <a id="updateDateOrderDetail" ></a>
-            </label>
+            <!--<label>-->
+                <!--<span>更新人：</span>-->
+                <!--<a id="updatebynameOrderDetail"></a>-->
+            <!--</label>-->
+            <!--<label>-->
+                <!--<span>更新时间：</span>-->
+                <!--<a id="updateDateOrderDetail" ></a>-->
+            <!--</label>-->
         </div>
         <div class="control-group "style="text-align: left;margin-top: 60px">
             <label>
@@ -88,9 +88,21 @@
             </label>
         </div>
         <div class="control-view ">
-            <label style="width:100%">
-                <span>寄件地址：</span>
+            <label style="width: 100%">
+                <span>地址：</span>
                 <a id="senderAddressOrderDetail"></a>
+            </label>
+        </div>
+        <div class="control-view ">
+        <label style="width: 60%">
+                <span>特殊要求：</span>
+                <a id="customerSpecialNoteOrderDetail"></a>
+            </label>
+            <label>
+            <span>留言：</span>
+                  <div style="float: left">
+                     <audio controls="controls"  src=" " id="recordOrderDetail"></audio>
+                  </div>
             </label>
         </div>
         <div class="control-group "style="text-align: left;margin-top: 40px">
@@ -115,7 +127,7 @@
             </label>
         </div>
         <div class="control-view ">
-            <label style="width: 100%">
+            <label >
                 <span>地址：</span>
                 <a id="receiverAddressOrderDetail"></a>
             </label>
@@ -141,19 +153,11 @@
                 <a id="patientHPNoOrderDetail"></a>
             </label>
         </div>
-        <div class="control-view ">
-            <label>
-                <span>特殊要求：</span>
-                <a id="remarkOrderDetail"></a>
-            </label>
-        </div>
+
     </div>
     <div id="trackRecordShow">
         <div class="order_detai_bode">
             <table id="trackRecordList"    toolbar="#toolbar" width="90%"  style="color: #fff;" >
-                <!--<thead frozen="true" data-options="frozen:true">-->
-                <thead frozen="true">
-                </thead>
                 <thead>
                 <tr>
                     <th field="eventOpDate" title="eventOpDate" align="left" >日期</th>

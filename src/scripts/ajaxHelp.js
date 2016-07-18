@@ -65,6 +65,10 @@ var AjaxException = function(){
             case "0":
                 callback(data.info);
                 break;
+            case 201:
+            case "201":
+                callback(data.info);
+                break;
             case 1:
             case "1":
                 ds.dialog({
@@ -86,12 +90,16 @@ var AjaxException = function(){
 
     AjaxException.prototype.HttpEorr = function(data, callback) {
         /// <summary>报错处理</summary>
-        ds.dialog({
-            title : '消息提示',
-            content :"请求失败"+" "+data.status,
-            onyes:true,
-            icon : "info.png"
-        });
+        // ds.dialog({
+        //     title : '消息提示',
+        //     content :"请求失败"+" "+data.status,
+        //     onyes:true,
+        //     icon : "info.png"
+        // });
+        // console.log(data)
+        // if(data.status="200"){
+        //     callback(data.responseText)
+        // }
         if (callback) {
             callback(data);
         }
@@ -158,7 +166,6 @@ var AjaxHelp = function(){
                 url = url + "?token=" + token;
             }
         }
-
         var param = JSON.stringify(data);
         $.ajax({
             type: 'POST',

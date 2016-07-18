@@ -345,7 +345,7 @@ var DispatchReSubmitAdd=function () {
             receiverDistrictCode:$("#receiverDistrictCodeDispatchRe").val(),
             receiverAddress:$("#receiverAddressDispatchRe").val(),
             reqDeliveryDate:reqDeliveryDate,
-            customerSpecialNote:$("#customerSpeciaNoteDispatchRe").val()
+            customerSpecialNote:$("#customerSpecialNoteDispatchRe").val()
         }
         ajaxHelp.AjaxPost(URL,requestData,successDispatchReSubmitAdd,null);
     }

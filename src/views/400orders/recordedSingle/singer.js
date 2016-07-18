@@ -149,7 +149,7 @@ var verification=function () {
      if($("#ceOrgCodeSinger").val()=="") {
          ds.dialog({
              title : '消息提示',
-             content : '请选择客户公司！',
+             content : '请选择下单公司！',
              onyes:true,
              icon : "info.png",
          });

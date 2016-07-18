@@ -59,7 +59,7 @@
         </label>
     </div>
 
-    <div class="control-group "style="text-align: left;margin-top: 60px">
+    <div class="control-group "style="text-align: left;margin-top: 10px">
         <label>
             <span style="color:#f79449 ;">寄件信息</span>
         </label>
@@ -81,13 +81,19 @@
         </label>
     </div>
     <div class="control-view ">
-        <label style="width:67%">
+        <label style="width:60%">
             <span><span class="required">*</span>地址：</span>
             <select style="width: 70px" id="senderProvinceCodeDispatchRe" onchange="changeSenderProvinceRe(this.value)"> </select>
             <select  style="width: 70px" id="senderCityCodeDispatchRe" onchange="changeSenderCityRe(this.value)"></select>
             <select  style="width: 70px" id="senderDistrictCodeDispatchRe"></select>
-            <input  type="text" id="senderAddressDispatchRe"/>
+            <input   style="width: 230px" type="text" id="senderAddressDispatchRe" />
         </label>
+    </div>
+    <div class="control-view ">
+    <label style="width: 60%">
+        <span>特殊要求：</span>
+        <input style="width: 72%" id="customerSpecialNoteDispatchRe"/>
+    </label>
     </div>
     <div class="control-group "style="text-align: left;margin-top: 60px">
         <label>
@@ -116,7 +122,7 @@
             <select style="width: 70px"  id="receiverProvinceCodeDispatchRe" onchange="changeReceiveProvinceRe(this.value)" > </select>
             <select  style="width: 70px" id="receiverCityCodeDispatchRe" onchange="changeReceiveCityRe(this.value)" ></select>
             <select  style="width: 70px" id="receiverDistrictCodeDispatchRe"></select>
-             <input type="text"  id="receiverAddressDispatchRe"/>
+             <input  style="width: 230px" type="text"  id="receiverAddressDispatchRe"/>
         </label>
     </div>
     <div class="control-view ">
@@ -124,12 +130,6 @@
         <span><span class="required">*</span>最晚送达时间：</span>
         <input class="easyui-datebox"  id="reqDeliveryDateDispatchRe" style="width: 100px"/>
         <select style="width: 60px" id="appendTimeDispatchRe"></select>
-        </label>
-    </div>
-    <div class="control-view ">
-        <label style="width: 60%">
-            <span>特殊要求：</span>
-            <textarea style="width: 350px" id="customerSpeciaNoteDispatchRe"></textarea>
         </label>
     </div>
     <div class="control-view ">

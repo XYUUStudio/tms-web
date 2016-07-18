@@ -2,7 +2,10 @@
 *主界面样式
 * waylau.com 2014-9-25
 */
-
+audio{
+    /*background: #f79449;*/
+    width: 220px;
+}
 /*顶部区域样式*/
 .top-layout {
     height: 60px;
@@ -637,7 +640,7 @@ textarea {
 }
 .control-view>label {
     width: 30%;
-    padding-top: 15px;
+    padding-top: 10px;
     float: left;
     font-size:12px;
 }
@@ -650,9 +653,14 @@ textarea {
 .control-view>p>span{
     width:85px;text-align: right;float: left;
 }
+
 .control-view>label>span{
     width:85px;text-align: right;float: left;
 }
+.control-view>label>a{
+    float: left;
+}
+
 .control-group  >label>input select{
     width:200px;
     height: 20px;
