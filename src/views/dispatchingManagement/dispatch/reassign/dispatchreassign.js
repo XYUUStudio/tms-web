@@ -22,6 +22,14 @@ var  getValueDispatcheReassign=function () {
     $("#receiverAddressDispatchRe").val(pram[0].receiverAddress);
     $("#customerSpeciaNoteDispatchRe").val(pram[0].customerSpecialNote)
      $("#reqDeliveryDateDispatchRe").val(pram[0].reqDeliveryDate);
+    //寄件人详情赋值
+    $("#consignmentNoDispatchRe").html(pram[0].consignmentNo+" "+ pram[0].statusname);
+    $("#ceorgnameDisatchRe").html(pram[0].ceorgname);
+    $("#lcorgnameDisatchRe").html(pram[0].lcorgname);
+    $("#createDateDisatchRe").html(pram[0].createDate);
+    $("#pickupdriverbynameDisatchRe").html(pram[0].pickupdriverbyname);
+    $("#dispatchbynameDisatchRe").html(pram[0].dispatchbyname);
+    $("#submitbynameDisatchRe").html(pram[0].submitbyname)
 }
 var getAppendTimeSingerSelect=function () {
     //获取追加时间段
@@ -224,14 +232,7 @@ var getAddressManage=function () {
     senderProvinceCodeSingerSelect();
     receiverProvinceCodeSingerSelect();
     getAppendTimeSingerSelect();
-    //寄件人详情赋值
-    $("#consignmentNoDispatchRe").html(pram[0].consignmentNo+" "+ pram[0].statusname);
-    $("#ceorgnameDisatchRe").html(pram[0].ceorgname);
-    $("#lcorgnameDisatchRe").html(pram[0].lcorgname);
-    $("#createDateDisatchRe").html(pram[0].createDate);
-    $("#pickupdriverbynameDisatchRe").html(pram[0].pickupdriverbyname);
-    $("#dispatchbynameDisatchRe").html(pram[0].dispatchbyname);
-    $("#submitbynameDisatchRe").html(pram[0].submitbyname)
+
  }
 var userOrgcode = $.cookie("userOrgcode");
 var verification=function () {
@@ -354,7 +355,6 @@ var DispatchReSubmitClose=function () {
     $("#tabs").tabs('close','改单');
 }
 var successDispatchReSubmitAdd=function (data) {
-
     ds.dialog({
         title : '消息提示',
         content : '提交成功！',

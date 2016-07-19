@@ -4,44 +4,38 @@
 /**
  * Created by medlog-dev-2 on 2016/7/4.
  */
-var ajaxHelp = new AjaxHelp();
-//获取分页信息值
-//首次列表加载、翻页、更改页面大小都会触发
-
-var loadPendingordersList = function(pageNumber, pageSize){
-    // 定义post  请求页地址
-    var URL = ApiPath.TMSApi.dispatchingManagement.searchDispatchingList;
-    if(pageNumber == undefined || pageNumber == 0 ){pageNumber = 1;}
-    if(pageSize == undefined || pageSize == 0 ){pageSize = 20;}
-    var requestData = {
-        page:pageNumber,
-        rows:pageSize,
-        status:"CGSTS00050",
-        sort:"reqDeliveryDate",
-        order:"asc",
-        lcOrgCode:userOrgcode
-    };
-    ajaxHelp.AjaxPost(URL,requestData,successPendingordersListDoSearch,null);
-}
-//排序回调函数
-var doSort = function(sort, order){
-    var URL = ApiPath.TMSApi.dispatchingManagement.searchDispatchingList;
-    var options = $("#pendingOrdersList").datagrid('getPager').data("pagination").options;
-    var currPage = options.pageNumber;
-    var pageSize = options.pageSize;
-    var requestData = {page:currPage, rows:pageSize,sort:sort,order:order};
-    ajaxHelp.AjaxPost(URL,requestData,successPendingordersListDoSearch,null);
-}
-//查询
-var searchPendingOrders = function(){
-    var URL = ApiPath.TMSApi.dispatchingManagement.searchDispatchingList;
+var pageNumberInfo="";
+var pageSizeInfo="";
+//获取页面查询条件
+var getPendingOrdersList=function (pageNumber, pageSize) {
+    if(pageNumber == undefined || pageNumber == 0|| pageNumber==""){pageNumber = 1;}
+    if(pageSize == undefined || pageSize == 0|| pageSize=="" ){pageSize = 20;}
     var requestData = {
         consignmentNo: $('#consignmentNoPendingOrders').val(),
         lcOrgCode:userOrgcode,
         status:"CGSTS00050",
+        page:pageNumber,
+        rows:pageSize,
+        sort:"reqDeliveryDate",
+        order:"asc"
     };
+    return requestData;
+}
+
+var loadPendingordersList = function(pageNumber, pageSize){
+    // 定义post  请求页地址
+    pageNumber= pageNumberInfo;
+    pageSize=pageSizeInfo;
+    var URL = ApiPath.TMSApi.dispatchingManagement.searchDispatchingList;
+    var requestData = getPendingOrdersList(pageNumber, pageSize);
     ajaxHelp.AjaxPost(URL,requestData,successPendingordersListDoSearch,null);
 }
+// //查询
+// var searchPendingOrders = function(){
+//     var URL = ApiPath.TMSApi.dispatchingManagement.searchDispatchingList;
+//     var requestData = getPendingOrdersList();
+//     ajaxHelp.AjaxPost(URL,requestData,successPendingordersListDoSearch,null);
+// }
 //成功后回调函数
 var successPendingordersListDoSearch = function (resultInfo) {
     console.log(resultInfo)
@@ -53,8 +47,10 @@ var successPendingordersListDoSearch = function (resultInfo) {
         total:resultInfo.total,
         selected:true,
         onSelectPage:function(pageNumber, pageSize){
+            pageNumberInfo=pageNumber;
+            pageSizeInfo=pageSize;
             loadPendingordersList(pageNumber, pageSize);
-        },
+        }
     });
 }
 // 按钮页面跳转
@@ -91,20 +87,12 @@ $("#pendingOrdersList").datagrid({
     fitColumns:true,
     iconCls:"icon-save",
     loadMsg:"正在加载，请稍等。。。。。。",
-    onSortColumn:doSort,
     view: detailview,
     onDblClickCell:sendOrders,
     detailFormatter: function(rowIndex, rowData){//可以和onExpandRow合用
-        return '<table><tr>' +
-            '<td rowspan=2 style="border:0"></td>' +
-            '<td style="border:0">' +
-            '<p>sono: ' + rowData.sono + '</p>' +
-            '<p>soTypeName: ' + rowData.soTypeName + '</p>' +
-            '</td>' +
-            '</tr></table>';
+        return  false;
     }
 });
 //载入页执行  列表、时间函数
-var userOrgcode = $.cookie("userOrgcode");
 loadPendingordersList();
 

@@ -7,22 +7,23 @@
 /**
  * Created by medlog-dev-2 on 2016/7/4.
  */
-var ajaxHelp = new AjaxHelp();
-//获取分页信息值
-//首次列表加载、翻页、更改页面大小都会触发
-
+var pageNumberInfo="";
+var pageSizeInfo="";
 var loadToPickupList = function(pageNumber, pageSize){
     // 定义post  请求页地址
+    pageNumber=pageNumberInfo;
+    pageSize=pageSizeInfo;
     var URL = ApiPath.TMSApi.dispatchingManagement.searchDispatchingList;
-    if(pageNumber == undefined || pageNumber == 0 ){pageNumber = 1;}
-    if(pageSize == undefined || pageSize == 0 ){pageSize = 20;}
+    if(pageNumber == undefined || pageNumber == 0 ||pageNumber==""){pageNumber = 1;}
+    if(pageSize == undefined || pageSize == 0||pageSize==""){pageSize = 20;}
     var requestData = {
         page:pageNumber,
         rows:pageSize,
         status:"CGSTS00060",
         sort:"reqDeliveryDate",
         order:"asc",
-        lcOrgCode:userOrgcode
+        lcOrgCode:userOrgcode,
+        consignmentNo: $('#consignmentNoToPickup').val()
     };
     ajaxHelp.AjaxPost(URL,requestData,successToPickupList,null);
 }
@@ -35,33 +36,12 @@ var successToPickupList = function (resultInfo) {
         total:resultInfo.total,
         selected:true,
         onSelectPage:function(pageNumber, pageSize){
+            pageNumberInfo=pageNumber;
+            pageSizeInfo=pageSize;
             loadToPickupList(pageNumber, pageSize);
         },
     });
 }
-//排序回调函数
-var doSort = function(sort, order){
-    var URL = ApiPath.TMSApi.dispatchingManagement.searchDispatchingList;
-    var options = $("#pendingOrdersList").datagrid('getPager').data("pagination").options;
-    var currPage = options.pageNumber;
-    var pageSize = options.pageSize;
-    var requestData = {page:currPage, rows:pageSize,sort:sort,order:order};
-    ajaxHelp.AjaxPost(URL,requestData,successPendingordersListDoSearch,null);
-}
-//查询
-var searchToPickup = function(){
-    var URL = ApiPath.TMSApi.dispatchingManagement.searchDispatchingList;
-    var requestData = {
-        consignmentNo: $('#consignmentNoToPicku').val(),
-        status:"CGSTS00060",
-        lcOrgCode:userOrgcode
-    };
-    ajaxHelp.AjaxPost(URL,requestData,successToPickupList,null);
-}
-//成功后回调函数
-
-// 按钮页面跳转
-
 var getToPickup=function () {
     var row = $("#toPickupList").datagrid('getSelections');
     return (row)
@@ -94,22 +74,13 @@ $("#toPickupList").datagrid({
     singleSelect:true,
     pagination:true,
     fitColumns:true,
-    iconCls:"icon-save",
     loadMsg:"正在加载，请稍等。。。。。。",
-    onSortColumn:doSort,
     view: detailview,
     onDblClickCell:ToPickupView,
     detailFormatter: function(rowIndex, rowData){//可以和onExpandRow合用
-        return '<table><tr>' +
-            '<td rowspan=2 style="border:0"></td>' +
-            '<td style="border:0">' +
-            '<p>sono: ' + rowData.sono + '</p>' +
-            '<p>soTypeName: ' + rowData.soTypeName + '</p>' +
-            '</td>' +
-            '</tr></table>';
+        return false;
     }
 });
 //载入页执行  列表、时间函数
-var userOrgcode = $.cookie("userOrgcode");
 loadToPickupList();
 

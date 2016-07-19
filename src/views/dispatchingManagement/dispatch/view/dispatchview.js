@@ -1,10 +1,8 @@
 /**
  * Created by medlog-dev-2 on 2016/7/7.
  */
-
-var ajaxHelp = new AjaxHelp();
 var pram=dispatchList();// 单个订单号
-var orderView=new Object(); //订单详情
+var orderPassBoxList=new Object(); //订单详情
 var rackRecordList=new  Object();  //跟踪记录详情
  var trackRecordShow=function () {
      //切换跟踪记录
@@ -50,7 +48,7 @@ var orderPassBox=function () {
     $("#trackRecordShow").hide();
     $("#orderDetailShow").hide();
     $("#assessmentDetailsShow").hide();
-    $("#orderPassBoxList").datagrid('loadData',orderView.consignmentLgCtnViewList)
+    $("#orderPassBoxList").datagrid('loadData',orderPassBoxList.consignmentLgCtnViewList)
 }
 var orderDetailShow=function () {
     $("#orderDetail").css("background","#f79449");
@@ -76,7 +74,8 @@ var getOrderDetail=function () {
 }
 
 var successGetOrderDetail=function (data) {
-    orderView=data;
+    orderPassBoxList=data;
+    $("#consignmentNoDetailsShow").html(pram[0].consignmentNo+" "+ pram[0].statusname)
     $("#ceorgnameOrderDetail").html(data.ceorgname);
     $("#lcorgnameOrderDetail").html(data.lcorgname);
     $("#submitbynameOrderDetail").html(data.submitbyname);
@@ -104,7 +103,7 @@ var successGetOrderDetail=function (data) {
         $("#recordOrderDispatch").hide()
     }
 
-}
+};
 var getConsignmentEventDetail=function () {
     // 获取运单跟踪记录API
     var URL = ApiPath.TMSApi.dispatchingManagement.consignmentConsignmentEventDetail;
@@ -112,10 +111,10 @@ var getConsignmentEventDetail=function () {
         consignmentNo:pram[0].consignmentNo
     };
     ajaxHelp.AjaxPost(URL,requestData,successGetConsignmentEventDetail,null);
-}
+};
 var successGetConsignmentEventDetail=function (data) {
     rackRecordList=data;
-}
+};
 var getAssessmentDetailsDetail=function () {
     //获取评价详情API
     var URL = ApiPath.TMSApi.dispatchingManagement.consignmentQueryEvaluate;
@@ -123,12 +122,12 @@ var getAssessmentDetailsDetail=function () {
         consignmentNo:pram[0].consignmentNo
     };
     ajaxHelp.AjaxPost(URL,requestData,successGetAssessmentDetailsDetail,null);
-}
+};
 var successGetAssessmentDetailsDetail=function (data) {
      //赋值
     if(data){
         $("#dvvcode1nameOrderDetail").html(data.evaluationItemValueName1);
-        $("#EvaluationItemRemark1OrderDetail").html(data.evaluationItemRemark1);
+        $("#remarkOrderDetail").html(data.remark);
         if(data.attachment.length!=0){
             $('.imgViewCO').html('<img src="' + data.attachment[0].url + '" alt="" width="150" height="150" />')
         }
@@ -138,16 +137,14 @@ var successGetAssessmentDetailsDetail=function (data) {
         $("#dvvcode5nameOrderDetail").html(data.evaluationItemValueName5);
     }
 
-}
+};
 var orderDetailLoad=function () {
     //获取运单详情
     orderDetailShow();
     getOrderDetail();
     getConsignmentEventDetail();
     getAssessmentDetailsDetail();
-    $("#consignmentNoDetailsShow").html(pram[0].consignmentNo+" "+ pram[0].statusname)
-}
-
+};
 $("#trackRecordList").datagrid({
     striped: true,
     nowrap: true,
@@ -158,13 +155,7 @@ $("#trackRecordList").datagrid({
     loadMsg:"正在加载，请稍等。。。。。。",
     view: detailview,
     detailFormatter: function(rowIndex, rowData){//可以和onExpandRow合用
-        return '<table><tr>' +
-            '<td rowspan=2 style="border:0"></td>' +
-            '<td style="border:0">' +
-            '<p>sono: ' + rowData.sono + '</p>' +
-            '<p>soTypeName: ' + rowData.soTypeName + '</p>' +
-            '</td>' +
-            '</tr></table>';
+        return false;
     }
 });
 $("#orderPassBoxList").datagrid({
@@ -177,13 +168,7 @@ $("#orderPassBoxList").datagrid({
     loadMsg:"正在加载，请稍等。。。。。。",
     view: detailview,
     detailFormatter: function(rowIndex, rowData){//可以和onExpandRow合用
-        return '<table><tr>' +
-            '<td rowspan=2 style="border:0"></td>'+
-            '<td style="border:0">' +
-            '<p>sono: ' + rowData.sono + '</p>' +
-            '<p>soTypeName: ' + rowData.soTypeName + '</p>' +
-            '</td>' +
-            '</tr></table>';
+        return false;
     }
 });
 orderDetailLoad();

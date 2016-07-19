@@ -12,7 +12,7 @@
                 <a  class="group" href="#" onclick="javascript:dispatchReassign()">
                     <span>改单</span>
                 </a>
-                <a  class="group"  href="#"  onclick="javascript:searchDispatchList()">
+                <a  class="group"  href="#"  onclick="javascript:loadDispatchList()">
                     <span>查询</span>
                 </a>
                 <a  class="group" href="#"  onclick="javascript:exportDispatchList()">
@@ -56,8 +56,8 @@
     <div class="control-view">
         <label>
             <span>下单日期：</span>
-             <input  class="easyui-datebox" id="createDateFromDispatchList" style="min-width: 90px;"/>
-            <input  class="easyui-datebox" id="createDateEndDispatchList"  style="min-width: 90px;"/>
+             <input  class="easyui-datebox" id="createDateFromDispatchList" />
+            <input  class="easyui-datebox" id="createDateEndDispatchList" />
         </label>
         <label>
             <span>最晚送达时间：</span>
@@ -71,7 +71,7 @@
               </select>
         </label>
     </div>
-    <table id="dispatchList"    toolbar="#toolbar" width="98%"  style="color: #fff;" >
+    <table id="dispatchList" toolbar="#toolbar" width="98%"  style="color: #fff;" >
         <thead frozen="true">
         </thead>
         <thead>

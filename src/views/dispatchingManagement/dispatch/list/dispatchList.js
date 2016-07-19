@@ -6,7 +6,8 @@ var userOrgcode = $.cookie("userOrgcode");
 var  reqDeliveryDateFrom="";
 var  createDateFrom="";
 var  createDateEnd="";
-
+var pageNumberInfo="";
+var pageSizeInfo="";
 //载入页执行  列表、时间函数
 var getEnterprisesSelect=function () {
     //获取寄件企业下拉框
@@ -70,8 +71,8 @@ var QueryDispatchList=function (pageNumber, pageSize) {
         var appendTimeDispatchList=$("#appendTimeDispatchList").val();
          reqDeliveryDateFrom=$("#reqDeliveryDateFromDispatchList").datebox('getValue')+""+$("#appendTimeDispatchList").find("option:selected").text()+":00"
     }
-    if(pageNumber == undefined || pageNumber == 0 ){pageNumber = 1;}
-    if(pageSize == undefined || pageSize == 0 ){pageSize = 20;}
+    if(pageNumber == undefined || pageNumber == 0||pageNumber=="" ){pageNumber = 1;}
+    if(pageSize == undefined || pageSize == 0|| pageSize==""){pageSize = 20;}
     var requestData = {
         page:pageNumber,
         rows:pageSize,
@@ -94,6 +95,8 @@ var QueryDispatchList=function (pageNumber, pageSize) {
 var loadDispatchList = function(pageNumber, pageSize){
     // 定义post  请求页地址
     var URL = ApiPath.TMSApi.dispatchingManagement.searchDispatchingList;
+    pageNumber=pageNumberInfo;
+    pageSize=pageSizeInfo;
     var requestData = QueryDispatchList(pageNumber,pageSize)
     ajaxHelp.AjaxPost(URL,requestData,successDispatchList,null);
 }
@@ -107,18 +110,20 @@ var successDispatchList = function (resultInfo) {
         selected:true,
         onSelectPage:function(pageNumber, pageSize){
             // loadData(pageNumber, pageSize);
+            pageNumberInfo=pageNumber;
+            pageSizeInfo=pageSize;
             loadDispatchList(pageNumber, pageSize);
         },
     });
 }
 
 //查询
-var searchDispatchList=function () {
-    //查询按钮
-    var requestData =QueryDispatchList();
-    var URL = ApiPath.TMSApi.dispatchingManagement.searchDispatchingList;
-    ajaxHelp.AjaxPost(URL,requestData,successDispatchList,null);
-};
+// var searchDispatchList=function () {
+//     //查询按钮
+//     var requestData =QueryDispatchList();
+//     var URL = ApiPath.TMSApi.dispatchingManagement.searchDispatchingList;
+//     ajaxHelp.AjaxPost(URL,requestData,successDispatchList,null);
+// };
 var dispatchList=function () {
     var row = $("#dispatchList").datagrid('getSelections');
     return (row)
@@ -204,6 +209,13 @@ var GetExportVal =  function () {
         }
       return string;
 }
+// datebox属性设置
+$("#createDateFromDispatchList").datebox({
+     width:'90px'
+});
+$("#createDateEndDispatchList").datebox({
+    width:'90px'
+});
 var dispatchListLoad=function () {
     getEnterprisesSelect();
     gerStatusDispatchSelect();
@@ -224,13 +236,7 @@ $("#dispatchList").datagrid({
     view: detailview,
     onDblClickCell:dispatchView,
     detailFormatter: function(rowIndex, rowData){//可以和onExpandRow合用
-        return '<table><tr>' +
-            '<td rowspan=2 style="border:0"></td>' +
-            '<td style="border:0">' +
-            '<p>sono: ' + rowData.sono + '</p>' +
-            '<p>soTypeName: ' + rowData.soTypeName + '</p>' +
-            '</td>' +
-            '</tr></table>';
+        return false;
     }
 });
 dispatchListLoad();

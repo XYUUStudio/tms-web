@@ -14,7 +14,7 @@ var  getVulereceiving=function () {
     $("#receiverContactNameDispatch").html(pram[0].receiverContactName);
     $("#receiverMobileDispatch").html(pram[0].receiverMobile);
     $("#receiverCompanyDispatchView").html(pram[0].receiverCompany);
-    $("#receiverAddressDispatch").html(pram[0].senderprovincename+" "+pram[0].sendercityname+" "+pram[0].senderdistrictname+" "+pram[0].senderAddress);
+    $("#receiverAddressDispatch").html(pram[0].receiverprovincename+" "+pram[0].receivercityname+" "+pram[0].receiverdistrictname+" "+pram[0].receiverAddress);
     $("#reqDeliveryDateDispatchView").html(pram[0].reqDeliveryDate);
     $("#remarkDispatch").html(pram[0].remark);
     $("#customerSpecialNoteDispatch").html(pram[0].customerSpecialNote)

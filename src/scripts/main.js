@@ -1,5 +1,11 @@
 'use strict';
 
+
+var userOrgcode = $.cookie("userOrgcode");
+var userName = $.cookie("userName");
+var userorgname = $.cookie("userorgname");
+var userJobDesc = $.cookie("userJobDesc");
+var ajaxHelp = new AjaxHelp();
 /**
  * 初始化导航菜单
  */
@@ -28,7 +34,7 @@ var getMeunList=function (result) {
             accd = '<ul>';
             $.each(groupData, function (i, item) {
                 var title = item.title;
-                var icon = item.icon;
+                // var icon = item.icon;
                 var url = item.url;
                 var type = item.type;
                 var closableValue = true;
@@ -57,6 +63,7 @@ var getDateTime = function () {
     $('#dateime_id').html(week + ' ' + dateime);
 };
 var GetServerSearchFunction=function () {
+    //对接数据库菜单
     var ajaxHelp = new AjaxHelp();
     var URL = ApiPath.TMSApi.UP.searchFunction;
     var requestData = {}
@@ -316,9 +323,6 @@ $(document).ready(function () {
         GetServerSearchFunction();
     }
 
-    var userName = $.cookie("userName");
-    var userorgname = $.cookie("userorgname");
-    var userJobDesc = $.cookie("userJobDesc");
     $("#MainUserInfo").html(userorgname+" "+userJobDesc+" "+userName)
     //换肤
     // $(function () {
@@ -354,10 +358,6 @@ $(document).ready(function () {
         onUpdateTab();
     })
 });
-
-/**************************************************************
- * 新增代碼
- */
 //退出事件
 var Loginout = function () {
     var ajaxHelp = new AjaxHelp();
@@ -377,7 +377,6 @@ var changePwd = {
     // verification: function () {
     // },
     save: function () {
-        var ajaxHelp = new AjaxHelp();
         var URL = ApiPath.TMSApi.UP.pcResetPwd;
         var requestData = {
             oldPwd: $("#oldPwd").val(),

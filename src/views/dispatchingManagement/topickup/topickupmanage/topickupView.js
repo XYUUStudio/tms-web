@@ -8,32 +8,11 @@ var ajaxHelp = new AjaxHelp();
 var pram=getToPickup();
 console.log(pram)
 var  getVuleToPickup=function () {
-    $("#senderCompanyReDispatch").html(pram[0].senderCompany);
-    $("#receiverCompanyReDispatch").html(pram[0].receiverCompany);
-    $("#reqDeliveryDateReDispatch").html(pram[0].reqDeliveryDate+" "+"前送达");
-    $("#senderContactNameReDispatch").html(pram[0].senderContactName);
-    $("#senderMobileReDispatch").html(pram[0].senderMobile);
-    $("#senderCompanyReDispatchView").html(pram[0].senderCompany);
-    $("#senderAddressReDispatch").html(pram[0].senderprovincename+" "+pram[0].sendercityname+" "+pram[0].senderdistrictname+" "+pram[0].senderAddress);
-    $("#receiverContactNameReDispatch").html(pram[0].receiverContactName);
-    $("#receiverMobileReDispatch").html(pram[0].receiverMobile);
-    $("#receiverCompanyReDispatchView").html(pram[0].receiverCompany);
-    $("#receiverAddressReDispatch").html(pram[0].senderprovincename+" "+pram[0].sendercityname+" "+pram[0].senderdistrictname+" "+pram[0].senderAddress);
-    $("#reqDeliveryDateReDispatchView").html(pram[0].reqDeliveryDate);
-    $("#remarkReDispatch").html(pram[0].remark);
-    $("#pickupdriverbynameReDispatchOrigin").html(pram[0].pickupdriverbyname);
-    $("#customerSpecialNoteReDispatch").html(pram[0].customerSpecialNote)
+
 }
 var userOrgcode = $.cookie("userOrgcode");
 var getPickupDriverId=function () {
-    //基本信息赋值
-    $("#consignmentNoReDispatch").html(pram[0].consignmentNo+" "+ pram[0].statusname);
-    $("#ceorgnameReDispatch").html(pram[0].ceorgname);
-    $("#lcorgnameReDispatch").html(pram[0].lcorgname);
-    $("#createDateReDispatch").html(pram[0].createDate);
-    $("#pickupdriverbynameReDispatch").html(pram[0].pickupdriverbyname);
-    $("#dispatchbynameReDispatch").html(pram[0].dispatchbyname);
-    $("#submitbynameReDispatch").html(pram[0].submitbyname)
+
     var URL = ApiPath.TMSApi.dictionary.getPickupDriverList;
     var requestData = {
         orgCode:userOrgcode
@@ -55,11 +34,34 @@ var getPickupDetail=function () {
     ajaxHelp.AjaxPost(URL,requestData,successGetPickupDetail,null);
 }
 var successGetPickupDetail=function (data) {
+    //详情赋值
     if(data.cgodRec){
         $("#recordReDispatch").attr('src',data.cgodRec.url)
     }else {
         $("#recordReDispatch").hide()
     }
+    $("#senderCompanyReDispatch").html(data.senderCompany);
+    $("#receiverCompanyReDispatch").html(data.receiverCompany);
+    $("#reqDeliveryDateReDispatch").html(data.reqDeliveryDate+" "+"前送达");
+    $("#senderContactNameReDispatch").html(data.senderContactName);
+    $("#senderMobileReDispatch").html(data.senderMobile);
+    $("#senderCompanyReDispatchView").html(data.senderCompany);
+    $("#senderAddressReDispatch").html(data.senderprovincename+" "+data.sendercityname+" "+data.senderdistrictname+" "+data.senderAddress);
+    $("#receiverContactNameReDispatch").html(data.receiverContactName);
+    $("#receiverMobileReDispatch").html(data.receiverMobile);
+    $("#receiverCompanyReDispatchView").html(data.receiverCompany);
+    $("#receiverAddressReDispatch").html(data.receiverprovincename+" "+data.receivercityname+" "+data.receiverdistrictname+" "+data.receiverAddress);
+    $("#reqDeliveryDateReDispatchView").html(data.reqDeliveryDate);
+    $("#remarkReDispatch").html(data.remark);
+    $("#pickupdriverbynameReDispatchOrigin").html(data.pickupdriverbyname);
+    $("#customerSpecialNoteReDispatch").html(data.customerSpecialNote)
+    $("#consignmentNoReDispatch").html(data.consignmentNo+" "+ data.statusname);
+    $("#ceorgnameReDispatch").html(data.ceorgname);
+    $("#lcorgnameReDispatch").html(data.lcorgname);
+    $("#createDateReDispatch").html(data.createDate);
+    $("#pickupdriverbynameReDispatch").html(data.pickupdriverbyname);
+    $("#dispatchbynameReDispatch").html(data.dispatchbyname);
+    $("#submitbynameReDispatch").html(data.submitbyname)
 }
 var verification=function () {
     var result=true;
@@ -106,4 +108,4 @@ var loadToPickup=function () {
     getPickupDriverId();
     getPickupDetail();
 };
-loadToPickup()
+loadToPickup();
