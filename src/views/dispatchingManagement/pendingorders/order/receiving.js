@@ -18,14 +18,15 @@ var  getVulereceiving=function () {
     $("#reqDeliveryDateDispatchView").html(pram[0].reqDeliveryDate);
     $("#remarkDispatch").html(pram[0].remark);
     $("#customerSpecialNoteDispatch").html(pram[0].customerSpecialNote)
-};
-var userOrgcode = $.cookie("userOrgcode");
-var getPickupDriverId=function () {
-    //寄件人详情赋值
     $("#consignmentNoDispatch").html(pram[0].consignmentNo+" "+ pram[0].statusname);
     $("#ceorgnameDispatch").html(pram[0].ceorgname);
     $("#lcorgnameDispatch").html(pram[0].lcorgname);
     $("#submitbynameDispatch").html(pram[0].submitbyname)
+
+};
+var userOrgcode = $.cookie("userOrgcode");
+var getPickupDriverId=function () {
+    //寄件人详情赋值
 
     var URL = ApiPath.TMSApi.dictionary.getPickupDriverList;
     var requestData = {
@@ -34,7 +35,7 @@ var getPickupDriverId=function () {
     ajaxHelp.AjaxPost(URL,requestData,successGetPickupDriverId,null);
 };
 var successGetPickupDriverId=function (data) {
-     $.each(data,function (index,item) {
+     $.each(data.rows,function (index,item) {
          $("#pickupDriverIdDispatch").append(" <option value='"+item.userId+"' >"+item.userName+"</option>")
      });
     getVulereceiving();
