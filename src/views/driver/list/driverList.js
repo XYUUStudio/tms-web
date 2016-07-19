@@ -192,8 +192,6 @@ var editDriverList = function () {
         addTabHref("司机编辑", "views/driver/edit/driverEdit.html");
     }
 };
-
-
 //加载司机列表
 loadDriverList();
 //获取所属物流中心下拉框

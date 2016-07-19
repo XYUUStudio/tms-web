@@ -6,10 +6,10 @@
  */
 var ajaxHelp = new AjaxHelp();
 var pram=getToPickup();
-console.log(pram)
+console.log(pram);
 var  getVuleToPickup=function () {
 
-}
+};
 var userOrgcode = $.cookie("userOrgcode");
 var getPickupDriverId=function () {
 
@@ -18,13 +18,13 @@ var getPickupDriverId=function () {
         orgCode:userOrgcode
     };
     ajaxHelp.AjaxPost(URL,requestData,successGetPickupDriverId,null);
-}
+};
 var successGetPickupDriverId=function (data) {
     $.each(data,function (index,item) {
-        $("#pickupDriverIdReDispatch").append(" <option value='"+item.userId+"' >"+item.userName+"</option>")
-    })
+        $("#pickupDriverIdReDispatch").append("<option value='"+item.userId+"' >"+item.userName+"</option>")
+    });
     getVuleToPickup();
-}
+};
 var getPickupDetail=function () {
     //获取订单详情
     var URL = ApiPath.TMSApi.dispatchingManagement.consignmentDetail;
@@ -32,14 +32,14 @@ var getPickupDetail=function () {
         consignmentNo:pram[0].consignmentNo
     };
     ajaxHelp.AjaxPost(URL,requestData,successGetPickupDetail,null);
-}
+};
 var successGetPickupDetail=function (data) {
     //详情赋值
     if(data.cgodRec){
         $("#recordReDispatch").attr('src',data.cgodRec.url)
     }else {
         $("#recordReDispatch").hide()
-    }
+    };
     $("#senderCompanyReDispatch").html(data.senderCompany);
     $("#receiverCompanyReDispatch").html(data.receiverCompany);
     $("#reqDeliveryDateReDispatch").html(data.reqDeliveryDate+" "+"前送达");
@@ -62,7 +62,7 @@ var successGetPickupDetail=function (data) {
     $("#pickupdriverbynameReDispatch").html(data.pickupdriverbyname);
     $("#dispatchbynameReDispatch").html(data.dispatchbyname);
     $("#submitbynameReDispatch").html(data.submitbyname)
-}
+};
 var verification=function () {
     var result=true;
     if($("#pickupDriverIdReDispatch").val()==""){
@@ -75,7 +75,7 @@ var verification=function () {
         result=false
     }
     return  result;
-}
+};
 var ReDispatchSubmitAdd=function () {
     if(verification()){
         var URL = ApiPath.TMSApi.dispatchingManagement.modifyDispatch;
@@ -83,13 +83,13 @@ var ReDispatchSubmitAdd=function () {
             consignmentNo:pram[0].consignmentNo,
             pickupDriverId:$("#pickupDriverIdReDispatch").val(),
             remark:$("#remarkReDispatch").val()
-        }
+        };
         ajaxHelp.AjaxPost(URL,requestData,successReDispatchSubmitAdd,null);
     }
-}
+};
 var ReDispatchSubmitClose=function () {
     $("#tabs").tabs('close','改派');
-}
+};
 var successReDispatchSubmitAdd=function (data) {
     ds.dialog({
         title : '消息提示',
