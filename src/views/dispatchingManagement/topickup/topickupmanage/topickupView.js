@@ -20,7 +20,7 @@ var getPickupDriverId=function () {
     ajaxHelp.AjaxPost(URL,requestData,successGetPickupDriverId,null);
 };
 var successGetPickupDriverId=function (data) {
-    $.each(data,function (index,item) {
+    $.each(data.rows,function (index,item) {
         $("#pickupDriverIdReDispatch").append("<option value='"+item.userId+"' >"+item.userName+"</option>")
     });
     getVuleToPickup();
