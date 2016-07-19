@@ -1,7 +1,8 @@
 /**
  * Created by medlog on 2016/7/7.
  */
-var ajaxHelp = new AjaxHelp();
+var pageNumberInfo = "";
+var pageSizeInfo = "";
 
 
 //司机详情界面跳转
@@ -10,22 +11,27 @@ var detailDriverList = function () {
 };
 
 
-//加载司机列表
+//加载司机列表和查询
 var loadDriverList = function (pageNumber, pageSize) {
+    pageNumber = pageNumberInfo;
+    pageSize = pageSizeInfo;
     var URL = ApiPath.TMSApi.businessData.driverList;
-    if (pageNumber == undefined || pageNumber == 0) {
+    if (pageNumber == undefined || pageNumber == 0 || pageNumber == "") {
         pageNumber = 1;
     }
-    if (pageSize == undefined || pageSize == 0) {
+    if (pageSize == undefined || pageSize == 0 || pageSize == "") {
         pageSize = 20;
     }
     var requestData = {
         page: pageNumber,
-        rows: pageSize
+        rows: pageSize,
+        searchValue: $("#searchValueDriverList").val(),
+        orgCode: $("#logCenterDriverList").val()
     };
     ajaxHelp.AjaxPost(URL, requestData, successLoadDriverList, null);
 };
 var successLoadDriverList = function (resultInfo) {
+    console.log(resultInfo);
     $("#driverList").datagrid("loadData", resultInfo);
     $("#paginationDriverList").pagination({
         pageList: [10, 20, 30],
@@ -33,6 +39,8 @@ var successLoadDriverList = function (resultInfo) {
         total: resultInfo.total,
         selected: true,
         onSelectPage: function (pageNumber, pageSize) {
+            pageNumberInfo = pageNumber;
+            pageSizeInfo = pageSize;
             loadDriverList(pageNumber, pageSize);
         }
     });
@@ -49,13 +57,7 @@ $("#driverList").datagrid({
     loadMsg: "正在加载，请稍等。。。。。。",//当从远程站点载入数据时，显示的一条快捷信息
     onDblClickCell: detailDriverList,//当用户双击单元格时触发
     detailFormatter: function (rowIndex, rowData) {//可以和onExpandRow合用
-        return "<table><tr>" +
-            "<td rowspan=2 style='border:0'></td>" +
-            "<td style='border:0'>" +
-            "<p>soNO: " + rowData.soNO + "</p>" +
-            "<p>soTypeName: " + rowData.soTypeName + "</p>" +
-            "</td>" +
-            "</tr></table>";
+        return false;
     }
 });
 
@@ -70,17 +72,6 @@ var successGetLogisticsCenter = function (responseData) {
     $.each(responseData, function (index, item) {
         $("#logCenterDriverList").append("<option value='" + item.id + "' >" + item.name + "</option>")
     });
-};
-
-
-//查询
-var queryDriverList = function () {
-    var URL = ApiPath.TMSApi.businessData.driverList;
-    var requestData = {
-        searchValue: $("#searchValueDriverList").val(),
-        orgCode: $("#logCenterDriverList").val()
-    };
-    ajaxHelp.AjaxPost(URL, requestData, successLoadDriverList, null);
 };
 
 

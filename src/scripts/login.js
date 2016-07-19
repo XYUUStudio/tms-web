@@ -45,7 +45,7 @@ $(function () {
         return result;
     }
     var ajaxHelp = new AjaxHelp();
-    Login = function () {
+     Login = function () {
         //登录页绑定事件
         //ajax 请求   调用登录接口
         if (verification()) {

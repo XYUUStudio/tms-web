@@ -1,7 +1,8 @@
 /**
  * Created by medlog on 2016/7/5.
  */
-var ajaxHelp = new AjaxHelp();
+var pageNumberInfo = "";
+var pageSizeInfo = "";
 
 
 //用户详情界面跳转
@@ -10,22 +11,27 @@ var detailUserList = function () {
 };
 
 
-//加载用户列表
+//加载用户列表和查询
 var loadUserList = function (pageNumber, pageSize) {
+    pageNumber = pageNumberInfo;
+    pageSize = pageSizeInfo;
     var URL = ApiPath.TMSApi.businessData.userList;
-    if (pageNumber == undefined || pageNumber == 0) {
+    if (pageNumber == undefined || pageNumber == 0 || pageNumber == "") {
         pageNumber = 1;
     }
-    if (pageSize == undefined || pageSize == 0) {
+    if (pageSize == undefined || pageSize == 0 || pageSize == "") {
         pageSize = 20;
     }
     var requestData = {
         page: pageNumber,
-        rows: pageSize
+        rows: pageSize,
+        searchValue: $("#searchValueUserList").val()
+        //validStatus: $("#validStatusUserList").val()
     };
     ajaxHelp.AjaxPost(URL, requestData, successLoadUserList, null);
 };
 var successLoadUserList = function (resultInfo) {
+    console.log(resultInfo);
     $("#userList").datagrid("loadData", resultInfo);
     $("#paginationUserList").pagination({
         pageList: [10, 20, 30],
@@ -33,6 +39,8 @@ var successLoadUserList = function (resultInfo) {
         total: resultInfo.total,
         selected: true,
         onSelectPage: function (pageNumber, pageSize) {
+            pageNumberInfo = pageNumber;
+            pageSizeInfo = pageSize;
             loadUserList(pageNumber, pageSize);
         }
     });
@@ -50,26 +58,9 @@ $("#userList").datagrid({
     view: detailview,//定义数据表格的视图
     onDblClickCell: detailUserList,//当用户双击单元格时触发
     detailFormatter: function (rowIndex, rowData) {//可以和onExpandRow合用
-        return "<table><tr>" +
-            "<td rowspan=2 style='border:0'></td>" +
-            "<td style='border:0'>" +
-            "<p>soNO: " + rowData.soNO + "</p>" +
-            "<p>soTypeName: " + rowData.soTypeName + "</p>" +
-            "</td>" +
-            "</tr></table>";
+        return false;
     }
 });
-
-
-//查询
-var queryUserList = function () {
-    var URL = ApiPath.TMSApi.businessData.userList;
-    var requestData = {
-        searchValue: $("#searchValueUserList").val()
-        //validStatus: $("#validStatusUserList").val()
-    };
-    ajaxHelp.AjaxPost(URL, requestData, successLoadUserList, null);
-};
 
 
 //重置密码
