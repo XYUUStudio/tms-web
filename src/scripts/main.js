@@ -30,7 +30,7 @@ var getMeunList=function (result) {
         $.each(data, function (i, item) {
             var group = item.group;
             var groupData = item.data;
-            var iconCls = item.icon;
+            //var iconCls = item.icon;
             accd = '<ul>';
             $.each(groupData, function (i, item) {
                 var title = item.title;
@@ -70,6 +70,7 @@ var GetServerSearchFunction=function () {
     ajaxHelp.AjaxPost(URL,requestData,SuccessFunction,null);
 }
 var SuccessFunction=function (data) {
+
     getMeunList(data)
 }
 /**
