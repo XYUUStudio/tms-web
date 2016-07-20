@@ -49,7 +49,7 @@ var getMeunList=function (result) {
             $("#left_menu_content_id").accordion('add', {
                 title: group,
                 content: accd,
-                iconCls: iconCls
+                // iconCls: iconCls
             });
         });
         $('#left_menu_content_id').accordion('select', 0);
