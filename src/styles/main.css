@@ -162,11 +162,9 @@ audio {
 .easyui-accordion ul {
     background: #4D4D4D;
 }
-
 .l-btn {
     color: #fff;
 }
-
 .accordion .accordion-header {
     background: none;
 }
@@ -873,7 +871,7 @@ textarea {
     text-align: right;
     width: 98%;
     margin: auto;
-    border-bottom: 2px solid #999;
+    border-bottom: 1px solid #ccc;
     margin-top: -15px
 }
 
