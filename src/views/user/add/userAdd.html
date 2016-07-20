@@ -10,7 +10,8 @@
         <div class="control-group" style="text-align: left">
             <label style="margin-left: 30px">
                 <span><span class="required">*</span>初始密码：</span>
-                <input id="initialPwdUserAdd" type="text" placeholder="建议超过8位，包含数字加字母" style="width: 200px"/>
+                <input id="initialPwdUserAdd" type="text" placeholder="建议超过8位，包含数字加字母" style="width: 200px"
+                       keyup="value=value.replace(/[^\w\.\/]/ig,'')"/>
             </label>
         </div>
         <div class="control-group" style="text-align: left">
